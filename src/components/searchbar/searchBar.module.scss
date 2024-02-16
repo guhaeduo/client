@@ -1,0 +1,140 @@
+.searchBarWrapper {
+  position: relative;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  background-color: rgb(57, 58, 60);
+  border-radius: 3px;
+  gap: 7px;
+}
+
+.searchBar {
+  &.header {
+    input {
+      width: 240px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+
+  &.main {
+    padding: 7px;
+    input {
+      width: 400px;
+      font-size: 16px;
+      font-weight: 900;
+    }
+  }
+}
+
+.searchBarDropDown {
+  &.header {
+    width: 64px;
+    :global {
+      .dropDownHeader {
+        padding: 9px;
+        font-size: 12px;
+      }
+      .dropDownContent {
+        li {
+          font-size: 12px;
+          padding: 9px;
+        }
+      }
+    }
+  }
+  &.main {
+    width: 80px;
+    :global {
+      .dropDownHeader {
+        padding: 15px 13px;
+        font-size: 14px;
+      }
+      .dropDownContent {
+        li {
+          font-size: 14px;
+          padding: 15px 13px;
+        }
+      }
+    }
+  }
+}
+
+.searchBar form {
+  display: flex;
+  align-items: center;
+  button {
+    padding: 2px 5px 0px;
+    font-weight: bold;
+  }
+}
+
+.searchInput {
+  border: none;
+  font-size: 15px;
+}
+
+.searchHistoryContainer {
+  position: absolute;
+  margin-top: 3px;
+  background-color: rgb(57, 58, 60);
+  width: 100%;
+  z-index: 1;
+  padding: 7px 0 3px 0;
+}
+
+.searchHistory {
+  display: flex;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 7px;
+  align-items: center;
+  &:hover {
+    background-color: rgb(64, 64, 64);
+  }
+}
+
+.searchTitle {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 7px;
+  letter-spacing: 1px;
+  color: #a0a0a0;
+}
+
+.historyCountry {
+  padding: 5px 8px 4px 7px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: rgb(77 77 77);
+}
+
+.historyName {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 7px;
+}
+
+.historyTag {
+  font-size: 14px;
+  color: #cbcbcb;
+  flex: 1;
+  margin-left: 5px;
+}
+
+.historyFavoriteButton {
+  font-size: 15px;
+  margin-right: 5px;
+  &.active path {
+    color: rgb(176, 230, 67);
+  }
+}
+
+.historyDeleteButton {
+  font-size: 20px;
+}

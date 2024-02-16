@@ -1,13 +1,14 @@
-import styles from './hello.module.scss';
+import styles from './global.module.scss';
 import classNames from 'classnames/bind';
 import CheckBox from 'components/checkBox/CheckBox';
+import useCustomNavigation from 'hooks/useCustomNavigation';
+import Header from 'components/header/Header';
 const cn = classNames.bind(styles);
 
 function App() {
   return (
     <div className="App">
-      <h1 className={cn('title')}>hello</h1>
-      <CheckBox value={true} onClick={() => console.log('good')} />
+      <Header />
     </div>
   );
 }
