@@ -7,6 +7,7 @@ import useCustomNavigation from 'hooks/useCustomNavigation';
 import { PiUser } from 'react-icons/pi';
 import { AiOutlineProfile } from 'react-icons/ai';
 import { MdLogout } from 'react-icons/md';
+import useWindowClickEvent from 'hooks/useWindowClickEvent';
 const cn = classNames.bind(styles);
 
 const LOGO_HIDDEN_PATH = [''];
@@ -40,17 +41,11 @@ export default function Header() {
 
   // 유저 객체입니다.
   const user = {
-    isLogin: false,
+    isLogin: true,
   };
 
-  // 메뉴가 열려있는 상태에서 화면을 클릭하면, 메뉴창 닫기
-  useEffect(() => {
-    const closeMenu = () => isUserMenuOpen && setIsUserMenuOpen(false);
-    window.addEventListener('click', closeMenu);
-    return () => {
-      window.removeEventListener('click', closeMenu);
-    };
-  }, [isUserMenuOpen]);
+  const closeMenu = () => isUserMenuOpen && setIsUserMenuOpen(false);
+  useWindowClickEvent(closeMenu, [isUserMenuOpen]);
 
   const { navHome, navLogin, navProfile, navFindDuo } = useCustomNavigation();
 

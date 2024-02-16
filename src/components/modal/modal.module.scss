@@ -1,0 +1,30 @@
+.modalBackground {
+  position: flxed;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.385);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  padding: 20px;
+  background-color: #242526;
+  border-radius: 3px;
+  border: 1px solid rgb(108, 108, 108);
+  position: relative;
+}
+
+.closeButton {
+  font-size: 25px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+}
