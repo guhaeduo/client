@@ -9,6 +9,7 @@
     "@types/jest": "^27.5.2",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
+    "html-react-parser": "^5.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.1",

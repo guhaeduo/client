@@ -1,0 +1,35 @@
+.skeleton {
+  background-color: #393a3c;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  &::after {
+    border-radius: 5px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(46, 47, 48, 0),
+      rgb(46, 47, 48),
+      rgba(46, 47, 48, 0)
+    );
+    transform: translateX(-100%);
+    animation: 2.6s 0.5s infinite normal none running skeleton-loader-move;
+    content: '';
+  }
+}
+
+@keyframes skeleton-loader-move {
+  0% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
