@@ -1,0 +1,29 @@
+.main {
+  padding-top: 30px;
+}
+
+.errorContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 250px;
+  flex-direction: column;
+  .alertIcon {
+    font-size: 50px;
+  }
+  .errorMessage {
+    margin-top: 15px;
+    font-size: 16px;
+  }
+  .toHomeButton {
+    margin-top: 40px;
+    padding: 12px 23px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 00;
+    color: black;
+    background-color: var(--white-button);
+    &:hover {
+      background-color: var(--white-button-hover);
+    }
+  }
+}
