@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
 import getSummonerInfo from 'service/getSummonerInfo';
-import getUserInfoFromParams from 'utils/getUserInfoFromParams';
+import getUserInfoFromParams from 'hooks/usePathSummonerData';
+import usePathSummonerData from 'hooks/usePathSummonerData';
 import SummonerSearchSkeleton from './component/skeleton/SummonerSearchSkeleton';
 import SummonerInfoContainer from './component/SummonerInfoContainer';
 import { SummonerInfo } from 'types/summoner';
@@ -13,15 +14,13 @@ import { RIOT_API_ERROR_MESSAGE } from 'constants/riotApi';
 import { RiotAPIErrorResponse } from 'types/riotApi';
 import SummonerSearchErrorContainer from './component/SummonerSearchErrorContainer';
 import SummonerRankSummaryContainer from './component/SummonerRankSummaryContainer';
+
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
   const [summonerInfo, setSummonerInfo] = useState<SummonerInfo>();
   const [error, setError] = useState<string>();
-  const { name, tag, country } = getUserInfoFromParams({
-    country: '',
-    summonerName: '',
-  });
+  const { name, tag, country } = usePathSummonerData();
 
   useEffect(() => {
     const updateSummonerInfo = async () => {
@@ -32,12 +31,13 @@ export default function SummonerSearchPage() {
         if (axios.isAxiosError<RiotAPIErrorResponse>(err) && err.response) {
           const { status } = err.response.data;
           const errorMessage = RIOT_API_ERROR_MESSAGE[status.status_code];
+          console.log(errorMessage);
           setError(errorMessage);
         }
       }
     };
     updateSummonerInfo();
-  }, []);
+  }, [name, tag, country]);
 
   if (error) {
     return <SummonerSearchErrorContainer errorMessage={error} />;
