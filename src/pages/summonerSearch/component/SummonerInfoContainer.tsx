@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './summonerInfoContainer.module.scss';
 import classNames from 'classnames/bind';
 import { SummonerInfo, SummonerRankInfo } from 'types/summoner';
@@ -8,39 +8,20 @@ const cn = classNames.bind(styles);
 
 type Props = {
   summonerInfo: SummonerInfo;
+  summonerRankInfo: SummonerRankInfo;
 };
 
 type RankType = 'soloRank' | 'freeRank';
 
-export default function SummonerInfoContainer({ summonerInfo }: Props) {
+export default function SummonerInfoContainer({
+  summonerInfo,
+  summonerRankInfo,
+}: Props) {
   const [rankType, setRankType] = useState<RankType>('soloRank');
-  // const winningRate = calculateWinRate(rankData.win, rankData.lose);
   const { gameName, tagLine, profileIconId } = summonerInfo;
+  const rankData = summonerRankInfo[rankType];
+  const winningRate = calculateWinRate(rankData.win, rankData.lose);
 
-  // useEffect(() => {
-  //   const updateSummonerInfo = async () => {
-  //     try {
-  //       setIsFirstLoading(true);
-  //       const summonerInfo = await getSummonerInfo(name, tag, country);
-  //       setSummonerInfo(summonerInfo);
-  //       if (!summonerInfo) return;
-  //       const summonerRankInfo = await getSummonerRankInfo(
-  //         summonerInfo.id,
-  //         summonerInfo.region,
-  //       );
-  //       setSummonerRankInfo(summonerRankInfo);
-  //       setIsFirstLoading(false);
-  //     } catch (err) {
-  //       setIsFirstLoading(false);
-  //       if (axios.isAxiosError<RiotAPIErrorResponse>(err) && err.response) {
-  //         const { status } = err.response.data;
-  //         const errorMessage = RIOT_API_ERROR_MESSAGE[status.status_code];
-  //         setErrorMessage(errorMessage);
-  //       }
-  //     }
-  //   };
-  //   updateSummonerInfo();
-  // }, []);
   return (
     <div className={cn('summonerInfo')}>
       <div className={cn('summonerIcon')}>
@@ -73,7 +54,7 @@ export default function SummonerInfoContainer({ summonerInfo }: Props) {
             자유랭크
           </span>
         </div>
-        {/* <div className={cn('rankDataContainer')}>
+        <div className={cn('rankDataContainer')}>
           <div className={cn('rankTierIcon')}>
             <img src={DDRAGON_URL.tierIcon(rankData.tier)} alt="summonerTier" />
           </div>
@@ -90,7 +71,7 @@ export default function SummonerInfoContainer({ summonerInfo }: Props) {
               </span>
             </p>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

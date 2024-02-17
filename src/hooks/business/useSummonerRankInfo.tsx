@@ -11,29 +11,29 @@ export default function useSummonerRankInfo({
   errorHandler,
   summonerInfo,
 }: Props) {
-  const [summonerRankInfo, setSummonerRankInfo] = useState<SummonerRankInfo>();
   useState<boolean>();
   const puuid = summonerInfo?.puuid || '';
   const region = summonerInfo?.region || '';
-  const { isLoading: isSummonerRankInfoLoading } = useQuery<SummonerRankInfo>(
-    [
-      'summoner',
-      'rank',
+  const { data: summonerRankInfo, isLoading: isSummonerRankInfoLoading } =
+    useQuery<SummonerRankInfo>(
+      [
+        'summoner',
+        'info',
+        'rankInfo',
+        {
+          region: summonerInfo?.region,
+          name: summonerInfo?.name,
+          tag: summonerInfo?.tagLine,
+        },
+      ],
+      () => getSummonerRankInfo(puuid, region),
       {
-        region: summonerInfo?.region,
-        name: summonerInfo?.name,
-        tag: summonerInfo?.tagLine,
+        onError: (err) => {
+          if (typeof err === 'string') errorHandler(err);
+        },
+        enabled: !!summonerInfo,
       },
-    ],
-    () => getSummonerRankInfo(puuid, region),
-    {
-      onError: (err) => {
-        if (typeof err === 'string') errorHandler(err);
-      },
-      onSuccess: (data) => setSummonerRankInfo(data),
-      enabled: !!summonerInfo,
-    },
-  );
+    );
   console.log(isSummonerRankInfoLoading);
 
   return {

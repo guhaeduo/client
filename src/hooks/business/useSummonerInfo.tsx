@@ -8,14 +8,15 @@ type Props = {
 };
 export default function useSummonerInfo({ errorHandler }: Props) {
   const { country, name, tag } = usePathSummonerData();
-  const { data, isLoading: isSummonerInfoLoading } = useQuery<SummonerInfo>(
-    ['summoner', 'info', { country, name, tag }],
-    () => getSummonerInfo(name, tag, country),
-    {
-      onError: (err) => {
-        if (typeof err === 'string') errorHandler(err);
+  const { data: summonerInfo, isLoading: isSummonerInfoLoading } =
+    useQuery<SummonerInfo>(
+      ['summoner', 'info', { country, name, tag }],
+      () => getSummonerInfo(name, tag, country),
+      {
+        onError: (err) => {
+          if (typeof err === 'string') errorHandler(err);
+        },
       },
-    },
-  );
-  return { summonerInfo: data, isSummonerInfoLoading };
+    );
+  return { summonerInfo, isSummonerInfoLoading };
 }

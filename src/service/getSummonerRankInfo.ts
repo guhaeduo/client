@@ -9,7 +9,7 @@ export default async function getSummonerRankInfo(
   region: string,
 ): Promise<SummonerRankInfo> {
   try {
-    const res = await axiosInstance.get<SummonerRankInfo>(
+    const rankRes = await axiosInstance.get<SummonerRankInfo>(
       `${process.env.REACT_APP_SERVER_URL}/api/summoner`,
       {
         headers: {
@@ -18,7 +18,7 @@ export default async function getSummonerRankInfo(
         },
       },
     );
-    return res.data;
+    return rankRes.data;
   } catch (err) {
     if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
       throw err.response.data.error;
