@@ -1,0 +1,28 @@
+.homeMain {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding-top: 220px;
+}
+
+.homeSideImage {
+  position: absolute;
+  left: -100px;
+  top: -60px;
+  z-index: -1;
+  img {
+    width: 700px;
+  }
+}
+.searchArea {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  h1 {
+    cursor: pointer;
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 5px;
+  }
+}

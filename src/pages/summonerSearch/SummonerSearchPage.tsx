@@ -12,22 +12,16 @@ import axios from 'axios';
 import { RIOT_API_ERROR_MESSAGE } from 'constants/riotApi';
 import { RiotAPIErrorResponse } from 'types/riotApi';
 import SummonerSearchErrorContainer from './component/SummonerSearchErrorContainer';
-import SummonerRankSummary from './component/SummonerRankSummary';
+import SummonerRankSummaryContainer from './component/SummonerRankSummaryContainer';
 const cn = classNames.bind(styles);
 
-type Props = {
-  params: { country: string; summonerName: string };
-};
-
-/**
- * 미리 스타일을 지정해둔 라인선택 컴포넌트 입니다.
- * @param {{country : string , summonerName : string}} params - 현재 주소 정보를 받습니다.
- */
-
-export default function SummonerSearchPage({ params }: Props) {
+export default function SummonerSearchPage() {
   const [summonerInfo, setSummonerInfo] = useState<SummonerInfo>();
   const [error, setError] = useState<string>();
-  const { name, tag, country } = getUserInfoFromParams(params);
+  const { name, tag, country } = getUserInfoFromParams({
+    country: '',
+    summonerName: '',
+  });
 
   useEffect(() => {
     const updateSummonerInfo = async () => {
@@ -57,7 +51,7 @@ export default function SummonerSearchPage({ params }: Props) {
       {summonerInfo && (
         <>
           <SummonerInfoContainer summonerInfo={summonerInfo} />
-          <SummonerRankSummary summonerInfo={summonerInfo} />
+          <SummonerRankSummaryContainer summonerInfo={summonerInfo} />
         </>
       )}
     </main>

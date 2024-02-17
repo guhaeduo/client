@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SummonerInfo, SummonerRankSummary } from 'types/summoner';
 import getSummonerRankSummary from 'service/getSummonerSummary';
-import styles from './SummonerRankSummary.module.scss';
+import styles from './SummonerRankSummaryContainer.module.scss';
 import classNames from 'classnames/bind';
 
 const cn = classNames.bind(styles);
@@ -12,7 +12,7 @@ type Props = {
 
 type QueueType = 'SOLO' | 'FREE';
 
-export default function SummonerRankSummary({ summonerInfo }: Props) {
+export default function SummonerRankSummaryContainer({ summonerInfo }: Props) {
   const [queueType, setQueueType] = useState<QueueType>('SOLO');
   const [summonerRankSummary, setSummonerRankSummary] =
     useState<SummonerRankSummary>();
