@@ -13,19 +13,20 @@ import COUNTRY from 'constants/country';
  * @param {string} name - 소환사 이름입니다.
  * @param {string} tag - 소환사 태그입니다.
  * @param {string} country - 소환사 국가입니다.
+ * @returns {Promise<SummonerInfo>} - 소환사 정보를 포함하는 프로미스 객체
  */
 
 export default async function getSummonerInfo(
   name: string,
   tag: string,
   country: string,
-) {
+): Promise<SummonerInfo> {
   try {
     // 소환사 계정 정보입니다.
+    console.log({ name, tag, country });
     const accountRes: AxiosResponse<SummonerAcountData> = await axios.get(
       `/asia/riot/account/v1/accounts/by-riot-id/${name}/${tag}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`,
     );
-    console.log(accountRes);
     // 소환사 puuid입니다.
     const puuid = accountRes.data.puuid;
     // 소환사 검색 지역입니다.
@@ -41,11 +42,13 @@ export default async function getSummonerInfo(
     };
     return summonerInfo;
   } catch (err) {
-    console.log(err);
     if (axios.isAxiosError<RiotAPIErrorResponse>(err) && err.response) {
       const { status } = err.response.data;
-      const errorMessage = RIOT_API_ERROR_MESSAGE[status.status_code];
+      const errorMessage =
+        RIOT_API_ERROR_MESSAGE[status.status_code] || 'Unknown error occurred';
       throw errorMessage;
+    } else {
+      throw 'Unknown error occurred';
     }
   }
 }

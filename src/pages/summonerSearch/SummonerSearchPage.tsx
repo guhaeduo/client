@@ -1,44 +1,19 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
-import getSummonerInfo from 'service/getSummonerInfo';
-import getUserInfoFromParams from 'hooks/usePathSummonerData';
-import usePathSummonerData from 'hooks/usePathSummonerData';
-import SummonerSearchSkeleton from './component/skeleton/SummonerSearchSkeleton';
 import SummonerInfoContainer from './component/SummonerInfoContainer';
-import { SummonerInfo } from 'types/summoner';
-import axios from 'axios';
-import { RIOT_API_ERROR_MESSAGE } from 'constants/riotApi';
-import { RiotAPIErrorResponse } from 'types/riotApi';
 import SummonerSearchErrorContainer from './component/SummonerSearchErrorContainer';
 import SummonerRankSummaryContainer from './component/SummonerRankSummaryContainer';
-
+import useSummonerInfo from 'hooks/business/useSummonerInfo';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
-  const [summonerInfo, setSummonerInfo] = useState<SummonerInfo>();
   const [error, setError] = useState<string>();
-  const { name, tag, country } = usePathSummonerData();
-
-  useEffect(() => {
-    const updateSummonerInfo = async () => {
-      try {
-        const summonerInfo = await getSummonerInfo(name, tag, country);
-        setSummonerInfo(summonerInfo);
-      } catch (err) {
-        if (axios.isAxiosError<RiotAPIErrorResponse>(err) && err.response) {
-          const { status } = err.response.data;
-          const errorMessage = RIOT_API_ERROR_MESSAGE[status.status_code];
-          console.log(errorMessage);
-          setError(errorMessage);
-        }
-      }
-    };
-    updateSummonerInfo();
-  }, [name, tag, country]);
-
+  const errorHandler = (err: string) => setError(err);
+  const { summonerInfo, isSummonerInfoLoading } = useSummonerInfo({
+    errorHandler,
+  });
+  console.log(summonerInfo, isSummonerInfoLoading);
   if (error) {
     return <SummonerSearchErrorContainer errorMessage={error} />;
   }
