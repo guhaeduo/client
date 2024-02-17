@@ -5,6 +5,7 @@ import SummonerInfoContainer from './component/SummonerInfoContainer';
 import SummonerSearchErrorContainer from './component/SummonerSearchErrorContainer';
 import SummonerRankSummaryContainer from './component/SummonerRankSummaryContainer';
 import useSummonerInfo from 'hooks/business/useSummonerInfo';
+import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
@@ -13,7 +14,16 @@ export default function SummonerSearchPage() {
   const { summonerInfo, isSummonerInfoLoading } = useSummonerInfo({
     errorHandler,
   });
-  console.log(summonerInfo, isSummonerInfoLoading);
+  const { summonerRankInfo, isSummonerRankInfoLoading } = useSummonerRankInfo({
+    errorHandler,
+    summonerInfo,
+  });
+  // console.log(
+  //   summonerInfo,
+  //   isSummonerInfoLoading,
+  //   summonerRankInfo,
+  //   isSummonerRankInfoLoading,
+  // );
   if (error) {
     return <SummonerSearchErrorContainer errorMessage={error} />;
   }
@@ -26,7 +36,7 @@ export default function SummonerSearchPage() {
       {summonerInfo && (
         <>
           <SummonerInfoContainer summonerInfo={summonerInfo} />
-          <SummonerRankSummaryContainer summonerInfo={summonerInfo} />
+          {/* <SummonerRankSummaryContainer summonerInfo={summonerInfo} /> */}
         </>
       )}
     </main>

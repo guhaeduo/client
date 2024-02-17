@@ -1,0 +1,16 @@
+{
+  "soloRank": {
+    "tier": "CHALLENGER",
+    "level": 0,
+    "point": 23,
+    "win": 152,
+    "lose": 88
+  },
+  "freeRank": {
+    "tier": "GOLD",
+    "level": 2,
+    "point": 23,
+    "win": 52,
+    "lose": 88
+  }
+}

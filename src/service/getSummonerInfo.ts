@@ -3,10 +3,11 @@ import {
   SummonerBasicData,
   SummonerInfo,
 } from 'types/summoner';
-import { RIOT_API_ERROR_MESSAGE } from 'constants/riotApi';
-import { RiotAPIErrorResponse } from 'types/riotApi';
+import { RIOT_API_ERROR_MESSAGE } from 'constants/api';
+import { RiotAPIErrorResponse } from 'types/Api';
 import axios, { AxiosResponse } from 'axios';
 import COUNTRY from 'constants/country';
+import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
 /**
  * 소환사 기본 데이터를 받아오는 함수입니다.
@@ -23,7 +24,6 @@ export default async function getSummonerInfo(
 ): Promise<SummonerInfo> {
   try {
     // 소환사 계정 정보입니다.
-    console.log({ name, tag, country });
     const accountRes: AxiosResponse<SummonerAcountData> = await axios.get(
       `/asia/riot/account/v1/accounts/by-riot-id/${name}/${tag}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`,
     );
@@ -48,7 +48,7 @@ export default async function getSummonerInfo(
         RIOT_API_ERROR_MESSAGE[status.status_code] || 'Unknown error occurred';
       throw errorMessage;
     } else {
-      throw 'Unknown error occurred';
+      throw UNKNOWN_NET_ERROR_MESSAGE;
     }
   }
 }

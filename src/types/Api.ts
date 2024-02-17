@@ -14,3 +14,7 @@ export type RiotAPIErrorCode =
 export type RiotAPIErrorResponse = {
   status: { status_code: RiotAPIErrorCode };
 };
+
+export type ServerAPIErrorResponse = {
+  error: string;
+};

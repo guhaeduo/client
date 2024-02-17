@@ -4,6 +4,7 @@ import App from './App';
 import { Reset } from 'styled-reset';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { worker } from 'mocks/browsers';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,6 +16,10 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+if (process.env.REACT_APP_MSW_MOKING === 'true') {
+  worker.start();
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
