@@ -1,4 +1,4 @@
-import { RiotAPIErrorCode } from 'types/riotApi';
+import { RiotAPIErrorCode } from 'types/Api';
 
 export const RIOT_API_ERROR_MESSAGE: Record<RiotAPIErrorCode, string> = {
   400: '잘못된 요청입니다.',
@@ -13,3 +13,6 @@ export const RIOT_API_ERROR_MESSAGE: Record<RiotAPIErrorCode, string> = {
   503: '서비스를 사용할 수 없습니다.',
   504: '게이트웨이 시간이 초과되었습니다.',
 };
+
+export const UNKNOWN_NET_ERROR_MESSAGE =
+  '알 수 없는 에러가 발생하였습니다. 잠시 후 다시 시도해 주세요';

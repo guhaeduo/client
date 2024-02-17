@@ -1,15 +1,13 @@
+import { useParams } from 'react-router-dom';
+
 /**
- * params에서 소환사의 정보를 가져오는 함수입니다.
- * @param {{country : string , summonerName : string}} params - 현재 주소 정보를 받습니다.
+ * params에서 소환사의 정보를 가져오는 훅입니다.
  */
 
-type Params = {
-  country: string;
-  summonerName: string;
-};
-
-export default function getUserInfoFromParams(params: Params) {
+export default function usePathSummonerData() {
+  const params = useParams();
   const { country, summonerName } = params;
+  if (!country || !summonerName) return { country: '', name: '', tag: '' };
 
   // country와 summonerName을 디코딩 합니다.
   const decodingCountry = decodeURI(country);

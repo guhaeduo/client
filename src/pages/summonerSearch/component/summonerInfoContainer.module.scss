@@ -1,0 +1,102 @@
+.summonerInfo {
+  display: flex;
+  align-items: center;
+}
+
+.summonerIcon {
+  width: 75px;
+  height: 75px;
+  border-radius: 3px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+
+.summonerNameTag {
+  margin-left: 15px;
+  font-size: 40px;
+  font-weight: 600;
+  min-height: 40px;
+  min-width: 150px;
+  .summonerTag {
+    padding-left: 10px;
+    font-weight: 400;
+    color: #b5b5b5;
+  }
+}
+
+.rankTierContainer {
+  margin-left: auto;
+}
+
+.rankTypeSelectWrapper {
+  padding-left: 85px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  min-height: 20px;
+  .divider {
+    height: 20px;
+    width: 1.5px;
+    background-color: rgb(86, 86, 86);
+  }
+  .rankTypeSelector {
+    cursor: pointer;
+    color: rgb(86, 86, 86);
+    &.active {
+      color: white;
+    }
+  }
+}
+
+.rankDataContainer {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+  min-width: 200px;
+}
+
+.rankTierIcon {
+  width: 70px;
+  height: 70px;
+  img {
+    width: 100%;
+  }
+}
+
+.rankWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+  height: 70px;
+  flex: 1;
+  min-width: 170px;
+}
+
+.rankTier {
+  display: flex;
+  gap: 3px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.rankPoint {
+  padding-top: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #a6a6a6;
+}
+
+.winningWrapper {
+  padding-top: 7px;
+  font-size: 13px;
+  display: flex;
+  font-weight: 500;
+  gap: 5px;
+  span {
+    color: #a6a6a6;
+  }
+}
