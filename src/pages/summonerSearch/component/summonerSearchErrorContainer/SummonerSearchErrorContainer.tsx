@@ -1,4 +1,4 @@
-import styles from '../summonerSearchPage.module.scss';
+import styles from './summonerSearchErrorContainer.module.scss';
 import classNames from 'classnames/bind';
 import { IoAlertCircleOutline } from 'react-icons/io5';
 import useCustomNavigation from 'hooks/useCustomNavigation';

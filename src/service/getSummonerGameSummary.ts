@@ -1,15 +1,15 @@
-import { SummonerRankSummary } from 'types/summoner';
+import { SummonerGameSummary, SummaryQueueType } from './../types/summoner';
 import { ServerAPIErrorResponse } from 'types/Api';
 import axiosInstance from './instance';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import axios from 'axios';
 
-export default async function getSummonerRankSummary(
+export default async function getSummonerGameSummary(
   puuid: string,
-  queueType: 'ALL' | 'SOLO' | 'FREE',
-): Promise<SummonerRankSummary> {
+  queueType: SummaryQueueType,
+): Promise<SummonerGameSummary> {
   try {
-    const rankRes = await axiosInstance.get<SummonerRankSummary>(
+    const summaryRes = await axiosInstance.get<SummonerGameSummary>(
       `${process.env.REACT_APP_SERVER_URL}/api/summoner/summary`,
       {
         headers: {
@@ -18,7 +18,7 @@ export default async function getSummonerRankSummary(
         },
       },
     );
-    return rankRes.data;
+    return summaryRes.data;
   } catch (err) {
     if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
       throw err.response.data.error;

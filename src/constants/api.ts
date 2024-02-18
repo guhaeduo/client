@@ -16,3 +16,5 @@ export const RIOT_API_ERROR_MESSAGE: Record<RiotAPIErrorCode, string> = {
 
 export const UNKNOWN_NET_ERROR_MESSAGE =
   '알 수 없는 에러가 발생하였습니다. 잠시 후 다시 시도해 주세요';
+
+export const SUMMONER_DATA_STALE_TIME = 24 * 60 * 60 * 1000;

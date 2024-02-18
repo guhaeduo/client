@@ -59,7 +59,7 @@ type LaneStats = {
   mostChampionlist: ChampionStats[];
 };
 
-export type SummonerRankSummary = {
+export type SummonerGameSummary = {
   info: {
     winningRate: number;
     wins: number;
@@ -85,3 +85,5 @@ export type SearchHistory = {
   tag: string;
   isFavorite: boolean;
 };
+
+export type SummaryQueueType = 'ALL' | 'SOLO' | 'FREE';

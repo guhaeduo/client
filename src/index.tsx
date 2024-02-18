@@ -9,7 +9,6 @@ import { worker } from 'mocks/browsers';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5 * 1000,
       cacheTime: Infinity,
       refetchOnWindowFocus: false,
       retry: false,

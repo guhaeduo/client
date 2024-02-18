@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import getSummonerInfo from 'service/getSummonerInfo';
 import { SummonerInfo } from 'types/summoner';
-
+import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
 type Props = {
   errorHandler: (err: string) => void;
 };
@@ -11,11 +11,15 @@ export default function useSummonerInfo({ errorHandler }: Props) {
   const { data: summonerInfo, isLoading: isSummonerInfoLoading } =
     useQuery<SummonerInfo>(
       ['summoner', 'info', { country, name, tag }],
-      () => getSummonerInfo(name, tag, country),
+      () => {
+        console.log('info 가져오기');
+        return getSummonerInfo(name, tag, country);
+      },
       {
         onError: (err) => {
           if (typeof err === 'string') errorHandler(err);
         },
+        staleTime: SUMMONER_DATA_STALE_TIME,
       },
     );
   return { summonerInfo, isSummonerInfoLoading };
