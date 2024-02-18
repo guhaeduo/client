@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import getSummonerRankInfo from 'service/getSummonerRankInfo';
 import { SummonerInfo, SummonerRankInfo } from 'types/summoner';
+import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
+
 type Props = {
   errorHandler: (err: string) => void;
   summonerInfo: SummonerInfo | undefined;
@@ -26,15 +28,18 @@ export default function useSummonerRankInfo({
           tag: summonerInfo?.tagLine,
         },
       ],
-      () => getSummonerRankInfo(puuid, region),
+      () => {
+        console.log('rankInfo 가져오기');
+        return getSummonerRankInfo(puuid, region);
+      },
       {
         onError: (err) => {
           if (typeof err === 'string') errorHandler(err);
         },
         enabled: !!summonerInfo,
+        staleTime: SUMMONER_DATA_STALE_TIME,
       },
     );
-  console.log(isSummonerRankInfoLoading);
 
   return {
     summonerRankInfo,

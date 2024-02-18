@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../summonerInfoContainer.module.scss';
+import styles from '../summonerInfoContainer/summonerInfoContainer.module.scss';
 import classNames from 'classnames/bind';
 import Skeleton from 'components/skeleton/Skeleton';
 const cn = classNames.bind(styles);

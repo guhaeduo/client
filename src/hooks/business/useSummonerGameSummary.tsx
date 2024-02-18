@@ -1,45 +1,50 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import getSummonerRankSummary from 'service/getSummonerRankSummary';
-import { SummonerInfo, SummonerRankSummary } from 'types/summoner';
+import getSummonerGameSummary from 'service/getSummonerGameSummary';
+import { SummonerInfo, SummonerGameSummary } from 'types/summoner';
+import { SummaryQueueType } from 'types/summoner';
+import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
 type Props = {
   errorHandler: (err: string) => void;
   summonerInfo: SummonerInfo | undefined;
 };
 
-type QueueType = 'ALL' | 'SOLO' | 'FREE';
-
-export default function useSummonerRankSummary({
+export default function useSummonerGameSummary({
   errorHandler,
   summonerInfo,
 }: Props) {
-  const [queueType, setQueueType] = useState<QueueType>('SOLO');
+  const [summaryQueueType, setSummaryQueueType] =
+    useState<SummaryQueueType>('SOLO');
   const puuid = summonerInfo?.puuid || '';
   const { data: summonerRankSummary, isLoading: isSummonerRankSummaryLoading } =
-    useQuery<SummonerRankSummary>(
+    useQuery<SummonerGameSummary>(
       [
         'summoner',
         'info',
-        'rankSummary',
+        'gameSummary',
         {
           name: summonerInfo?.name,
           tag: summonerInfo?.tagLine,
-          queueType,
+          queueType: summaryQueueType,
         },
       ],
-      () => getSummonerRankSummary(puuid, queueType),
+      () => {
+        console.log('summary 가져오기');
+        return getSummonerGameSummary(puuid, summaryQueueType);
+      },
       {
         onError: (err) => {
           if (typeof err === 'string') errorHandler(err);
         },
         enabled: !!summonerInfo,
+        staleTime: SUMMONER_DATA_STALE_TIME,
       },
     );
 
   return {
     summonerRankSummary,
     isSummonerRankSummaryLoading,
-    queueType,
-    setQueueType,
+    summaryQueueType,
+    setSummaryQueueType,
   };
 }
