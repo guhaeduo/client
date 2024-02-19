@@ -23,13 +23,12 @@ if (process.env.REACT_APP_MSW_MOKING === 'true') {
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-
+console.log('레전드');
 root.render(
   <>
     <Reset />
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        {' '}
         <App />
       </QueryClientProvider>
     </BrowserRouter>

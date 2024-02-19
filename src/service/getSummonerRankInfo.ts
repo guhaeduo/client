@@ -5,7 +5,7 @@ import axios from 'axios';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
 export default async function getSummonerRankInfo(
-  id: string,
+  summonerId: string,
   region: string,
 ): Promise<SummonerRankInfo> {
   try {
@@ -13,13 +13,14 @@ export default async function getSummonerRankInfo(
       `${process.env.REACT_APP_SERVER_URL}/api/summoner`,
       {
         headers: {
-          summonerId: id,
+          summonerId,
           region,
         },
       },
     );
     return rankRes.data;
   } catch (err) {
+    console.log(err);
     if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
       throw err.response.data.error;
     }

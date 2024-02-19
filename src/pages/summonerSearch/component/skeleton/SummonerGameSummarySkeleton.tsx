@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../summonerRankSummary/SummonerRankSummaryContainer.module.scss';
+import styles from '../summonerGameSummary/summonerGameSummaryContainer.module.scss';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
-import RankSummaryQueueTypeTab from '../summonerRankSummary/RankSummaryQueueTypeTab';
+import RankSummaryQueueTypeTab from '../summonerGameSummary/GameSummaryQueueTypeTab';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   setSummaryQueueType: React.Dispatch<React.SetStateAction<SummaryQueueType>>;
 };
 
-export default function SummonerRankSummarySkeleton({
+export default function SummonerGameSummarySkeleton({
   summaryQueueType,
   setSummaryQueueType,
 }: Props) {

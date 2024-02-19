@@ -14,7 +14,7 @@ export default function useSummonerRankInfo({
   summonerInfo,
 }: Props) {
   useState<boolean>();
-  const puuid = summonerInfo?.puuid || '';
+  const summonerId = summonerInfo?.id || '';
   const region = summonerInfo?.region || '';
   const { data: summonerRankInfo, isLoading: isSummonerRankInfoLoading } =
     useQuery<SummonerRankInfo>(
@@ -30,7 +30,7 @@ export default function useSummonerRankInfo({
       ],
       () => {
         console.log('rankInfo 가져오기');
-        return getSummonerRankInfo(puuid, region);
+        return getSummonerRankInfo(summonerId, region);
       },
       {
         onError: (err) => {

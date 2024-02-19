@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './summonerInfoContainer.module.scss';
 import classNames from 'classnames/bind';
 import { SummonerInfo, SummonerRankInfo } from 'types/summoner';
-import DDRAGON_URL from 'constants/ddragonUrl';
+import URL from 'constants/url';
 import calculateWinRate from 'utils/calculateWinRate';
 const cn = classNames.bind(styles);
 
@@ -25,10 +25,7 @@ export default function SummonerInfoContainer({
   return (
     <div className={cn('summonerInfo')}>
       <div className={cn('summonerIcon')}>
-        <img
-          src={DDRAGON_URL.profileIcon(profileIconId)}
-          alt="summonerProfileIcon"
-        />
+        <img src={URL.profileIcon(profileIconId)} alt="summonerProfileIcon" />
       </div>
       <div className={cn('summonerNameTag')}>
         <span className={cn('summonerName')}>{gameName}</span>
@@ -56,7 +53,7 @@ export default function SummonerInfoContainer({
         </div>
         <div className={cn('rankDataContainer')}>
           <div className={cn('rankTierIcon')}>
-            <img src={DDRAGON_URL.tierIcon(rankData.tier)} alt="summonerTier" />
+            <img src={URL.tierIcon(rankData.tier)} alt="summonerTier" />
           </div>
           <div className={cn('rankWrapper')}>
             <p className={cn('rankTier')}>

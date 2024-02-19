@@ -1,6 +1,6 @@
 import React from 'react';
 import { SummaryQueueType } from 'types/summoner';
-import styles from './SummonerRankSummaryContainer.module.scss';
+import styles from './summonerGameSummaryContainer.module.scss';
 import classNames from 'classnames/bind';
 const cn = classNames.bind(styles);
 
@@ -19,7 +19,7 @@ const tabMenus: TabMenus[] = [
   { value: 'FREE', display: '자유랭크' },
 ];
 
-export default function RankSummaryQueueTypeTab({
+export default function GameSummaryQueueTypeTab({
   summaryQueueType,
   setSummaryQueueType,
 }: Props) {

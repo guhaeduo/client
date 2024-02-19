@@ -1,12 +1,14 @@
 {
   "info": {
-    "winningRate": 70.0,
-    "wins": 7,
-    "loses": 3,
+    "winningRate": 50.0,
+    "wins": 15,
+    "loses": 15,
     "kda": 6.8,
-    "killAvg": 7,
-    "deathAvg": 3,
-    "assistAvg": 8
+    "killAvg": 7.6,
+    "deathAvg": 3.8,
+    "assistAvg": 8.1,
+    "mostLane": null,
+    "subLane": "JUG"
   },
   "lane": {
     "all": {
@@ -16,28 +18,28 @@
           "championName": "Hwei",
           "championIconNumber": 910,
           "winningRate": 100.0,
-          "csPerMinute": 7.901515151515151,
-          "visionScorePerMinute": 0.9292724103259455,
-          "kda": 9.566666666666666,
-          "totalKillParticipation": 0.5693681917211328
+          "csPerMinute": 7.9,
+          "visionScorePerMinute": 0.93,
+          "kda": 9.57,
+          "totalKillParticipation": 0.57
         },
         {
           "championName": "Karma",
           "championIconNumber": 43,
           "winningRate": 50.0,
-          "csPerMinute": 7.892156862745098,
-          "visionScorePerMinute": 0.6840417252174924,
-          "kda": 3.791666666666667,
-          "totalKillParticipation": 0.5047554347826086
+          "csPerMinute": 7.89,
+          "visionScorePerMinute": 0.68,
+          "kda": 3.79,
+          "totalKillParticipation": 0.5
         },
         {
           "championName": "Yone",
           "championIconNumber": 777,
           "winningRate": 100.0,
-          "csPerMinute": 8.9375,
-          "visionScorePerMinute": 0.7399602890522753,
+          "csPerMinute": 8.94,
+          "visionScorePerMinute": 0.74,
           "kda": 5.0,
-          "totalKillParticipation": 0.2631578947368421
+          "totalKillParticipation": 0.26
         }
       ]
     },
@@ -56,28 +58,28 @@
           "championName": "Hwei",
           "championIconNumber": 910,
           "winningRate": 100.0,
-          "csPerMinute": 7.901515151515151,
-          "visionScorePerMinute": 0.9292724103259455,
-          "kda": 9.566666666666666,
-          "totalKillParticipation": 0.5693681917211328
+          "csPerMinute": 7.9,
+          "visionScorePerMinute": 0.93,
+          "kda": 9.57,
+          "totalKillParticipation": 0.57
         },
         {
           "championName": "Karma",
           "championIconNumber": 43,
           "winningRate": 50.0,
-          "csPerMinute": 7.892156862745098,
-          "visionScorePerMinute": 0.6840417252174924,
-          "kda": 3.791666666666667,
-          "totalKillParticipation": 0.5047554347826086
+          "csPerMinute": 7.89,
+          "visionScorePerMinute": 0.68,
+          "kda": 3.79,
+          "totalKillParticipation": 0.5
         },
         {
           "championName": "Yone",
           "championIconNumber": 777,
           "winningRate": 100.0,
-          "csPerMinute": 8.9375,
-          "visionScorePerMinute": 0.7399602890522753,
+          "csPerMinute": 8.94,
+          "visionScorePerMinute": 0.74,
           "kda": 5.0,
-          "totalKillParticipation": 0.2631578947368421
+          "totalKillParticipation": 0.26
         }
       ]
     },
