@@ -14,9 +14,9 @@ export default function useSummonerGameSummary({
   summonerInfo,
 }: Props) {
   const [summaryQueueType, setSummaryQueueType] =
-    useState<SummaryQueueType>('SOLO');
-  const puuid = summonerInfo?.puuid || '';
-  const { data: summonerRankSummary, isLoading: isSummonerRankSummaryLoading } =
+    useState<SummaryQueueType>('ALL');
+  const summonerId = summonerInfo?.id || '';
+  const { data: summonerGameSummary, isLoading: isSummonerGameSummaryLoading } =
     useQuery<SummonerGameSummary>(
       [
         'summoner',
@@ -30,7 +30,7 @@ export default function useSummonerGameSummary({
       ],
       () => {
         console.log('summary 가져오기');
-        return getSummonerGameSummary(puuid, summaryQueueType);
+        return getSummonerGameSummary(summonerId, summaryQueueType);
       },
       {
         onError: (err) => {
@@ -42,8 +42,8 @@ export default function useSummonerGameSummary({
     );
 
   return {
-    summonerRankSummary,
-    isSummonerRankSummaryLoading,
+    summonerGameSummary,
+    isSummonerGameSummaryLoading,
     summaryQueueType,
     setSummaryQueueType,
   };

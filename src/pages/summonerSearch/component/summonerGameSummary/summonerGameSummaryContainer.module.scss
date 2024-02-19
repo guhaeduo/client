@@ -1,0 +1,133 @@
+.summaryContainer {
+  margin-top: 30px;
+}
+
+.queueTypeTab {
+  display: flex;
+  gap: 10px;
+}
+
+.queueTypeTabButton {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 5px 7px 5px;
+  border-bottom: 3px solid transparent;
+  color: grey;
+  transition: 0s;
+  &.active {
+    color: white;
+    border-color: white;
+  }
+}
+
+.summary {
+  margin-top: 20px;
+  display: flex;
+  border-top: 1px solid var(--border);
+  h5 {
+    background-color: rgb(57, 58, 60);
+    font-size: 12px;
+    padding: 18px 20px 17px;
+    font-weight: bold;
+  }
+}
+
+.informationContainer {
+  width: 230px;
+  border-right: 1px solid var(--border);
+}
+
+.infomations {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+.winningRateChartContainer {
+  position: relative;
+  margin-top: -15px;
+  display: flex;
+  justify-content: center;
+  & > div:last-child {
+    width: 70px;
+    position: absolute;
+    top: calc(50% - 12px);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    gap: 5px;
+    .infoWinningRate {
+      font-size: 18px;
+    }
+    & > div:last-child {
+      display: flex;
+      gap: 5px;
+      font-size: 13px;
+    }
+  }
+}
+
+.infoDivider {
+  border: 1px dashed rgb(62, 62, 62);
+  width: 85%;
+  left: 0;
+  right: 0;
+  margin: 23px auto;
+}
+
+.infoDataContainer {
+  padding: 0px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infoKDA {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'Roboto';
+}
+
+.infoKDS {
+  font-family: 'Roboto';
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 16px;
+  .infoDeathAvg {
+    color: rgb(255, 93, 93);
+  }
+}
+
+.infoLane {
+  display: flex;
+  font-weight: bold;
+  margin-top: 25px;
+  gap: 5px;
+  align-items: end;
+  font-size: 11px;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  img {
+    width: 50px;
+  }
+  h6 {
+    color: rgb(161, 161, 161);
+  }
+}
+
+.detailsContainer {
+  flex: 1;
+}
+
+.details {
+  padding: 20px;
+}

@@ -3,37 +3,39 @@ import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
 import SummonerInfoContainer from './component/summonerInfoContainer/SummonerInfoContainer';
 import SummonerSearchErrorContainer from './component/summonerSearchErrorContainer/SummonerSearchErrorContainer';
-import SummonerRankSummaryContainer from './component/summonerRankSummary/SummonerRankSummaryContainer';
+import SummonerGameSummaryContainer from './component/summonerGameSummary/SummonerGameSummaryContainer';
 import useSummonerInfo from 'hooks/business/useSummonerInfo';
 import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
 import useSummonerGameSummary from 'hooks/business/useSummonerGameSummary';
 import { useParams } from 'react-router-dom';
 import SummonerInfoContainerSkeleton from './component/skeleton/SummonerInfoContainerSkeleton';
-import SummonerRankSummarySkeleton from './component/skeleton/SummonerRankSummarySkeleton';
+import SummonerGameSummarySkeleton from './component/skeleton/SummonerGameSummarySkeleton';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
-  const params = useParams();
+  const { country, summonerName } = useParams();
   const [error, setError] = useState<string>();
   const errorHandler = (err: string) => setError(err);
   const { summonerInfo, isSummonerInfoLoading } = useSummonerInfo({
     errorHandler,
   });
+  console.log(summonerInfo);
   const { summonerRankInfo, isSummonerRankInfoLoading } = useSummonerRankInfo({
     errorHandler,
     summonerInfo,
   });
   const {
-    summonerRankSummary,
-    isSummonerRankSummaryLoading,
+    summonerGameSummary,
+    isSummonerGameSummaryLoading,
     summaryQueueType,
     setSummaryQueueType,
   } = useSummonerGameSummary({ errorHandler, summonerInfo });
 
   useEffect(() => {
     setError('');
+    console.log(country);
     return () => setSummaryQueueType('ALL');
-  }, [params]);
+  }, [country, summonerName]);
 
   if (error) {
     return <SummonerSearchErrorContainer errorMessage={error} />;
@@ -49,15 +51,15 @@ export default function SummonerSearchPage() {
       ) : (
         <SummonerInfoContainerSkeleton />
       )}
-      {summonerRankSummary ? (
-        <SummonerRankSummaryContainer
-          summonerRankSummary={summonerRankSummary}
-          isSummonerRankSummaryLoading={isSummonerRankSummaryLoading}
+      {summonerGameSummary ? (
+        <SummonerGameSummaryContainer
+          summonerGameSummary={summonerGameSummary}
+          isSummonerGameSummaryLoading={isSummonerGameSummaryLoading}
           summaryQueueType={summaryQueueType}
           setSummaryQueueType={setSummaryQueueType}
         />
       ) : (
-        <SummonerRankSummarySkeleton
+        <SummonerGameSummarySkeleton
           summaryQueueType={summaryQueueType}
           setSummaryQueueType={setSummaryQueueType}
         />

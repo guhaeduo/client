@@ -5,13 +5,13 @@ import summonerRankSummary from '../mocks/mock/summonerRankSummary.json';
 
 export const handlers = [
   http.get(`${process.env.REACT_APP_SERVER_URL}/api/summoner`, async () => {
-    await sleep(3000);
+    await sleep(1000);
     return HttpResponse.json(summonerRankInfoData);
   }),
   http.get(
-    `${process.env.REACT_APP_SERVER_URL}/api/summoner/summary`,
+    `${process.env.REACT_APP_SERVER_URL}/api/matches/summary`,
     async () => {
-      await sleep(3000);
+      await sleep(1000);
       return HttpResponse.json(summonerRankSummary);
     },
   ),

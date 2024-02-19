@@ -9,8 +9,5 @@ type Props = {
 };
 
 export default function Skeleton({ className }: Props) {
-  return (
-    <div className={cn(className, 'skeleton')}>
-    </div>
-  );
+  return <div className={cn(className, 'skeleton')}></div>;
 }

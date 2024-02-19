@@ -1,8 +1,8 @@
-import styles from './raneSelector.module.scss';
+import styles from './laneSelector.module.scss';
 import classNames from 'classnames/bind';
 const cn = classNames.bind(styles);
 
-const RANE_OPTIONS = ['ALL', 'TOP', 'JUG', 'MID', 'ADC', 'SUP'];
+const LANE_OPTIONS = ['ALL', 'TOP', 'JUG', 'MID', 'ADC', 'SUP'];
 
 interface Props {
   options: string[];
@@ -19,28 +19,28 @@ interface Props {
  * @param {string} className - 클래스 입니다.
  */
 
-export default function RaneSelector({
+export default function LaneSelector({
   options,
   size = 40,
   onChange,
   className,
 }: Props) {
-  console.log(process.env.REACT_APP_PUBLIC_URL + `/images/rane/ALL.png`);
+  console.log(process.env.REACT_APP_PUBLIC_URL + `/images/lane/ALL.png`);
   return (
-    <div className={cn(className, 'raneSelectorWrapper')}>
-      {RANE_OPTIONS.map((rane) => (
+    <div className={cn(className, 'laneSelectorWrapper')}>
+      {LANE_OPTIONS.map((lane) => (
         <button
-          key={rane}
-          className={cn('raneSelector', { active: options.includes(rane) })}
-          onClick={() => onChange(rane)}
+          key={lane}
+          className={cn('laneSelector', { active: options.includes(lane) })}
+          onClick={() => onChange(lane)}
         >
           <div className={cn('imageWrapper')}>
             <img
               style={{ width: size, height: size }}
               src={
-                process.env.REACT_APP_PUBLIC_URL + `/images/rane/${rane}.png`
+                process.env.REACT_APP_PUBLIC_URL + `/images/lane/${lane}.png`
               }
-              alt={rane}
+              alt={lane}
             />
           </div>
         </button>

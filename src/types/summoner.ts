@@ -68,6 +68,8 @@ export type SummonerGameSummary = {
     killAvg: number;
     deathAvg: number;
     assistAvg: number;
+    mostLane: Lane;
+    subLane: Lane;
   };
   lane: {
     all: LaneStats;
@@ -87,3 +89,5 @@ export type SearchHistory = {
 };
 
 export type SummaryQueueType = 'ALL' | 'SOLO' | 'FREE';
+
+export type Lane = 'ALL' | 'TOP' | 'JUG' | 'MID' | 'ADC' | 'SUP';
