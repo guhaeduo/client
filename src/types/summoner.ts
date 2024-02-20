@@ -52,7 +52,7 @@ export type SummaryChampionStats = {
   visionScorePerMinute: string;
   kda: string;
   cntGame: number;
-  totalKillParticipation: string;
+  killParticipation: string;
 };
 
 type SummaryLaneStats = {

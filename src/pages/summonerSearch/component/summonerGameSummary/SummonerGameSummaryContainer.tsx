@@ -31,7 +31,7 @@ export default function SummonerGameSummaryContainer({
   });
 
   const currentDetailsLane = summaryLaneOption[0] as Lane;
-  const detailsData = lane[currentDetailsLane];
+  const detailData = lane[currentDetailsLane];
   const laneKey = Object.keys(lane) as Lane[];
   const disableLane = laneKey.filter(
     (key) => lane[key].mostChampionlist.length <= 0,
@@ -40,16 +40,16 @@ export default function SummonerGameSummaryContainer({
     useState<SummaryChampionStats | null>(
       disableLane.includes(currentDetailsLane)
         ? null
-        : detailsData.mostChampionlist[0],
+        : detailData.mostChampionlist[0],
     );
 
   useEffect(() => {
     setSummaryLaneOption('ALL');
-    setCurrentDetailChampion(detailsData.mostChampionlist[0]);
+    setCurrentDetailChampion(detailData.mostChampionlist[0]);
   }, [summaryQueueType]);
 
   useEffect(() => {
-    setCurrentDetailChampion(detailsData.mostChampionlist[0]);
+    setCurrentDetailChampion(detailData.mostChampionlist[0]);
   }, [summaryLaneOption]);
 
   const infoWinningRateData = {
@@ -165,7 +165,7 @@ export default function SummonerGameSummaryContainer({
             <div className={cn('detailsTop')}>
               <div className={cn('mostChampions')}>
                 {currentDetailChampion &&
-                  detailsData.mostChampionlist.map((champion) => (
+                  detailData.mostChampionlist.map((champion) => (
                     <ChampionTag
                       currentDetailChampion={currentDetailChampion}
                       setCurrentDetailChampion={setCurrentDetailChampion}
@@ -186,8 +186,26 @@ export default function SummonerGameSummaryContainer({
                 />
                 <div className={cn('chartDetail')}>
                   <span>{summaryLaneOption[0]}</span>
-                  <span>{detailsData.cntGame} 게임</span>
+                  <span>{detailData.cntGame} 게임</span>
                 </div>
+              </div>
+            </div>
+            <div className={cn('detailData')}>
+              <div>
+                <span>{currentDetailChampion?.csPerMinute}</span>
+                <span>분당 CS</span>
+              </div>
+              <div>
+                <span>{currentDetailChampion?.kda}</span>
+                <span>시야 점수</span>
+              </div>
+              <div>
+                <span>{currentDetailChampion?.winningRate}</span>
+                <span>승률</span>
+              </div>
+              <div>
+                <span>{currentDetailChampion?.killParticipation}</span>
+                <span>킬 관여율</span>
               </div>
             </div>
           </div>
