@@ -7,6 +7,7 @@ import axios from 'axios';
 export default async function getSummonerGameSummary(
   summonerId: string,
   queueType: SummaryQueueType,
+  region: string,
 ): Promise<SummonerGameSummary> {
   try {
     const summaryRes = await axiosInstance.get<SummonerGameSummary>(
@@ -15,6 +16,7 @@ export default async function getSummonerGameSummary(
         headers: {
           summonerId,
           queueType,
+          region,
         },
       },
     );

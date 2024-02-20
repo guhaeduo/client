@@ -7,7 +7,7 @@
     "killAvg": 7.6,
     "deathAvg": 3.8,
     "assistAvg": 8.1,
-    "mostLane": null,
+    "mostLane": "TOP",
     "subLane": "JUG"
   },
   "lane": {

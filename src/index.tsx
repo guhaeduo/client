@@ -3,13 +3,13 @@ import './index.css';
 import App from './App';
 import { Reset } from 'styled-reset';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { worker } from 'mocks/browsers';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      cacheTime: Infinity,
       refetchOnWindowFocus: false,
       retry: false,
     },
@@ -23,14 +23,13 @@ if (process.env.REACT_APP_MSW_MOKING === 'true') {
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-console.log('레전드');
+
 root.render(
-  <>
+  <QueryClientProvider client={queryClient}>
     <Reset />
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
+      <App />
+      <ReactQueryDevtools initialIsOpen={true} />
     </BrowserRouter>
-  </>,
+  </QueryClientProvider>,
 );

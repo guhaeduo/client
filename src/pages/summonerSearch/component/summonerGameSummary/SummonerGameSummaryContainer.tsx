@@ -12,14 +12,12 @@ const cn = classNames.bind(styles);
 
 type Props = {
   summonerGameSummary: SummonerGameSummary;
-  isSummonerGameSummaryLoading: boolean;
   summaryQueueType: SummaryQueueType;
   setSummaryQueueType: React.Dispatch<React.SetStateAction<SummaryQueueType>>;
 };
 
 export default function SummonerGameSummaryContainer({
   summonerGameSummary,
-  isSummonerGameSummaryLoading,
   summaryQueueType,
   setSummaryQueueType,
 }: Props) {

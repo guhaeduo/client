@@ -8,8 +8,9 @@ import SummonerSearchPage from 'pages/summonerSearch/SummonerSearchPage';
 import EmailSendPage from 'pages/EmailSend/EmailSendPage';
 import FindDuoPage from 'pages/findDuo/FindDuoPage';
 import { Routes, Route } from 'react-router-dom';
-
+import updateDDragonData from 'service/updateDDragonData';
 function App() {
+  updateDDragonData();
   return (
     <div className="App">
       <Header />

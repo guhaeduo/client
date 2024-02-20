@@ -1,48 +1,48 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import getSummonerRankInfo from 'service/getSummonerRankInfo';
 import { SummonerInfo, SummonerRankInfo } from 'types/summoner';
 import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
 
 type Props = {
-  errorHandler: (err: string) => void;
   summonerInfo: SummonerInfo | undefined;
+  country: string;
+  name: string;
+  tag: string;
 };
 
 export default function useSummonerRankInfo({
-  errorHandler,
   summonerInfo,
+  country,
+  name,
+  tag,
 }: Props) {
   useState<boolean>();
   const summonerId = summonerInfo?.id || '';
   const region = summonerInfo?.region || '';
-  const { data: summonerRankInfo, isLoading: isSummonerRankInfoLoading } =
-    useQuery<SummonerRankInfo>(
-      [
-        'summoner',
-        'info',
-        'rankInfo',
-        {
-          region: summonerInfo?.region,
-          name: summonerInfo?.name,
-          tag: summonerInfo?.tagLine,
-        },
-      ],
-      () => {
-        console.log('rankInfo 가져오기');
-        return getSummonerRankInfo(summonerId, region);
-      },
+  const {
+    data: summonerRankInfo,
+    isLoading: isSummonerRankInfoLoading,
+    error: summonerRankInfoError,
+  } = useQuery<SummonerRankInfo>({
+    queryKey: [
+      'summoner',
+      'info',
+      'rankInfo',
       {
-        onError: (err) => {
-          if (typeof err === 'string') errorHandler(err);
-        },
-        enabled: !!summonerInfo,
-        staleTime: SUMMONER_DATA_STALE_TIME,
+        country,
+        name,
+        tag,
       },
-    );
+    ],
+    queryFn: () => getSummonerRankInfo(summonerId, region),
+    enabled: !!summonerInfo,
+    staleTime: SUMMONER_DATA_STALE_TIME,
+  });
 
   return {
     summonerRankInfo,
     isSummonerRankInfoLoading,
+    summonerRankInfoError,
   };
 }

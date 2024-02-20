@@ -1,50 +1,53 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import getSummonerGameSummary from 'service/getSummonerGameSummary';
 import { SummonerInfo, SummonerGameSummary } from 'types/summoner';
 import { SummaryQueueType } from 'types/summoner';
 import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
 type Props = {
-  errorHandler: (err: string) => void;
   summonerInfo: SummonerInfo | undefined;
+  country: string;
+  name: string;
+  tag: string;
 };
 
 export default function useSummonerGameSummary({
-  errorHandler,
   summonerInfo,
+  country,
+  name,
+  tag,
 }: Props) {
   const [summaryQueueType, setSummaryQueueType] =
     useState<SummaryQueueType>('ALL');
   const summonerId = summonerInfo?.id || '';
-  const { data: summonerGameSummary, isLoading: isSummonerGameSummaryLoading } =
-    useQuery<SummonerGameSummary>(
-      [
-        'summoner',
-        'info',
-        'gameSummary',
-        {
-          name: summonerInfo?.name,
-          tag: summonerInfo?.tagLine,
-          queueType: summaryQueueType,
-        },
-      ],
-      () => {
-        console.log('summary 가져오기');
-        return getSummonerGameSummary(summonerId, summaryQueueType);
-      },
+  const region = summonerInfo?.region || '';
+
+  const {
+    data: summonerGameSummary,
+    isLoading: isSummonerGameSummaryLoading,
+    error: summonerGameSummaryError,
+  } = useQuery<SummonerGameSummary>({
+    queryKey: [
+      'summoner',
+      'info',
+      'gameSummary',
       {
-        onError: (err) => {
-          if (typeof err === 'string') errorHandler(err);
-        },
-        enabled: !!summonerInfo,
-        staleTime: SUMMONER_DATA_STALE_TIME,
+        country,
+        name,
+        tag,
+        queueType: summaryQueueType,
       },
-    );
+    ],
+    queryFn: () => getSummonerGameSummary(summonerId, summaryQueueType, region),
+    enabled: !!summonerInfo,
+    staleTime: SUMMONER_DATA_STALE_TIME,
+  });
 
   return {
     summonerGameSummary,
     isSummonerGameSummaryLoading,
     summaryQueueType,
     setSummaryQueueType,
+    summonerGameSummaryError,
   };
 }
