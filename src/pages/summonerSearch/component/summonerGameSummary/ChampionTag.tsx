@@ -14,13 +14,12 @@ type Props = {
   >;
 };
 
-export default function GameSummaryTag({
+export default function ChampionTag({
   champion,
   currentDetailChampion,
   setCurrentDetailChampion,
 }: Props) {
   const championDetail = getChampionData(champion.championName);
-  console.log(champion);
   const isActive = currentDetailChampion.championName === champion.championName;
   const onClickHandler = () => setCurrentDetailChampion(champion);
   return (

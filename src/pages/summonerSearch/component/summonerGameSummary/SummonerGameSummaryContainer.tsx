@@ -9,7 +9,7 @@ import useOptionSelector from 'hooks/useOptionSelector';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import { useEffect, useState } from 'react';
 import { SummaryChampionStats } from 'types/summoner';
-import GameSummaryTag from './GameSummaryTag';
+import ChampionTag from './ChampionTag';
 
 const cn = classNames.bind(styles);
 
@@ -153,7 +153,7 @@ export default function SummonerGameSummaryContainer({
                 <div className={cn('mostChampions')}>
                   {currentDetailChampion &&
                     detailsData.mostChampionlist.map((champion) => (
-                      <GameSummaryTag
+                      <ChampionTag
                         currentDetailChampion={currentDetailChampion}
                         setCurrentDetailChampion={setCurrentDetailChampion}
                         key={champion.championName}
