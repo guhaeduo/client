@@ -1,12 +1,12 @@
 .tooptipContent {
   background-color: var(--grey-900);
-  padding: 10px;
+  padding: 7px;
   border-radius: 5px;
   line-height: 1.4;
   word-break: keep-all;
   display: inline-block;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 5px);
   left: 50%;
   transform: translateX(-50%);
   .title {
