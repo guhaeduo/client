@@ -45,7 +45,6 @@ export default function SummonerGameSummaryContainer({
     summaryLaneOption[0].toLowerCase() as keyof typeof lane;
 
   const detailsData = lane[currentDetaisLane];
-  console.log(detailsData);
   const options = {
     responsive: false,
     plugins: {
@@ -129,6 +128,7 @@ export default function SummonerGameSummaryContainer({
               options={summaryLaneOption}
               onChange={setSummaryLaneOption}
               size={30}
+              disableLane={['JUG', 'ADC']}
             />
           </div>
         </div>

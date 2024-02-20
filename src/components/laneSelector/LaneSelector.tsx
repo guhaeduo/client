@@ -1,14 +1,16 @@
+import { Lane } from 'types/summoner';
 import styles from './laneSelector.module.scss';
 import classNames from 'classnames/bind';
 const cn = classNames.bind(styles);
 
-const LANE_OPTIONS = ['ALL', 'TOP', 'JUG', 'MID', 'ADC', 'SUP'];
+const LANE_OPTIONS: Lane[] = ['ALL', 'TOP', 'JUG', 'MID', 'ADC', 'SUP'];
 
 interface Props {
   options: string[];
   size?: number;
   onChange: (option: string) => void;
   className?: string;
+  disableLane?: Lane[];
 }
 
 /**
@@ -24,17 +26,25 @@ export default function LaneSelector({
   size = 40,
   onChange,
   className,
+  disableLane = [],
 }: Props) {
-  console.log(process.env.REACT_APP_PUBLIC_URL + `/images/lane/ALL.png`);
+  const laneOnclick = (lane: Lane) => {
+    if (disableLane.includes(lane)) return;
+    onChange(lane);
+  };
   return (
     <div className={cn(className, 'laneSelectorWrapper')}>
       {LANE_OPTIONS.map((lane) => (
         <button
           key={lane}
           className={cn('laneSelector', { active: options.includes(lane) })}
-          onClick={() => onChange(lane)}
+          onClick={() => laneOnclick(lane)}
         >
-          <div className={cn('imageWrapper')}>
+          <div
+            className={cn('imageWrapper', {
+              disabled: disableLane.includes(lane),
+            })}
+          >
             <img
               style={{ width: size, height: size }}
               src={

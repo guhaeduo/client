@@ -14,13 +14,11 @@ const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
   const { country, name, tag } = usePathSummonerData();
-
   const { summonerInfo, summonerInfoError } = useSummonerInfo({
     country,
     name,
     tag,
   });
-  console.log(summonerInfo);
   const { summonerRankInfo, summonerRankInfoError } = useSummonerRankInfo({
     summonerInfo,
     country,
