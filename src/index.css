@@ -13,7 +13,7 @@
 }
 
 html {
-  font-size: 10px !important;
+  font-size: 10px;
   width: 100dvw;
   overflow-x: hidden;
 }
@@ -24,6 +24,7 @@ html {
 }
 
 body {
+  font-family: 'Noto Sans KR', sans-serif;
   background-color: var(--back-color);
 }
 

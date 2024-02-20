@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
 import SummonerInfoContainer from './component/summonerInfoContainer/SummonerInfoContainer';
@@ -7,38 +7,39 @@ import SummonerGameSummaryContainer from './component/summonerGameSummary/Summon
 import useSummonerInfo from 'hooks/business/useSummonerInfo';
 import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
 import useSummonerGameSummary from 'hooks/business/useSummonerGameSummary';
-import { useParams } from 'react-router-dom';
+import usePathSummonerData from 'hooks/usePathSummonerData';
 import SummonerInfoContainerSkeleton from './component/skeleton/SummonerInfoContainerSkeleton';
 import SummonerGameSummarySkeleton from './component/skeleton/SummonerGameSummarySkeleton';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
-  const { country, summonerName } = useParams();
-  const [error, setError] = useState<string>();
-  const errorHandler = (err: string) => setError(err);
-  const { summonerInfo, isSummonerInfoLoading } = useSummonerInfo({
-    errorHandler,
+  const { country, name, tag } = usePathSummonerData();
+  const { summonerInfo, summonerInfoError } = useSummonerInfo({
+    country,
+    name,
+    tag,
   });
-  console.log(summonerInfo);
-  const { summonerRankInfo, isSummonerRankInfoLoading } = useSummonerRankInfo({
-    errorHandler,
+  const { summonerRankInfo, summonerRankInfoError } = useSummonerRankInfo({
     summonerInfo,
+    country,
+    name,
+    tag,
   });
   const {
     summonerGameSummary,
-    isSummonerGameSummaryLoading,
     summaryQueueType,
     setSummaryQueueType,
-  } = useSummonerGameSummary({ errorHandler, summonerInfo });
+    summonerGameSummaryError,
+  } = useSummonerGameSummary({ summonerInfo, country, name, tag });
 
   useEffect(() => {
-    setError('');
-    console.log(country);
     return () => setSummaryQueueType('ALL');
-  }, [country, summonerName]);
+  }, [country, name, tag]);
 
-  if (error) {
-    return <SummonerSearchErrorContainer errorMessage={error} />;
+  const errorMessage =
+    summonerInfoError || summonerRankInfoError || summonerGameSummaryError;
+  if (errorMessage && typeof errorMessage === 'string') {
+    return <SummonerSearchErrorContainer errorMessage={errorMessage} />;
   }
 
   return (
@@ -54,7 +55,6 @@ export default function SummonerSearchPage() {
       {summonerGameSummary ? (
         <SummonerGameSummaryContainer
           summonerGameSummary={summonerGameSummary}
-          isSummonerGameSummaryLoading={isSummonerGameSummaryLoading}
           summaryQueueType={summaryQueueType}
           setSummaryQueueType={setSummaryQueueType}
         />

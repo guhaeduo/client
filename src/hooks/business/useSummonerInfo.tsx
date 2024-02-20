@@ -1,26 +1,22 @@
-import { useQuery } from 'react-query';
-import usePathSummonerData from 'hooks/usePathSummonerData';
+import { useQuery } from '@tanstack/react-query';
+
 import getSummonerInfo from 'service/getSummonerInfo';
 import { SummonerInfo } from 'types/summoner';
 import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
 type Props = {
-  errorHandler: (err: string) => void;
+  country: string;
+  name: string;
+  tag: string;
 };
-export default function useSummonerInfo({ errorHandler }: Props) {
-  const { country, name, tag } = usePathSummonerData();
-  const { data: summonerInfo, isLoading: isSummonerInfoLoading } =
-    useQuery<SummonerInfo>(
-      ['summoner', 'info', { country, name, tag }],
-      () => {
-        console.log('info 가져오기');
-        return getSummonerInfo(name, tag, country);
-      },
-      {
-        onError: (err) => {
-          if (typeof err === 'string') errorHandler(err);
-        },
-        staleTime: SUMMONER_DATA_STALE_TIME,
-      },
-    );
-  return { summonerInfo, isSummonerInfoLoading };
+export default function useSummonerInfo({ country, name, tag }: Props) {
+  const {
+    data: summonerInfo,
+    isLoading: isSummonerInfoLoading,
+    error: summonerInfoError,
+  } = useQuery<SummonerInfo>({
+    queryKey: ['summoner', 'info', { country, name, tag }],
+    queryFn: () => getSummonerInfo(name, tag, country),
+    staleTime: SUMMONER_DATA_STALE_TIME,
+  });
+  return { summonerInfo, isSummonerInfoLoading, summonerInfoError };
 }

@@ -5,16 +5,18 @@ import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import axios from 'axios';
 
 export default async function getSummonerGameSummary(
-  summonerId: string,
+  puuid: string,
   queueType: SummaryQueueType,
+  region: string,
 ): Promise<SummonerGameSummary> {
   try {
     const summaryRes = await axiosInstance.get<SummonerGameSummary>(
       `${process.env.REACT_APP_SERVER_URL}/api/matches/summary`,
       {
         headers: {
-          summonerId,
+          puuid,
           queueType,
+          region,
         },
       },
     );
