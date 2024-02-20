@@ -265,3 +265,47 @@
   font-weight: bold;
   text-align: center;
 }
+
+//  Skeleton
+
+.summaryContainer.skeleton {
+  .infomationWinningRate {
+    width: 135px;
+    height: 143px;
+    margin-top: 7px;
+  }
+  .infoKDA {
+    height: 20px;
+    width: 100px;
+  }
+  .infoKDS {
+    height: 15px;
+    width: 80px;
+  }
+  .infoLaneOption {
+    width: 50px;
+    height: 50px;
+  }
+  .infoLaneDescription {
+    width: 50px;
+    height: 10px;
+  }
+  .laneSelector {
+    width: 247px;
+    height: 43px;
+  }
+  .championTag {
+    opacity: 1;
+    background-color: none;
+    height: 50px;
+    border-radius: 0 30px 30px 0;
+  }
+  .detailGameCnt {
+    margin-top: 20px;
+    width: 180px;
+    height: 180px;
+  }
+  .detailDataItem {
+    height: 112px;
+  }
+}

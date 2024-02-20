@@ -41,7 +41,7 @@ export default function SummonerSearchPage() {
   if (errorMessage && typeof errorMessage === 'string') {
     return <SummonerSearchErrorContainer errorMessage={errorMessage} />;
   }
-  console.log(summonerInfo);
+
   return (
     <main className={cn('main', 'container')}>
       {summonerInfo && summonerRankInfo ? (
