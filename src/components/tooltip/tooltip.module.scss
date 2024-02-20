@@ -6,7 +6,9 @@
   word-break: keep-all;
   display: inline-block;
   position: absolute;
-  top: 200%;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   .title {
     color: rgb(219, 219, 0);
     font-size: 13px;
@@ -21,6 +23,4 @@
 
 .tooltip {
   position: relative;
-  background-color: rgb(84, 84, 84);
-  margin: 300px;
 }

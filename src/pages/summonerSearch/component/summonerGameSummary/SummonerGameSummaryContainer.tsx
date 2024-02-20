@@ -1,13 +1,16 @@
 import 'chart.js/auto';
 import styles from './summonerGameSummaryContainer.module.scss';
-import { SummonerGameSummary } from 'types/summoner';
+import { Lane, SummonerGameSummary } from 'types/summoner';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
 import RankSummaryQueueTypeTab from './GameSummaryQueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
 import useOptionSelector from 'hooks/useOptionSelector';
 import LaneSelector from 'components/laneSelector/LaneSelector';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { SummaryChampionStats } from 'types/summoner';
+import GameSummaryTag from './GameSummaryTag';
+
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -21,11 +24,25 @@ export default function SummonerGameSummaryContainer({
   summaryQueueType,
   setSummaryQueueType,
 }: Props) {
+  const { info, lane } = summonerGameSummary;
   const [summaryLaneOption, setSummaryLaneOption] = useOptionSelector({
     type: 'singular',
     defaultOptions: ['ALL'],
   });
-  const { info, lane } = summonerGameSummary;
+  const currentDetailsLane = summaryLaneOption[0] as Lane;
+  const detailsData = lane[currentDetailsLane];
+  const laneKey = Object.keys(lane) as Lane[];
+  const disableLane = laneKey.filter(
+    (key) => lane[key].mostChampionlist.length <= 0,
+  );
+  const [detailChampion, setDetailChampion] = useState<SummaryChampionStats>(
+    detailsData.mostChampionlist[0] || [],
+  );
+
+  useEffect(() => {
+    setSummaryLaneOption('ALL');
+  }, [summaryQueueType]);
+
   const data = {
     labels: [],
     datasets: [
@@ -37,14 +54,6 @@ export default function SummonerGameSummaryContainer({
       },
     ],
   };
-  useEffect(() => {
-    setSummaryLaneOption('ALL');
-  }, [summaryQueueType]);
-
-  const currentDetaisLane =
-    summaryLaneOption[0].toLowerCase() as keyof typeof lane;
-
-  const detailsData = lane[currentDetaisLane];
   const options = {
     responsive: false,
     plugins: {
@@ -128,8 +137,22 @@ export default function SummonerGameSummaryContainer({
               options={summaryLaneOption}
               onChange={setSummaryLaneOption}
               size={30}
-              disableLane={['JUG', 'ADC']}
+              disableLane={disableLane}
             />
+            <div className={cn('mostChampions')}>
+              {disableLane.includes(currentDetailsLane) ? (
+                <div>데이터 없음</div>
+              ) : (
+                <>
+                  {detailsData.mostChampionlist.map((champion) => (
+                    <GameSummaryTag
+                      key={champion.championName}
+                      champion={champion}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

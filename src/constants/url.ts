@@ -5,6 +5,8 @@ const URL = {
     `https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/profileicon/${iconId}.png`,
   tierIcon: (tierName: string) =>
     `${process.env.REACT_APP_PUBLIC_URL}/images/tier/${tierName}.png`,
+  championIcon: (championId: string) =>
+    `https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/champion/${championId}.png`,
 };
 
 export default URL;

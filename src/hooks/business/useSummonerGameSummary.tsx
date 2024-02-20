@@ -19,7 +19,7 @@ export default function useSummonerGameSummary({
 }: Props) {
   const [summaryQueueType, setSummaryQueueType] =
     useState<SummaryQueueType>('ALL');
-  const summonerId = summonerInfo?.id || '';
+  const puuid = summonerInfo?.puuid || '';
   const region = summonerInfo?.region || '';
 
   const {
@@ -38,7 +38,7 @@ export default function useSummonerGameSummary({
         queueType: summaryQueueType,
       },
     ],
-    queryFn: () => getSummonerGameSummary(summonerId, summaryQueueType, region),
+    queryFn: () => getSummonerGameSummary(puuid, summaryQueueType, region),
     enabled: !!summonerInfo,
     staleTime: SUMMONER_DATA_STALE_TIME,
   });

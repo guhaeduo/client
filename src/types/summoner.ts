@@ -44,7 +44,7 @@ export type SummonerRankInfo = {
   soloRank: RankData;
 };
 
-type ChampionStats = {
+export type SummaryChampionStats = {
   championName: string;
   championIconNumber: number;
   winningRate: number;
@@ -54,9 +54,9 @@ type ChampionStats = {
   totalKillParticipation: number;
 };
 
-type LaneStats = {
+type SummaryLaneStats = {
   winningRate: number;
-  mostChampionlist: ChampionStats[];
+  mostChampionlist: SummaryChampionStats[];
 };
 
 export type SummonerGameSummary = {
@@ -72,12 +72,12 @@ export type SummonerGameSummary = {
     subLane: Lane;
   };
   lane: {
-    all: LaneStats;
-    top: LaneStats;
-    jug: LaneStats;
-    mid: LaneStats;
-    adc: LaneStats;
-    sup: LaneStats;
+    ALL: SummaryLaneStats;
+    TOP: SummaryLaneStats;
+    JUG: SummaryLaneStats;
+    MID: SummaryLaneStats;
+    ADC: SummaryLaneStats;
+    SUP: SummaryLaneStats;
   };
 };
 
