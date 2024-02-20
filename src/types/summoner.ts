@@ -56,6 +56,7 @@ export type SummaryChampionStats = {
 };
 
 type SummaryLaneStats = {
+  cntGame: number;
   winningRate: number;
   mostChampionlist: SummaryChampionStats[];
 };
