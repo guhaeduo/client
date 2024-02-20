@@ -162,52 +162,60 @@ export default function SummonerGameSummaryContainer({
               size={30}
               disableLane={disableLane}
             />
-            <div className={cn('detailsTop')}>
-              <div className={cn('mostChampions')}>
-                {currentDetailChampion &&
-                  detailData.mostChampionlist.map((champion) => (
-                    <ChampionTag
-                      currentDetailChampion={currentDetailChampion}
-                      setCurrentDetailChampion={setCurrentDetailChampion}
-                      key={champion.championName}
-                      champion={champion}
+            {disableLane.includes(currentDetailsLane) ? (
+              <div className={cn('detailDataNotFound')}>
+                데이터가 존재하지 않습니다
+              </div>
+            ) : (
+              <>
+                <div className={cn('detailsTop')}>
+                  <div className={cn('mostChampions')}>
+                    {currentDetailChampion &&
+                      detailData.mostChampionlist.map((champion) => (
+                        <ChampionTag
+                          currentDetailChampion={currentDetailChampion}
+                          setCurrentDetailChampion={setCurrentDetailChampion}
+                          key={champion.championName}
+                          champion={champion}
+                        />
+                      ))}
+                  </div>
+                  <div className={cn('detailGameCntChartContainer')}>
+                    <Doughnut
+                      data={detailGameCntData}
+                      options={{
+                        ...options,
+                        aspectRatio: 0.1,
+                      }}
+                      width={400}
+                      height={200}
                     />
-                  ))}
-              </div>
-              <div className={cn('detailGameCntChartContainer')}>
-                <Doughnut
-                  data={detailGameCntData}
-                  options={{
-                    ...options,
-                    aspectRatio: 0.1,
-                  }}
-                  width={400}
-                  height={200}
-                />
-                <div className={cn('chartDetail')}>
-                  <span>{summaryLaneOption[0]}</span>
-                  <span>{detailData.cntGame} 게임</span>
+                    <div className={cn('chartDetail')}>
+                      <span>{summaryLaneOption[0]}</span>
+                      <span>{detailData.cntGame} 게임</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className={cn('detailData')}>
-              <div>
-                <span>{currentDetailChampion?.csPerMinute}</span>
-                <span>분당 CS</span>
-              </div>
-              <div>
-                <span>{currentDetailChampion?.kda}</span>
-                <span>시야 점수</span>
-              </div>
-              <div>
-                <span>{currentDetailChampion?.winningRate}</span>
-                <span>승률</span>
-              </div>
-              <div>
-                <span>{currentDetailChampion?.killParticipation}</span>
-                <span>킬 관여율</span>
-              </div>
-            </div>
+                <div className={cn('detailData')}>
+                  <div>
+                    <span>{currentDetailChampion?.csPerMinute}</span>
+                    <span>분당 CS</span>
+                  </div>
+                  <div>
+                    <span>{currentDetailChampion?.kda}</span>
+                    <span>시야 점수</span>
+                  </div>
+                  <div>
+                    <span>{currentDetailChampion?.winningRate}</span>
+                    <span>승률</span>
+                  </div>
+                  <div>
+                    <span>{currentDetailChampion?.killParticipation}</span>
+                    <span>킬 관여율</span>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
