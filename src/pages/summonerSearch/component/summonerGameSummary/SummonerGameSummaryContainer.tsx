@@ -35,19 +35,27 @@ export default function SummonerGameSummaryContainer({
   const disableLane = laneKey.filter(
     (key) => lane[key].mostChampionlist.length <= 0,
   );
-  const [detailChampion, setDetailChampion] = useState<SummaryChampionStats>(
-    detailsData.mostChampionlist[0] || [],
-  );
+  const [currentDetailChampion, setCurrentDetailChampion] =
+    useState<SummaryChampionStats | null>(
+      disableLane.includes(currentDetailsLane)
+        ? null
+        : detailsData.mostChampionlist[0],
+    );
 
   useEffect(() => {
     setSummaryLaneOption('ALL');
+    setCurrentDetailChampion(detailsData.mostChampionlist[0]);
   }, [summaryQueueType]);
+
+  useEffect(() => {
+    setCurrentDetailChampion(detailsData.mostChampionlist[0]);
+  }, [summaryLaneOption]);
 
   const data = {
     labels: [],
     datasets: [
       {
-        data: [info.winningRate, 100 - info.winningRate],
+        data: [parseInt(info.winningRate), 100 - parseInt(info.winningRate)],
         backgroundColor: ['#4c97ff', '#313131'],
         borderColor: ['transparent'],
         cutout: '70%',
@@ -81,7 +89,7 @@ export default function SummonerGameSummaryContainer({
               />
               <div>
                 <span className={cn('infoWinningRate')}>
-                  {info.winningRate}%
+                  {info.winningRate}
                 </span>
                 <div>
                   <span className={cn('infoWins')}>{info.wins}승</span>
@@ -130,28 +138,31 @@ export default function SummonerGameSummaryContainer({
             </div>
           </div>
         </div>
+        {/* disableLane.includes(currentDetailsLane) */}
         <div className={cn('detailsContainer')}>
           <h5>라인별 상세정보</h5>
           <div className={cn('details')}>
-            <LaneSelector
-              options={summaryLaneOption}
-              onChange={setSummaryLaneOption}
-              size={30}
-              disableLane={disableLane}
-            />
-            <div className={cn('mostChampions')}>
-              {disableLane.includes(currentDetailsLane) ? (
-                <div>데이터 없음</div>
-              ) : (
-                <>
-                  {detailsData.mostChampionlist.map((champion) => (
-                    <GameSummaryTag
-                      key={champion.championName}
-                      champion={champion}
-                    />
-                  ))}
-                </>
-              )}
+            <div className={cn('detailsTop')}>
+              <div>
+                <LaneSelector
+                  options={summaryLaneOption}
+                  onChange={setSummaryLaneOption}
+                  size={30}
+                  disableLane={disableLane}
+                />
+                <div className={cn('mostChampions')}>
+                  {currentDetailChampion &&
+                    detailsData.mostChampionlist.map((champion) => (
+                      <GameSummaryTag
+                        currentDetailChampion={currentDetailChampion}
+                        setCurrentDetailChampion={setCurrentDetailChampion}
+                        key={champion.championName}
+                        champion={champion}
+                      />
+                    ))}
+                </div>
+              </div>
+              <div></div>
             </div>
           </div>
         </div>

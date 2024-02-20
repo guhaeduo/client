@@ -47,11 +47,12 @@ export type SummonerRankInfo = {
 export type SummaryChampionStats = {
   championName: string;
   championIconNumber: number;
-  winningRate: number;
-  csPerMinute: number;
-  visionScorePerMinute: number;
-  kda: number;
-  totalKillParticipation: number;
+  winningRate: string;
+  csPerMinute: string;
+  visionScorePerMinute: string;
+  kda: string;
+  cntGame: number;
+  totalKillParticipation: string;
 };
 
 type SummaryLaneStats = {
@@ -61,13 +62,13 @@ type SummaryLaneStats = {
 
 export type SummonerGameSummary = {
   info: {
-    winningRate: number;
+    winningRate: string;
     wins: number;
     loses: number;
-    kda: number;
-    killAvg: number;
-    deathAvg: number;
-    assistAvg: number;
+    kda: string;
+    killAvg: string;
+    deathAvg: string;
+    assistAvg: string;
     mostLane: Lane;
     subLane: Lane;
   };

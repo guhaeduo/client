@@ -1,66 +1,66 @@
 {
   "info": {
     "cntGame": 10,
-    "winningRate": "30",
+    "winningRate": "30%",
     "wins": 3,
     "loses": 7,
     "kda": "1.83",
     "killAvg": 3,
     "deathAvg": 3,
     "assistAvg": 4,
-    "mostLane": "MID",
+    "mainLane": "MID",
     "subLane": "TOP"
   },
   "lane": {
     "ALL": {
       "cntGame": 9,
-      "winningRate": "22",
+      "winningRate": "22%",
       "mostChampionlist": [
         {
           "cntGame": 5,
           "championName": "Hwei",
           "championIconNumber": 910,
-          "winningRate": "20",
-          "csPerMinute": "8.82",
-          "visionScorePerMinute": "0.82",
+          "winningRate": "20%",
+          "csPerMinute": "8.86",
+          "visionScore": "20.80",
           "kda": "2.59",
-          "avgKillParticipation": "0.42"
+          "killParticipation": "42%"
         },
         {
           "cntGame": 1,
           "championName": "KSante",
           "championIconNumber": 897,
-          "winningRate": "0",
+          "winningRate": "0%",
           "csPerMinute": "7.62",
-          "visionScorePerMinute": "1.33",
+          "visionScore": "35.00",
           "kda": "2.33",
-          "avgKillParticipation": "0.47"
+          "killParticipation": "47%"
         },
         {
           "cntGame": 1,
           "championName": "Tristana",
           "championIconNumber": 18,
-          "winningRate": "100",
+          "winningRate": "100%",
           "csPerMinute": "9.58",
-          "visionScorePerMinute": "0.78",
+          "visionScore": "15.00",
           "kda": "1.50",
-          "avgKillParticipation": "0.38"
+          "killParticipation": "38%"
         }
       ]
     },
     "TOP": {
       "cntGame": 1,
-      "winningRate": "0.00",
+      "winningRate": "0%",
       "mostChampionlist": [
         {
           "cntGame": 1,
           "championName": "KSante",
           "championIconNumber": 897,
-          "winningRate": "0",
+          "winningRate": "0%",
           "csPerMinute": "7.62",
-          "visionScorePerMinute": "1.33",
+          "visionScore": "35.00",
           "kda": "2.33",
-          "avgKillParticipation": "0.47"
+          "killParticipation": "47%"
         }
       ]
     },
@@ -71,37 +71,37 @@
     },
     "MID": {
       "cntGame": 8,
-      "winningRate": "25.00",
+      "winningRate": "25%",
       "mostChampionlist": [
         {
           "cntGame": 5,
           "championName": "Hwei",
           "championIconNumber": 910,
-          "winningRate": "20",
-          "csPerMinute": "8.82",
-          "visionScorePerMinute": "0.82",
+          "winningRate": "20%",
+          "csPerMinute": "8.86",
+          "visionScore": "20.80",
           "kda": "2.59",
-          "avgKillParticipation": "0.42"
+          "killParticipation": "42%"
         },
         {
           "cntGame": 1,
           "championName": "Tristana",
           "championIconNumber": 18,
-          "winningRate": "100",
+          "winningRate": "100%",
           "csPerMinute": "9.58",
-          "visionScorePerMinute": "0.78",
+          "visionScore": "15.00",
           "kda": "1.50",
-          "avgKillParticipation": "0.38"
+          "killParticipation": "38%"
         },
         {
           "cntGame": 1,
           "championName": "Taliyah",
           "championIconNumber": 163,
-          "winningRate": "0",
-          "csPerMinute": "9.80",
-          "visionScorePerMinute": "0.68",
+          "winningRate": "0%",
+          "csPerMinute": "10.00",
+          "visionScore": "14.00",
           "kda": "0.67",
-          "avgKillParticipation": "0.40"
+          "killParticipation": "40%"
         }
       ]
     },
