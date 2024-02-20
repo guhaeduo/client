@@ -6,7 +6,7 @@ const cn = classNames.bind(styles);
 
 export default function SummonerInfoContainerSkeleton() {
   return (
-    <div className={cn('summonerInfo')}>
+    <div className={cn('summonerInfo', 'skeleton')}>
       <Skeleton className={cn('summonerIcon')} />
       <Skeleton className={cn('summonerNameTag')} />
       <div className={cn('rankTierContainer')}>
