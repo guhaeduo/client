@@ -2,6 +2,7 @@ import { http } from 'msw';
 import { HttpResponse } from 'msw';
 import summonerRankInfoData from '../mocks/mock/summonerRankInfoData.json';
 import summonerRankSummary from '../mocks/mock/summonerRankSummary.json';
+import summonerMatchData from '../mocks/mock/summonerMatchData.json';
 
 export const handlers = [
   http.get(`${process.env.REACT_APP_SERVER_URL}/api/summoner`, async () => {
@@ -17,7 +18,7 @@ export const handlers = [
   ),
   http.get(`${process.env.REACT_APP_SERVER_URL}/api/matches/list`, async () => {
     await sleep(1000);
-    return HttpResponse.json(summonerRankSummary);
+    return HttpResponse.json(summonerMatchData);
   }),
 ];
 

@@ -10,6 +10,9 @@ import useSummonerGameSummary from 'hooks/business/useSummonerGameSummary';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import SummonerInfoContainerSkeleton from './component/skeleton/SummonerInfoContainerSkeleton';
 import SummonerGameSummarySkeleton from './component/skeleton/SummonerGameSummarySkeleton';
+import useSummonerMatchData from 'hooks/business/useSummonerMatchData';
+import SummonerMatchListContainerSkeleton from './component/skeleton/SummonerMatchListContainerSkeleton';
+import SummonerMatchListContainer from './component/summonerMatchListContainer/SummonerMatchListContainer';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
@@ -31,13 +34,22 @@ export default function SummonerSearchPage() {
     setSummaryQueueType,
     summonerGameSummaryError,
   } = useSummonerGameSummary({ summonerInfo, country, name, tag });
+  const {
+    summonerMatchData,
+    matchQueueType,
+    setMatchQueueType,
+    summonerMatchDataError,
+  } = useSummonerMatchData({ summonerInfo, country, name, tag });
 
   useEffect(() => {
     return () => setSummaryQueueType('ALL');
   }, [country, name, tag]);
 
   const errorMessage =
-    summonerInfoError || summonerRankInfoError || summonerGameSummaryError;
+    summonerInfoError ||
+    summonerRankInfoError ||
+    summonerGameSummaryError ||
+    summonerMatchDataError;
   if (errorMessage && typeof errorMessage === 'string') {
     return <SummonerSearchErrorContainer errorMessage={errorMessage} />;
   }
@@ -62,6 +74,18 @@ export default function SummonerSearchPage() {
         <SummonerGameSummarySkeleton
           summaryQueueType={summaryQueueType}
           setSummaryQueueType={setSummaryQueueType}
+        />
+      )}
+      {summonerMatchData ? (
+        <SummonerMatchListContainer
+          summonerMatchData={summonerMatchData}
+          matchQueueType={matchQueueType}
+          setMatchQueueType={setMatchQueueType}
+        />
+      ) : (
+        <SummonerMatchListContainerSkeleton
+          matchQueueType={matchQueueType}
+          setMatchQueueType={setMatchQueueType}
         />
       )}
     </main>
