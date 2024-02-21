@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
-import SummonerInfoContainer from './component/summonerInfoContainer/SummonerInfoContainer';
-import SummonerSearchErrorContainer from './component/summonerSearchErrorContainer/SummonerSearchErrorContainer';
-import SummonerGameSummaryContainer from './component/summonerGameSummary/SummonerGameSummaryContainer';
+import SummonerInfoContainer from './summonerInfoContainer/SummonerInfoContainer';
+import SummonerSearchErrorContainer from './summonerSearchErrorContainer/SummonerSearchErrorContainer';
+import SummonerGameSummaryContainer from './summonerGameSummary/SummonerGameSummaryContainer';
 import useSummonerInfo from 'hooks/business/useSummonerInfo';
 import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
 import useSummonerGameSummary from 'hooks/business/useSummonerGameSummary';
 import usePathSummonerData from 'hooks/usePathSummonerData';
-import SummonerInfoContainerSkeleton from './component/skeleton/SummonerInfoContainerSkeleton';
-import SummonerGameSummarySkeleton from './component/skeleton/SummonerGameSummarySkeleton';
+import SummonerInfoContainerSkeleton from './skeleton/SummonerInfoContainerSkeleton';
+import SummonerGameSummarySkeleton from './skeleton/SummonerGameSummarySkeleton';
 import useSummonerMatchData from 'hooks/business/useSummonerMatchData';
-import SummonerMatchListContainerSkeleton from './component/skeleton/SummonerMatchListContainerSkeleton';
-import SummonerMatchListContainer from './component/summonerMatchListContainer/SummonerMatchListContainer';
+import SummonerMatchListContainerSkeleton from './skeleton/SummonerMatchListContainerSkeleton';
+import SummonerMatchListContainer from './summonerMatchListContainer/SummonerMatchListContainer';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {

@@ -3,7 +3,7 @@ import styles from './summonerGameSummaryContainer.module.scss';
 import { Lane, SummonerGameSummary } from 'types/summoner';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
-import RankSummaryQueueTypeTab from './GameSummaryQueueTypeTab';
+import QueueTypeTab from '../component/QueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
 import useOptionSelector from 'hooks/useOptionSelector';
 import LaneSelector from 'components/laneSelector/LaneSelector';
@@ -12,6 +12,15 @@ import { SummaryChampionStats } from 'types/summoner';
 import ChampionTag from './ChampionTag';
 import URL from 'constants/url';
 const cn = classNames.bind(styles);
+
+export const SUMMARY_QUEUE_TYPE: {
+  value: SummaryQueueType;
+  display: string;
+}[] = [
+  { value: 'ALL', display: '모든 큐' },
+  { value: 'SOLO', display: '솔로랭크' },
+  { value: 'FREE', display: '전체랭크' },
+];
 
 type Props = {
   summonerGameSummary: SummonerGameSummary;
@@ -111,9 +120,10 @@ export default function SummonerGameSummaryContainer({
 
   return (
     <div className={cn('summaryContainer')}>
-      <RankSummaryQueueTypeTab
-        summaryQueueType={summaryQueueType}
-        setSummaryQueueType={setSummaryQueueType}
+      <QueueTypeTab
+        queueType={summaryQueueType}
+        tabMenus={SUMMARY_QUEUE_TYPE}
+        setQueueType={setSummaryQueueType}
       />
       <div className={cn('summary')}>
         <div className={cn('informationContainer')}>
