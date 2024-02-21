@@ -15,6 +15,10 @@ export const handlers = [
       return HttpResponse.json(summonerRankSummary);
     },
   ),
+  http.get(`${process.env.REACT_APP_SERVER_URL}/api/matches/list`, async () => {
+    await sleep(1000);
+    return HttpResponse.json(summonerRankSummary);
+  }),
 ];
 
 async function sleep(timeout: number) {
