@@ -1,5 +1,5 @@
 import { SummaryChampionStats } from 'types/summoner';
-import getChampionData from 'utils/getChampionData';
+import { getChampionData } from 'utils/getLocalData';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import styles from './summonerGameSummaryContainer.module.scss';
 import classNames from 'classnames/bind';
@@ -29,8 +29,7 @@ export default function ChampionTag({
     >
       <ChampionIcon
         className={cn('championIcon')}
-        championId={championDetail.id}
-        championName={championDetail.name}
+        championName={champion.championName}
       />
       <div className={cn('championTagData')}>
         <span>{champion.winningRate}</span>

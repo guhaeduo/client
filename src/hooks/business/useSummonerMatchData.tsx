@@ -26,7 +26,7 @@ export default function useSummonerMatchData({
     data: summonerMatchData,
     isLoading: isSummonerMatchDataLoading,
     error: summonerMatchDataError,
-  } = useQuery<MatchData>({
+  } = useQuery<MatchData[]>({
     queryKey: [
       'summoner',
       'info',

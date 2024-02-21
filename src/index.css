@@ -10,6 +10,16 @@
   --grey-900: #141414;
   --border: #6c6c6c;
   --light-border: #4c4c4c;
+  --light-red: rgb(255, 93, 93);
+  --white-100: #d0d0d0;
+  --white-200: #bbbbbb;
+  --white-300: #939393;
+  --grey-100: #9c9c9c;
+  --grey-200: #858585;
+  --grey-300: #636363;
+  --black-100: #3f3f3f;
+  --black-200: #333333;
+  --black-300: #232323;
 }
 
 html {
@@ -78,4 +88,9 @@ label {
   position: absolute;
   left: -9999%;
   top: -9999%;
+}
+
+.tooltip {
+  background-color: var(--grey-900) !important;
+  padding: 8px 12px !important;
 }

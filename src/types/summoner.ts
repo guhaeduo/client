@@ -123,11 +123,10 @@ export interface Perks {
 
 // 참여자 타입
 export interface Participant {
-  position: Lane;
+  lane: Lane;
   kill: number;
   death: number;
   assists: number;
-  damage: number;
   minionKill: number;
   championName: string;
   championIconNumber: number;
@@ -145,6 +144,7 @@ export interface Participant {
   spell2Id: number;
   puuid: string;
   bot: boolean;
+  win: boolean;
 }
 
 // 팀 데이터
@@ -169,7 +169,9 @@ export interface Team {
 
 // 매치 데이터 타입
 export interface MatchData {
+  matchId: string;
   info: {
+    timeStamp: number;
     gameDuration: number;
     queueType: string;
     quickShutdown: boolean;
@@ -184,4 +186,10 @@ export interface MatchData {
   currentSummonerMatchData: Participant;
   red: Team;
   blue: Team;
+}
+
+export interface MatchDataRes {
+  queueType: Lane;
+  totalGameCnt: number;
+  matchDataList: MatchData[];
 }

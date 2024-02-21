@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
 import QueueTypeTab from '../component/QueueTypeTab';
 import Skeleton from 'components/skeleton/Skeleton';
-import { SUMMARY_QUEUE_TYPE } from '../summonerGameSummary/SummonerGameSummaryContainer';
+import { SUMMARY_TAB_MENUS } from '../summonerGameSummary/SummonerGameSummaryContainer';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -19,7 +19,7 @@ export default function SummonerGameSummarySkeleton({
   return (
     <div className={cn('summaryContainer', 'skeleton')}>
       <QueueTypeTab
-        tabMenus={SUMMARY_QUEUE_TYPE}
+        tabMenus={SUMMARY_TAB_MENUS}
         queueType={summaryQueueType}
         setQueueType={setSummaryQueueType}
       />

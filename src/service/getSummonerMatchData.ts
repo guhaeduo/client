@@ -1,4 +1,8 @@
-import { MatchData, MatchDataQueueType } from './../types/summoner';
+import {
+  MatchDataRes,
+  MatchData,
+  MatchDataQueueType,
+} from './../types/summoner';
 import { ServerAPIErrorResponse } from 'types/Api';
 import axiosInstance from './instance';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
@@ -8,9 +12,9 @@ export default async function getSummonerMatchData(
   puuid: string,
   queueType: MatchDataQueueType,
   region: string,
-): Promise<MatchData> {
+): Promise<MatchData[]> {
   try {
-    const matchDataRes = await axiosInstance.get<MatchData>(
+    const matchDataRes = await axiosInstance.get<MatchDataRes>(
       `${process.env.REACT_APP_SERVER_URL}/api/matches/list`,
       {
         headers: {
@@ -20,7 +24,7 @@ export default async function getSummonerMatchData(
         },
       },
     );
-    return matchDataRes.data;
+    return matchDataRes.data.matchDataList;
   } catch (err) {
     if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
       throw err.response.data.error;

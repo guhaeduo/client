@@ -13,7 +13,7 @@ import ChampionTag from './ChampionTag';
 import URL from 'constants/url';
 const cn = classNames.bind(styles);
 
-export const SUMMARY_QUEUE_TYPE: {
+export const SUMMARY_TAB_MENUS: {
   value: SummaryQueueType;
   display: string;
 }[] = [
@@ -39,17 +39,15 @@ export default function SummonerGameSummaryContainer({
     defaultOptions: ['ALL'],
   });
 
-  const currentDetailsLane = summaryLaneOption[0] as Lane;
-  const detailData = lane[currentDetailsLane];
+  const detailsLane = summaryLaneOption[0] as Lane;
+  const detailData = lane[detailsLane];
   const laneKey = Object.keys(lane) as Lane[];
   const disableLane = laneKey.filter(
     (key) => lane[key].mostChampionlist.length <= 0,
   );
   const [currentDetailChampion, setCurrentDetailChampion] =
     useState<SummaryChampionStats | null>(
-      disableLane.includes(currentDetailsLane)
-        ? null
-        : detailData.mostChampionlist[0],
+      disableLane.includes(detailsLane) ? null : detailData.mostChampionlist[0],
     );
 
   useEffect(() => {
@@ -122,7 +120,7 @@ export default function SummonerGameSummaryContainer({
     <div className={cn('summaryContainer')}>
       <QueueTypeTab
         queueType={summaryQueueType}
-        tabMenus={SUMMARY_QUEUE_TYPE}
+        tabMenus={SUMMARY_TAB_MENUS}
         setQueueType={setSummaryQueueType}
       />
       <div className={cn('summary')}>
@@ -171,7 +169,7 @@ export default function SummonerGameSummaryContainer({
               size={30}
               disableLane={disableLane}
             />
-            {disableLane.includes(currentDetailsLane) ? (
+            {disableLane.includes(detailsLane) ? (
               <div className={cn('detailDataNotFound')}>
                 데이터가 존재하지 않습니다
               </div>

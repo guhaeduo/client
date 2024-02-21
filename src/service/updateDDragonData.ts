@@ -20,10 +20,23 @@ export default async function updateDDragonData() {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/champion.json`,
     );
-    console.log('데이터 요청');
     localStorage.setItem(
       'championData',
       JSON.stringify({ version: VERSION, championData: res.data.data }),
+    );
+  }
+  // 아이템 데이터를 받아옵니다.
+  const storedItemDataString = localStorage.getItem('itemData');
+  const localItemData: LocalChampionData | null =
+    storedItemDataString && JSON.parse(storedItemDataString);
+
+  if (!localItemData || localItemData.version !== VERSION) {
+    const res = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/item.json`,
+    );
+    localStorage.setItem(
+      'itemData',
+      JSON.stringify({ version: VERSION, itemData: res.data.data }),
     );
   }
 }

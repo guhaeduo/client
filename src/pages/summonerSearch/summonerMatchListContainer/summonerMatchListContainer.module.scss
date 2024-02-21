@@ -1,0 +1,115 @@
+.matchListContainer {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.matchList {
+  flex: 1;
+}
+
+.optionContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.matchCardContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.matchCard {
+  background-color: rgba(242, 84, 73, 0.1);
+  border-radius: 3px;
+}
+
+.currentSummonerMatchCard {
+  height: 100px;
+  display: flex;
+}
+
+.currentSummonerMatchCard .content {
+  display: flex;
+  flex: 1;
+  padding: 12px;
+}
+.matchInfo {
+  width: 80px;
+  height: 100%;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.queueType,
+.result {
+  font-size: 14px;
+  font-weight: bold;
+}
+.timeStamp {
+  color: rgb(160, 160, 160);
+  flex: 1;
+}
+.duration {
+  color: rgb(160, 160, 160);
+}
+.SetOpenButton {
+  background-color: white;
+  width: 40px;
+  height: 100%;
+}
+
+.currentSummonerMatchCard .data {
+  display: flex;
+  .currentSummonerData {
+    display: flex;
+    flex-direction: column;
+    & > div:first-child {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+    .grade {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: bold;
+      font-size: 18px;
+      padding-bottom: 5px;
+      span:nth-child(2) {
+        color: var(--light-red);
+      }
+    }
+    .itemList {
+      display: flex;
+      gap: 4px;
+    }
+    .itemIcon {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .championIcon {
+    width: 45px;
+    height: 45px;
+  }
+  .gradeSummary {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    span {
+      color: var(--white-300);
+    }
+  }
+}
+
+.matchListSummary {
+  width: 350px;
+  height: 300px;
+  background-color: greenyellow;
+}
