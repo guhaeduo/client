@@ -7,6 +7,8 @@ const URL = {
     `${process.env.REACT_APP_PUBLIC_URL}/images/tier/${tierName}.png`,
   championIcon: (championId: string) =>
     `https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/champion/${championId}.png`,
+  itemIcon: (itemNumber: number) =>
+    `https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/item/${itemNumber}.png`,
   laneIcon: (lane: string) =>
     `${process.env.REACT_APP_PUBLIC_URL}/images/lane/${lane}.png`,
 };

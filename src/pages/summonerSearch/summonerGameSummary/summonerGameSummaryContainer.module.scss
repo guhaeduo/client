@@ -2,11 +2,6 @@
   margin-top: 30px;
 }
 
-.queueTypeTab {
-  display: flex;
-  gap: 10px;
-}
-
 .chartDetail {
   width: 70px;
   position: absolute;
@@ -18,19 +13,6 @@
   flex-direction: column;
   align-items: center;
   font-weight: bold;
-}
-
-.queueTypeTabButton {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 5px 5px 7px 5px;
-  border-bottom: 3px solid transparent;
-  color: grey;
-  transition: 0s;
-  &.active {
-    color: white;
-    border-color: white;
-  }
 }
 
 .summary {
@@ -101,7 +83,7 @@
   margin-top: 10px;
   font-size: 16px;
   .infoDeathAvg {
-    color: rgb(255, 93, 93);
+    color: var(--light-red);
   }
 }
 
@@ -122,7 +104,7 @@
     width: 50px;
   }
   h6 {
-    color: rgb(161, 161, 161);
+    color: var(--white-300);
   }
 }
 
@@ -159,7 +141,6 @@
   padding: 5px;
   width: 250px;
   background-color: #303030;
-  opacity: 0.5;
   align-items: center;
   cursor: pointer;
   border-radius: 3px 30px 30px 3px;
@@ -176,7 +157,7 @@
     flex: 1;
     span:last-child {
       font-size: 12px;
-      color: rgb(179, 179, 179);
+      color: var(--white-200);
     }
   }
   .championName {
@@ -193,12 +174,11 @@
     position: relative;
   }
   &.active {
-    opacity: 1;
+    background-color: #464646;
   }
   &.active,
   &:hover {
     .championToggle {
-      border-color: rgb(181, 181, 181);
       &::after {
         content: '';
         position: absolute;

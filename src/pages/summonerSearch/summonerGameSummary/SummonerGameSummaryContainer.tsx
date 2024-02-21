@@ -3,7 +3,7 @@ import styles from './summonerGameSummaryContainer.module.scss';
 import { Lane, SummonerGameSummary } from 'types/summoner';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
-import RankSummaryQueueTypeTab from './GameSummaryQueueTypeTab';
+import QueueTypeTab from '../component/QueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
 import useOptionSelector from 'hooks/useOptionSelector';
 import LaneSelector from 'components/laneSelector/LaneSelector';
@@ -12,6 +12,15 @@ import { SummaryChampionStats } from 'types/summoner';
 import ChampionTag from './ChampionTag';
 import URL from 'constants/url';
 const cn = classNames.bind(styles);
+
+export const SUMMARY_TAB_MENUS: {
+  value: SummaryQueueType;
+  display: string;
+}[] = [
+  { value: 'ALL', display: '모든 큐' },
+  { value: 'SOLO', display: '솔로랭크' },
+  { value: 'FREE', display: '전체랭크' },
+];
 
 type Props = {
   summonerGameSummary: SummonerGameSummary;
@@ -30,17 +39,15 @@ export default function SummonerGameSummaryContainer({
     defaultOptions: ['ALL'],
   });
 
-  const currentDetailsLane = summaryLaneOption[0] as Lane;
-  const detailData = lane[currentDetailsLane];
+  const detailsLane = summaryLaneOption[0] as Lane;
+  const detailData = lane[detailsLane];
   const laneKey = Object.keys(lane) as Lane[];
   const disableLane = laneKey.filter(
     (key) => lane[key].mostChampionlist.length <= 0,
   );
   const [currentDetailChampion, setCurrentDetailChampion] =
     useState<SummaryChampionStats | null>(
-      disableLane.includes(currentDetailsLane)
-        ? null
-        : detailData.mostChampionlist[0],
+      disableLane.includes(detailsLane) ? null : detailData.mostChampionlist[0],
     );
 
   useEffect(() => {
@@ -111,9 +118,10 @@ export default function SummonerGameSummaryContainer({
 
   return (
     <div className={cn('summaryContainer')}>
-      <RankSummaryQueueTypeTab
-        summaryQueueType={summaryQueueType}
-        setSummaryQueueType={setSummaryQueueType}
+      <QueueTypeTab
+        queueType={summaryQueueType}
+        tabMenus={SUMMARY_TAB_MENUS}
+        setQueueType={setSummaryQueueType}
       />
       <div className={cn('summary')}>
         <div className={cn('informationContainer')}>
@@ -161,7 +169,7 @@ export default function SummonerGameSummaryContainer({
               size={30}
               disableLane={disableLane}
             />
-            {disableLane.includes(currentDetailsLane) ? (
+            {disableLane.includes(detailsLane) ? (
               <div className={cn('detailDataNotFound')}>
                 데이터가 존재하지 않습니다
               </div>

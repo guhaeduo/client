@@ -1,26 +1,35 @@
 import styles from './championIcon.moule.scss';
 import classNames from 'classnames/bind';
 import URL from 'constants/url';
-import Tooltip from 'components/tooltip/Tooltip';
+import CustomTooltip from 'components/tooltip/CustomTooltip';
+import { getChampionData } from 'utils/getLocalData';
+import { Tooltip } from 'react-tooltip';
 const cn = classNames.bind(styles);
 
 type Props = {
   className?: string;
-  championId: string;
   championName: string;
 };
 
-export default function ChampionIcon({
-  championId,
-  championName,
-  className,
-}: Props) {
-  const championIconUrl = URL.championIcon(championId);
+export default function ChampionIcon({ championName, className }: Props) {
+  const championDetail = getChampionData(championName);
+  const championIconUrl = URL.championIcon(championDetail.id);
+  const tooltipName = championDetail.name.split(' ').join('');
+  const tooltipSelect = '.' + tooltipName;
+
   return (
-    <Tooltip title={championName} minWidth={50}>
+    <CustomTooltip
+      tooltipName={tooltipName}
+      tooltipSelect={tooltipSelect}
+      title={championDetail.name}
+    >
       <div className={cn('championIcon', className)}>
-        <img src={championIconUrl} alt="챔피언 아이콘" />
+        <img
+          className={cn(className)}
+          src={championIconUrl}
+          alt="아이템 아이콘"
+        />
       </div>
-    </Tooltip>
+    </CustomTooltip>
   );
 }
