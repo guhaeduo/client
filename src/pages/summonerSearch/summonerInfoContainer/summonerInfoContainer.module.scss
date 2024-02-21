@@ -17,11 +17,11 @@
   margin-left: 15px;
   font-size: 40px;
   font-weight: 600;
-  font-family: 'Roboto' ;
+  font-family: 'Roboto';
   .summonerTag {
     padding-left: 10px;
     font-weight: 400;
-    color: #b5b5b5;
+    color: var(--white-300);
   }
 }
 
@@ -44,7 +44,7 @@
   }
   .rankTypeSelector {
     cursor: pointer;
-    color: rgb(86, 86, 86);
+    color: var(--white-300);
     &.active {
       color: white;
     }
@@ -86,7 +86,7 @@
   padding-top: 10px;
   font-size: 12px;
   font-weight: 500;
-  color: #a6a6a6;
+  color: var(--white-300);
 }
 
 .winningWrapper {
@@ -96,7 +96,7 @@
   font-weight: 500;
   gap: 5px;
   span {
-    color: #a6a6a6;
+    color: var(--white-300);
   }
 }
 
