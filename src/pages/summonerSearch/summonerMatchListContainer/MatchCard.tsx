@@ -7,13 +7,13 @@ import ItemIcon from 'components/itemIcon/ItemIcon';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import calculateGameEndStamp from 'utils/calculateGameEndStamp';
-import CustomTooltip from 'components/tooltip/CustomTooltip';
+import ParticipantPreviewCard from './ParticipantPreviewCard';
+
 const cn = classNames.bind(styles);
 
 type Props = {
   matchData: MatchData;
 };
-
 export default function MatchCard({ matchData }: Props) {
   const { currentSummonerMatchData, info, red, blue } = matchData;
   const { navSummonerSearch } = useCustomNavigation();
@@ -23,6 +23,7 @@ export default function MatchCard({ matchData }: Props) {
     : currentSummonerMatchData.win
       ? '승리'
       : '패배';
+
   return (
     <li
       className={cn('matchCard', {
@@ -75,75 +76,23 @@ export default function MatchCard({ matchData }: Props) {
         <ul className={cn('participantsPreview')}>
           {red.participants.map((_, i) => (
             <li key={red.participants[i].puuid}>
-              <div>
-                {' '}
-                <ChampionIcon
-                  className={cn('previewIcon')}
-                  championName={blue.participants[i].championName}
-                />
-                <CustomTooltip
-                  name={blue.participants[i].puuid}
-                  body={
-                    blue.participants[i].riotGameName +
-                    ` #${blue.participants[i].riotGameTag}`
-                  }
-                >
-                  <p
-                    onClick={() =>
-                      navSummonerSearch({
-                        country,
-                        name: blue.participants[i].riotGameName,
-                        tag: blue.participants[i].riotGameTag,
-                      })
-                    }
-                    className={cn('previewSummonerInfo', {
-                      activeSummoner:
-                        blue.participants[i].puuid ===
-                        currentSummonerMatchData.puuid,
-                    })}
-                  >
-                    {blue.participants[i].riotGameName}#
-                    {blue.participants[i].riotGameTag}
-                  </p>
-                </CustomTooltip>
-              </div>
-              <div>
-                <ChampionIcon
-                  className={cn('previewIcon')}
-                  championName={red.participants[i].championName}
-                />
-                <CustomTooltip
-                  name={red.participants[i].puuid}
-                  body={
-                    red.participants[i].riotGameName +
-                    ` #${red.participants[i].riotGameTag}`
-                  }
-                >
-                  <p
-                    onClick={() =>
-                      navSummonerSearch({
-                        country,
-                        name: red.participants[i].riotGameName,
-                        tag: red.participants[i].riotGameTag,
-                      })
-                    }
-                    className={cn('previewSummonerInfo', {
-                      activeSummoner:
-                        red.participants[i].puuid ===
-                        currentSummonerMatchData.puuid,
-                    })}
-                  >
-                    {red.participants[i].riotGameName}#
-                    {red.participants[i].riotGameTag}
-                  </p>
-                </CustomTooltip>
-              </div>
+              <ParticipantPreviewCard
+                championName={blue.participants[i].championName}
+                participant={blue.participants[i]}
+                currentSummonerMatchData={currentSummonerMatchData}
+                country={country}
+              />
+              <ParticipantPreviewCard
+                championName={red.participants[i].championName}
+                participant={red.participants[i]}
+                currentSummonerMatchData={currentSummonerMatchData}
+                country={country}
+              />
             </li>
           ))}
         </ul>
         <div className={cn('SetOpenButton')}></div>
       </div>
-      <div></div>
     </li>
   );
 }
