@@ -50,15 +50,15 @@ export default async function updateDDragonData() {
   }
 
   // 룬 데이터를 받아옵니다.
-  const storedRuneString = localStorage.getItem('runeData');
-  const localRuneData = storedRuneString && JSON.parse(storedRuneString);
-  if (!localRuneData || localRuneData.version !== VERSION) {
+  const storedPerkString = localStorage.getItem('perkData');
+  const localPerkData = storedPerkString && JSON.parse(storedPerkString);
+  if (!localPerkData || localPerkData.version !== VERSION) {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/runesReforged.json`,
     );
     localStorage.setItem(
-      'runeData',
-      JSON.stringify({ version: VERSION, runeData: res.data }),
+      'perkData',
+      JSON.stringify({ version: VERSION, perkData: res.data }),
     );
   }
 }
