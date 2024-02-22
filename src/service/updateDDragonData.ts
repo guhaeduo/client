@@ -1,10 +1,5 @@
-import { ChampionData } from './../types/DDragonData';
 import { VERSION } from 'constants/url';
 import axios from 'axios';
-
-type LocalChampionData =
-  | { championData: ChampionData; version: string }
-  | undefined;
 
 /**
  * DDragon에서 받아오는 정적 파일을 데이터 저장 유무, 버전비교를 통해 업데이트할지 결정하여 관리하는 함수입니다.
@@ -13,7 +8,7 @@ type LocalChampionData =
 export default async function updateDDragonData() {
   // 챔피언 데이터를 받아옵니다.
   const storedChampionDataString = localStorage.getItem('championData');
-  const localChampionData: LocalChampionData | null =
+  const localChampionData =
     storedChampionDataString && JSON.parse(storedChampionDataString);
 
   if (!localChampionData || localChampionData.version !== VERSION) {
@@ -27,7 +22,7 @@ export default async function updateDDragonData() {
   }
   // 아이템 데이터를 받아옵니다.
   const storedItemDataString = localStorage.getItem('itemData');
-  const localItemData: LocalChampionData | null =
+  const localItemData =
     storedItemDataString && JSON.parse(storedItemDataString);
 
   if (!localItemData || localItemData.version !== VERSION) {
@@ -37,6 +32,33 @@ export default async function updateDDragonData() {
     localStorage.setItem(
       'itemData',
       JSON.stringify({ version: VERSION, itemData: res.data.data }),
+    );
+  }
+  // 스펠 데이터를 받아옵니다.
+  const storedSpellDataString = localStorage.getItem('spellData');
+  const localSpellData =
+    storedSpellDataString && JSON.parse(storedSpellDataString);
+
+  if (!localSpellData || localSpellData.version !== VERSION) {
+    const res = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/summoner.json`,
+    );
+    localStorage.setItem(
+      'spellData',
+      JSON.stringify({ version: VERSION, spellData: res.data.data }),
+    );
+  }
+
+  // 룬 데이터를 받아옵니다.
+  const storedRuneString = localStorage.getItem('runeData');
+  const localRuneData = storedRuneString && JSON.parse(storedRuneString);
+  if (!localRuneData || localRuneData.version !== VERSION) {
+    const res = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/runesReforged.json`,
+    );
+    localStorage.setItem(
+      'runeData',
+      JSON.stringify({ version: VERSION, runeData: res.data }),
     );
   }
 }
