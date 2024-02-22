@@ -20,7 +20,6 @@ export default async function getSummonerRankInfo(
     );
     return rankRes.data;
   } catch (err) {
-    console.log(err);
     if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
       throw err.response.data.error;
     }

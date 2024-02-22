@@ -171,7 +171,7 @@ export interface Team {
 export interface MatchData {
   matchId: string;
   info: {
-    timeStamp: number;
+    gameEndStamp: number;
     gameDuration: number;
     queueType: string;
     quickShutdown: boolean;

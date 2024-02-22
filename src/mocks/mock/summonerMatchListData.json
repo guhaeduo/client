@@ -8,7 +8,7 @@
         "gameDuration": 1422,
         "gameEndStamp": 1708450617782,
         "queueType": "솔로랭크",
-        "quickShutdown": false,
+        "quickShutdown": true,
         "maxData": {
           "maxDamage": {
             "damage": 22792,
@@ -1138,7 +1138,7 @@
             "death": 3,
             "assists": 4,
             "minionKill": 42,
-            "championName": "FiddleSticks",
+            "championName": "Fiddlesticks",
             "championLevel": 13,
             "riotGameName": "douyin aze",
             "riotGameTag": "aze",
