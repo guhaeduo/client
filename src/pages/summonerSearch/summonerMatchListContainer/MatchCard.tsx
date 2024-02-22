@@ -8,7 +8,7 @@ import useCustomNavigation from 'hooks/useCustomNavigation';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import calculateGameEndStamp from 'utils/calculateGameEndStamp';
 import ParticipantPreviewCard from './ParticipantPreviewCard';
-
+import { IoIosArrowDown } from 'react-icons/io';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -68,8 +68,11 @@ export default function MatchCard({ matchData }: Props) {
               </div>
             </div>
             <div className={cn('gradeSummary')}>
-              <span>분당 CS</span>
-              <span>킬 관여율</span>
+              <span>
+                CS {currentSummonerMatchData.minionKill} (
+                {currentSummonerMatchData.csPerMinute})
+              </span>
+              <span>킬 관여 {currentSummonerMatchData.killParticipation}</span>
             </div>
           </div>
         </div>
@@ -91,7 +94,9 @@ export default function MatchCard({ matchData }: Props) {
             </li>
           ))}
         </ul>
-        <div className={cn('SetOpenButton')}></div>
+        <div className={cn('setOpenButton')}>
+          <IoIosArrowDown className={cn('setOpenIcon')} />
+        </div>
       </div>
     </li>
   );

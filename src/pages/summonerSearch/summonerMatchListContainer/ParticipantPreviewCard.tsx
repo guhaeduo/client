@@ -41,7 +41,7 @@ export default function ParticipantPreviewCard({
               participant.puuid === currentSummonerMatchData.puuid,
           })}
         >
-          {participant.riotGameName}#{participant.riotGameTag}
+          {participant.riotGameName}
         </p>
       </CustomTooltip>
     </div>
