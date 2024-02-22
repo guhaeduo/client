@@ -1,4 +1,4 @@
-export const VERSION = '14.3.1';
+export const VERSION = '14.4.1';
 
 const URL = {
   profileIcon: (iconId: number) =>
@@ -11,6 +11,10 @@ const URL = {
     `https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/item/${itemNumber}.png`,
   laneIcon: (lane: string) =>
     `${process.env.REACT_APP_PUBLIC_URL}/images/lane/${lane}.png`,
+  spellIcon: (spellId: string) =>
+    `https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/spell/${spellId}.png`,
+  perksIcon: (url: string) =>
+    `https://ddragon.leagueoflegends.com/cdn/img/${url}`,
 };
 
 export default URL;

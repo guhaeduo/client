@@ -21,8 +21,43 @@
 }
 
 .matchCard {
-  background-color: rgba(242, 84, 73, 0.1);
   border-radius: 3px;
+  &.win {
+    background-color: rgba(73, 160, 242, 0.1);
+    .matchInfo .result {
+      color: var(--light-blue);
+    }
+    .setOpenButton {
+      background-color: rgba(73, 160, 242, 0.6);
+      &:hover {
+        background-color: rgba(73, 160, 242, 0.7);
+      }
+    }
+  }
+  &.lose {
+    background-color: rgba(242, 84, 73, 0.1);
+    .matchInfo .result {
+      color: var(--light-red);
+    }
+    .setOpenButton {
+      background-color: rgba(242, 84, 73, 0.6);
+      &:hover {
+        background-color: rgba(242, 84, 73, 0.7);
+      }
+    }
+  }
+  &.quickShutDown {
+    background-color: rgba(117, 117, 117, 0.1);
+    .matchInfo .result {
+      color: #989898;
+    }
+    .setOpenButton {
+      background-color: rgba(117, 117, 117, 0.6);
+      &:hover {
+        background-color: rgba(117, 117, 117, 0.7);
+      }
+    }
+  }
 }
 
 .currentSummonerMatchCard {
@@ -35,19 +70,21 @@
   flex: 1;
   padding: 12px;
 }
+
 .matchInfo {
   width: 80px;
   height: 100%;
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .queueType,
 .result {
-  font-size: 14px;
   font-weight: bold;
 }
+
 .timeStamp {
   color: rgb(160, 160, 160);
   flex: 1;
@@ -61,15 +98,33 @@
   height: 100%;
 }
 
-.currentSummonerMatchCard .data {
+.currentSummonerMatchCard {
   display: flex;
+  flex: 1;
   .currentSummonerData {
     display: flex;
-    flex-direction: column;
     & > div:first-child {
       display: flex;
-      gap: 20px;
-      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      & > div:first-child {
+        display: flex;
+      }
+    }
+    .summonerSkills {
+      margin-left: 2px;
+      display: grid;
+      grid-template-columns: 20px 20px;
+      grid-template-rows: 20px 20px;
+      gap: 3px;
+      .spellIcon {
+        width: 21px;
+        height: 21px;
+      }
+      .perksIcon {
+        width: 21px;
+        height: 21px;
+      }
     }
     .grade {
       display: flex;
@@ -104,12 +159,64 @@
     font-weight: 500;
     span {
       color: var(--white-300);
+      &:last-child {
+        color: var(--light-red);
+      }
     }
   }
 }
 
+.participantsPreview {
+  padding: 4px 12px 4px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  li {
+    display: flex;
+    gap: 10px;
+    & > div {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+    .previewSummonerInfo {
+      width: 65px;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      color: var(--white-300);
+      text-overflow: ellipsis;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .activeSummoner {
+      font-weight: bold;
+      color: var(--white-100);
+    }
+  }
+  .previewIcon {
+    width: 15px !important;
+    height: 15px;
+  }
+}
+
+.setOpenButton {
+  width: 40px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  cursor: pointer;
+  padding-bottom: 5px;
+  .setOpenIcon {
+    font-size: 20px;
+  }
+}
+
+// matchListSummary
 .matchListSummary {
-  width: 350px;
+  width: 300px;
   height: 300px;
   background-color: greenyellow;
 }

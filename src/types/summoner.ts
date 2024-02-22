@@ -145,6 +145,8 @@ export interface Participant {
   puuid: string;
   bot: boolean;
   win: boolean;
+  killParticipation: string;
+  csPerMinute: string;
 }
 
 // 팀 데이터
@@ -171,16 +173,33 @@ export interface Team {
 export interface MatchData {
   matchId: string;
   info: {
-    timeStamp: number;
+    gameEndStamp: number;
     gameDuration: number;
     queueType: string;
     quickShutdown: boolean;
-    maxDamage: {
-      damage: number;
-      championName: string;
-      championIconNumber: number;
-      riotGameName: string;
-      riotGameTag: string;
+    maxData: {
+      maxDamage: {
+        damage: number;
+        championName: string;
+        championIconNumber: number;
+        riotGameName: string;
+        riotGameTag: string;
+      };
+      maxKill: {
+        kill: number;
+        championName: string;
+        riotGameName: string;
+      };
+      maxDeath: {
+        death: number;
+        championName: string;
+        riotGameName: string;
+      };
+      maxAssist: {
+        assist: number;
+        championName: string;
+        riotGameName: string;
+      };
     };
   };
   currentSummonerMatchData: Participant;

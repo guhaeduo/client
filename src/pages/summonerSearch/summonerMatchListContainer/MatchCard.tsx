@@ -4,35 +4,75 @@ import classNames from 'classnames/bind';
 import calculateGameDuration from 'utils/calculateGameDuration';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import ItemIcon from 'components/itemIcon/ItemIcon';
+import useCustomNavigation from 'hooks/useCustomNavigation';
+import usePathSummonerData from 'hooks/usePathSummonerData';
+import calculateGameEndStamp from 'utils/calculateGameEndStamp';
+import ParticipantPreviewCard from './ParticipantPreviewCard';
+import { IoIosArrowDown } from 'react-icons/io';
+import SpellIcon from 'components/spellIcon/SpellIcon';
+import PerksIcon from 'components/perksIcon/PerksIcon';
 const cn = classNames.bind(styles);
 
 type Props = {
   matchData: MatchData;
 };
-
 export default function MatchCard({ matchData }: Props) {
-  const { currentSummonerMatchData, info } = matchData;
-  console.log(matchData);
-  console.log(currentSummonerMatchData.itemNumberList);
+  const { currentSummonerMatchData, info, red, blue } = matchData;
+  const { navSummonerSearch } = useCustomNavigation();
+  const { country } = usePathSummonerData();
+  const gameResult = info.quickShutdown
+    ? '다시하기'
+    : currentSummonerMatchData.win
+      ? '승리'
+      : '패배';
+
   return (
-    <li className={cn('matchCard')}>
+    <li
+      className={cn('matchCard', {
+        quickShutDown: info.quickShutdown,
+        win: currentSummonerMatchData.win,
+        lose: !currentSummonerMatchData.win,
+      })}
+    >
       <div className={cn('currentSummonerMatchCard')}>
         <div className={cn('content')}>
           <div className={cn('matchInfo')}>
             <span className={cn('queueType')}>{info.queueType}</span>
-            <span className={cn('timeStamp')}>1시간 전</span>
-            <span className={cn('result')}>승리</span>
+            <span className={cn('timeStamp')}>
+              {calculateGameEndStamp(info.gameEndStamp)}
+            </span>
+            <span className={cn('result')}>{gameResult}</span>
             <span className={cn('duration')}>
               {calculateGameDuration(info.gameDuration)}
             </span>
           </div>
-          <div className={cn('data')}>
-            <div className={cn('currentSummonerData')}>
+          <div className={cn('currentSummonerData')}>
+            <div>
               <div>
                 <ChampionIcon
                   className={cn('championIcon')}
                   championName={currentSummonerMatchData.championName}
                 />
+                <div className={cn('summonerSkills')}>
+                  <SpellIcon
+                    className={cn('spellIcon')}
+                    spellNumber={currentSummonerMatchData.spell1Id}
+                  />
+                  <SpellIcon
+                    className={cn('spellIcon')}
+                    spellNumber={currentSummonerMatchData.spell2Id}
+                  />
+                  <PerksIcon
+                    className={cn('perksIcon')}
+                    perksStyle={
+                      currentSummonerMatchData.perks.main.perkIdList[0]
+                    }
+                  />
+                  <PerksIcon
+                    className={cn('perksIcon')}
+                    perksStyle={currentSummonerMatchData.perks.sub.perkStyle}
+                  />
+                </div>
                 <div className={cn('grade')}>
                   <span>{currentSummonerMatchData.kill} /</span>
                   <span> {currentSummonerMatchData.death} </span>
@@ -50,18 +90,36 @@ export default function MatchCard({ matchData }: Props) {
               </div>
             </div>
             <div className={cn('gradeSummary')}>
-              <span>분당 CS</span>
-              <span>킬 관여율</span>
+              <span>
+                CS {currentSummonerMatchData.minionKill} (
+                {currentSummonerMatchData.csPerMinute})
+              </span>
+              <span>킬 관여 {currentSummonerMatchData.killParticipation}</span>
             </div>
           </div>
-          <div className={cn('participants')}>
-            <ul></ul>
-            <ul></ul>
-          </div>
         </div>
-        <div className={cn('SetOpenButton')}></div>
+        <ul className={cn('participantsPreview')}>
+          {red.participants.map((_, i) => (
+            <li key={red.participants[i].puuid}>
+              <ParticipantPreviewCard
+                championName={blue.participants[i].championName}
+                participant={blue.participants[i]}
+                currentSummonerMatchData={currentSummonerMatchData}
+                country={country}
+              />
+              <ParticipantPreviewCard
+                championName={red.participants[i].championName}
+                participant={red.participants[i]}
+                currentSummonerMatchData={currentSummonerMatchData}
+                country={country}
+              />
+            </li>
+          ))}
+        </ul>
+        <div className={cn('setOpenButton')}>
+          <IoIosArrowDown className={cn('setOpenIcon')} />
+        </div>
       </div>
-      <div></div>
     </li>
   );
 }

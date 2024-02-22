@@ -14,12 +14,10 @@ export default function ItemIcon({ className, itemNumber }: Props) {
   const itemDetail = getItemData(itemNumber);
   const itemIconUrl = URL.itemIcon(itemNumber);
   if (itemNumber === 0) return <div className={cn(className, 'nullItem')} />;
-  const tooltipName = itemDetail.name.split(' ').join('');
-  const tooltipSelect = '.' + tooltipName;
+
   return (
     <CustomTooltip
-      tooltipName={tooltipName}
-      tooltipSelect={tooltipSelect}
+      name={itemDetail.name}
       title={itemDetail.name}
       body={itemDetail.description}
     >

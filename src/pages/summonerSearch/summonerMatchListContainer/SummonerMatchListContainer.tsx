@@ -32,7 +32,6 @@ export default function SummonerMatchListContainer({
   setMatchQueueType,
   summonerMatchData,
 }: Props) {
-  console.log(matchQueueType, summonerMatchData);
   const [matchListLaneOption, setMatchListLaneOption] = useOptionSelector({
     type: 'singular',
     defaultOptions: ['ALL'],
@@ -51,7 +50,6 @@ export default function SummonerMatchListContainer({
     (menu) => !matchListDataLane.includes(menu),
   );
 
-  console.log(disableLane);
   return (
     <div className={cn('matchListContainer')}>
       <div className={cn('matchList')}>
