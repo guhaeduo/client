@@ -10,6 +10,7 @@ import calculateGameEndStamp from 'utils/calculateGameEndStamp';
 import ParticipantPreviewCard from './ParticipantPreviewCard';
 import { IoIosArrowDown } from 'react-icons/io';
 import SpellIcon from 'components/spellIcon/SpellIcon';
+import PerksIcon from 'components/perksIcon/PerksIcon';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -54,12 +55,22 @@ export default function MatchCard({ matchData }: Props) {
                 />
                 <div className={cn('summonerSkills')}>
                   <SpellIcon
-                    className={cn('summonerSpellIcon')}
+                    className={cn('spellIcon')}
                     spellNumber={currentSummonerMatchData.spell1Id}
                   />
                   <SpellIcon
-                    className={cn('summonerSpellIcon')}
+                    className={cn('spellIcon')}
                     spellNumber={currentSummonerMatchData.spell2Id}
+                  />
+                  <PerksIcon
+                    className={cn('perksIcon')}
+                    perksStyle={
+                      currentSummonerMatchData.perks.main.perkIdList[0]
+                    }
+                  />
+                  <PerksIcon
+                    className={cn('perksIcon')}
+                    perksStyle={currentSummonerMatchData.perks.sub.perkStyle}
                   />
                 </div>
                 <div className={cn('grade')}>

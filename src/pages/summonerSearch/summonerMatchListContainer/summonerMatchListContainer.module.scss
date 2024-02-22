@@ -114,7 +114,12 @@
       }
     }
     .summonerSkills {
-      .summonerSpellIcon {
+      display: flex;
+      .spellIcon {
+        width: 20px;
+        height: 20px;
+      }
+      .perksIcon {
         width: 20px;
         height: 20px;
       }

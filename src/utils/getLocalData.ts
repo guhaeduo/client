@@ -35,9 +35,9 @@ export function getSpellData(spellNumber: number) {
 }
 
 export function getPerksData(perksId: number) {
-  const localPerkData = JSON.parse(
-    localStorage.getItem('perkData') as string,
-  ).perkData;
+  const localPerksData = JSON.parse(
+    localStorage.getItem('perksData') as string,
+  ).perksData;
 
-  return localPerkData[perksId];
+  return localPerksData[perksId];
 }
