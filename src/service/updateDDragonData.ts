@@ -1,12 +1,21 @@
 import { VERSION } from 'constants/url';
 import axios from 'axios';
-
+import URL from 'constants/url';
 /**
  * DDragon에서 받아오는 정적 파일을 데이터 저장 유무, 버전비교를 통해 업데이트할지 결정하여 관리하는 함수입니다.
  */
 
 export default async function updateDDragonData() {
   // 챔피언 데이터를 받아옵니다.
+  // 아이템 데이터를 받아옵니다.
+  // 스펠 데이터를 받아옵니다.
+  updateChampionData();
+  updateItemData();
+  updateSpellData();
+  updatePerksData();
+}
+
+async function updateChampionData() {
   const storedChampionDataString = localStorage.getItem('championData');
   const localChampionData =
     storedChampionDataString && JSON.parse(storedChampionDataString);
@@ -20,7 +29,9 @@ export default async function updateDDragonData() {
       JSON.stringify({ version: VERSION, championData: res.data.data }),
     );
   }
-  // 아이템 데이터를 받아옵니다.
+}
+
+async function updateItemData() {
   const storedItemDataString = localStorage.getItem('itemData');
   const localItemData =
     storedItemDataString && JSON.parse(storedItemDataString);
@@ -34,7 +45,9 @@ export default async function updateDDragonData() {
       JSON.stringify({ version: VERSION, itemData: res.data.data }),
     );
   }
-  // 스펠 데이터를 받아옵니다.
+}
+
+async function updateSpellData() {
   const storedSpellDataString = localStorage.getItem('spellData');
   const localSpellData =
     storedSpellDataString && JSON.parse(storedSpellDataString);
@@ -48,17 +61,65 @@ export default async function updateDDragonData() {
       JSON.stringify({ version: VERSION, spellData: res.data.data }),
     );
   }
+}
 
+type Rune = {
+  id: number;
+  icon: string;
+  shortDesc: string;
+  name: string;
+};
+
+type Perks = {
+  icon: string;
+  id: number;
+  key: string;
+  name: string;
+  slots: {
+    runes: Rune[];
+  }[];
+}[];
+
+type NewPerks = {
+  icon: string;
+  id: number;
+  name: string;
+  shortDesc?: string;
+};
+
+async function updatePerksData() {
   // 룬 데이터를 받아옵니다.
-  const storedPerkString = localStorage.getItem('perkData');
-  const localPerkData = storedPerkString && JSON.parse(storedPerkString);
-  if (!localPerkData || localPerkData.version !== VERSION) {
+  const storedPerksString = localStorage.getItem('perksData');
+  const localPerksData = storedPerksString && JSON.parse(storedPerksString);
+  if (!localPerksData || localPerksData.version !== VERSION) {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/runesReforged.json`,
     );
+    const perksData: Perks = res.data;
+    const newPerks: { [key: number]: NewPerks } = {};
+
+    perksData.forEach((perksItem) => {
+      newPerks[perksItem.id] = {
+        name: perksItem.name,
+        icon: URL.perksIcon(perksItem.icon),
+        id: perksItem.id,
+      };
+      perksItem.slots.forEach((slot) => {
+        slot.runes.forEach((rune) => {
+          const { id, name, icon, shortDesc } = rune;
+          newPerks[rune.id] = {
+            id,
+            name,
+            icon: URL.perksIcon(icon),
+            shortDesc,
+          };
+        });
+      });
+    });
+
     localStorage.setItem(
-      'perkData',
-      JSON.stringify({ version: VERSION, perkData: res.data }),
+      'perksData',
+      JSON.stringify({ version: VERSION, perksData: newPerks }),
     );
   }
 }

@@ -34,12 +34,10 @@ export function getSpellData(spellNumber: number) {
   ) as SummonerSpellInfo;
 }
 
-// export function getPerkData(spellNumber: number) {
-//   const localPerkData = JSON.parse(
-//     localStorage.getItem('perkData') as string,
-//   ).perkData;
+export function getPerksData(perksId: number) {
+  const localPerkData = JSON.parse(
+    localStorage.getItem('perkData') as string,
+  ).perkData;
 
-//   return localPerkData.find(
-//     (spellInfo: { key: string }) => spellInfo.key === String(spellNumber),
-//   );
-// }
+  return localPerkData[perksId];
+}
