@@ -26,12 +26,7 @@ export function getSpellData(spellNumber: number) {
     localStorage.getItem('spellData') as string,
   ).spellData;
 
-  const localSpellDataArray: SummonerSpellInfo[] =
-    Object.values(localSpellData);
-
-  return localSpellDataArray.find(
-    (spellInfo) => spellInfo.key === String(spellNumber),
-  ) as SummonerSpellInfo;
+  return localSpellData[spellNumber];
 }
 
 export function getPerksData(perksId: number) {
