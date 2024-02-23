@@ -10,7 +10,6 @@ type Props = {
 };
 export default function PerksIcon({ className, perksStyle }: Props) {
   const perksDetail = getPerksData(perksStyle);
-  console.log(perksDetail, 'detail');
   if (perksDetail.shortDesc) {
     return (
       <CustomTooltip

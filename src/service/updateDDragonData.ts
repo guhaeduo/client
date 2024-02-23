@@ -47,6 +47,20 @@ async function updateItemData() {
   }
 }
 
+type Spell = {
+  name: string;
+  key: string;
+  description: string;
+  id: string;
+};
+
+type newSpell = {
+  icon: string;
+  name: string;
+  description: string;
+  id: string;
+};
+
 async function updateSpellData() {
   const storedSpellDataString = localStorage.getItem('spellData');
   const localSpellData =
@@ -56,9 +70,21 @@ async function updateSpellData() {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/summoner.json`,
     );
+    const spellData: { [key: string]: Spell } = res.data.data;
+    const newSpellData: { [key: string]: newSpell } = {};
+    const spellKey = Object.keys(spellData);
+    spellKey.forEach((key) => {
+      const spell = spellData[key];
+      newSpellData[spell.key] = {
+        id: spell.key,
+        icon: URL.spellIcon(key),
+        name: spell.name,
+        description: spell.description,
+      };
+    });
     localStorage.setItem(
       'spellData',
-      JSON.stringify({ version: VERSION, spellData: res.data.data }),
+      JSON.stringify({ version: VERSION, spellData: newSpellData }),
     );
   }
 }
@@ -82,7 +108,6 @@ type Perks = {
 
 type NewPerks = {
   icon: string;
-  id: number;
   name: string;
   shortDesc?: string;
 };
@@ -102,13 +127,11 @@ async function updatePerksData() {
       newPerks[perksItem.id] = {
         name: perksItem.name,
         icon: URL.perksIcon(perksItem.icon),
-        id: perksItem.id,
       };
       perksItem.slots.forEach((slot) => {
         slot.runes.forEach((rune) => {
-          const { id, name, icon, shortDesc } = rune;
+          const { name, icon, shortDesc } = rune;
           newPerks[rune.id] = {
-            id,
             name,
             icon: URL.perksIcon(icon),
             shortDesc,

@@ -1,4 +1,3 @@
-import URL from 'constants/url';
 import CustomTooltip from 'components/tooltip/CustomTooltip';
 import { getSpellData } from 'utils/getLocalData';
 import styles from './spellIcon.module.scss';
@@ -12,12 +11,12 @@ type Props = {
 };
 export default function SpellIcon({ spellNumber, className }: Props) {
   const spellDetail = getSpellData(spellNumber);
-  const { id, name, description } = spellDetail;
-  const spellIconUrl = URL.spellIcon(id);
+  const { id, name, description, icon } = spellDetail;
+  console.log(id, name, description);
   return (
     <CustomTooltip title={name} body={description} name={id}>
       <div className={cn('spellIcon', className)}>
-        <img src={spellIconUrl} alt="소환사 스펠 아이콘" />
+        <img src={icon} alt="소환사 스펠 아이콘" />
       </div>
     </CustomTooltip>
   );
