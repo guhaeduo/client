@@ -62,7 +62,7 @@ export default function SummonerMatchListContainer({
           <LaneSelector
             options={matchListLaneOption}
             onChange={setMatchListLaneOption}
-            size={35}
+            size={30}
             disableLane={disableLane}
           />
         </div>

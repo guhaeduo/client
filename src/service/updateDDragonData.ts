@@ -82,7 +82,6 @@ type Perks = {
 
 type NewPerks = {
   icon: string;
-  id: number;
   name: string;
   shortDesc?: string;
 };
@@ -102,13 +101,11 @@ async function updatePerksData() {
       newPerks[perksItem.id] = {
         name: perksItem.name,
         icon: URL.perksIcon(perksItem.icon),
-        id: perksItem.id,
       };
       perksItem.slots.forEach((slot) => {
         slot.runes.forEach((rune) => {
-          const { id, name, icon, shortDesc } = rune;
+          const { name, icon, shortDesc } = rune;
           newPerks[rune.id] = {
-            id,
             name,
             icon: URL.perksIcon(icon),
             shortDesc,
