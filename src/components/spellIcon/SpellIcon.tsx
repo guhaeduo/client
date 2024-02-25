@@ -12,7 +12,6 @@ type Props = {
 export default function SpellIcon({ spellNumber, className }: Props) {
   const spellDetail = getSpellData(spellNumber);
   const { id, name, description, icon } = spellDetail;
-  console.log(id, name, description);
   return (
     <CustomTooltip title={name} body={description} name={id}>
       <div className={cn('spellIcon', className)}>

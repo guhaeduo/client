@@ -3,7 +3,7 @@ export function getChampionData(championName: string) {
     localStorage.getItem('championData') as string,
   ).championData;
 
-  return localChampionData[championName];
+  return localChampionData[championName.toLowerCase()];
 }
 
 export function getItemData(itemNumber: number) {

@@ -15,6 +15,16 @@ export default async function updateDDragonData() {
   updatePerksData();
 }
 
+type ChampionData = {
+  name: string;
+  id: string;
+};
+
+type NewChampionData = {
+  name: string;
+  icon: string;
+};
+
 async function updateChampionData() {
   const storedChampionDataString = localStorage.getItem('championData');
   const localChampionData =
@@ -24,9 +34,17 @@ async function updateChampionData() {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/champion.json`,
     );
+    const championData: { [key: string]: ChampionData } = res.data.data;
+    const newChampionData: { [key: string]: NewChampionData } = {};
+    for (const [key, value] of Object.entries(championData)) {
+      newChampionData[key.toLowerCase()] = {
+        icon: URL.championIcon(key),
+        name: value.name,
+      };
+    }
     localStorage.setItem(
       'championData',
-      JSON.stringify({ version: VERSION, championData: res.data.data }),
+      JSON.stringify({ version: VERSION, championData: newChampionData }),
     );
   }
 }
