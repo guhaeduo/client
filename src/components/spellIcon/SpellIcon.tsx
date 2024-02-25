@@ -11,10 +11,9 @@ type Props = {
 };
 export default function SpellIcon({ spellNumber, className }: Props) {
   const spellDetail = getSpellData(spellNumber);
-  const { id, name, description, icon } = spellDetail;
-  console.log(id, name, description);
+  const { name, description, icon } = spellDetail;
   return (
-    <CustomTooltip title={name} body={description} name={id}>
+    <CustomTooltip title={name} body={description} name={name}>
       <div className={cn('spellIcon', className)}>
         <img src={icon} alt="소환사 스펠 아이콘" />
       </div>

@@ -12,12 +12,11 @@ type Props = {
 
 export default function ChampionIcon({ championName, className }: Props) {
   const championDetail = getChampionData(championName);
-  const championIconUrl = URL.championIcon(championName);
 
   return (
     <CustomTooltip name={championDetail.name} body={championDetail.name}>
       <div className={cn('championIcon', className)}>
-        <img src={championIconUrl} alt="아이템 아이콘" />
+        <img src={championDetail.icon} alt="아이템 아이콘" />
       </div>
     </CustomTooltip>
   );

@@ -15,6 +15,16 @@ export default async function updateDDragonData() {
   updatePerksData();
 }
 
+type Champion = {
+  name: string;
+  id: string;
+};
+
+type NewChampion = {
+  name: string;
+  icon: string;
+};
+
 async function updateChampionData() {
   const storedChampionDataString = localStorage.getItem('championData');
   const localChampionData =
@@ -24,12 +34,29 @@ async function updateChampionData() {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/champion.json`,
     );
+    const championData: { [key: string]: Champion } = res.data.data;
+    const newChampionData: { [key: string]: NewChampion } = {};
+    for (const [key, value] of Object.entries(championData)) {
+      newChampionData[key.toLowerCase()] = {
+        icon: URL.championIcon(key),
+        name: value.name,
+      };
+    }
     localStorage.setItem(
       'championData',
-      JSON.stringify({ version: VERSION, championData: res.data.data }),
+      JSON.stringify({ version: VERSION, championData: newChampionData }),
     );
   }
 }
+
+type Item = {
+  name: string;
+  description: string;
+};
+
+type NewItem = Item & {
+  icon: string;
+};
 
 async function updateItemData() {
   const storedItemDataString = localStorage.getItem('itemData');
@@ -40,9 +67,18 @@ async function updateItemData() {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/item.json`,
     );
+    const itemData: { [key: string]: Item } = res.data.data;
+    const newItemData: { [key: string]: NewItem } = {};
+    for (const [key, value] of Object.entries(itemData)) {
+      newItemData[key] = {
+        name: value.name,
+        description: value.description,
+        icon: URL.itemIcon(key),
+      };
+    }
     localStorage.setItem(
       'itemData',
-      JSON.stringify({ version: VERSION, itemData: res.data.data }),
+      JSON.stringify({ version: VERSION, itemData: newItemData }),
     );
   }
 }
@@ -58,7 +94,6 @@ type newSpell = {
   icon: string;
   name: string;
   description: string;
-  id: string;
 };
 
 async function updateSpellData() {
@@ -76,7 +111,6 @@ async function updateSpellData() {
     spellKey.forEach((key) => {
       const spell = spellData[key];
       newSpellData[spell.key] = {
-        id: spell.key,
         icon: URL.spellIcon(key),
         name: spell.name,
         description: spell.description,
