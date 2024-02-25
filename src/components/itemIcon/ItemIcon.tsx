@@ -12,7 +12,6 @@ type Props = {
 };
 export default function ItemIcon({ className, itemNumber }: Props) {
   const itemDetail = getItemData(itemNumber);
-  const itemIconUrl = URL.itemIcon(itemNumber);
   if (itemNumber === 0) return <div className={cn(className, 'nullItem')} />;
 
   return (
@@ -22,7 +21,7 @@ export default function ItemIcon({ className, itemNumber }: Props) {
       body={itemDetail.description}
     >
       <div className={cn('itemIcon', className)}>
-        <img src={itemIconUrl} alt="아이템 아이콘" />
+        <img src={itemDetail.icon} alt="아이템 아이콘" />
       </div>
     </CustomTooltip>
   );

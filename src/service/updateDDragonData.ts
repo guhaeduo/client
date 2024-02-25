@@ -15,12 +15,12 @@ export default async function updateDDragonData() {
   updatePerksData();
 }
 
-type ChampionData = {
+type Champion = {
   name: string;
   id: string;
 };
 
-type NewChampionData = {
+type NewChampion = {
   name: string;
   icon: string;
 };
@@ -34,8 +34,8 @@ async function updateChampionData() {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/champion.json`,
     );
-    const championData: { [key: string]: ChampionData } = res.data.data;
-    const newChampionData: { [key: string]: NewChampionData } = {};
+    const championData: { [key: string]: Champion } = res.data.data;
+    const newChampionData: { [key: string]: NewChampion } = {};
     for (const [key, value] of Object.entries(championData)) {
       newChampionData[key.toLowerCase()] = {
         icon: URL.championIcon(key),
@@ -49,6 +49,15 @@ async function updateChampionData() {
   }
 }
 
+type Item = {
+  name: string;
+  description: string;
+};
+
+type NewItem = Item & {
+  icon: string;
+};
+
 async function updateItemData() {
   const storedItemDataString = localStorage.getItem('itemData');
   const localItemData =
@@ -58,9 +67,18 @@ async function updateItemData() {
     const res = await axios.get(
       `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/item.json`,
     );
+    const itemData: { [key: string]: Item } = res.data.data;
+    const newItemData: { [key: string]: NewItem } = {};
+    for (const [key, value] of Object.entries(itemData)) {
+      newItemData[key] = {
+        name: value.name,
+        description: value.description,
+        icon: URL.itemIcon(key),
+      };
+    }
     localStorage.setItem(
       'itemData',
-      JSON.stringify({ version: VERSION, itemData: res.data.data }),
+      JSON.stringify({ version: VERSION, itemData: newItemData }),
     );
   }
 }
