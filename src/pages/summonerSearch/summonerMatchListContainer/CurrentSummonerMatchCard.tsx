@@ -83,7 +83,7 @@ export default function CurrentSummonerMatchCard({
                 <ItemIcon
                   className={cn('itemIcon')}
                   itemNumber={itemNumber}
-                  key={Math.random()}
+                  key={itemNumber}
                 />
               ))}
             </div>

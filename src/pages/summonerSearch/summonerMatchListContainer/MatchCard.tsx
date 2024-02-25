@@ -3,6 +3,8 @@ import { useState } from 'react';
 import styles from './summonerMatchListContainer.module.scss';
 import classNames from 'classnames/bind';
 import CurrentSummonerMatchCard from './CurrentSummonerMatchCard';
+import ParticipantMatchCard from './ParticipantMatchCard';
+
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -10,7 +12,7 @@ type Props = {
 };
 
 export default function MatchCard({ matchData }: Props) {
-  const { currentSummonerMatchData, info, red, blue } = matchData;
+  const { currentSummonerMatchData, info } = matchData;
   const [isOpen, setIsOpen] = useState(false);
   const cardOpenHandler = () => setIsOpen(!isOpen);
 
@@ -27,6 +29,7 @@ export default function MatchCard({ matchData }: Props) {
         cardOpenHandler={cardOpenHandler}
         isOpen={isOpen}
       />
+      {isOpen && <ParticipantMatchCard matchData={matchData} />}
     </li>
   );
 }

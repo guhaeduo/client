@@ -22,7 +22,7 @@
 
 .matchCard {
   border-radius: 3px;
-  &.win {
+  &.win .currentSummonerMatchCard {
     background-color: rgba(73, 160, 242, 0.1);
     .matchInfo .result {
       color: var(--light-blue);
@@ -34,7 +34,7 @@
       }
     }
   }
-  &.lose {
+  &.lose .currentSummonerMatchCard {
     background-color: rgba(242, 84, 73, 0.1);
     .matchInfo .result {
       color: var(--light-red);
@@ -46,7 +46,7 @@
       }
     }
   }
-  &.quickShutDown {
+  &.quickShutDown .currentSummonerMatchCard {
     background-color: rgba(117, 117, 117, 0.1);
     .matchInfo .result {
       color: #989898;
@@ -216,6 +216,36 @@
     font-size: 20px;
     &.open {
       transform: rotateX(180deg);
+    }
+  }
+}
+
+.participantMatchCard {
+  margin-top: 15px;
+  .maxData {
+    display: flex;
+    gap: 10px;
+    & > div {
+      flex: 1;
+      padding: 18px;
+      background-color: var(--black-200);
+      border-radius: 3px;
+      font-weight: bold;
+      font-size: 12px;
+      .value {
+        margin: 13px 0 20px;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .summoner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .maxDataIcon {
+          width: 20px;
+          height: 20px;
+        }
+      }
     }
   }
 }
