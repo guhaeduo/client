@@ -94,7 +94,6 @@ type newSpell = {
   icon: string;
   name: string;
   description: string;
-  id: string;
 };
 
 async function updateSpellData() {
@@ -112,7 +111,6 @@ async function updateSpellData() {
     spellKey.forEach((key) => {
       const spell = spellData[key];
       newSpellData[spell.key] = {
-        id: spell.key,
         icon: URL.spellIcon(key),
         name: spell.name,
         description: spell.description,
