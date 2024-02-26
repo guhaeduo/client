@@ -6,7 +6,11 @@ import LaneSelector from 'components/laneSelector/LaneSelector';
 import useOptionSelector from 'hooks/useOptionSelector';
 import MatchCard from './matchCard/MatchCard';
 import { Lane } from 'types/summoner';
-
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import ChampionIcon from 'components/championIcon/ChampionIcon';
+import calculateGrade from 'utils/calculateGrade';
 const cn = classNames.bind(styles);
 
 export const MATH_LIST_TAB_MENUS: {
@@ -49,7 +53,18 @@ export default function SummonerMatchListContainer({
   const disableLane = MATCH_LIST_LANE.filter(
     (menu) => !matchListDataLane.includes(menu),
   );
+  const { pathname, hash } = useLocation();
 
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.slice(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [hash]);
+
+  console.log(matchListData);
   return (
     <div className={cn('matchListContainer')}>
       <div className={cn('matchList')}>
@@ -72,7 +87,27 @@ export default function SummonerMatchListContainer({
           ))}
         </ul>
       </div>
-      <div className={cn('matchListSummary')}></div>
+      <div className={cn('matchListSummary')}>
+        {matchListData.map((match) => (
+          <Link
+            className={cn('matchListSummaryItem')}
+            key={match.matchId}
+            to={`${pathname}#${match.matchId}`}
+          >
+            <ChampionIcon
+              className={cn('championIcon')}
+              championName={match.currentSummonerMatchData.championName}
+            />
+            <span>
+              {calculateGrade(
+                match.currentSummonerMatchData.kill,
+                match.currentSummonerMatchData.death,
+                match.currentSummonerMatchData.assists,
+              )}
+            </span>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

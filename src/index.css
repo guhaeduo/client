@@ -30,6 +30,10 @@ html {
   overflow-x: hidden;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto', 'Noto Sans KR' !important;
   background-color: var(--back-color);

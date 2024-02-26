@@ -39,7 +39,7 @@ export default function CurrentSummonerMatchCard({
     [info.gameEndStamp],
   );
   return (
-    <div className={cn('currentSummonerMatchCard')}>
+    <div id={matchData.matchId} className={cn('currentSummonerMatchCard')}>
       <div className={cn('content')}>
         <div className={cn('matchInfo')}>
           <span className={cn('queueType')}>{info.queueType}</span>
