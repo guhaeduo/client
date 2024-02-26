@@ -41,7 +41,7 @@ export default function Header() {
 
   // 유저 객체입니다.
   const user = {
-    isLogin: true,
+    isLogin: false,
   };
 
   const closeMenu = () => isUserMenuOpen && setIsUserMenuOpen(false);

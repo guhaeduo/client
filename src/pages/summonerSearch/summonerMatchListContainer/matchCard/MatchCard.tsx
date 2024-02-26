@@ -1,6 +1,6 @@
 import { MatchData } from 'types/summoner';
 import { useState } from 'react';
-import styles from './summonerMatchListContainer.module.scss';
+import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import CurrentSummonerMatchCard from './CurrentSummonerMatchCard';
 import ParticipantMatchCard from './ParticipantMatchCard';

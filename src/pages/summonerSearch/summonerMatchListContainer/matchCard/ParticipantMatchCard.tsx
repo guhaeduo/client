@@ -1,10 +1,11 @@
 import { MatchData } from 'types/summoner';
-import styles from './summonerMatchListContainer.module.scss';
+import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
+import ParticipantMatchTeamContainer from './ParticipantMatchTeamContainer';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -67,6 +68,18 @@ export default function ParticipantMatchCard({ matchData }: Props) {
             <span>{maxData.maxAssist.riotGameName}</span>
           </div>
         </div>
+      </div>
+      <div>
+        <ParticipantMatchTeamContainer
+          teamData={matchData.blue}
+          maxDamage={maxData.maxDamage.damage}
+          teamName="블루팀"
+        />
+        <ParticipantMatchTeamContainer
+          teamData={matchData.red}
+          maxDamage={maxData.maxDamage.damage}
+          teamName="레드팀"
+        />
       </div>
     </div>
   );

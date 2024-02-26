@@ -4,7 +4,7 @@ import { MatchData, MatchDataQueueType } from 'types/summoner';
 import QueueTypeTab from '../component/QueueTypeTab';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import useOptionSelector from 'hooks/useOptionSelector';
-import MatchCard from './MatchCard';
+import MatchCard from './matchCard/MatchCard';
 import { Lane } from 'types/summoner';
 
 const cn = classNames.bind(styles);
