@@ -9,7 +9,6 @@ type Props = {
   matchData: MatchData;
 };
 export default function MatchTotalDataContainer({ matchData }: Props) {
-  console.log(matchData);
   return (
     <div className={cn('matchTotalData')}>
       <Objectives objectives={matchData.red.objectives} team="blue" />

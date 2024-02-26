@@ -64,7 +64,6 @@ export default function SummonerMatchListContainer({
     }
   }, [hash]);
 
-  console.log(matchListData);
   return (
     <div className={cn('matchListContainer')}>
       <div className={cn('matchList')}>

@@ -52,3 +52,19 @@
     }
   }
 }
+
+// skeleton
+
+.matchListContainer.skeleton {
+  .laneSelector {
+    height: 38px;
+    width: 248px;
+  }
+  .matchCard {
+    width: 100%;
+    height: 100px;
+  }
+  .matchListSummary {
+    height: 200px;
+  }
+}
