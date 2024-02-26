@@ -57,7 +57,7 @@ export default function SummonerMatchListContainer({
 
   useEffect(() => {
     setMatchListLaneOption('ALL');
-  }, [matchQueueType]);
+  }, [pathname]);
 
   useEffect(() => {
     if (hash) {
