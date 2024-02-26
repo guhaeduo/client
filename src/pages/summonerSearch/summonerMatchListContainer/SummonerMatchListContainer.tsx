@@ -81,9 +81,15 @@ export default function SummonerMatchListContainer({
           />
         </div>
         <ul className={cn('matchCardContainer')}>
-          {matchListData.map((match) => (
-            <MatchCard key={match.matchId} matchData={match} />
-          ))}
+          {matchListData.length > 100 ? (
+            matchListData.map((match) => (
+              <MatchCard key={match.matchId} matchData={match} />
+            ))
+          ) : (
+            <div className={cn('matchDataNotFound')}>
+              데이터가 존재하지 않습니다.
+            </div>
+          )}
         </ul>
       </div>
       <div className={cn('matchListSummary')}>

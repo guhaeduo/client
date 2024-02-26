@@ -20,6 +20,12 @@
   gap: 7px;
 }
 
+.matchDataNotFound {
+  text-align: center;
+  color: var(--grey-200);
+  margin-top: 50px;
+}
+
 // matchListSummary
 .matchListSummary {
   position: sticky;
