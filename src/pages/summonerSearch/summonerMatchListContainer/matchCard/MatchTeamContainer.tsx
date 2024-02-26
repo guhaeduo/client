@@ -17,7 +17,7 @@ type Props = {
   teamData: Team;
   maxDamage: number;
 };
-export default function ParticipantMatchTeamContainer({
+export default function MatchTeamContainer({
   teamName,
   teamData,
   maxDamage,
@@ -25,7 +25,6 @@ export default function ParticipantMatchTeamContainer({
   const result = teamData.win ? '승리' : '패배';
   const { navSummonerSearch } = useCustomNavigation();
   const { country } = usePathSummonerData();
-  console.log(teamData);
   return (
     <div
       className={cn('matchTeamContainer', {
@@ -132,10 +131,10 @@ export default function ParticipantMatchTeamContainer({
               </div>
             </div>
             <div className={cn('item')}>
-              {participant.itemNumberList.map((itemNumber) => (
+              {participant.itemNumberList.map((itemNumber, i) => (
                 <ItemIcon
                   className={cn('itemIcon')}
-                  key={itemNumber}
+                  key={i}
                   itemNumber={itemNumber}
                 />
               ))}

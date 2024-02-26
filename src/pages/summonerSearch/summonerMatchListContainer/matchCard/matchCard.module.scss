@@ -1,5 +1,4 @@
 .matchCard {
-  border-radius: 3px;
   &.win .currentSummonerMatchCard {
     background-color: rgba(73, 160, 242, 0.1);
     .matchInfo .result {
@@ -39,6 +38,8 @@
 }
 
 .currentSummonerMatchCard {
+  border-radius: 2px;
+  overflow: hidden;
   height: 100px;
   display: flex;
 }
@@ -204,7 +205,7 @@
       flex: 1;
       padding: 18px;
       background-color: var(--black-200);
-      border-radius: 3px;
+      border-radius: 2px;
       font-weight: bold;
       font-size: 12px;
       .value {
@@ -223,6 +224,12 @@
       }
     }
   }
+}
+
+.participantContainer {
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
 .matchTeamContainer {
@@ -245,7 +252,6 @@
   }
   .header {
     padding: 13px 15px;
-    margin-top: 10px;
     background-color: var(--black-200);
     display: flex;
     justify-content: space-between;
@@ -402,6 +408,75 @@
           height: 25px;
         }
       }
+    }
+  }
+}
+
+.matchTotalData {
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px 15px;
+  .totalData {
+    font-size: 12px;
+    width: 60%;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    .red {
+      padding: 3px 5px;
+      background-color: rgb(232, 64, 87);
+      text-align: end;
+    }
+    .blue {
+      padding: 3px 5px;
+      background-color: rgb(83, 131, 232);
+    }
+    .totalKill,
+    .totalGold {
+      position: relative;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      span {
+        font-weight: bold;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    }
+  }
+}
+
+.objectives {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-top: 3px;
+  gap: 2px;
+  .objective {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    span {
+      font-size: 13px;
+      font-weight: 500;
+      padding-bottom: 1px;
+      color: var(--white-200);
+    }
+    &.red path {
+      fill: var(--light-red);
+    }
+    &.blue path {
+      fill: var(--light-blue);
     }
   }
 }

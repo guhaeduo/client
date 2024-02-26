@@ -79,11 +79,11 @@ export default function CurrentSummonerMatchCard({
               </div>
             </div>
             <div className={cn('itemList')}>
-              {currentSummonerMatchData.itemNumberList.map((itemNumber) => (
+              {currentSummonerMatchData.itemNumberList.map((itemNumber, i) => (
                 <ItemIcon
                   className={cn('itemIcon')}
                   itemNumber={itemNumber}
-                  key={itemNumber}
+                  key={i}
                 />
               ))}
             </div>

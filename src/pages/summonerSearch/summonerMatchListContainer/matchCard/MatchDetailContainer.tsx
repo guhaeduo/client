@@ -5,20 +5,20 @@ import usePathSummonerData from 'hooks/usePathSummonerData';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
-import ParticipantMatchTeamContainer from './ParticipantMatchTeamContainer';
+import MatchTeamContainer from './MatchTeamContainer';
+import MatchTotalDataContainer from './MatchTotalDataContainer';
 const cn = classNames.bind(styles);
 
 type Props = {
   matchData: MatchData;
 };
 
-export default function ParticipantMatchContainer({ matchData }: Props) {
+export default function MatchDetailContainer({ matchData }: Props) {
   const {
     info: { maxData },
   } = matchData;
   const { country } = usePathSummonerData();
   const { navSummonerSearch } = useCustomNavigation();
-  console.log(matchData);
   return (
     <div className={cn('participantMatchContainer')}>
       <div className={cn('maxData')}>
@@ -69,13 +69,14 @@ export default function ParticipantMatchContainer({ matchData }: Props) {
           </div>
         </div>
       </div>
-      <div>
-        <ParticipantMatchTeamContainer
+      <div className={cn('participantContainer')}>
+        <MatchTeamContainer
           teamData={matchData.blue}
           maxDamage={maxData.maxDamage.damage}
           teamName="블루팀"
         />
-        <ParticipantMatchTeamContainer
+        <MatchTotalDataContainer matchData={matchData} />
+        <MatchTeamContainer
           teamData={matchData.red}
           maxDamage={maxData.maxDamage.damage}
           teamName="레드팀"
