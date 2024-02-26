@@ -12,7 +12,7 @@ type Props = {
   matchData: MatchData;
 };
 
-export default function ParticipantMatchCard({ matchData }: Props) {
+export default function ParticipantMatchContainer({ matchData }: Props) {
   const {
     info: { maxData },
   } = matchData;
@@ -20,7 +20,7 @@ export default function ParticipantMatchCard({ matchData }: Props) {
   const { navSummonerSearch } = useCustomNavigation();
   console.log(matchData);
   return (
-    <div className={cn('participantMatchCard')}>
+    <div className={cn('participantMatchContainer')}>
       <div className={cn('maxData')}>
         <div>
           <div className={cn('title')}>최고 딜량</div>

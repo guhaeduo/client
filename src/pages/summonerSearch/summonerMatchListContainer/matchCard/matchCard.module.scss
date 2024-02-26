@@ -195,8 +195,8 @@
   }
 }
 
-.participantMatchCard {
-  margin-top: 15px;
+.participantMatchContainer {
+  margin-top: 10px;
   .maxData {
     display: flex;
     gap: 10px;
@@ -227,22 +227,34 @@
 
 .matchTeamContainer {
   font-size: 13px;
-  &.win .participantCard {
-    background-color: rgba(73, 160, 242, 0.1);
+  &.win {
+    .participantCard {
+      background-color: rgba(73, 160, 242, 0.1);
+    }
+    .result span {
+      color: var(--light-blue);
+    }
   }
-  &.lose .participantCard {
-    background-color: rgba(242, 84, 73, 0.1);
+  &.lose {
+    .participantCard {
+      background-color: rgba(242, 84, 73, 0.1);
+    }
+    .result span {
+      color: var(--light-red);
+    }
   }
-
   .header {
     padding: 13px 15px;
-    border-radius: 3px;
     margin-top: 10px;
     background-color: var(--black-200);
     display: flex;
     justify-content: space-between;
     .result {
       width: 178px;
+      color: var(--white-300);
+      span {
+        padding-right: 3px;
+      }
     }
     .data {
       display: flex;

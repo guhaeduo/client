@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import CurrentSummonerMatchCard from './CurrentSummonerMatchCard';
-import ParticipantMatchCard from './ParticipantMatchCard';
+import ParticipantMatchContainer from './ParticipantMatchContainer';
 
 const cn = classNames.bind(styles);
 
@@ -29,7 +29,7 @@ export default function MatchCard({ matchData }: Props) {
         cardOpenHandler={cardOpenHandler}
         isOpen={isOpen}
       />
-      {isOpen && <ParticipantMatchCard matchData={matchData} />}
+      {isOpen && <ParticipantMatchContainer matchData={matchData} />}
     </li>
   );
 }
