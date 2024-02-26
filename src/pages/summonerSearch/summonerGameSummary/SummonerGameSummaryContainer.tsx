@@ -19,7 +19,7 @@ export const SUMMARY_TAB_MENUS: {
 }[] = [
   { value: 'ALL', display: '모든 큐' },
   { value: 'SOLO', display: '솔로랭크' },
-  { value: 'FREE', display: '전체랭크' },
+  { value: 'FREE', display: '자유랭크' },
 ];
 
 type Props = {

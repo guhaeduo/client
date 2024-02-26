@@ -19,7 +19,7 @@ export const MATH_LIST_TAB_MENUS: {
 }[] = [
   { value: 'ALL', display: '모든 큐' },
   { value: 'SOLO', display: '솔로랭크' },
-  { value: 'FREE', display: '전체랭크' },
+  { value: 'FREE', display: '자유랭크' },
   { value: 'NORMAL', display: '일반' },
 ];
 
@@ -81,7 +81,7 @@ export default function SummonerMatchListContainer({
           />
         </div>
         <ul className={cn('matchCardContainer')}>
-          {matchListData.length > 100 ? (
+          {matchListData.length > 0 ? (
             matchListData.map((match) => (
               <MatchCard key={match.matchId} matchData={match} />
             ))
