@@ -56,6 +56,10 @@ export default function SummonerMatchListContainer({
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    setMatchListLaneOption('ALL');
+  }, [matchQueueType]);
+
+  useEffect(() => {
     if (hash) {
       const element = document.getElementById(hash.slice(1));
       if (element) {

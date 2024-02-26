@@ -93,7 +93,7 @@ export default function SummonerGameSummaryContainer({
           gameCntChartColor('SUP'),
         ],
         borderColor: ['transparent'],
-        cutout: '80%',
+        cutout: '70%',
       },
     ],
   };
