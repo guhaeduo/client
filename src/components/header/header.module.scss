@@ -35,10 +35,15 @@
 .loginButton {
   font-size: 14px;
   font-weight: bold;
+  color: var(--white);
 }
 
 .loginButton {
   padding: 8px 37px 7px;
+  background-color: var(--blue-button);
+  &:hover {
+    background-color: var(--blue-button-hover);
+  }
 }
 
 .userMenuWrapper {

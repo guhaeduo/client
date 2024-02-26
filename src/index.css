@@ -12,6 +12,7 @@
   --light-border: #4c4c4c;
   --light-red: rgb(255, 93, 93);
   --light-blue: rgb(78, 146, 255);
+  --white: rgb(246, 246, 246);
   --white-100: #d0d0d0;
   --white-200: #bbbbbb;
   --white-300: #939393;
@@ -30,13 +31,13 @@ html {
 }
 
 * {
-  color: rgb(246, 246, 246);
   box-sizing: border-box;
 }
 
 body {
   font-family: 'Roboto', 'Noto Sans KR' !important;
   background-color: var(--back-color);
+  color: rgb(246, 246, 246);
 }
 
 .container {

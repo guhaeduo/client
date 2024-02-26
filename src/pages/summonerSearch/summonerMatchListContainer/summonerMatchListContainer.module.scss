@@ -20,239 +20,57 @@
   gap: 7px;
 }
 
-.matchCard {
-  border-radius: 3px;
-  &.win .currentSummonerMatchCard {
-    background-color: rgba(73, 160, 242, 0.1);
-    .matchInfo .result {
-      color: var(--light-blue);
-    }
-    .setOpenButton {
-      background-color: rgba(73, 160, 242, 0.6);
-      &:hover {
-        background-color: rgba(73, 160, 242, 0.7);
-      }
-    }
-  }
-  &.lose .currentSummonerMatchCard {
-    background-color: rgba(242, 84, 73, 0.1);
-    .matchInfo .result {
-      color: var(--light-red);
-    }
-    .setOpenButton {
-      background-color: rgba(242, 84, 73, 0.6);
-      &:hover {
-        background-color: rgba(242, 84, 73, 0.7);
-      }
-    }
-  }
-  &.quickShutDown .currentSummonerMatchCard {
-    background-color: rgba(117, 117, 117, 0.1);
-    .matchInfo .result {
-      color: #989898;
-    }
-    .setOpenButton {
-      background-color: rgba(117, 117, 117, 0.6);
-      &:hover {
-        background-color: rgba(117, 117, 117, 0.7);
-      }
-    }
-  }
-}
-
-.currentSummonerMatchCard {
-  height: 100px;
-  display: flex;
-}
-
-.currentSummonerMatchCard .content {
-  display: flex;
-  flex: 1;
-  padding: 12px;
-}
-
-.matchInfo {
-  width: 80px;
-  height: 100%;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.queueType,
-.result {
-  font-weight: bold;
-}
-
-.timeStamp {
-  color: rgb(160, 160, 160);
-  flex: 1;
-}
-.duration {
-  color: rgb(160, 160, 160);
-}
-.SetOpenButton {
-  background-color: white;
-  width: 40px;
-  height: 100%;
-}
-
-.currentSummonerMatchCard {
-  display: flex;
-  flex: 1;
-  .currentSummonerData {
-    flex: 1;
-    display: flex;
-    & > div:first-child {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      & > div:first-child {
-        display: flex;
-      }
-    }
-    .summonerSkills {
-      margin-left: 2px;
-      display: grid;
-      grid-template-columns: 20px 20px;
-      grid-template-rows: 20px 20px;
-      gap: 3px;
-      .spellIcon {
-        width: 21px;
-        height: 21px;
-      }
-      .perksIcon {
-        width: 21px;
-        height: 21px;
-      }
-    }
-    .grade {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: bold;
-      font-size: 18px;
-      padding-left: 20px;
-      span:nth-child(2) {
-        color: var(--light-red);
-      }
-    }
-    .itemList {
-      display: flex;
-      gap: 4px;
-    }
-    .itemIcon {
-      width: 25px;
-      height: 25px;
-    }
-  }
-  .championIcon {
-    width: 45px;
-    height: 45px;
-  }
-  .gradeSummary {
-    flex: 1;
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    font-size: 12px;
-    font-weight: 500;
-    span {
-      color: var(--white-300);
-      &:last-child {
-        color: var(--light-red);
-      }
-    }
-  }
-}
-
-.participantsPreview {
-  padding: 4px 12px 4px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  li {
-    display: flex;
-    gap: 10px;
-    & > div {
-      display: flex;
-      gap: 3px;
-      align-items: center;
-    }
-    .previewSummonerInfo {
-      width: 65px;
-      font-size: 12px;
-      cursor: pointer;
-      white-space: nowrap;
-      overflow: hidden;
-      color: var(--white-300);
-      text-overflow: ellipsis;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    .activeSummoner {
-      font-weight: bold;
-      color: var(--white-100);
-    }
-  }
-  .previewIcon {
-    width: 15px !important;
-    height: 15px;
-  }
-}
-
-.setOpenButton {
-  width: 40px;
-  display: flex;
-  align-items: end;
-  justify-content: center;
-  cursor: pointer;
-  padding-bottom: 5px;
-  .setOpenIcon {
-    font-size: 20px;
-    &.open {
-      transform: rotateX(180deg);
-    }
-  }
-}
-
-.participantMatchCard {
-  margin-top: 15px;
-  .maxData {
-    display: flex;
-    gap: 10px;
-    & > div {
-      flex: 1;
-      padding: 18px;
-      background-color: var(--black-200);
-      border-radius: 3px;
-      font-weight: bold;
-      font-size: 12px;
-      .value {
-        margin: 13px 0 20px;
-        font-size: 25px;
-        font-weight: bold;
-      }
-      .summoner {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        .maxDataIcon {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-  }
+.matchDataNotFound {
+  text-align: center;
+  color: var(--grey-200);
+  margin-top: 50px;
 }
 
 // matchListSummary
 .matchListSummary {
+  position: sticky;
+  top: 30px;
   width: 300px;
-  height: 300px;
-  background-color: greenyellow;
+  display: flex;
+  height: calc(30px / 30 + 30px);
+  flex-wrap: wrap;
+  gap: 1px;
+  .matchListSummaryItem {
+    color: var(--white);
+    text-decoration: none;
+    padding: 3px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    .championIcon {
+      width: 22px;
+      height: 22px;
+    }
+    span {
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--grey-100);
+    }
+    &:hover {
+      background-color: var(--grey-300);
+    }
+  }
+}
+
+// skeleton
+
+.matchListContainer.skeleton {
+  .laneSelector {
+    height: 38px;
+    width: 248px;
+  }
+  .matchCard {
+    width: 100%;
+    height: 100px;
+  }
+  .matchListSummary {
+    height: 200px;
+  }
 }

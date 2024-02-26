@@ -1,7 +1,7 @@
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import CustomTooltip from 'components/tooltip/CustomTooltip';
 import { Participant } from 'types/summoner';
-import styles from './summonerMatchListContainer.module.scss';
+import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 

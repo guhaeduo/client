@@ -42,7 +42,10 @@ export default function SummonerSearchPage() {
   } = useSummonerMatchData({ summonerInfo, country, name, tag });
 
   useEffect(() => {
-    return () => setSummaryQueueType('ALL');
+    return () => {
+      setSummaryQueueType('ALL');
+      setMatchQueueType('ALL');
+    };
   }, [country, name, tag]);
 
   const errorMessage =

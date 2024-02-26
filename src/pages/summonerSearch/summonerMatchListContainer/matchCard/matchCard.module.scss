@@ -1,0 +1,482 @@
+.matchCard {
+  &.win .currentSummonerMatchCard {
+    background-color: rgba(73, 160, 242, 0.1);
+    .matchInfo .result {
+      color: var(--light-blue);
+    }
+    .setOpenButton {
+      background-color: rgba(73, 160, 242, 0.6);
+      &:hover {
+        background-color: rgba(73, 160, 242, 0.7);
+      }
+    }
+  }
+  &.lose .currentSummonerMatchCard {
+    background-color: rgba(242, 84, 73, 0.1);
+    .matchInfo .result {
+      color: var(--light-red);
+    }
+    .setOpenButton {
+      background-color: rgba(242, 84, 73, 0.6);
+      &:hover {
+        background-color: rgba(242, 84, 73, 0.7);
+      }
+    }
+  }
+  &.quickShutDown .currentSummonerMatchCard {
+    background-color: rgba(117, 117, 117, 0.1);
+    .matchInfo .result {
+      color: #989898;
+    }
+    .setOpenButton {
+      background-color: rgba(117, 117, 117, 0.6);
+      &:hover {
+        background-color: rgba(117, 117, 117, 0.7);
+      }
+    }
+  }
+}
+
+.currentSummonerMatchCard {
+  border-radius: 2px;
+  overflow: hidden;
+  height: 100px;
+  display: flex;
+}
+
+.currentSummonerMatchCard .content {
+  display: flex;
+  flex: 1;
+  padding: 12px;
+}
+
+.matchInfo {
+  width: 80px;
+  height: 100%;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.queueType,
+.result {
+  font-weight: bold;
+}
+
+.timeStamp {
+  color: rgb(160, 160, 160);
+  flex: 1;
+}
+.duration {
+  color: rgb(160, 160, 160);
+}
+.SetOpenButton {
+  background-color: white;
+  width: 40px;
+  height: 100%;
+}
+
+.currentSummonerMatchCard {
+  display: flex;
+  flex: 1;
+  .currentSummonerData {
+    flex: 1;
+    display: flex;
+    & > div:first-child {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      & > div:first-child {
+        display: flex;
+      }
+    }
+    .summonerSkills {
+      margin-left: 2px;
+      display: grid;
+      grid-template-columns: 20px 20px;
+      grid-template-rows: 20px 20px;
+      gap: 3px;
+      .spellIcon,
+      .perksIcon {
+        width: 21px;
+        height: 21px;
+      }
+    }
+    .grade {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: bold;
+      font-size: 18px;
+      padding-left: 20px;
+      span:nth-child(2) {
+        color: var(--light-red);
+      }
+    }
+    .itemList {
+      display: flex;
+      gap: 4px;
+    }
+    .itemIcon {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .championIcon {
+    width: 45px;
+    height: 45px;
+  }
+  .gradeSummary {
+    flex: 1;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    span {
+      color: var(--white-300);
+      &:last-child {
+        color: var(--light-red);
+      }
+    }
+  }
+}
+
+.participantsPreview {
+  padding: 4px 12px 4px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  li {
+    display: flex;
+    gap: 10px;
+    & > div {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+    .previewSummonerInfo {
+      width: 65px;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--white-300);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .activeSummoner {
+      font-weight: bold;
+      color: var(--white-100);
+    }
+  }
+  .previewIcon {
+    width: 15px !important;
+    height: 15px;
+  }
+}
+
+.setOpenButton {
+  width: 40px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  cursor: pointer;
+  padding-bottom: 5px;
+  .setOpenIcon {
+    font-size: 20px;
+    &.open {
+      transform: rotateX(180deg);
+    }
+  }
+}
+
+.participantMatchContainer {
+  margin-top: 10px;
+  .maxData {
+    display: flex;
+    gap: 10px;
+    & > div {
+      flex: 1;
+      padding: 18px;
+      background-color: var(--black-200);
+      border-radius: 2px;
+      font-weight: bold;
+      font-size: 12px;
+      .value {
+        margin: 13px 0 20px;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .summoner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .maxDataIcon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+
+.participantContainer {
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.matchTeamContainer {
+  font-size: 13px;
+  &.win {
+    .participantCard {
+      background-color: rgba(73, 160, 242, 0.1);
+    }
+    .result span {
+      color: var(--light-blue);
+    }
+  }
+  &.lose {
+    .participantCard {
+      background-color: rgba(242, 84, 73, 0.1);
+    }
+    .result span {
+      color: var(--light-red);
+    }
+  }
+  .header {
+    padding: 13px 15px;
+    background-color: var(--black-200);
+    display: flex;
+    justify-content: space-between;
+    .result {
+      width: 178px;
+      color: var(--white-300);
+      span {
+        padding-right: 3px;
+      }
+    }
+    .data {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .item {
+      width: 187px;
+      text-align: center;
+    }
+  }
+  .kda,
+  .damage,
+  .wards,
+  .cs {
+    text-align: center;
+  }
+  .kda,
+  .damage {
+    width: 55px;
+  }
+  .wards,
+  .cs {
+    width: 48px;
+  }
+  .participantsContainer {
+    .participantCard {
+      color: var(--white-200);
+      padding: 13px 15px;
+      display: flex;
+      justify-content: space-between;
+      .championIcon {
+        width: 35px;
+        height: 35px;
+      }
+      .data {
+        display: flex;
+        gap: 30px;
+      }
+      .summonerSkills {
+        margin-left: 3px;
+        display: grid;
+        grid-template-columns: 16.5px 16.5px;
+        grid-template-rows: 16.5px 16.5px;
+        gap: 2px;
+        .spellIcon,
+        .perksIcon {
+          width: 16.5px;
+          height: 16.5px;
+        }
+      }
+      .summonerData {
+        display: flex;
+        .summonerName {
+          color: var(--white);
+          width: 100px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 2px;
+          margin-left: 5px;
+          .name {
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          .tag {
+            font-size: 12px;
+            color: var(--white-300);
+          }
+        }
+      }
+
+      .kda {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        font-weight: 400;
+        .summonerKda {
+          font-size: 12px;
+        }
+        .grade {
+          font-size: 11px;
+        }
+      }
+      .damage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        span {
+          font-size: 12px;
+        }
+        .damageBar {
+          width: 50px;
+          height: 5px;
+          background-color: var(--black-100);
+          div {
+            height: inherit;
+            background-color: rgb(255, 119, 119);
+          }
+        }
+      }
+      .wards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .visionScore {
+          padding-right: 2px;
+          font-size: 12px;
+        }
+        div {
+          text-align: center;
+          font-size: 11px;
+        }
+      }
+      .cs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        .minionKill {
+          font-size: 12px;
+        }
+        span {
+          font-size: 11px;
+        }
+      }
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        .itemIcon {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+}
+
+.matchTotalData {
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px 15px;
+  .totalData {
+    font-size: 12px;
+    width: 60%;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    .red {
+      padding: 3px 5px;
+      background-color: rgb(232, 64, 87);
+      text-align: end;
+    }
+    .blue {
+      padding: 3px 5px;
+      background-color: rgb(83, 131, 232);
+    }
+    .totalKill,
+    .totalGold {
+      position: relative;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      span {
+        font-weight: bold;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    }
+  }
+}
+
+.objectives {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-top: 3px;
+  gap: 2px;
+  .objective {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    span {
+      font-size: 13px;
+      font-weight: 500;
+      padding-bottom: 1px;
+      color: var(--white-200);
+    }
+    &.red path {
+      fill: var(--light-red);
+    }
+    &.blue path {
+      fill: var(--light-blue);
+    }
+  }
+}

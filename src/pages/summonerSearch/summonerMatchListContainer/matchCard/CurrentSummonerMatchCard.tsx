@@ -1,6 +1,6 @@
 import { MatchData } from 'types/summoner';
 import { useMemo } from 'react';
-import styles from './summonerMatchListContainer.module.scss';
+import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import calculateGameDuration from 'utils/calculateGameDuration';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
@@ -39,7 +39,7 @@ export default function CurrentSummonerMatchCard({
     [info.gameEndStamp],
   );
   return (
-    <div className={cn('currentSummonerMatchCard')}>
+    <div id={matchData.matchId} className={cn('currentSummonerMatchCard')}>
       <div className={cn('content')}>
         <div className={cn('matchInfo')}>
           <span className={cn('queueType')}>{info.queueType}</span>
@@ -79,11 +79,11 @@ export default function CurrentSummonerMatchCard({
               </div>
             </div>
             <div className={cn('itemList')}>
-              {currentSummonerMatchData.itemNumberList.map((itemNumber) => (
+              {currentSummonerMatchData.itemNumberList.map((itemNumber, i) => (
                 <ItemIcon
                   className={cn('itemIcon')}
                   itemNumber={itemNumber}
-                  key={itemNumber}
+                  key={i}
                 />
               ))}
             </div>

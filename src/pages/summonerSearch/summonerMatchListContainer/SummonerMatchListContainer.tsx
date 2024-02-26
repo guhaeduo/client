@@ -4,9 +4,13 @@ import { MatchData, MatchDataQueueType } from 'types/summoner';
 import QueueTypeTab from '../component/QueueTypeTab';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import useOptionSelector from 'hooks/useOptionSelector';
-import MatchCard from './MatchCard';
+import MatchCard from './matchCard/MatchCard';
 import { Lane } from 'types/summoner';
-
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import ChampionIcon from 'components/championIcon/ChampionIcon';
+import calculateGrade from 'utils/calculateGrade';
 const cn = classNames.bind(styles);
 
 export const MATH_LIST_TAB_MENUS: {
@@ -15,7 +19,7 @@ export const MATH_LIST_TAB_MENUS: {
 }[] = [
   { value: 'ALL', display: '모든 큐' },
   { value: 'SOLO', display: '솔로랭크' },
-  { value: 'FREE', display: '전체랭크' },
+  { value: 'FREE', display: '자유랭크' },
   { value: 'NORMAL', display: '일반' },
 ];
 
@@ -49,6 +53,20 @@ export default function SummonerMatchListContainer({
   const disableLane = MATCH_LIST_LANE.filter(
     (menu) => !matchListDataLane.includes(menu),
   );
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    setMatchListLaneOption('ALL');
+  }, [pathname]);
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.slice(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [hash]);
 
   return (
     <div className={cn('matchListContainer')}>
@@ -67,12 +85,38 @@ export default function SummonerMatchListContainer({
           />
         </div>
         <ul className={cn('matchCardContainer')}>
-          {matchListData.map((match) => (
-            <MatchCard key={match.matchId} matchData={match} />
-          ))}
+          {matchListData.length > 0 ? (
+            matchListData.map((match) => (
+              <MatchCard key={match.matchId} matchData={match} />
+            ))
+          ) : (
+            <div className={cn('matchDataNotFound')}>
+              데이터가 존재하지 않습니다.
+            </div>
+          )}
         </ul>
       </div>
-      <div className={cn('matchListSummary')}></div>
+      <div className={cn('matchListSummary')}>
+        {matchListData.map((match) => (
+          <Link
+            className={cn('matchListSummaryItem')}
+            key={match.matchId}
+            to={`${pathname}#${match.matchId}`}
+          >
+            <ChampionIcon
+              className={cn('championIcon')}
+              championName={match.currentSummonerMatchData.championName}
+            />
+            <span>
+              {calculateGrade(
+                match.currentSummonerMatchData.kill,
+                match.currentSummonerMatchData.death,
+                match.currentSummonerMatchData.assists,
+              )}
+            </span>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

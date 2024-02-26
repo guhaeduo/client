@@ -6,8 +6,6 @@
 }
 
 .dropDownHeader {
-  width: inherit;
-  height: inherit;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -16,6 +14,7 @@
     display: flex;
     align-items: center;
     transition: 0s;
+    color: var(--white);
   }
   button.open {
     transform: rotate(180deg);

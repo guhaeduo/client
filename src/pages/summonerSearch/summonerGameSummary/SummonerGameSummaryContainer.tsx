@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { SummaryChampionStats } from 'types/summoner';
 import ChampionTag from './ChampionTag';
 import URL from 'constants/url';
+import { useLocation } from 'react-router-dom';
 const cn = classNames.bind(styles);
 
 export const SUMMARY_TAB_MENUS: {
@@ -19,7 +20,7 @@ export const SUMMARY_TAB_MENUS: {
 }[] = [
   { value: 'ALL', display: '모든 큐' },
   { value: 'SOLO', display: '솔로랭크' },
-  { value: 'FREE', display: '전체랭크' },
+  { value: 'FREE', display: '자유랭크' },
 ];
 
 type Props = {
@@ -38,6 +39,7 @@ export default function SummonerGameSummaryContainer({
     type: 'singular',
     defaultOptions: ['ALL'],
   });
+  const { pathname } = useLocation();
 
   const detailsLane = summaryLaneOption[0] as Lane;
   const detailData = lane[detailsLane];
@@ -53,7 +55,7 @@ export default function SummonerGameSummaryContainer({
   useEffect(() => {
     setSummaryLaneOption('ALL');
     setCurrentDetailChampion(detailData.mostChampionlist[0]);
-  }, [summaryQueueType]);
+  }, [pathname]);
 
   useEffect(() => {
     setCurrentDetailChampion(detailData.mostChampionlist[0]);
@@ -93,7 +95,7 @@ export default function SummonerGameSummaryContainer({
           gameCntChartColor('SUP'),
         ],
         borderColor: ['transparent'],
-        cutout: '80%',
+        cutout: '70%',
       },
     ],
   };
