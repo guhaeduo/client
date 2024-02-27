@@ -40,7 +40,7 @@ export default function SummonerGameSummaryContainer({
     defaultOptions: ['ALL'],
   });
   const { pathname } = useLocation();
-
+  console.log(summonerGameSummary);
   const detailsLane = summaryLaneOption[0] as Lane;
   const detailData = lane[detailsLane];
   const laneKey = Object.keys(lane) as Lane[];
