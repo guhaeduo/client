@@ -28,7 +28,9 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxDamage.championName}
                 className={cn('maxDataIcon')}
               />
-              <span>{maxData.maxDamage.riotGameName}</span>
+              <span className={cn('riotName')}>
+                {maxData.maxDamage.riotGameName}
+              </span>
             </div>
           </div>
           <div>
@@ -39,7 +41,9 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxKill.championName}
                 className={cn('maxDataIcon')}
               />
-              <span>{maxData.maxKill.riotGameName}</span>
+              <span className={cn('riotName')}>
+                {maxData.maxKill.riotGameName}
+              </span>
             </div>
           </div>
           <div>
@@ -50,7 +54,9 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxDeath.championName}
                 className={cn('maxDataIcon')}
               />
-              <span>{maxData.maxDeath.riotGameName}</span>
+              <span className={cn('riotName')}>
+                {maxData.maxDeath.riotGameName}
+              </span>
             </div>
           </div>
           <div>
@@ -61,7 +67,9 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxAssist.championName}
                 className={cn('maxDataIcon')}
               />
-              <span>{maxData.maxAssist.riotGameName}</span>
+              <span className={cn('riotName')}>
+                {maxData.maxAssist.riotGameName}
+              </span>
             </div>
           </div>
         </div>
