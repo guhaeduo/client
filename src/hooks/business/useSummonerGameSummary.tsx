@@ -41,7 +41,6 @@ export default function useSummonerGameSummary({
     enabled: !!summonerInfo,
     staleTime: SUMMONER_DATA_STALE_TIME,
   });
-  console.log(isSummonerGameSummaryFetching);
   return {
     summonerGameSummary,
     isSummonerGameSummaryLoading,

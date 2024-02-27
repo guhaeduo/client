@@ -35,6 +35,7 @@
   height: calc(30px / 30 + 30px);
   flex-wrap: wrap;
   .matchListSummaryItem {
+    cursor: pointer;
     color: var(--white);
     text-decoration: none;
     width: calc(320px / 10);

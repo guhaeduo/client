@@ -36,7 +36,7 @@ export default function FetchButton({
 
   return (
     <button
-      className={cn('loadingButton', className, { disable: isLoading })}
+      className={cn('loadingButton', className, { disabled: isLoading })}
       onClick={onClick}
     >
       {isLoading ? (

@@ -16,14 +16,20 @@ export const queryClient = new QueryClient({
   },
 });
 
-if (process.env.REACT_APP_MSW_MOKING === 'true') {
-  worker.start();
+if (
+  process.env.REACT_APP_MSW_MOKING === 'true' &&
+  process.env.NODE_ENV === 'development'
+) {
+  worker.start({
+    serviceWorker: {
+      url: '/client/mockServiceWorker.js',
+    },
+  });
 }
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-
 root.render(
   <QueryClientProvider client={queryClient}>
     <Reset />

@@ -3,13 +3,17 @@
 }
 
 .summonerDataRefetchButton {
-  margin: 10px 0;
-  padding: 13px 20px;
-  font-weight: bold;
-  color: var(--black-200);
-  background-color: var(--white-100);
+  margin: 15px 0 20px;
+  height: 40px;
+  padding: 0 23px;
+  font-weight: 700;
+  color: var(--black-100);
+  background-color: white;
   border-radius: 50px;
   &.disabled {
     background-color: red;
+  }
+  .loadingIndicator {
+    font-size: 400px;
   }
 }

@@ -6,7 +6,6 @@ import LaneSelector from 'components/laneSelector/LaneSelector';
 import useOptionSelector from 'hooks/useOptionSelector';
 import MatchCard from './matchCard/MatchCard';
 import { Lane } from 'types/summoner';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
