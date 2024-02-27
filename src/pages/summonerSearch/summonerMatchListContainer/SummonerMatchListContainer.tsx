@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import calculateGrade from 'utils/calculateGrade';
+import { useNavigate } from 'react-router-dom';
 const cn = classNames.bind(styles);
 
 export const MATH_LIST_TAB_MENUS: {
@@ -40,6 +41,7 @@ export default function SummonerMatchListContainer({
     type: 'singular',
     defaultOptions: ['ALL'],
   });
+  const navigate = useNavigate();
   const matchListLane = matchListLaneOption[0] as Lane;
   const matchListData =
     matchListLane === 'ALL'
@@ -107,21 +109,21 @@ export default function SummonerMatchListContainer({
           const gradeColor =
             numGrade > 7 ? '#ff5353' : numGrade > 5 ? '#7e7efa' : 'grey';
           return (
-            <Link
+            <div
               className={cn('matchListSummaryItem', {
                 win: match.currentSummonerMatchData.win,
                 lose: !match.currentSummonerMatchData.win,
                 quickShutdown: match.info.quickShutdown,
               })}
               key={match.matchId}
-              to={`${pathname}#${match.matchId}`}
+              onClick={() => navigate(`${pathname}#${match.matchId}`)}
             >
               <ChampionIcon
                 className={cn('championIcon')}
                 championName={match.currentSummonerMatchData.championName}
               />
               <span style={{ color: gradeColor }}>{grade}</span>
-            </Link>
+            </div>
           );
         })}
       </div>
