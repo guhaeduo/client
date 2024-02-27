@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import { MatchData } from 'types/summoner';
