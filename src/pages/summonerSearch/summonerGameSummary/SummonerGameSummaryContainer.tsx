@@ -55,7 +55,7 @@ export default function SummonerGameSummaryContainer({
   useEffect(() => {
     setSummaryLaneOption('ALL');
     setCurrentDetailChampion(detailData.mostChampionlist[0]);
-  }, [pathname]);
+  }, [pathname, summaryQueueType]);
 
   useEffect(() => {
     setCurrentDetailChampion(detailData.mostChampionlist[0]);
