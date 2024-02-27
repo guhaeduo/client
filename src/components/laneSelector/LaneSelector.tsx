@@ -1,6 +1,7 @@
 import { Lane } from 'types/summoner';
 import styles from './laneSelector.module.scss';
 import classNames from 'classnames/bind';
+import URL from 'constants/url';
 const cn = classNames.bind(styles);
 
 const LANE_OPTIONS: Lane[] = ['ALL', 'TOP', 'JUG', 'MID', 'ADC', 'SUP'];
@@ -47,9 +48,7 @@ export default function LaneSelector({
           >
             <img
               style={{ width: size, height: size }}
-              src={
-                process.env.REACT_APP_PUBLIC_URL + `/images/lane/${lane}.png`
-              }
+              src={URL.laneIcon(lane)}
               alt={lane}
             />
           </div>

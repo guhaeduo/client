@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { worker } from 'mocks/browsers';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
@@ -16,18 +16,24 @@ const queryClient = new QueryClient({
   },
 });
 
-if (process.env.REACT_APP_MSW_MOKING === 'true') {
-  worker.start();
+if (
+  process.env.REACT_APP_MSW_MOKING === 'true' &&
+  process.env.NODE_ENV === 'development'
+) {
+  worker.start({
+    serviceWorker: {
+      url: '/client/mockServiceWorker.js',
+    },
+  });
 }
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-
 root.render(
   <QueryClientProvider client={queryClient}>
     <Reset />
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App />
       <ReactQueryDevtools initialIsOpen={true} />
     </BrowserRouter>

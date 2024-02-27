@@ -24,17 +24,9 @@ export default function useSummonerRankInfo({
     data: summonerRankInfo,
     isLoading: isSummonerRankInfoLoading,
     error: summonerRankInfoError,
+    isFetching: isSummonerRankInfoFetching,
   } = useQuery<SummonerRankInfo>({
-    queryKey: [
-      'summoner',
-      'info',
-      'rankInfo',
-      {
-        country,
-        name,
-        tag,
-      },
-    ],
+    queryKey: ['summoner', 'info', 'rankInfo', country, name, tag],
     queryFn: () => getSummonerRankInfo(summonerId, region),
     enabled: !!summonerInfo,
     staleTime: SUMMONER_DATA_STALE_TIME,
@@ -44,5 +36,6 @@ export default function useSummonerRankInfo({
     summonerRankInfo,
     isSummonerRankInfoLoading,
     summonerRankInfoError,
+    isSummonerRankInfoFetching,
   };
 }

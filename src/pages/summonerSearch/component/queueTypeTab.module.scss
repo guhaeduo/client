@@ -9,6 +9,7 @@
   border-bottom: 3px solid transparent;
   color: grey;
   transition: 0s;
+  cursor: pointer;
   &.active {
     color: white;
     border-color: white;

@@ -40,7 +40,6 @@ export default function SummonerGameSummaryContainer({
     defaultOptions: ['ALL'],
   });
   const { pathname } = useLocation();
-
   const detailsLane = summaryLaneOption[0] as Lane;
   const detailData = lane[detailsLane];
   const laneKey = Object.keys(lane) as Lane[];
@@ -55,7 +54,7 @@ export default function SummonerGameSummaryContainer({
   useEffect(() => {
     setSummaryLaneOption('ALL');
     setCurrentDetailChampion(detailData.mostChampionlist[0]);
-  }, [pathname]);
+  }, [pathname, summaryQueueType]);
 
   useEffect(() => {
     setCurrentDetailChampion(detailData.mostChampionlist[0]);
@@ -72,21 +71,27 @@ export default function SummonerGameSummaryContainer({
       },
     ],
   };
+
+  const gameCntChartData = (data: number[]) => {
+    const isAllZero = data.every((value) => value === 0);
+    return isAllZero ? [1] : data;
+  };
   const gameCntChartColor = (lane: Lane) =>
     summaryLaneOption[0] === lane || summaryLaneOption[0] === 'ALL'
       ? '#4c97ff'
       : '#2f2f2f';
+
   const detailGameCntData = {
     labels: [],
     datasets: [
       {
-        data: [
+        data: gameCntChartData([
           lane.TOP.cntGame,
           lane.JUG.cntGame,
           lane.MID.cntGame,
           lane.ADC.cntGame,
           lane.SUP.cntGame,
-        ],
+        ]),
         backgroundColor: [
           gameCntChartColor('TOP'),
           gameCntChartColor('JUG'),
@@ -151,7 +156,7 @@ export default function SummonerGameSummaryContainer({
               </div>
               <div className={cn('infoLane')}>
                 <div>
-                  {renderInfoLaneImage(info.mostLane)}
+                  {renderInfoLaneImage(info.mainLane)}
                   <h6>모스트 라인</h6>
                 </div>
                 <div>
@@ -163,7 +168,7 @@ export default function SummonerGameSummaryContainer({
           </div>
         </div>
         <div className={cn('detailsContainer')}>
-          <h5>라인별 상세정보</h5>
+          <h5>라인별 상세정보 / 모스트 챔피언</h5>
           <div className={cn('details')}>
             <LaneSelector
               options={summaryLaneOption}

@@ -12,7 +12,6 @@ type Props = {
 
 export default function ChampionIcon({ championName, className }: Props) {
   const championDetail = getChampionData(championName);
-
   return (
     <CustomTooltip name={championDetail.name} body={championDetail.name}>
       <div className={cn('championIcon', className)}>

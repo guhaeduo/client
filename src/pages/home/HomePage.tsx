@@ -11,10 +11,7 @@ export default function HomePage() {
   return (
     <main className={`${cn('homeMain')} container`}>
       <div className={cn('homeSideImage')}>
-        <img
-          src={process.env.REACT_APP_PUBLIC_URL + `/images/akali.png`}
-          alt=""
-        />
+        <img src={process.env.PUBLIC_URL + `/images/akali.png`} alt="" />
       </div>
       <div className={cn('searchArea')}>
         <h1 onClick={navHome}>구해듀오</h1>

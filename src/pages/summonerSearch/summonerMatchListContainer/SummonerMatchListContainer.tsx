@@ -6,11 +6,11 @@ import LaneSelector from 'components/laneSelector/LaneSelector';
 import useOptionSelector from 'hooks/useOptionSelector';
 import MatchCard from './matchCard/MatchCard';
 import { Lane } from 'types/summoner';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import calculateGrade from 'utils/calculateGrade';
+import { useNavigate } from 'react-router-dom';
 const cn = classNames.bind(styles);
 
 export const MATH_LIST_TAB_MENUS: {
@@ -40,6 +40,7 @@ export default function SummonerMatchListContainer({
     type: 'singular',
     defaultOptions: ['ALL'],
   });
+  const navigate = useNavigate();
   const matchListLane = matchListLaneOption[0] as Lane;
   const matchListData =
     matchListLane === 'ALL'
@@ -57,7 +58,7 @@ export default function SummonerMatchListContainer({
 
   useEffect(() => {
     setMatchListLaneOption('ALL');
-  }, [pathname]);
+  }, [pathname, matchQueueType]);
 
   useEffect(() => {
     if (hash) {
@@ -97,25 +98,33 @@ export default function SummonerMatchListContainer({
         </ul>
       </div>
       <div className={cn('matchListSummary')}>
-        {matchListData.map((match) => (
-          <Link
-            className={cn('matchListSummaryItem')}
-            key={match.matchId}
-            to={`${pathname}#${match.matchId}`}
-          >
-            <ChampionIcon
-              className={cn('championIcon')}
-              championName={match.currentSummonerMatchData.championName}
-            />
-            <span>
-              {calculateGrade(
-                match.currentSummonerMatchData.kill,
-                match.currentSummonerMatchData.death,
-                match.currentSummonerMatchData.assists,
-              )}
-            </span>
-          </Link>
-        ))}
+        {matchListData.map((match) => {
+          const grade = calculateGrade(
+            match.currentSummonerMatchData.kill,
+            match.currentSummonerMatchData.death,
+            match.currentSummonerMatchData.assists,
+          );
+          const numGrade = Number(grade);
+          const gradeColor =
+            numGrade > 7 ? '#ff5353' : numGrade > 5 ? '#7e7efa' : 'grey';
+          return (
+            <div
+              className={cn('matchListSummaryItem', {
+                win: match.currentSummonerMatchData.win,
+                lose: !match.currentSummonerMatchData.win,
+                quickShutdown: match.info.quickShutdown,
+              })}
+              key={match.matchId}
+              onClick={() => navigate(`${pathname}#${match.matchId}`)}
+            >
+              <ChampionIcon
+                className={cn('championIcon')}
+                championName={match.currentSummonerMatchData.championName}
+              />
+              <span style={{ color: gradeColor }}>{grade}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

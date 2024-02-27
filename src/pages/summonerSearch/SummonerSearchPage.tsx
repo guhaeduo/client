@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
 import SummonerInfoContainer from './summonerInfoContainer/SummonerInfoContainer';
@@ -13,23 +13,48 @@ import SummonerGameSummarySkeleton from './skeleton/SummonerGameSummarySkeleton'
 import useSummonerMatchData from 'hooks/business/useSummonerMatchData';
 import SummonerMatchListContainerSkeleton from './skeleton/SummonerMatchListContainerSkeleton';
 import SummonerMatchListContainer from './summonerMatchListContainer/SummonerMatchListContainer';
+import FetchButton from 'components/loadingButton/LoadingButton';
+import { useQueryClient } from '@tanstack/react-query';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
   const { country, name, tag } = usePathSummonerData();
-  const { summonerInfo, summonerInfoError } = useSummonerInfo({
-    country,
-    name,
-    tag,
-  });
-  const { summonerRankInfo, summonerRankInfoError } = useSummonerRankInfo({
+  const [firstLoading, setFirstLoading] = useState(false);
+  const queryClient = useQueryClient();
+  const handleClick = () => {
+    const queryKeys = [
+      ['summoner', 'info', country, name, tag],
+      ['summoner', 'info', 'rankInfo', country, name, tag],
+      ['summoner', 'info', 'matchData', country, name, tag],
+      ['summoner', 'info', 'gameSummary', country, name, tag],
+    ];
+    queryKeys.forEach((queryKey) =>
+      queryClient.invalidateQueries({
+        queryKey,
+      }),
+    );
+  };
+
+  const { summonerInfo, isSummonerInfoFetching, summonerInfoError } =
+    useSummonerInfo({
+      country,
+      name,
+      tag,
+    });
+  const {
+    summonerRankInfo,
+    isSummonerRankInfoFetching,
+    summonerRankInfoError,
+  } = useSummonerRankInfo({
     summonerInfo,
     country,
     name,
+
     tag,
   });
   const {
     summonerGameSummary,
+    isSummonerGameSummaryFetching,
     summaryQueueType,
     setSummaryQueueType,
     summonerGameSummaryError,
@@ -37,14 +62,22 @@ export default function SummonerSearchPage() {
   const {
     summonerMatchData,
     matchQueueType,
+    isSummonerMatchDataFetching,
     setMatchQueueType,
     summonerMatchDataError,
   } = useSummonerMatchData({ summonerInfo, country, name, tag });
 
   useEffect(() => {
+    if (summonerInfo && summonerGameSummary && summonerMatchData) {
+      setFirstLoading(true);
+    }
+  }, [summonerInfo, summonerGameSummary, summonerMatchData]);
+
+  useEffect(() => {
     return () => {
       setSummaryQueueType('ALL');
       setMatchQueueType('ALL');
+      setFirstLoading(false);
     };
   }, [country, name, tag]);
 
@@ -57,9 +90,15 @@ export default function SummonerSearchPage() {
     return <SummonerSearchErrorContainer errorMessage={errorMessage} />;
   }
 
+  const isDataRefetching =
+    isSummonerInfoFetching ||
+    isSummonerMatchDataFetching ||
+    isSummonerGameSummaryFetching ||
+    isSummonerRankInfoFetching;
+
   return (
     <main className={cn('main', 'container')}>
-      {summonerInfo && summonerRankInfo ? (
+      {summonerInfo && summonerRankInfo && firstLoading ? (
         <SummonerInfoContainer
           summonerInfo={summonerInfo}
           summonerRankInfo={summonerRankInfo}
@@ -67,7 +106,18 @@ export default function SummonerSearchPage() {
       ) : (
         <SummonerInfoContainerSkeleton />
       )}
-      {summonerGameSummary ? (
+      {firstLoading && (
+        <FetchButton
+          name="summoner"
+          onClickHandler={handleClick}
+          className={cn('summonerDataRefetchButton')}
+          isFetching={isDataRefetching}
+          rimitTime={100}
+        >
+          전적 갱신
+        </FetchButton>
+      )}
+      {summonerGameSummary && firstLoading ? (
         <SummonerGameSummaryContainer
           summonerGameSummary={summonerGameSummary}
           summaryQueueType={summaryQueueType}
@@ -79,7 +129,7 @@ export default function SummonerSearchPage() {
           setSummaryQueueType={setSummaryQueueType}
         />
       )}
-      {summonerMatchData ? (
+      {summonerMatchData && firstLoading ? (
         <SummonerMatchListContainer
           summonerMatchData={summonerMatchData}
           matchQueueType={matchQueueType}
