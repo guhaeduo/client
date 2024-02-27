@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
 import SummonerInfoContainer from './summonerInfoContainer/SummonerInfoContainer';
@@ -17,6 +17,7 @@ const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
   const { country, name, tag } = usePathSummonerData();
+  const [firstLoading, setFirstLoading] = useState(false);
   const { summonerInfo, summonerInfoError } = useSummonerInfo({
     country,
     name,
@@ -42,9 +43,16 @@ export default function SummonerSearchPage() {
   } = useSummonerMatchData({ summonerInfo, country, name, tag });
 
   useEffect(() => {
+    if (summonerInfo && summonerGameSummary && summonerMatchData) {
+      setFirstLoading(true);
+    }
+  }, [summonerInfo, summonerGameSummary, summonerMatchData]);
+
+  useEffect(() => {
     return () => {
       setSummaryQueueType('ALL');
       setMatchQueueType('ALL');
+      setFirstLoading(false);
     };
   }, [country, name, tag]);
 
@@ -59,7 +67,7 @@ export default function SummonerSearchPage() {
 
   return (
     <main className={cn('main', 'container')}>
-      {summonerInfo && summonerRankInfo ? (
+      {summonerInfo && summonerRankInfo && firstLoading ? (
         <SummonerInfoContainer
           summonerInfo={summonerInfo}
           summonerRankInfo={summonerRankInfo}
@@ -67,7 +75,7 @@ export default function SummonerSearchPage() {
       ) : (
         <SummonerInfoContainerSkeleton />
       )}
-      {summonerGameSummary ? (
+      {summonerGameSummary && firstLoading ? (
         <SummonerGameSummaryContainer
           summonerGameSummary={summonerGameSummary}
           summaryQueueType={summaryQueueType}
@@ -79,7 +87,7 @@ export default function SummonerSearchPage() {
           setSummaryQueueType={setSummaryQueueType}
         />
       )}
-      {summonerMatchData ? (
+      {summonerMatchData && firstLoading ? (
         <SummonerMatchListContainer
           summonerMatchData={summonerMatchData}
           matchQueueType={matchQueueType}
