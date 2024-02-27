@@ -48,7 +48,7 @@ export default function SummonerGameSummarySkeleton({
           </div>
         </div>
         <div className={cn('detailsContainer')}>
-          <h5>라인별 상세정보</h5>
+          <h5>라인별 상세정보 / 모스트 챔피언</h5>
           <div className={cn('details')}>
             <Skeleton className={cn('laneSelector')} />
             <div className={cn('detailsTop')}>
