@@ -30,31 +30,49 @@
 .matchListSummary {
   position: sticky;
   top: 30px;
-  width: 300px;
+  width: 320px;
   display: flex;
   height: calc(30px / 30 + 30px);
   flex-wrap: wrap;
-  gap: 1px;
   .matchListSummaryItem {
     color: var(--white);
     text-decoration: none;
-    padding: 3px;
+    width: calc(320px / 10);
     box-sizing: border-box;
+    padding: 5px 0;
     display: flex;
     flex-direction: column;
     gap: 8px;
     align-items: center;
     .championIcon {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
     }
     span {
       font-size: 11px;
       font-weight: bold;
       color: var(--grey-100);
     }
-    &:hover {
-      background-color: var(--grey-300);
+    &.win {
+      background: linear-gradient(
+        157.73deg,
+        rgba(49, 142, 239, 0.1) 0%,
+        rgba(49, 142, 239, 0.2) 100%
+      );
+    }
+    &.lose {
+      background: linear-gradient(
+        157.73deg,
+        rgba(239, 96, 49, 0.1) 0%,
+        rgba(239, 93, 49, 0.2) 100%
+      );
+    }
+    &.quickShutdown {
+      background: linear-gradient(
+        157.73deg,
+        rgba(71, 71, 71, 0.1) 0%,
+        rgba(177, 177, 177, 0.2) 100%
+      );
     }
   }
 }

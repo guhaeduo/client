@@ -97,25 +97,33 @@ export default function SummonerMatchListContainer({
         </ul>
       </div>
       <div className={cn('matchListSummary')}>
-        {matchListData.map((match) => (
-          <Link
-            className={cn('matchListSummaryItem')}
-            key={match.matchId}
-            to={`${pathname}#${match.matchId}`}
-          >
-            <ChampionIcon
-              className={cn('championIcon')}
-              championName={match.currentSummonerMatchData.championName}
-            />
-            <span>
-              {calculateGrade(
-                match.currentSummonerMatchData.kill,
-                match.currentSummonerMatchData.death,
-                match.currentSummonerMatchData.assists,
-              )}
-            </span>
-          </Link>
-        ))}
+        {matchListData.map((match) => {
+          const grade = calculateGrade(
+            match.currentSummonerMatchData.kill,
+            match.currentSummonerMatchData.death,
+            match.currentSummonerMatchData.assists,
+          );
+          const numGrade = Number(grade);
+          const gradeColor =
+            numGrade > 7 ? '#ff5353' : numGrade > 5 ? '#7e7efa' : 'grey';
+          return (
+            <Link
+              className={cn('matchListSummaryItem', {
+                win: match.currentSummonerMatchData.win,
+                lose: !match.currentSummonerMatchData.win,
+                quickShutdown: match.info.quickShutdown,
+              })}
+              key={match.matchId}
+              to={`${pathname}#${match.matchId}`}
+            >
+              <ChampionIcon
+                className={cn('championIcon')}
+                championName={match.currentSummonerMatchData.championName}
+              />
+              <span style={{ color: gradeColor }}>{grade}</span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
