@@ -72,21 +72,27 @@ export default function SummonerGameSummaryContainer({
       },
     ],
   };
+
+  const gameCntChartData = (data: number[]) => {
+    const isAllZero = data.every((value) => value === 0);
+    return isAllZero ? [1] : data;
+  };
   const gameCntChartColor = (lane: Lane) =>
     summaryLaneOption[0] === lane || summaryLaneOption[0] === 'ALL'
       ? '#4c97ff'
       : '#2f2f2f';
+
   const detailGameCntData = {
     labels: [],
     datasets: [
       {
-        data: [
+        data: gameCntChartData([
           lane.TOP.cntGame,
           lane.JUG.cntGame,
           lane.MID.cntGame,
           lane.ADC.cntGame,
           lane.SUP.cntGame,
-        ],
+        ]),
         backgroundColor: [
           gameCntChartColor('TOP'),
           gameCntChartColor('JUG'),
@@ -151,7 +157,7 @@ export default function SummonerGameSummaryContainer({
               </div>
               <div className={cn('infoLane')}>
                 <div>
-                  {renderInfoLaneImage(info.mostLane)}
+                  {renderInfoLaneImage(info.mainLane)}
                   <h6>모스트 라인</h6>
                 </div>
                 <div>

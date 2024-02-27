@@ -79,7 +79,7 @@ export type SummonerGameSummary = {
     killAvg: string;
     deathAvg: string;
     assistAvg: string;
-    mostLane: Lane;
+    mainLane: Lane;
     subLane: Lane;
   };
   lane: {
