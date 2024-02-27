@@ -10,6 +10,7 @@ type Props = {
   className?: string;
   itemNumber: number;
 };
+
 export default function ItemIcon({ className, itemNumber }: Props) {
   const itemDetail = getItemData(itemNumber);
   if (itemNumber === 0 || !itemDetail)

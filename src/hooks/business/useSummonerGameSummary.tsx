@@ -26,28 +26,28 @@ export default function useSummonerGameSummary({
     data: summonerGameSummary,
     isLoading: isSummonerGameSummaryLoading,
     error: summonerGameSummaryError,
+    isFetching: isSummonerGameSummaryFetching,
   } = useQuery<SummonerGameSummary>({
     queryKey: [
       'summoner',
       'info',
       'gameSummary',
-      {
-        country,
-        name,
-        tag,
-        queueType: summaryQueueType,
-      },
+      country,
+      name,
+      tag,
+      summaryQueueType,
     ],
     queryFn: () => getSummonerGameSummary(puuid, summaryQueueType, region),
     enabled: !!summonerInfo,
     staleTime: SUMMONER_DATA_STALE_TIME,
   });
-
+  console.log(isSummonerGameSummaryFetching);
   return {
     summonerGameSummary,
     isSummonerGameSummaryLoading,
     summaryQueueType,
     setSummaryQueueType,
+    isSummonerGameSummaryFetching,
     summonerGameSummaryError,
   };
 }

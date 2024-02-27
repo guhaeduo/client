@@ -13,10 +13,16 @@ export default function useSummonerInfo({ country, name, tag }: Props) {
     data: summonerInfo,
     isLoading: isSummonerInfoLoading,
     error: summonerInfoError,
+    isFetching: isSummonerInfoFetching,
   } = useQuery<SummonerInfo>({
-    queryKey: ['summoner', 'info', { country, name, tag }],
+    queryKey: ['summoner', 'info', country, name, tag],
     queryFn: () => getSummonerInfo(name, tag, country),
     staleTime: SUMMONER_DATA_STALE_TIME,
   });
-  return { summonerInfo, isSummonerInfoLoading, summonerInfoError };
+  return {
+    summonerInfo,
+    isSummonerInfoFetching,
+    isSummonerInfoLoading,
+    summonerInfoError,
+  };
 }

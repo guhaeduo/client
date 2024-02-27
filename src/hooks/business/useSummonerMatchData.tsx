@@ -26,17 +26,16 @@ export default function useSummonerMatchData({
     data: summonerMatchData,
     isLoading: isSummonerMatchDataLoading,
     error: summonerMatchDataError,
+    isFetching: isSummonerMatchDataFetching,
   } = useQuery<MatchData[]>({
     queryKey: [
       'summoner',
       'info',
       'matchData',
-      {
-        country,
-        name,
-        tag,
-        queueType: matchQueueType,
-      },
+      country,
+      name,
+      tag,
+      matchQueueType,
     ],
     queryFn: () => getSummonerMatchData(puuid, matchQueueType, region),
     enabled: !!summonerInfo,
@@ -48,6 +47,7 @@ export default function useSummonerMatchData({
     isSummonerMatchDataLoading,
     matchQueueType,
     setMatchQueueType,
+    isSummonerMatchDataFetching,
     summonerMatchDataError,
   };
 }
