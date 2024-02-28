@@ -1,11 +1,21 @@
-.loadingButton {
+.loadingButtonWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
   align-items: center;
 }
 
+.loadingButton {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .loadingIndicator {
-  animation: spin 1.3s infinite;
+  animation: spin 1.3s linear infinite;
 }
 
 @keyframes spin {
@@ -15,4 +25,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.remainingTime {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--white-300);
 }

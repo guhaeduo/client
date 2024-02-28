@@ -41,7 +41,6 @@ export default function useSummonerMatchData({
     enabled: !!summonerInfo,
     staleTime: SUMMONER_DATA_STALE_TIME,
   });
-
   return {
     summonerMatchData,
     isSummonerMatchDataLoading,

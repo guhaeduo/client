@@ -15,7 +15,7 @@ export default async function getSummonerMatchData(
 ): Promise<MatchData[]> {
   try {
     const matchDataRes = await axiosInstance.get<MatchDataRes>(
-      `${process.env.REACT_APP_SERVER_URL}/api/matches/list`,
+      `/api/matches/list`,
       {
         headers: {
           puuid,

@@ -47,6 +47,10 @@ body {
   margin: 0 auto;
 }
 
+.main {
+  padding-top: 30px;
+}
+
 #modal-root {
   position: fixed;
   top: 0;

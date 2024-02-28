@@ -3,7 +3,7 @@ import HomePage from 'pages/home/HomePage';
 import ProfilePage from 'pages/profile/ProfilePage';
 import ResetPasswordPage from 'pages/resetPassword/ResetPasswordPage';
 import LoginPage from 'pages/login/LoginPage';
-import SignupPage from 'pages/signUp/page';
+import SignupPage from 'pages/signUp/SignupPage';
 import SummonerSearchPage from 'pages/summonerSearch/SummonerSearchPage';
 import EmailSendPage from 'pages/EmailSend/EmailSendPage';
 import FindDuoPage from 'pages/findDuo/FindDuoPage';
