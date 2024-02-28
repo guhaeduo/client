@@ -169,6 +169,11 @@ export interface Team {
   win: boolean;
 }
 
+type MaxDataItem = {
+  championName: string;
+  riotGameName: string;
+  riotGameTag: string;
+};
 // 매치 데이터 타입
 export interface MatchData {
   matchId: string;
@@ -180,26 +185,16 @@ export interface MatchData {
     maxData: {
       maxDamage: {
         damage: number;
-        championName: string;
-        championIconNumber: number;
-        riotGameName: string;
-        riotGameTag: string;
-      };
+      } & MaxDataItem;
       maxKill: {
         kill: number;
-        championName: string;
-        riotGameName: string;
-      };
+      } & MaxDataItem;
       maxDeath: {
         death: number;
-        championName: string;
-        riotGameName: string;
-      };
+      } & MaxDataItem;
       maxAssist: {
         assist: number;
-        championName: string;
-        riotGameName: string;
-      };
+      } & MaxDataItem;
     };
   };
   currentSummonerMatchData: Participant;

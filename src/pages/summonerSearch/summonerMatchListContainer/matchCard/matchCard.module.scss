@@ -225,7 +225,11 @@
         .riotName {
           white-space: nowrap;
           overflow: hidden;
+          cursor: pointer;
           text-overflow: ellipsis;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

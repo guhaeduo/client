@@ -5,6 +5,8 @@ import ChampionIcon from 'components/championIcon/ChampionIcon';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
 import MatchTeamContainer from './MatchTeamContainer';
 import MatchTotalDataContainer from './MatchTotalDataContainer';
+import useCustomNavigation from 'hooks/useCustomNavigation';
+import usePathSummonerData from 'hooks/usePathSummonerData';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -14,6 +16,9 @@ type Props = {
 export default function MatchDetailContainer({ matchData }: Props) {
   const { info } = matchData;
   const { maxData } = info;
+  const { country } = usePathSummonerData();
+  const { navSummonerSearch } = useCustomNavigation();
+  console.log(matchData);
   return (
     <div className={cn('participantMatchContainer')}>
       {info.quickShutdown || (
@@ -28,7 +33,16 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxDamage.championName}
                 className={cn('maxDataIcon')}
               />
-              <span className={cn('riotName')}>
+              <span
+                className={cn('riotName')}
+                onClick={() =>
+                  navSummonerSearch({
+                    country,
+                    name: maxData.maxDamage.riotGameName,
+                    tag: maxData.maxDamage.riotGameTag,
+                  })
+                }
+              >
                 {maxData.maxDamage.riotGameName}
               </span>
             </div>
@@ -41,7 +55,16 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxKill.championName}
                 className={cn('maxDataIcon')}
               />
-              <span className={cn('riotName')}>
+              <span
+                className={cn('riotName')}
+                onClick={() =>
+                  navSummonerSearch({
+                    country,
+                    name: maxData.maxKill.riotGameName,
+                    tag: maxData.maxKill.riotGameTag,
+                  })
+                }
+              >
                 {maxData.maxKill.riotGameName}
               </span>
             </div>
@@ -54,7 +77,16 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxDeath.championName}
                 className={cn('maxDataIcon')}
               />
-              <span className={cn('riotName')}>
+              <span
+                className={cn('riotName')}
+                onClick={() =>
+                  navSummonerSearch({
+                    country,
+                    name: maxData.maxDeath.riotGameName,
+                    tag: maxData.maxDeath.riotGameTag,
+                  })
+                }
+              >
                 {maxData.maxDeath.riotGameName}
               </span>
             </div>
@@ -67,7 +99,16 @@ export default function MatchDetailContainer({ matchData }: Props) {
                 championName={maxData.maxAssist.championName}
                 className={cn('maxDataIcon')}
               />
-              <span className={cn('riotName')}>
+              <span
+                className={cn('riotName')}
+                onClick={() =>
+                  navSummonerSearch({
+                    country,
+                    name: maxData.maxAssist.riotGameName,
+                    tag: maxData.maxAssist.riotGameTag,
+                  })
+                }
+              >
                 {maxData.maxAssist.riotGameName}
               </span>
             </div>
