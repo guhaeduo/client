@@ -157,7 +157,6 @@ export default function LoadingButton({
       setRemainingTime(remainingTimeInSeconds);
       if (remainingTimeInSeconds > 0) {
         const interval = setInterval(() => {
-          console.log('인터벌 돌아가유');
           const remainingTimeInSeconds = Math.ceil(
             (lastClickTime - Date.now()) / 1000,
           );
