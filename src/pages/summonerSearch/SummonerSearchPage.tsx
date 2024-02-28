@@ -13,7 +13,7 @@ import SummonerGameSummarySkeleton from './skeleton/SummonerGameSummarySkeleton'
 import useSummonerMatchData from 'hooks/business/useSummonerMatchData';
 import SummonerMatchListContainerSkeleton from './skeleton/SummonerMatchListContainerSkeleton';
 import SummonerMatchListContainer from './summonerMatchListContainer/SummonerMatchListContainer';
-import FetchButton from 'components/loadingButton/LoadingButton';
+import LoadingButton from 'components/loadingButton/LoadingButton';
 import { useQueryClient } from '@tanstack/react-query';
 const cn = classNames.bind(styles);
 
@@ -107,15 +107,15 @@ export default function SummonerSearchPage() {
         <SummonerInfoContainerSkeleton />
       )}
       {firstLoading && (
-        <FetchButton
-          name="summoner"
+        <LoadingButton
+          name={`${country}_${name}_${tag}`}
           onClickHandler={handleClick}
           className={cn('summonerDataRefetchButton')}
           isFetching={isDataRefetching}
-          rimitTime={100}
+          clickLimitTime={120}
         >
           전적 갱신
-        </FetchButton>
+        </LoadingButton>
       )}
       {summonerGameSummary && firstLoading ? (
         <SummonerGameSummaryContainer
