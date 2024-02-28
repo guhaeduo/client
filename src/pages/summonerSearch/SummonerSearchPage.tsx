@@ -74,6 +74,11 @@ export default function SummonerSearchPage() {
   }, [summonerInfo, summonerGameSummary, summonerMatchData]);
 
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     return () => {
       setSummaryQueueType('ALL');
       setMatchQueueType('ALL');
