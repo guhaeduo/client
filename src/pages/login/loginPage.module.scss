@@ -1,1 +1,108 @@
-
+.main {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 340px;
+  h3 {
+    font-size: 28px;
+    color: var(--white-100);
+    font-weight: bold;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    input {
+      width: 100%;
+      height: 45px;
+      &:first-child {
+        margin-bottom: 20px;
+      }
+    }
+    .forgotPasswordBtn {
+      margin-top: 7px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--white-300);
+      margin-left: auto;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .loginBtn {
+    width: 100%;
+    height: 45px;
+    margin-top: 20px;
+    button {
+      color: white;
+      font-size: 15px;
+      background-color: var(--blue-button);
+      &:hover {
+        background-color: var(--blue-button-hover);
+      }
+      &:disabled {
+        background-color: var(--black-200);
+        color: var(--white-200);
+        cursor: not-allowed;
+        svg {
+          font-size: 23px;
+        }
+      }
+    }
+  }
+  .middleLine {
+    margin: 25px 0;
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border);
+    &::after {
+      content: 'OR';
+      position: absolute;
+      top: -6.5px;
+      background-color: var(--back-color);
+      text-align: center;
+      padding: 0 5px;
+      width: 30px;
+      left: 0;
+      color: var(--white-200);
+      right: 0;
+      margin: 0 auto;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+  .kakaoLoginBtn,
+  .discordLoginBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 45px;
+    width: 100%;
+    svg {
+      font-size: 25px;
+    }
+  }
+  .kakaoLoginBtn {
+  }
+  .discordLoginBtn {
+  }
+  p {
+    font-size: 13px;
+    margin-top: 20px;
+    span {
+      padding-left: 10px;
+      color: var(--light-blue);
+      cursor: pointer;
+    }
+  }
+}

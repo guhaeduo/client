@@ -17,7 +17,7 @@ export default function useCustomNavigation() {
   const navSignup = () => navigate(LOCATION.SIGN_UP);
 
   // 비밀번호 변경 요청 페이지로 이동하는 함수입니다.
-  const navResetPassword = (email: { email: string }) =>
+  const navResetPassword = (email?: string) =>
     navigate(`${LOCATION.RESET_PASSWORD}${email ? `?email=${email}` : ''}`);
 
   // 프로필 페이지로 이동하는 함수입니다.
