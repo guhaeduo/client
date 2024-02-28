@@ -83,18 +83,32 @@
   .kakaoLoginBtn,
   .discordLoginBtn {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
-    height: 45px;
     width: 100%;
-    svg {
-      font-size: 25px;
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 45px;
+      width: 150px;
+      font-weight: 500;
+      svg {
+        font-size: 30px;
+      }
     }
   }
   .kakaoLoginBtn {
+    background-color: #fee500;
+    &:hover {
+      background-color: #fee500e3;
+    }
   }
   .discordLoginBtn {
+    background-color: #5865f2;
+    color: white;
+    &:hover {
+      background-color: #5865f2;
+    }
   }
   p {
     font-size: 13px;
