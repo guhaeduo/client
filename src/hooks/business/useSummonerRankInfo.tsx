@@ -18,8 +18,9 @@ export default function useSummonerRankInfo({
   tag,
 }: Props) {
   useState<boolean>();
-  const summonerId = summonerInfo?.id || '';
+  const summonerId = summonerInfo?.summonerId || '';
   const region = summonerInfo?.region || '';
+
   const {
     data: summonerRankInfo,
     isLoading: isSummonerRankInfoLoading,

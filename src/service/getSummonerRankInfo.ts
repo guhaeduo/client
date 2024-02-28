@@ -10,7 +10,7 @@ export default async function getSummonerRankInfo(
 ): Promise<SummonerRankInfo> {
   try {
     const rankRes = await axiosInstance.get<SummonerRankInfo>(
-      `${process.env.REACT_APP_SERVER_URL}/api/summoner`,
+      `/api/summoner/rank `,
       {
         headers: {
           summonerId,

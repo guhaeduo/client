@@ -1,26 +1,20 @@
-// 소환사 계정 정보 타입
-export type SummonerAcountData = {
-  gameName: string;
-  tagLine: string;
-  puuid: string;
-};
-
 // 소환사 기본 타입
 export type SummonerBasicData = {
   accountId: string;
-  id: string;
+  summonerId: string;
   name: string;
   profileIconId: number;
   puuid: string;
   revisionDate: number;
   summonerLevel: number;
+  gameName: string;
+  tagLine: string;
 };
 
 // 소환사 종합 타입
 export type SummonerInfo = {
   region: string;
-} & SummonerAcountData &
-  SummonerBasicData;
+} & SummonerBasicData;
 
 // 티어 타입
 type Tier =

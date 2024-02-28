@@ -11,10 +11,7 @@ export type RiotAPIErrorCode =
   | 503
   | 504;
 
-export type RiotAPIErrorResponse = {
-  status: { status_code: RiotAPIErrorCode };
-};
-
 export type ServerAPIErrorResponse = {
   error: string;
+  status: number;
 };

@@ -11,7 +11,7 @@ export default async function getSummonerGameSummary(
 ): Promise<SummonerGameSummary> {
   try {
     const summaryRes = await axiosInstance.get<SummonerGameSummary>(
-      `${process.env.REACT_APP_SERVER_URL}/api/matches/summary`,
+      `/api/matches/summary`,
       {
         headers: {
           puuid,

@@ -18,7 +18,6 @@ export default function MatchDetailContainer({ matchData }: Props) {
   const { maxData } = info;
   const { country } = usePathSummonerData();
   const { navSummonerSearch } = useCustomNavigation();
-  console.log(matchData);
   return (
     <div className={cn('participantMatchContainer')}>
       {info.quickShutdown || (
