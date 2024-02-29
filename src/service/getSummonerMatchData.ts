@@ -14,7 +14,6 @@ export default async function getSummonerMatchData(
   region: string,
 ): Promise<MatchData[]> {
   try {
-    console.log(puuid, queueType, region);
     const matchDataRes = await axiosInstance.get<MatchDataRes>(
       `/api/matches/list`,
       {
@@ -25,7 +24,6 @@ export default async function getSummonerMatchData(
         },
       },
     );
-    console.log(matchDataRes);
     return matchDataRes.data.matchDataList;
   } catch (err) {
     if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {

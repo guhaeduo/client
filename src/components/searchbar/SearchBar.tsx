@@ -114,7 +114,6 @@ export default function SearchBar({ className, type }: Props) {
       if (err instanceof Error) alert(err.message);
     }
   });
-
   // 타입이 Header인지 여부를 관리하는 변수입니다.
   const isHeader = type === 'header';
 

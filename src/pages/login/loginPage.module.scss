@@ -24,11 +24,9 @@
     flex-direction: column;
     width: 100%;
     margin-top: 30px;
-    input {
-      width: 100%;
-      &:first-child {
-        margin-bottom: 15px;
-      }
+
+    .idInput {
+      margin-bottom: 15px;
     }
     .forgotPasswordBtn {
       margin-top: 10px;
@@ -44,19 +42,17 @@
   }
   .loginBtn {
     margin-top: 20px;
-    button {
-      font-size: 15px;
-      background-color: var(--blue-button);
-      &:hover {
-        background-color: var(--blue-button-hover);
-      }
-      &:disabled {
-        background-color: var(--black-200);
-        color: var(--white-200);
-        cursor: not-allowed;
-        svg {
-          font-size: 23px;
-        }
+    font-size: 15px;
+    background-color: var(--blue-button);
+    &:hover {
+      background-color: var(--blue-button-hover);
+    }
+    &:disabled {
+      background-color: var(--black-200);
+      color: var(--white-200);
+      cursor: not-allowed;
+      svg {
+        font-size: 23px;
       }
     }
   }

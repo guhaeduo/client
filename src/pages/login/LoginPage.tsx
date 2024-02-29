@@ -1,37 +1,46 @@
 import styles from './loginPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import LoadingButton from 'components/loadingButton/LoadingButton';
+import { emailValidation, passwordValidation } from 'utils/validatior';
 import { RiDiscordFill } from 'react-icons/ri';
 import LOCATION from 'constants/location';
+import Input from 'components/input/Input';
+import useLoginForm from 'hooks/business/useLoginForm';
 const cn = classNames.bind(styles);
 
 export default function LoginPage() {
   const { navSignup, navResetPassword } = useCustomNavigation();
-
+  const { register, submitHandler, errors } = useLoginForm();
   const onclickKakaoBtnHandler = () =>
     (window.location.href = LOCATION.KAKAO_AUTH_URL);
+
   return (
     <div className={cn('main', 'container')}>
       <div className={cn('loginWrapper')}>
         <h3>로그인</h3>
-        <form>
-          <input type="text" />
-          <input type="text" />
+        <form onSubmit={submitHandler}>
+          <Input
+            {...register('email', emailValidation)}
+            label="이메일"
+            name="email"
+            className={cn('idInput')}
+            type="text"
+            error={errors.email}
+          />
+          <Input
+            {...register('password', passwordValidation)}
+            label="비밀번호"
+            name="password"
+            type="password"
+            error={errors.password}
+          />
           <span
             className={cn('forgotPasswordBtn')}
             onClick={() => navResetPassword()}
           >
             비밀번호를 까먹으셨나요?
           </span>
-          <LoadingButton
-            type="submit"
-            isFetching={false}
-            className={cn('loginBtn')}
-            onClickHandler={() => console.log('로그인')}
-          >
-            로그인
-          </LoadingButton>
+          <button className={cn('loginBtn')}>로그인</button>
         </form>
         <div className={cn('middleLine')} />
         <button

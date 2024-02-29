@@ -4,15 +4,14 @@ import { useEffect, useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
 const cn = classNames.bind(styles);
 
-type Props = {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isFetching: boolean;
   name?: string;
   onClickHandler: () => void;
   className: string;
   children: React.ReactNode;
   clickLimitTime?: number;
-  type?: 'button' | 'submit';
-};
+}
 
 export default function LoadingButton({
   isFetching,
@@ -21,7 +20,7 @@ export default function LoadingButton({
   onClickHandler,
   children,
   className,
-  type = 'button',
+  ...rest
 }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
@@ -76,7 +75,7 @@ export default function LoadingButton({
         className={cn('loadingButton')}
         onClick={handleButtonClick}
         disabled={isLoading || remainingTime > 0}
-        type={type}
+        {...rest}
       >
         {isLoading ? (
           <CgSpinner className={cn('loadingIndicator')} />
