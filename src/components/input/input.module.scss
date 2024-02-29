@@ -1,0 +1,40 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  input {
+    padding-left: 10px;
+    font-size: 15px;
+    &:disabled {
+      border-color: rgb(82, 82, 82);
+    }
+  }
+  .errorMessage {
+    font-size: 12px;
+    margin: 5px 0 0;
+    color: var(--light-red);
+    height: 12px;
+  }
+  &.error {
+    input {
+      border-color: var(--light-red);
+    }
+  }
+  .visiblePasswordBtn {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      font-size: 20px;
+    }
+    &:hover {
+      background-color: rgb(95, 95, 95);
+    }
+  }
+}

@@ -22,9 +22,6 @@ export default async function getSummonerInfo(
   try {
     // 소환사 계정 정보입니다.
     const region = COUNTRY.find((c) => c.key === country)?.region || '';
-    console.log(
-      `/api/summoner/info?gameName=${name}&tagLine=${tag}&region=${region}`,
-    );
     const summonerInfoRes: AxiosResponse<SummonerBasicData> =
       await axiosInstance.get(
         `/api/summoner/info?gameName=${name}&tagLine=${tag}&region=${region}`,
@@ -32,14 +29,10 @@ export default async function getSummonerInfo(
 
     const summonerInfo: SummonerInfo = {
       ...summonerInfoRes.data,
-      summonerLevel: 22,
-      gameName: 'Hide on bush',
-      tagLine: 'KR1',
       region,
     };
     return summonerInfo;
   } catch (err) {
-    console.log(err);
     if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
       const errorCode = err.response.data.status;
       const errorMessage =

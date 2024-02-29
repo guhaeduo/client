@@ -80,9 +80,6 @@ input {
     opacity: 1;
     border-color: white;
   }
-  &.error {
-    border-color: red;
-  }
 }
 
 .error-message {

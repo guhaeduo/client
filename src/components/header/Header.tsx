@@ -20,7 +20,7 @@ const SEARCH_BAR_HIDDEN_PATH = [
   'accounts',
 ];
 const BUTTONS_HIDDEN_PATH = ['login', 'signup', 'profile', 'auth', 'accounts'];
-
+const HEADER_HIDDEN_PATH = ['oauth'];
 /**
  * 미리 스타일을 지정해둔 헤더입니다.
  */
@@ -38,6 +38,8 @@ export default function Header() {
   const isSearchBarHidden = SEARCH_BAR_HIDDEN_PATH.includes(firstPathname);
   // pathname에 따라 Buttons를 가릴지 여부를 결정하는 값입니다.
   const isButtonsHidden = BUTTONS_HIDDEN_PATH.includes(firstPathname);
+  // header를 아예 지우는 값입니다.
+  const isHeaderHidden = HEADER_HIDDEN_PATH.includes(firstPathname);
 
   // 유저 객체입니다.
   const user = {
@@ -64,6 +66,9 @@ export default function Header() {
   const profileOnClick = () => {
     navProfile();
   };
+
+  // 헤더가 표시되지 말아야 할 경우 헤더를 리턴하지 않습니다.
+  if (isHeaderHidden) return null;
 
   return (
     <header
