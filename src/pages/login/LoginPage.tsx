@@ -3,10 +3,14 @@ import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import LoadingButton from 'components/loadingButton/LoadingButton';
 import { RiDiscordFill } from 'react-icons/ri';
+import LOCATION from 'constants/location';
 const cn = classNames.bind(styles);
 
 export default function LoginPage() {
   const { navSignup, navResetPassword } = useCustomNavigation();
+
+  const onclickKakaoBtnHandler = () =>
+    (window.location.href = LOCATION.KAKAO_AUTH_URL);
   return (
     <div className={cn('main', 'container')}>
       <div className={cn('loginWrapper')}>
@@ -30,7 +34,10 @@ export default function LoginPage() {
           </LoadingButton>
         </form>
         <div className={cn('middleLine')} />
-        <button className={cn('kakaoLoginBtn')}>
+        <button
+          className={cn('kakaoLoginBtn')}
+          onClick={onclickKakaoBtnHandler}
+        >
           <img
             src={process.env.PUBLIC_URL + '/images/kakaoIcon.png'}
             alt="카카오 아이콘"

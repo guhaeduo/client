@@ -5,10 +5,11 @@ import ResetPasswordPage from 'pages/resetPassword/ResetPasswordPage';
 import LoginPage from 'pages/login/LoginPage';
 import SignupPage from 'pages/signUp/SignupPage';
 import SummonerSearchPage from 'pages/summonerSearch/SummonerSearchPage';
-import EmailSendPage from 'pages/EmailSend/EmailSendPage';
+import EmailSendPage from 'pages/emailSend/EmailSendPage';
 import FindDuoPage from 'pages/findDuo/FindDuoPage';
 import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
+import KakaoAuthPage from 'pages/kakaoAuth/KakaoAuthPage';
 function App() {
   updateDDragonData();
   return (
@@ -26,6 +27,7 @@ function App() {
           path="/summoners/:country/:summonerName"
           element={<SummonerSearchPage />}
         />
+        <Route path="/oauth/kakao" element={<KakaoAuthPage />} />
       </Routes>
     </div>
   );
