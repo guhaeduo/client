@@ -39,9 +39,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           {visiblePassword ? <RxEyeClosed /> : <TfiEye />}
         </div>
       )}
-      {error?.message && (
-        <span className={cn('errorMessage')}>{error?.message}</span>
-      )}
+      <span className={cn('errorMessage')}>{error?.message}</span>
     </div>
   );
 };

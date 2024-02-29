@@ -10,7 +10,7 @@ const cn = classNames.bind(styles);
 
 export default function LoginPage() {
   const { navSignup, navResetPassword } = useCustomNavigation();
-  const { register, submitHandler, errors } = useLoginForm();
+  const { register, submitHandler, errors, isValid } = useLoginForm();
   const onclickKakaoBtnHandler = () =>
     (window.location.href = LOCATION.KAKAO_AUTH_URL);
 
@@ -22,7 +22,6 @@ export default function LoginPage() {
           <Input
             {...register('email', emailValidation)}
             label="이메일"
-            name="email"
             className={cn('idInput')}
             type="text"
             error={errors.email}
@@ -30,7 +29,6 @@ export default function LoginPage() {
           <Input
             {...register('password', passwordValidation)}
             label="비밀번호"
-            name="password"
             type="password"
             error={errors.password}
           />
@@ -40,7 +38,7 @@ export default function LoginPage() {
           >
             비밀번호를 까먹으셨나요?
           </span>
-          <button className={cn('loginBtn')}>로그인</button>
+          <button className={cn('loginBtn', { isValid })}>로그인</button>
         </form>
         <div className={cn('middleLine')} />
         <button

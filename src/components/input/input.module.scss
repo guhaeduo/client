@@ -5,15 +5,19 @@
   input {
     padding-left: 10px;
     font-size: 15px;
+    &:disabled {
+      border-color: rgb(82, 82, 82);
+    }
+  }
+  .errorMessage {
+    font-size: 12px;
+    margin: 5px 0 0;
+    color: var(--light-red);
+    height: 12px;
   }
   &.error {
     input {
       border-color: var(--light-red);
-    }
-    .errorMessage {
-      font-size: 12px;
-      margin: 5px 0 10px;
-      color: var(--light-red);
     }
   }
   .visiblePasswordBtn {
@@ -30,7 +34,7 @@
       font-size: 20px;
     }
     &:hover {
-      background-color: rgb(72, 72, 72);
+      background-color: rgb(95, 95, 95);
     }
   }
 }
