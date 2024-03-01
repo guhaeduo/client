@@ -12,6 +12,7 @@ import updateDDragonData from 'service/updateDDragonData';
 import KakaoAuthPage from 'pages/kakaoAuth/KakaoAuthPage';
 function App() {
   updateDDragonData();
+  console.log(process.env.PUBLIC_URL);
   return (
     <div className="App">
       <Header />
