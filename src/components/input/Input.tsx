@@ -29,6 +29,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         name={name}
         ref={ref}
         {...rest}
+        className={cn({ password: isPassword })}
         type={isPassword && visiblePassword ? 'text' : type}
       />
       {isPassword && (
