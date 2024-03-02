@@ -38,6 +38,7 @@ export default function SignupPage() {
                 type="text"
                 label="이메일"
                 error={errors.email}
+                placeholder="이메일을 입력해주세요."
               />
               <button type="button" onClick={verificationCodeSendHandler}>
                 인증번호 받기
@@ -62,6 +63,7 @@ export default function SignupPage() {
               type="password"
               label="비밀번호"
               error={errors.password}
+              placeholder="영문+숫자 형식의 비밀번호를 입력해주세요."
             />
             <Input
               {...register('passwordCheck', {
@@ -70,8 +72,9 @@ export default function SignupPage() {
                   '비밀번호가 일치하지 않습니다.',
               })}
               type="password"
-              label="비밀번호 확인"
+              label="비밀번호 재확인"
               error={errors.passwordCheck}
+              placeholder="비밀번호 재확인"
             />
             <button className={cn('signupBtn', { isValid })} type="submit">
               회원가입
