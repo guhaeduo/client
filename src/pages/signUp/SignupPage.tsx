@@ -21,8 +21,8 @@ export default function SignupPage() {
     errors,
     watch,
     isValid,
+    isEmailiValid,
   } = useSignupForm();
-  console.log(errors);
   return (
     <div className={cn('main', 'container')}>
       <div className={cn('signupImg')}>
@@ -40,7 +40,13 @@ export default function SignupPage() {
                 error={errors.email}
                 placeholder="이메일을 입력해주세요."
               />
-              <button type="button" onClick={verificationCodeSendHandler}>
+              <button
+                type="button"
+                className={cn('verificationCodeBtn', {
+                  isValid: isEmailiValid,
+                })}
+                onClick={verificationCodeSendHandler}
+              >
                 인증번호 받기
               </button>
             </div>
