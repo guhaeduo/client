@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
+import { emailValidation } from 'utils/validatior';
 interface FormValue {
   email: string;
   verificationCode: string;
@@ -16,9 +16,19 @@ export default function useSignupForm() {
     formState: { errors, isValid },
     getValues,
     watch,
-  } = useForm<FormValue>();
+    setError,
+  } = useForm<FormValue>({ mode: 'onChange' });
+
+  const isEmailiValid = watch('email') && !errors.email;
 
   const verificationCodeSendHandler = () => {
+    if (!isEmailiValid) {
+      setError('email', {
+        type: 'pattern',
+        message: '올바른 이메일 주소를 입력하세요.',
+      });
+      return;
+    }
     setIsVerificationCodeSent(true);
   };
 
@@ -35,5 +45,6 @@ export default function useSignupForm() {
     errors,
     watch,
     isValid,
+    isEmailiValid,
   };
 }
