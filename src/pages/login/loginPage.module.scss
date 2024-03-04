@@ -1,7 +1,6 @@
 .main {
   display: flex;
   justify-content: center;
-  padding-top: 150px;
 }
 .loginWrapper {
   display: flex;
@@ -43,7 +42,9 @@
     font-size: 15px;
     background-color: var(--black-200);
     color: var(--white-300);
+    cursor: not-allowed;
     &.isValid {
+      cursor: pointer;
       background-color: var(--blue-button);
       color: white;
       &:hover {

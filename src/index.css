@@ -12,6 +12,7 @@
   --light-border: #4c4c4c;
   --light-red: rgb(255, 93, 93);
   --light-blue: rgb(78, 146, 255);
+  --light-blue-hover: rgb(67, 139, 255);
   --white: rgb(246, 246, 246);
   --white-100: #d0d0d0;
   --white-200: #bbbbbb;
@@ -34,6 +35,14 @@ html {
   box-sizing: border-box;
 }
 
+input,
+button,
+a {
+  color: white;
+}
+a {
+  text-decoration: none;
+}
 body {
   font-family: 'Roboto', 'Noto Sans KR' !important;
   background-color: var(--back-color);
@@ -96,4 +105,24 @@ label {
 .tooltip {
   background-color: var(--grey-900) !important;
   padding: 8px 12px !important;
+}
+
+.toHomeBtn {
+  padding: 12px 23px;
+  border-radius: 30px;
+  font-size: 14px;
+  color: black;
+  background-color: var(--white-button);
+  &:hover {
+    background-color: var(--white-button-hover);
+  }
+}
+
+.centerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100dvh - 70px);
+  width: 100%;
+  margin-top: -30px;
 }

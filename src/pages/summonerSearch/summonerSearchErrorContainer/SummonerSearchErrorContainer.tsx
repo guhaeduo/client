@@ -16,7 +16,7 @@ export default function SummonerSearchErrorContainer({ errorMessage }: Props) {
       <p className={cn('errorMessage')}>
         <span>{errorMessage}</span>
       </p>
-      <button onClick={navHome} className={cn('toHomeButton')}>
+      <button onClick={navHome} className={cn('toHomeBtn') + ' toHomeBtn'}>
         홈으로 이동
       </button>
     </div>

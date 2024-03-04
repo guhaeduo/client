@@ -1,7 +1,6 @@
 .main {
   display: flex;
   justify-content: center;
-  padding-top: 150px;
   & > div {
     display: flex;
     flex: 1;
@@ -13,6 +12,7 @@
   img {
     margin-top: -70px;
     width: 500px;
+    height: 570px;
   }
 }
 
@@ -35,7 +35,9 @@
   button {
     background-color: var(--black-200);
     color: var(--white-300);
+    cursor: not-allowed;
     &.isValid {
+      cursor: pointer;
       background-color: var(--blue-button);
       color: white;
       &:hover {

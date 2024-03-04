@@ -2,8 +2,6 @@ import styles from './input.module.scss';
 import classNames from 'classnames/bind';
 import { forwardRef, useState } from 'react';
 import { FieldError } from 'react-hook-form';
-import { TfiEye } from 'react-icons/tfi';
-import { RxEyeClosed } from 'react-icons/rx';
 const cn = classNames.bind(styles);
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -33,12 +31,12 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         type={isPassword && visiblePassword ? 'text' : type}
       />
       {isPassword && (
-        <div
+        <span
           className={cn('visiblePasswordBtn')}
           onClick={onclickVisiblePasswordBtnhandler}
         >
-          {visiblePassword ? <RxEyeClosed /> : <TfiEye />}
-        </div>
+          {visiblePassword ? '숨기기' : '보기'}
+        </span>
       )}
       <span className={cn('errorMessage')}>{error?.message}</span>
     </div>
