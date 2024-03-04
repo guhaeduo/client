@@ -1,4 +1,7 @@
-import ReactDOM from 'react-dom/client';
+import CreateDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store'; // Redux 스토어 및 Persistor 가져오기
 import './index.css';
 import App from './App';
 import { Reset } from 'styled-reset';
@@ -27,15 +30,20 @@ if (
   });
 }
 
-const root = ReactDOM.createRoot(
+const root = CreateDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <Reset />
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <App />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </BrowserRouter>
-  </QueryClientProvider>,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <QueryClientProvider client={queryClient}>
+        <Reset />
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <App />
+          <ReactQueryDevtools initialIsOpen={true} />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </PersistGate>
+  </Provider>,
 );

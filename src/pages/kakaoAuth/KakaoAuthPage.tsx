@@ -8,7 +8,7 @@ import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import styles from './kakaoAuthPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-
+import axiosInstance from 'service/instance';
 const cn = classNames.bind(styles);
 
 export default function KakaoAuthPage() {
@@ -22,9 +22,10 @@ export default function KakaoAuthPage() {
 
   async function kakaoLogin() {
     try {
-      // axiosInstance.post('', {
-      //   code: code,
-      // });  코드를 이용한 토큰 발급
+      const kakaoRes = await axiosInstance.post('/api/oauth/kakao', {
+        authorizeCode: code,
+      });
+      console.log(kakaoRes);
     } catch (err) {
       if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
         setKakaoError(err.response.data.error);
