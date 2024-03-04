@@ -33,12 +33,12 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         type={isPassword && visiblePassword ? 'text' : type}
       />
       {isPassword && (
-        <div
+        <span
           className={cn('visiblePasswordBtn')}
           onClick={onclickVisiblePasswordBtnhandler}
         >
-          {visiblePassword ? <RxEyeClosed /> : <TfiEye />}
-        </div>
+          {visiblePassword ? '숨기기' : '보기'}
+        </span>
       )}
       <span className={cn('errorMessage')}>{error?.message}</span>
     </div>

@@ -10,9 +10,9 @@ import FindDuoPage from 'pages/findDuo/FindDuoPage';
 import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
 import KakaoAuthPage from 'pages/kakaoAuth/KakaoAuthPage';
+
 function App() {
   updateDDragonData();
-  console.log(process.env.PUBLIC_URL);
   return (
     <div className="App">
       <Header />

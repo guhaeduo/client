@@ -2,7 +2,7 @@ import styles from './signupPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import Input from 'components/input/Input';
-import useSignupForm from 'hooks/business/useSignupForm';
+import useSignupForm from 'hooks/useSignupForm';
 import {
   emailValidation,
   passwordValidation,

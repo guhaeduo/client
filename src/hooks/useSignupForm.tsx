@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { emailValidation } from 'utils/validatior';
+
 interface FormValue {
   email: string;
   verificationCode: string;
