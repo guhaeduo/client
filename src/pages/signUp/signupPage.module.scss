@@ -35,7 +35,9 @@
   button {
     background-color: var(--black-200);
     color: var(--white-300);
+    cursor: not-allowed;
     &.isValid {
+      cursor: pointer;
       background-color: var(--blue-button);
       color: white;
       &:hover {

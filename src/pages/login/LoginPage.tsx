@@ -10,13 +10,14 @@ const cn = classNames.bind(styles);
 
 export default function LoginPage() {
   const { navSignup, navResetPassword } = useCustomNavigation();
-  const { register, submitHandler, errors, isValid } = useLoginForm();
+  const { register, submitHandler, errors, isValid, getValues } =
+    useLoginForm();
   const onclickKakaoBtnHandler = () =>
     (window.location.href = LOCATION.KAKAO_AUTH_URL);
 
   return (
     <div className="centerContainer">
-      <div className={cn('main', 'container')}>
+      <div>
         <div className={cn('loginWrapper')}>
           <h3>로그인</h3>
           <form onSubmit={submitHandler}>
@@ -37,7 +38,7 @@ export default function LoginPage() {
             />
             <span
               className={cn('forgotPasswordBtn')}
-              onClick={() => navResetPassword()}
+              onClick={() => navResetPassword(getValues('email'))}
             >
               비밀번호를 까먹으셨나요?
             </span>

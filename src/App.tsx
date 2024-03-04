@@ -5,7 +5,7 @@ import ResetPasswordPage from 'pages/resetPassword/ResetPasswordPage';
 import LoginPage from 'pages/login/LoginPage';
 import SignupPage from 'pages/signUp/SignupPage';
 import SummonerSearchPage from 'pages/summonerSearch/SummonerSearchPage';
-import EmailSendPage from 'pages/emailSend/EmailSendPage';
+import PasswordResetCodeSendPage from 'pages/passwordResetCodeSendPage/PasswordResetCodeSendPage';
 import FindDuoPage from 'pages/findDuo/FindDuoPage';
 import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
@@ -19,7 +19,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/accounts/reset-password" element={<EmailSendPage />} />
+        <Route
+          path="/accounts/reset-password"
+          element={<PasswordResetCodeSendPage />}
+        />
         <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
         <Route path="/find-duo" element={<FindDuoPage />} />
         <Route path="/login" element={<LoginPage />} />

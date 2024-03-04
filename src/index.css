@@ -35,6 +35,14 @@ html {
   box-sizing: border-box;
 }
 
+input,
+button,
+a {
+  color: white;
+}
+a {
+  text-decoration: none;
+}
 body {
   font-family: 'Roboto', 'Noto Sans KR' !important;
   background-color: var(--back-color);
