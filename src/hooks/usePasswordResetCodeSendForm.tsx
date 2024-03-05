@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
+
 interface FormValue {
   email: string;
 }
+
 export default function usePasswordResetCodeSendForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');

@@ -8,6 +8,9 @@ import { FaPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/userSlice';
 import useCustomNavigation from 'hooks/useCustomNavigation';
+import AccountDeleteModal from './component/accountDeleteModal/AccountDeleteModal';
+import PasswordChangeModal from './component/passwordChangeModal/PasswordChangeModal';
+import Modal from 'components/modal/Modal';
 const cn = classNames.bind(styles);
 
 export default function ProfilePage() {
@@ -27,6 +30,20 @@ export default function ProfilePage() {
 
   return (
     <div className={cn('centerContainer')}>
+      <Modal
+        isOpen={isAccountDeleteModalOpen}
+        setIsOpen={setIsAccountDeleteModalOpen}
+        closeButton
+      >
+        <AccountDeleteModal />
+      </Modal>
+      <Modal
+        isOpen={isPasswordChangeModalOpen}
+        setIsOpen={setIsPasswordChangeModalOpen}
+        closeButton
+      >
+        <PasswordChangeModal />
+      </Modal>
       <div className={cn('main')}>
         <div className={cn('myAccount')}>
           <h3>내 계정</h3>
@@ -36,7 +53,9 @@ export default function ProfilePage() {
           </div>
           <div className={cn('passwordChange')}>
             <h6>비밀번호 변경</h6>
-            <button>변경</button>
+            <button onClick={() => setIsPasswordChangeModalOpen(true)}>
+              변경
+            </button>
           </div>
         </div>
         <div className={cn('riotAccount')}>
@@ -54,14 +73,15 @@ export default function ProfilePage() {
           </div>
         </div>
         <div className={cn('accountManagement')}>
-          <div className={cn('logout')}>
-            <h6>로그아웃</h6>
-            <button onClick={logoutHandler}>로그아웃</button>
-          </div>
-          <div className={cn('accountDelete')}>
-            <h6>계정 삭제</h6>
-            <button>회원 탈퇴</button>
-          </div>
+          <button className={cn('logoutBtn')} onClick={logoutHandler}>
+            로그아웃
+          </button>
+          <button
+            className={cn('accountDeleteBtn')}
+            onClick={() => setIsAccountDeleteModalOpen(true)}
+          >
+            회원 탈퇴
+          </button>
         </div>
       </div>
     </div>

@@ -14,15 +14,7 @@
     font-weight: normal;
     color: var(--grey-100);
   }
-  .passwordChange,
-  .logout,
-  .accountDelete {
-    display: flex;
-    align-items: center;
-    h6 {
-      flex: 1;
-    }
-  }
+
   .myAccount,
   .riotAccount {
     padding-bottom: 30px;
@@ -34,6 +26,11 @@
   }
   .passwordChange {
     margin-top: 40px;
+    display: flex;
+    align-items: center;
+    h6 {
+      flex: 1;
+    }
     button {
       color: var(--light-blue);
       &:hover {
@@ -84,22 +81,25 @@
   }
   .accountManagement {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     button {
-      width: 80px;
-      height: 35px;
+      flex: 1;
+      height: 45px;
       border-radius: 3px;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 2px;
     }
-    .logout button {
+    .logoutBtn {
       border: 1px solid var(--white-100);
       color: var(--white-100);
       &:hover {
         background-color: var(--grey-300);
       }
     }
-    .accountDelete button {
+    .accountDeleteBtn {
       background-color: var(--red-button);
       &:hover {
         background-color: var(--red-button-hover);
