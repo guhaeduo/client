@@ -17,7 +17,6 @@ export default function ProfilePage() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const { navHome } = useCustomNavigation();
-  console.log(user);
   const [isPasswordChangeModalOpen, setIsPasswordChangeModalOpen] =
     useState(false);
   const [isAccountDeleteModalOpen, setIsAccountDeleteModalOpen] =
@@ -33,9 +32,8 @@ export default function ProfilePage() {
       <Modal
         isOpen={isAccountDeleteModalOpen}
         setIsOpen={setIsAccountDeleteModalOpen}
-        closeButton
       >
-        <AccountDeleteModal />
+        <AccountDeleteModal setIsModalOpen={setIsAccountDeleteModalOpen} />
       </Modal>
       <Modal
         isOpen={isPasswordChangeModalOpen}

@@ -1,5 +1,3 @@
-'use client';
-
 import React, { ReactNode } from 'react';
 import { IoClose } from 'react-icons/io5';
 import styles from './modal.module.scss';
@@ -45,11 +43,7 @@ export default function Modal({
   // portal을 활용하여 모달을 root단계에 위치시킨다.
   return createPortal(
     <div onClick={modalCloseHandler} className={cn('modalBackground')}>
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{ padding: closeButton ? '35px' : '20px' }}
-        className={cn('modal')}
-      >
+      <div onClick={(e) => e.stopPropagation()} className={cn('modal')}>
         {closeButton && (
           <button onClick={modalCloseHandler} className={cn('closeButton')}>
             <IoClose />
