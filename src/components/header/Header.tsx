@@ -1,13 +1,18 @@
-import { useState, useEffect, MouseEventHandler } from 'react';
+import { useState, MouseEventHandler } from 'react';
 import styles from './header.module.scss';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 import SearchBar from '../searchbar/SearchBar';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import { PiUser } from 'react-icons/pi';
+import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineProfile } from 'react-icons/ai';
 import { MdLogout } from 'react-icons/md';
 import useWindowClickEvent from 'hooks/useWindowClickEvent';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from 'store/userSlice';
+import { logout } from 'store/userSlice';
+import { Link } from 'react-router-dom';
+import LOCATION from 'constants/location';
 const cn = classNames.bind(styles);
 
 const LOGO_HIDDEN_PATH = [''];
@@ -20,7 +25,6 @@ const SEARCH_BAR_HIDDEN_PATH = [
   'accounts',
 ];
 const BUTTONS_HIDDEN_PATH = ['login', 'signup', 'profile', 'auth', 'accounts'];
-const HEADER_HIDDEN_PATH = ['oauth'];
 /**
  * 미리 스타일을 지정해둔 헤더입니다.
  */
@@ -40,14 +44,14 @@ export default function Header() {
   const isButtonsHidden = BUTTONS_HIDDEN_PATH.includes(firstPathname);
 
   // 유저 객체입니다.
-  const user = {
-    isLogin: false,
-  };
+
+  const user = useSelector(selectUser);
+  const dispath = useDispatch();
 
   const closeMenu = () => isUserMenuOpen && setIsUserMenuOpen(false);
   useWindowClickEvent(closeMenu, [isUserMenuOpen]);
 
-  const { navHome, navLogin, navProfile, navFindDuo } = useCustomNavigation();
+  const { navHome, navLogin, navFindDuo } = useCustomNavigation();
 
   // userMenu의 open 여부를 제어하는 함수입니다.
   const userMenuButtonOnClick: MouseEventHandler = (e) => {
@@ -57,12 +61,7 @@ export default function Header() {
 
   // userMenu 로그아웃 함수입니다.
   const logoutOnClick = () => {
-    user.isLogin = false;
-  };
-
-  // userMenu 프로필 페이지 이동 함수입니다.
-  const profileOnClick = () => {
-    navProfile();
+    dispath(logout());
   };
 
   return (
@@ -86,14 +85,14 @@ export default function Header() {
             {user.isLogin ? (
               <div className={cn('userMenuWrapper')}>
                 <div className={cn('userMenuButton')}>
-                  <PiUser size={25} onClick={userMenuButtonOnClick} />
+                  <BsThreeDots onClick={userMenuButtonOnClick} />
                 </div>
                 {isUserMenuOpen && (
                   <div className={cn('userMenuContainer')}>
-                    <div className={cn('userMenu')} onClick={profileOnClick}>
+                    <Link to={LOCATION.PROFILE} className={cn('userMenu')}>
                       <span>프로필</span>
                       <AiOutlineProfile size={17} />
-                    </div>
+                    </Link>
                     <div className={cn('userMenu')} onClick={logoutOnClick}>
                       <span>로그아웃</span>
                       <MdLogout size={17} />

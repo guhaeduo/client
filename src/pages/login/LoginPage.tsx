@@ -14,7 +14,7 @@ export default function LoginPage() {
     useLoginForm();
   const onclickKakaoBtnHandler = () =>
     (window.location.href = LOCATION.KAKAO_AUTH_URL);
-
+  // console.log(LOCATION.KAKAO_AUTH_URL);
   return (
     <div className="centerContainer">
       <div>

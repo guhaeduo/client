@@ -1,0 +1,72 @@
+.container {
+  width: 320px;
+  h3 {
+    color: var(--white-100);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 25px;
+  }
+  p {
+    font-size: 13px;
+    line-height: 1.2;
+    color: var(--white-300);
+  }
+  .accountDeleteAlert {
+    margin-top: 40px;
+    h6 {
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 35px;
+    }
+    p {
+      margin-top: 5px;
+    }
+  }
+  .accountDeleteCheckWrapper {
+    margin-top: 40px;
+    display: flex;
+    gap: 12px;
+    .checkBox {
+      width: 36px;
+      height: 22px;
+      padding-top: 1px;
+      svg {
+        font-size: 13px;
+      }
+    }
+  }
+  .buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    button {
+      padding-top: 2px;
+      height: 40px;
+      font-size: 13px;
+      flex: 1;
+      border-radius: 3px;
+      font-weight: 600;
+      &:first-child {
+        border: 1px solid var(--white-100);
+        color: var(--white-100);
+        &:hover {
+          background-color: var(--grey-300);
+        }
+      }
+      &:last-child {
+        background-color: var(--black-200);
+        color: var(--white-100);
+        cursor: not-allowed;
+        &.isCheck {
+          cursor: pointer;
+          color: white;
+          background-color: var(--red-button);
+          &:hover {
+            background-color: var(--red-button-hover);
+          }
+        }
+      }
+    }
+  }
+}

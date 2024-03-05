@@ -1,7 +1,9 @@
 .checkBox {
   border: 1px solid;
-  padding: 3px;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   &.active {
     background-color: var(--blue-button);
