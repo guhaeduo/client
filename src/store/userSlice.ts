@@ -1,15 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface RiotAccount {
+  country: string;
+  name: string;
+  tag: string;
+}
+
 interface UserState {
   isLogin: boolean;
   email?: string;
-  riotAccount?: { country: string; name: string; tag: string }[];
-  createdAt?: string;
+  riotAccount?: RiotAccount[];
 }
 
 const initialState: UserState = {
   isLogin: false,
 };
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -17,9 +23,7 @@ export const userSlice = createSlice({
     login: (state, action: PayloadAction<Partial<UserState>>) => {
       const { riotAccount, ...payload } = action.payload;
       const serializedRiotAccount = riotAccount?.map((account) => ({
-        country: account.country,
-        name: account.name,
-        tag: account.tag,
+        ...account,
       }));
       return {
         ...state,
@@ -28,11 +32,8 @@ export const userSlice = createSlice({
         isLogin: true,
       };
     },
-    logout: (state) => {
-      state.isLogin = false;
-      state.email = undefined;
-      state.riotAccount = undefined;
-      state.createdAt = undefined;
+    logout: () => {
+      return initialState;
     },
   },
 });

@@ -53,10 +53,9 @@
 .userMenuButton {
   border-radius: 50%;
   cursor: pointer;
-  background-color: rgb(250, 250, 250);
-  padding: 3px;
-  path {
-    color: black;
+  margin-top: 3px;
+  svg {
+    font-size: 22px;
   }
 }
 
@@ -71,8 +70,6 @@
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 15px;
   cursor: pointer;
 }
 
@@ -80,10 +77,14 @@
   display: flex;
   gap: 50px;
   align-items: center;
+  padding: 15px;
   span {
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-    width: 50px;
+    width: 60px;
+  }
+  &:hover {
+    background-color: var(--black-200);
   }
 }
