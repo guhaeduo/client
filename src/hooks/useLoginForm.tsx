@@ -23,7 +23,15 @@ export default function useLoginForm() {
       dispatch(
         login({
           email: 'example@example.com',
-          riotAccount: [{ country: 'KR', name: 'test', tag: '1234' }],
+          riotAccount: [
+            {
+              country: 'KR',
+              name: 'test',
+              tag: '1234',
+            },
+          ],
+          createdAt: '23-3-21',
+          loginType: 'kakao',
         }),
       );
       navHome();
@@ -31,7 +39,7 @@ export default function useLoginForm() {
       console.log(err);
     }
 
-    console.log({ email, password, data }, 'hello');
+    // console.log({ email, password, data }, 'hello');
   });
 
   return {

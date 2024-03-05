@@ -1,0 +1,109 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 380px;
+  h3 {
+    font-weight: bold;
+    font-size: 22px;
+    color: var(--white-100);
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  h6 {
+    font-weight: normal;
+    color: var(--grey-100);
+  }
+  .passwordChange,
+  .logout,
+  .accountDelete {
+    display: flex;
+    align-items: center;
+    h6 {
+      flex: 1;
+    }
+  }
+  .myAccount,
+  .riotAccount {
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--light-border);
+  }
+  .email span {
+    display: block;
+    margin-top: 10px;
+  }
+  .passwordChange {
+    margin-top: 40px;
+    button {
+      color: var(--light-blue);
+      &:hover {
+        color: var(--light-blue-hover);
+      }
+    }
+  }
+  .riotAccountBox {
+    background-color: var(--grey-700);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 3px;
+    .riotIcon {
+      background-color: var(--riot-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      svg {
+        margin-left: -3px;
+        font-size: 18px;
+      }
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      h6 {
+        font-size: 15px;
+        color: white;
+        font-weight: 600;
+        flex: 1;
+      }
+    }
+    button {
+      svg {
+        font-size: 16px;
+        color: var(--grey-100);
+      }
+      &:hover {
+        svg {
+          color: var(--white-100);
+        }
+      }
+    }
+  }
+  .accountManagement {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    button {
+      width: 80px;
+      height: 35px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .logout button {
+      border: 1px solid var(--white-100);
+      color: var(--white-100);
+      &:hover {
+        background-color: var(--grey-300);
+      }
+    }
+    .accountDelete button {
+      background-color: var(--red-button);
+      &:hover {
+        background-color: var(--red-button-hover);
+      }
+    }
+  }
+}

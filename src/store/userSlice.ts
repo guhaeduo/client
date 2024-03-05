@@ -10,6 +10,8 @@ interface UserState {
   isLogin: boolean;
   email?: string;
   riotAccount?: RiotAccount[];
+  createdAt?: string;
+  loginType?: string;
 }
 
 const initialState: UserState = {
