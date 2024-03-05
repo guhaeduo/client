@@ -24,9 +24,11 @@ export default function KakaoAuthPage() {
     try {
       const kakaoRes = await axiosInstance.post('/api/oauth/kakao', {
         authorizeCode: code,
+        redirectUri: LOCATION.KAKAO_AUTH_URL,
       });
       console.log(kakaoRes);
     } catch (err) {
+      console.log(err);
       if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
         setKakaoError(err.response.data.error);
       }
