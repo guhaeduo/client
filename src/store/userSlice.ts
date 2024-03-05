@@ -11,7 +11,7 @@ interface UserState {
   email?: string;
   riotAccount?: RiotAccount[];
   createdAt?: string;
-  loginType?: string;
+  loginType?: 'site' | 'kakao' | 'discord';
 }
 
 const initialState: UserState = {

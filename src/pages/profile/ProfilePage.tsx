@@ -51,12 +51,14 @@ export default function ProfilePage() {
             <h6>이메일</h6>
             <span>{user.email}</span>
           </div>
-          <div className={cn('passwordChange')}>
-            <h6>비밀번호 변경</h6>
-            <button onClick={() => setIsPasswordChangeModalOpen(true)}>
-              변경
-            </button>
-          </div>
+          {user.loginType === 'site' && (
+            <div className={cn('passwordChange')}>
+              <h6>비밀번호 변경</h6>
+              <button onClick={() => setIsPasswordChangeModalOpen(true)}>
+                변경
+              </button>
+            </div>
+          )}
         </div>
         <div className={cn('riotAccount')}>
           <h3>게임 계정 연동</h3>
