@@ -14,6 +14,12 @@ interface UserState {
   loginType?: 'site' | 'kakao' | 'discord';
 }
 
+interface Token {
+  accessToken?: string;
+  refreshToken?: string;
+  tokenType?: string;
+}
+
 const initialState: UserState = {
   isLogin: false,
 };
@@ -23,15 +29,20 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<Partial<UserState>>) => {
-      const { riotAccount, ...payload } = action.payload;
-      const serializedRiotAccount = riotAccount?.map((account) => ({
-        ...account,
-      }));
+      const { ...payload } = action.payload;
+      // const serializedRiotAccount = riotAccount?.map((account) => ({
+      //   ...account,
+      // }));
       return {
         ...state,
         ...payload,
-        riotAccount: serializedRiotAccount,
         isLogin: true,
+      };
+    },
+    updateToken: (state, action: PayloadAction<Partial<Token>>) => {
+      return {
+        ...state,
+        ...action.payload,
       };
     },
     logout: () => {
@@ -40,7 +51,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, updateToken } = userSlice.actions;
 
 export const selectUser = (state: { user: UserState }) => state.user;
 

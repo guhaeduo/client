@@ -1,6 +1,6 @@
 import { SummonerGameSummary, SummaryQueueType } from './../types/summoner';
 import { ServerAPIErrorResponse } from 'types/Api';
-import axiosInstance from './instance';
+import instance from './instance';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ export default async function getSummonerGameSummary(
   region: string,
 ): Promise<SummonerGameSummary> {
   try {
-    const summaryRes = await axiosInstance.get<SummonerGameSummary>(
+    const summaryRes = await instance.get<SummonerGameSummary>(
       `/api/matches/summary`,
       {
         headers: {
