@@ -6,18 +6,18 @@ interface RiotAccount {
   tag: string;
 }
 
-interface UserState {
+interface Token {
+  accessToken?: string;
+  refreshToken?: string;
+  tokenType?: string;
+}
+
+interface UserState extends Token {
   isLogin: boolean;
   email?: string;
   riotAccount?: RiotAccount[];
   createdAt?: string;
   loginType?: 'site' | 'kakao' | 'discord';
-}
-
-interface Token {
-  accessToken?: string;
-  refreshToken?: string;
-  tokenType?: string;
 }
 
 const initialState: UserState = {
@@ -30,9 +30,7 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action: PayloadAction<Partial<UserState>>) => {
       const { ...payload } = action.payload;
-      // const serializedRiotAccount = riotAccount?.map((account) => ({
-      //   ...account,
-      // }));
+
       return {
         ...state,
         ...payload,

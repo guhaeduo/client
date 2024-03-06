@@ -10,28 +10,76 @@ import FindDuoPage from 'pages/findDuo/FindDuoPage';
 import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
 import KakaoAuthPage from 'pages/kakaoAuth/KakaoAuthPage';
+import ProtectedRoute from 'components/ProtectedRoute';
 
+const requiredLoginPathname = ['/profile'];
+const requiredUnLoginPathname = [
+  '/accounts/reset-password',
+  '/auth/reset-password',
+  '/login',
+  '/signup',
+  '/oauth/kakao',
+];
+const pages = [
+  {
+    pathname: '/',
+    element: <HomePage />,
+  },
+  {
+    pathname: '/profile',
+    element: <ProfilePage />,
+  },
+  {
+    pathname: '/accounts/reset-password',
+    element: <PasswordResetCodeSendPage />,
+  },
+  {
+    pathname: '/auth/reset-password',
+    element: <ResetPasswordPage />,
+  },
+  {
+    pathname: '/find-duo',
+    element: <FindDuoPage />,
+  },
+  {
+    pathname: '/login',
+    element: <LoginPage />,
+  },
+  {
+    pathname: '/signup',
+    element: <SignupPage />,
+  },
+  {
+    pathname: '/summoners/:country/:summonerName',
+    element: <SummonerSearchPage />,
+  },
+  {
+    pathname: '/oauth/kakao',
+    element: <KakaoAuthPage />,
+  },
+];
 function App() {
   updateDDragonData();
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route
-          path="/accounts/reset-password"
-          element={<PasswordResetCodeSendPage />}
-        />
-        <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/find-duo" element={<FindDuoPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route
-          path="/summoners/:country/:summonerName"
-          element={<SummonerSearchPage />}
-        />
-        <Route path="/oauth/kakao" element={<KakaoAuthPage />} />
+        {pages.map((page) => (
+          <Route
+            path={page.pathname}
+            element={
+              <ProtectedRoute
+                requiredLogin={requiredLoginPathname.includes(page.pathname)}
+                requiredUnLogin={requiredUnLoginPathname.includes(
+                  page.pathname,
+                )}
+              >
+                {page.element}
+              </ProtectedRoute>
+            }
+            key={page.pathname}
+          />
+        ))}
       </Routes>
     </div>
   );
