@@ -49,10 +49,9 @@ export default function LoginPage() {
             className={cn('kakaoLoginBtn')}
             onClick={onclickKakaoBtnHandler}
           >
-            <img
-              src={process.env.PUBLIC_URL + '/images/kakaoIcon.png'}
-              alt="카카오 아이콘"
-            />
+            <svg viewBox="0 0 24 24">
+              <path d="M11.998 4c-5.387 0-9.753 3.443-9.753 7.69 0 2.746 1.826 5.158 4.572 6.516-.15.515-.96 3.314-.992 3.535 0 0-.02.165.087.227a.295.295 0 00.232.015c.308-.044 3.564-2.327 4.127-2.72.572.08 1.15.118 1.727.117 5.387 0 9.754-3.443 9.754-7.69S17.384 4 11.998 4z" />
+            </svg>
             카카오로 시작하기
           </button>
           <button className={cn('discordLoginBtn')}>

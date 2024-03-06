@@ -30,7 +30,7 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action: PayloadAction<Partial<UserState>>) => {
       const { ...payload } = action.payload;
-
+      console.log('로그인');
       return {
         ...state,
         ...payload,
@@ -41,10 +41,11 @@ export const userSlice = createSlice({
       return {
         ...state,
         ...action.payload,
+        isLogin: true,
       };
     },
     logout: () => {
-      return initialState;
+      return { isLogin: false };
     },
   },
 });

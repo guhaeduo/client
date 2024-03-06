@@ -26,7 +26,6 @@ export default function KakaoAuthPage() {
         authorizeCode: code,
         redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URL,
       });
-      console.log(kakaoRes);
     } catch (err) {
       if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
         setKakaoError(err.response.data.error);
