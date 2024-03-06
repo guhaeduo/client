@@ -13,7 +13,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 /**
- * 미리 스타일을 지정해둔 챔피언 아이콘입니다.
+ * 미리 스타일을 지정해둔 인풋입니다.
  * @param {FieldError?} error - 인풋의 에러 값을 받습니다.
  * @param {string} label - 인풋의 라벨 입니다.
  * @param {string} name - 인풋의 이름 입니다.
