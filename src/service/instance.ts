@@ -13,6 +13,7 @@ instance.interceptors.response.use(
   (response) => {
     // 응답 데이터에서 토큰 값을 추출합니다.
     handleTokenUpdate(response);
+
     return response;
   },
   (error) => {
