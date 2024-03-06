@@ -11,7 +11,7 @@ type Props = {
 
 /**
  * 미리 스타일을 지정해둔 챔피언 아이콘입니다.
- * @param {string?} className - 클래스네입 입니다.
+ * @param {string?} className - 클래스네임 입니다.
  * @param {string} championName - 챔피언 이름입니다.
  */
 
