@@ -40,7 +40,6 @@ export const userSlice = createSlice({
       return {
         ...state,
         ...action.payload,
-        isLogin: true,
       };
     },
     logout: () => {

@@ -9,6 +9,7 @@ import styles from './kakaoAuthPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import instance from 'service/instance';
+import { fetchUser } from 'service/fetchUser';
 const cn = classNames.bind(styles);
 
 export default function KakaoAuthPage() {
@@ -20,14 +21,12 @@ export default function KakaoAuthPage() {
 
   async function kakaoLogin() {
     try {
-      console.log({
+      await instance.post('/api/oauth/kakao', {
         authorizeCode: code,
         redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URL,
       });
-      instance.post('/api/oauth/kakao', {
-        authorizeCode: code,
-        redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URL,
-      });
+
+      await fetchUser();
     } catch (err) {
       console.log(err);
       if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
