@@ -5,11 +5,11 @@ import ResetPasswordPage from 'pages/resetPassword/ResetPasswordPage';
 import LoginPage from 'pages/login/LoginPage';
 import SignupPage from 'pages/signUp/SignupPage';
 import SummonerSearchPage from 'pages/summonerSearch/SummonerSearchPage';
-import PasswordResetCodeSendPage from 'pages/passwordResetCodeSendPage/PasswordResetCodeSendPage';
+import PasswordResetCodeSendPage from 'pages/passwordResetCodeSend/PasswordResetCodeSendPage';
 import FindDuoPage from 'pages/findDuo/FindDuoPage';
 import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
-import KakaoAuthPage from 'pages/kakaoAuth/KakaoAuthPage';
+import SocialLoginAuthPage from 'pages/socialLoginAuth/SocialLoginAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
 const requiredLoginPathname = ['/profile'];
 const requiredUnLoginPathname = [
@@ -54,7 +54,11 @@ const pages = [
   },
   {
     pathname: '/oauth/kakao',
-    element: <KakaoAuthPage />,
+    element: <SocialLoginAuthPage socialType="KAKAO" />,
+  },
+  {
+    pathname: '/oauth/discord',
+    element: <SocialLoginAuthPage socialType="DISCORD" />,
   },
 ];
 function App() {

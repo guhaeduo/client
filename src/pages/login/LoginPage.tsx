@@ -12,9 +12,12 @@ export default function LoginPage() {
   const { navSignup, navResetPassword } = useCustomNavigation();
   const { register, submitHandler, errors, isValid, getValues } =
     useLoginForm();
+
   const onClickKakaoBtnHandler = () =>
     (window.location.href = LOCATION.KAKAO_AUTH_URL);
-  // console.log(LOCATION.KAKAO_AUTH_URL);
+  const onClickDiscordBtnHandler = () =>
+    (window.location.href = LOCATION.DISCORD_AUTH_URL);
+
   return (
     <div className="centerContainer">
       <div>
@@ -54,7 +57,10 @@ export default function LoginPage() {
             </svg>
             카카오로 시작하기
           </button>
-          <button className={cn('discordLoginBtn')}>
+          <button
+            className={cn('discordLoginBtn')}
+            onClick={onClickDiscordBtnHandler}
+          >
             <RiDiscordFill /> 디스코드로 시작하기
           </button>
           <p>

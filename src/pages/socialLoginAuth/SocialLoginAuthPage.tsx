@@ -5,34 +5,42 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ServerAPIErrorResponse } from 'types/Api';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
-import styles from './kakaoAuthPage.module.scss';
+import styles from './socialLoginAuthPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import instance from 'service/instance';
 import { fetchUser } from 'service/fetchUser';
 const cn = classNames.bind(styles);
 
-export default function KakaoAuthPage() {
-  const [kakaoError, setKakaoError] = useState('');
+type Props = {
+  socialType: 'KAKAO' | 'DISCORD';
+};
+
+export default function SocialLoginAuthPage({ socialType }: Props) {
+  const [error, setError] = useState('');
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const code = searchParams.get('code');
   const { navHome } = useCustomNavigation();
 
-  async function kakaoLogin() {
-    try {
-      await instance.post('/api/oauth/kakao', {
-        authorizeCode: code,
-        redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URL,
-      });
+  const redirectUri =
+    socialType === 'KAKAO'
+      ? process.env.REACT_APP_KAKAO_REDIRECT_URL
+      : process.env.REACT_APP_DISCORD_REDIRECT_URL;
 
+  async function socialLogin() {
+    try {
+      await instance.post(`/api/oauth/${socialType.toLowerCase()}`, {
+        authorizeCode: code,
+        redirectUri,
+      });
       await fetchUser();
+      navHome();
     } catch (err) {
-      console.log(err);
       if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
-        setKakaoError(err.response.data.error);
+        setError(err.response.data.message);
       }
-      setKakaoError(UNKNOWN_NET_ERROR_MESSAGE);
+      setError(UNKNOWN_NET_ERROR_MESSAGE);
     }
   }
 
@@ -41,12 +49,12 @@ export default function KakaoAuthPage() {
       navigate(LOCATION.HOME, { replace: true });
       alert('잘못된 접근입니다.');
     }
-    kakaoLogin();
+    socialLogin();
   }, [code]);
 
-  return kakaoError ? (
+  return error ? (
     <div className={cn('kakaoAuthPage')}>
-      <span>{kakaoError}</span>
+      <span>{error}</span>
       <button className={'toHomeBtn'} onClick={navHome}>
         홈으로 이동
       </button>
