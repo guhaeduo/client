@@ -23,14 +23,13 @@ type Props = {
  */
 
 export default function CustomTooltip({ title, body, children, name }: Props) {
-  const tooltipName = name.split(' ').join('');
-  const tooltipSelect = '.' + tooltipName;
+  const tooltipName = name.replace(/\s+/g, '-');
   return (
     <div>
       <Tooltip
         opacity={1}
         className="tooltip"
-        anchorSelect={tooltipSelect}
+        anchorSelect={`.${tooltipName}`}
         place="top"
       >
         <div className={cn('tooptipContent')}>
@@ -38,7 +37,7 @@ export default function CustomTooltip({ title, body, children, name }: Props) {
           <p className={cn('body')}>{parse(convertTagsToSpan(body))}</p>
         </div>
       </Tooltip>
-      <a className={cn(tooltipName)}>{children}</a>
+      <a className={tooltipName}>{children}</a>
     </div>
   );
 }

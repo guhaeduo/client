@@ -8,6 +8,7 @@ type Props = {
   className?: string;
   perksStyle: number;
 };
+
 export default function PerksIcon({ className, perksStyle }: Props) {
   const perksDetail = getPerksData(perksStyle);
   if (perksDetail.shortDesc) {
@@ -23,7 +24,6 @@ export default function PerksIcon({ className, perksStyle }: Props) {
       </CustomTooltip>
     );
   }
-
   return (
     <div className={cn('perksIcon', className)}>
       <img src={perksDetail.icon} alt="소환사 룬 아이콘" />

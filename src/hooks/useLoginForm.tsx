@@ -13,7 +13,7 @@ export default function useLoginForm() {
     handleSubmit,
     formState: { errors, isValid },
     getValues,
-  } = useForm<FormValue>();
+  } = useForm<FormValue>({ mode: 'onChange' });
   const dispatch = useDispatch();
   const { navHome } = useCustomNavigation();
   const submitHandler = handleSubmit((data) => {
@@ -31,7 +31,7 @@ export default function useLoginForm() {
             },
           ],
           createdAt: '23-3-21',
-          loginType: 'site',
+          loginType: 'SITE',
         }),
       );
       navHome();

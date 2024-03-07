@@ -25,7 +25,11 @@ export default function ParticipantPreviewCard({
     <div>
       <ChampionIcon className={cn('previewIcon')} championName={championName} />
       <CustomTooltip
-        name={participant.puuid}
+        name={
+          participant.championName +
+          participant.riotGameName +
+          participant.riotGameTag
+        }
         body={`${participant.riotGameName} #${participant.riotGameTag}`}
       >
         <p

@@ -25,6 +25,7 @@ const SEARCH_BAR_HIDDEN_PATH = [
   'accounts',
 ];
 const BUTTONS_HIDDEN_PATH = ['login', 'signup', 'profile', 'auth', 'accounts'];
+
 /**
  * 미리 스타일을 지정해둔 헤더입니다.
  */
@@ -44,10 +45,10 @@ export default function Header() {
   const isButtonsHidden = BUTTONS_HIDDEN_PATH.includes(firstPathname);
 
   // 유저 객체입니다.
-
   const user = useSelector(selectUser);
   const dispath = useDispatch();
 
+  // 만약 윈도우가 클릭되었고, isUserMenuOpen이 true면 userMenu를 닫습니다.
   const closeMenu = () => isUserMenuOpen && setIsUserMenuOpen(false);
   useWindowClickEvent(closeMenu, [isUserMenuOpen]);
 

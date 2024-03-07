@@ -18,3 +18,5 @@ export const UNKNOWN_NET_ERROR_MESSAGE =
   '알 수 없는 에러가 발생하였습니다. 잠시 후 다시 시도해 주세요';
 
 export const SUMMONER_DATA_STALE_TIME = 24 * 60 * 60 * 1000;
+
+export const REFRESH_TOKEN_EXPIRED_ERROR_MESSAGE = '만료된 토큰 정보입니다.';

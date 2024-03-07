@@ -1,6 +1,6 @@
 import { ServerAPIErrorResponse } from './../types/Api';
 import { SummonerRankInfo } from 'types/summoner';
-import axiosInstance from './instance';
+import instance from './instance';
 import axios from 'axios';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
@@ -9,7 +9,7 @@ export default async function getSummonerRankInfo(
   region: string,
 ): Promise<SummonerRankInfo> {
   try {
-    const rankRes = await axiosInstance.get<SummonerRankInfo>(
+    const rankRes = await instance.get<SummonerRankInfo>(
       `/api/summoner/rank `,
       {
         headers: {

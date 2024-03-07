@@ -1,5 +1,5 @@
 import { SummonerBasicData, SummonerInfo } from 'types/summoner';
-import axiosInstance from './instance';
+import instance from './instance';
 import { ServerAPIErrorResponse, RiotAPIErrorCode } from 'types/Api';
 import { RIOT_API_ERROR_MESSAGE } from 'constants/api';
 import axios, { AxiosResponse } from 'axios';
@@ -23,7 +23,7 @@ export default async function getSummonerInfo(
     // 소환사 계정 정보입니다.
     const region = COUNTRY.find((c) => c.key === country)?.region || '';
     const summonerInfoRes: AxiosResponse<SummonerBasicData> =
-      await axiosInstance.get(
+      await instance.get(
         `/api/summoner/info?gameName=${name}&tagLine=${tag}&region=${region}`,
       );
 
