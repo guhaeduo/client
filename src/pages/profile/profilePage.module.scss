@@ -24,7 +24,7 @@
   }
 
   .myAccount {
-    & > div {
+    & > div:not(:last-child) {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -35,7 +35,6 @@
     }
   }
   .passwordChange {
-    margin-top: 40px;
     display: flex;
     align-items: center;
     h6 {
