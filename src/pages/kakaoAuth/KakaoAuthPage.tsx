@@ -12,9 +12,7 @@ import instance from 'service/instance';
 const cn = classNames.bind(styles);
 
 export default function KakaoAuthPage() {
-  const [kakaoError, setKakaoError] = useState(
-    '잘못된 Authenticated 코드입니다.',
-  );
+  const [kakaoError, setKakaoError] = useState('');
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const code = searchParams.get('code');
@@ -22,11 +20,16 @@ export default function KakaoAuthPage() {
 
   async function kakaoLogin() {
     try {
-      const kakaoRes = await instance.post('/api/oauth/kakao', {
+      console.log({
+        authorizeCode: code,
+        redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URL,
+      });
+      instance.post('/api/oauth/kakao', {
         authorizeCode: code,
         redirectUri: process.env.REACT_APP_KAKAO_REDIRECT_URL,
       });
     } catch (err) {
+      console.log(err);
       if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
         setKakaoError(err.response.data.error);
       }

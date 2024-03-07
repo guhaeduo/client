@@ -12,7 +12,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   async (config) => {
     await tokenReIssue();
-    console.log('인스턴스 실행');
+    console.log('인스턴스 실행', config);
     const {
       user: { accessToken, tokenType },
     } = store.getState();
@@ -30,6 +30,7 @@ instance.interceptors.response.use(
   (response) => {
     // 응답 데이터에서 토큰 값을 추출합니다.
     handleTokenUpdate(response);
+    console.log(response);
     return response;
   },
   (error) => {
@@ -40,13 +41,12 @@ instance.interceptors.response.use(
 );
 
 export const handleTokenUpdate = (response: AxiosResponse) => {
-  const accessToken = response.headers['accesstoken'];
-  const refreshToken = response.headers['refreshtoken'];
-  const tokenType = response.headers['tokentype'] || 'Bearer';
+  const accessToken = response.headers['access-token'];
+  const refreshToken = response.headers['refresh-token'];
+  const tokenType = response.headers['token-type'];
   if (accessToken) store.dispatch(updateToken({ accessToken }));
   if (refreshToken) store.dispatch(updateToken({ refreshToken }));
-  if ((refreshToken || accessToken) && tokenType)
-    store.dispatch(updateToken({ tokenType }));
+  if (tokenType) store.dispatch(updateToken({ tokenType }));
 };
 
 export default instance;

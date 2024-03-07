@@ -31,7 +31,7 @@ export default function useLoginForm() {
             },
           ],
           createdAt: '23-3-21',
-          loginType: 'site',
+          loginType: 'SITE',
         }),
       );
       navHome();

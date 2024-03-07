@@ -17,7 +17,7 @@ interface UserState extends Token {
   email?: string;
   riotAccount?: RiotAccount[];
   createdAt?: string;
-  loginType?: 'site' | 'kakao' | 'discord';
+  loginType?: 'SITE' | 'KAKAO' | 'DISCORD';
 }
 
 const initialState: UserState = {
@@ -30,7 +30,6 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action: PayloadAction<Partial<UserState>>) => {
       const { ...payload } = action.payload;
-      console.log('로그인');
       return {
         ...state,
         ...payload,
