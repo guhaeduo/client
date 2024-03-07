@@ -11,7 +11,6 @@ import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
 import KakaoAuthPage from 'pages/kakaoAuth/KakaoAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
-
 const requiredLoginPathname = ['/profile'];
 const requiredUnLoginPathname = [
   '/accounts/reset-password',
