@@ -50,7 +50,7 @@ export default function DropDown({
   });
 
   // 드롭다운 메뉴의 오픈 여부를 제어하는 함수로, 이벤트 버블링을 제어하고 변경된 오픈값을 전달합니다.
-  const dropDownOpenHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+  const dropDownOpenHandler = () => {
     setIsOpen(!isOpen);
   };
 

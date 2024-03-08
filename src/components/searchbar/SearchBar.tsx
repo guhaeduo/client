@@ -57,7 +57,7 @@ export default function SearchBar({ className, type }: Props) {
   const { register, handleSubmit, setValue } = useForm();
 
   // 검색창을 클릭하였을 때, inputSearchFocus 상태를 업데이트하는 함수입니다.
-  const searchInputFocusHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+  const searchInputFocusHandler = () => {
     setIsSearchInputFocus(true);
     // e.stopPropagation();
     // // 드롭다운이 열려있다면 닫습니다.

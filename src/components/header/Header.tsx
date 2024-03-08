@@ -26,6 +26,7 @@ const SEARCH_BAR_HIDDEN_PATH = [
 ];
 const BUTTONS_HIDDEN_PATH = ['login', 'signup', 'profile', 'auth', 'accounts'];
 const HEADER_HIDDEN_PATH = ['oauth'];
+
 /**
  * 미리 스타일을 지정해둔 헤더입니다.
  */
@@ -52,8 +53,7 @@ export default function Header() {
   const { navHome, navLogin, navFindDuo } = useCustomNavigation();
 
   // userMenu의 open 여부를 제어하는 함수입니다.
-  const userMenuButtonOnClick: MouseEventHandler = (e) => {
-    e.stopPropagation();
+  const userMenuButtonOnClick: MouseEventHandler = () => {
     setIsUserMenuOpen((prevOption) => !prevOption);
   };
 
@@ -63,6 +63,7 @@ export default function Header() {
     setIsOpen: setIsUserMenuOpen,
     ref: userMenuRef,
   });
+
   // userMenu 로그아웃 함수입니다.
   const logoutOnClick = () => {
     dispath(logout());
@@ -89,11 +90,11 @@ export default function Header() {
             </button>
             {user.isLogin ? (
               <div className={cn('userMenuWrapper')}>
-                <div className={cn('userMenuButton')}>
+                <div ref={userMenuRef} className={cn('userMenuButton')}>
                   <BsThreeDots onClick={userMenuButtonOnClick} />
                 </div>
                 {isUserMenuOpen && (
-                  <div ref={userMenuRef} className={cn('userMenuContainer')}>
+                  <div className={cn('userMenuContainer')}>
                     <Link to={LOCATION.PROFILE} className={cn('userMenu')}>
                       <span>프로필</span>
                       <AiOutlineProfile size={17} />

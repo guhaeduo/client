@@ -4,7 +4,6 @@ import LaneSelector from 'components/laneSelector/LaneSelector';
 import DropDown from 'components/dropDown/DropDown';
 import useFindDuo from 'hooks/business/useFindDuo';
 import { QUEUE, TIER } from 'constants/options';
-import { useRef } from 'react';
 const cn = classNames.bind(styles);
 
 export default function FindDuoPage() {
