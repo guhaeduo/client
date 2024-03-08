@@ -30,9 +30,11 @@
       gap: 10px;
       span {
         color: var(--white-100);
-        letter-spacing: 1px;
       }
     }
+  }
+  .email span {
+    letter-spacing: 1px;
   }
   .passwordChange {
     display: flex;

@@ -21,7 +21,7 @@ export default function ProfilePage() {
     useState(false);
   const [isAccountDeleteModalOpen, setIsAccountDeleteModalOpen] =
     useState(false);
-
+  const createdAt: string[] = user.createdAt?.split('-') as string[];
   const logoutHandler = () => {
     dispatch(logout());
     navHome();
@@ -51,7 +51,9 @@ export default function ProfilePage() {
           </div>
           <div className={cn('createdAt')}>
             <h6>가입 날짜</h6>
-            <span>{user.createdAt}</span>
+            <span>
+              {createdAt[0]}년 {createdAt[1]}월 {createdAt[2]}일
+            </span>
           </div>
           {user.loginType === 'SITE' && (
             <div className={cn('passwordChange')}>
