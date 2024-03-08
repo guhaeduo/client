@@ -3,7 +3,7 @@ import styles from './searchBar.module.scss';
 import classNames from 'classnames/bind';
 import DropDown from '../dropDown/DropDown';
 import useOptionSelector from 'hooks/useOptionSelector';
-import COUNTRY from 'constants/country';
+import { COUNTRY } from 'constants/dropDownOptions';
 import { IoIosSearch } from 'react-icons/io';
 import { useForm } from 'react-hook-form';
 import parseSummonerName from 'utils/parseSummonerName';
@@ -28,7 +28,7 @@ type Props = {
 
 export default function SearchBar({ className, type }: Props) {
   // country를 관리하는 옵션상태 및 상태 변경함수 입니다.
-  const [countryOption, countryOnChange] = useOptionSelector({
+  const [countryOption, setCountryOption] = useOptionSelector({
     type: 'singular',
     defaultOptions: ['kr'],
   });
@@ -71,7 +71,7 @@ export default function SearchBar({ className, type }: Props) {
   // 윈도우를 클릭하였을 때 실행시킬 함수로써, 검색기록창과 드롭다운 오픈 상태를 모두 false로 변경합니다.
   const windowClickHandler = () => {
     if (isSearchInputFocus) setIsSearchInputFocus(false);
-    if (isCountryDropDownOpen) setIsCountryDropDownOpen(false);
+    setIsCountryDropDownOpen(false);
   };
 
   useWindowClickEvent(windowClickHandler, [isSearchInputFocus]);
@@ -122,7 +122,7 @@ export default function SearchBar({ className, type }: Props) {
       <div className={cn('searchBar', type)}>
         <DropDown
           option={countryOption}
-          onChange={countryOnChange}
+          onChange={setCountryOption}
           options={COUNTRY}
           type="dark"
           className={cn('searchBarDropDown', {

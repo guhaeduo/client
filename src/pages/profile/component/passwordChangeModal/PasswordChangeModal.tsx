@@ -2,7 +2,7 @@ import { current } from '@reduxjs/toolkit';
 import styles from './passwordChangeModal.module.scss';
 import classNames from 'classnames/bind';
 import Input from 'components/input/Input';
-import usePasswordChangeForm from 'hooks/usePasswordChangeForm';
+import usePasswordChangeForm from 'hooks/form/usePasswordChangeForm';
 import { FaCheck } from 'react-icons/fa6';
 import hasAlphaNumeric from 'utils/hasAlphaNumeric';
 const cn = classNames.bind(styles);

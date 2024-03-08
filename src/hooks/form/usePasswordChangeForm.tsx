@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import useCustomNavigation from './useCustomNavigation';
+import useCustomNavigation from '../useCustomNavigation';
 
 interface FormValue {
   currentPassword: string;

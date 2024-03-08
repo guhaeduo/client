@@ -1,4 +1,4 @@
-const COUNTRY = [
+export const COUNTRY = [
   { key: 'kr', display: 'KR', region: 'kr' },
   { key: 'jp', display: 'JP', region: 'jp1' },
   { key: 'ph', display: 'PH', region: 'ph2' },
@@ -16,5 +16,3 @@ const COUNTRY = [
   { key: 'ru', display: 'RU', region: 'ru' },
   { key: 'tr', display: 'TR', region: 'tr1' },
 ];
-
-export default COUNTRY;

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { login } from 'store/userSlice';
-import useCustomNavigation from './useCustomNavigation';
+import useCustomNavigation from '../useCustomNavigation';
 interface FormValue {
   email: string;
   password: string;
