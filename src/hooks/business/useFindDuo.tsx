@@ -14,7 +14,7 @@ export default function useFindDuo() {
     type: 'singular',
     defaultOptions: ['ALL'],
   });
-
+  const [isRiotVerified, setIsRiotVerified] = useState(false);
   const [isTierDropDownOpen, setIsTierDropDownOpen] = useState(false);
   const [isQueueDropDownOpen, setIsQueueDropDownOpen] = useState(false);
   const isTierDropDownOpenHandler = (isOpen: boolean) => {
@@ -23,14 +23,16 @@ export default function useFindDuo() {
   const isQueueDropDownOpenHandler = (isOpen: boolean) => {
     setIsQueueDropDownOpen(isOpen);
   };
-
+  const isRiotVerifiedHandler = () => {
+    setIsRiotVerified((prevVerified) => !prevVerified);
+  };
   //   const {
   //     data: duoPosts,
   //     isLoading: isduoPostsLoading,
   //     error: duoPostsError,
   //     isFetching: isduoPostsFetching,
   //   } = useQuery<>({
-  //     queryKey: ['duo', tierOptions, queueOptions, laneOptions],
+  //     queryKey: ['duo', tierOptions, queueOptions, laneOptions, isRiotVerified],
   //     queryFn: () => getSummonerGameSummary(puuid, summaryQueueType, region),
   //   });
 
@@ -45,5 +47,7 @@ export default function useFindDuo() {
     isTierDropDownOpenHandler,
     isQueueDropDownOpen,
     isQueueDropDownOpenHandler,
+    isRiotVerified,
+    isRiotVerifiedHandler,
   };
 }

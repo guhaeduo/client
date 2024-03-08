@@ -21,10 +21,11 @@
   --grey-200: #858585;
   --grey-300: #323232;
   --black-100: #3f3f3f;
-  --black-200: #333333;
+  --black-200: #303030;
   --black-300: #232323;
   --light-green: rgb(0, 231, 0);
   --green: rgb(0, 123, 0);
+  --green-hover: #016601;
   --riot-main: #ff1313;
 }
 

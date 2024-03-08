@@ -94,7 +94,10 @@ export default function Header() {
                   <BsThreeDots onClick={userMenuButtonOnClick} />
                 </div>
                 {isUserMenuOpen && (
-                  <div className={cn('userMenuContainer')}>
+                  <div
+                    className={cn('userMenuContainer')}
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
                     <Link to={LOCATION.PROFILE} className={cn('userMenu')}>
                       <span>프로필</span>
                       <AiOutlineProfile size={17} />

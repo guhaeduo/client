@@ -7,14 +7,16 @@
 .menu {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
+
 .findDuoDropDown {
   width: 120px;
   :global {
     .dropDownHeader {
-      padding: 13px;
-      font-size: 13px;
+      height: 36px;
+      padding: 0 11px;
+      font-size: 12px;
     }
     .dropDownContent {
       li {
@@ -22,5 +24,54 @@
         padding: 9px;
       }
     }
+  }
+}
+
+.riotVerifiedBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--grey-300);
+  border-radius: 3px;
+  height: 38px;
+  padding: 0px 10px;
+  svg {
+    font-size: 18px;
+    margin-top: 3px;
+  }
+  span {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  &.verified {
+    svg {
+      color: var(--light-red);
+    }
+  }
+  &:hover {
+    background-color: var(--black-200);
+  }
+}
+
+.writePostBtn {
+  width: 120px;
+  height: 38px;
+  border-radius: 3px;
+  background-color: var(--green);
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  &:hover {
+    background-color: var(--green-hover);
+  }
+  margin-left: auto;
+}
+
+.duoUpdateBtn {
+  margin-right: 15px;
+  width: 100px;
+  button {
+    border-radius: 3px;
+    height: 38px;
   }
 }
