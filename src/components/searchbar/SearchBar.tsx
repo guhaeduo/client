@@ -3,7 +3,7 @@ import styles from './searchBar.module.scss';
 import classNames from 'classnames/bind';
 import DropDown from '../dropDown/DropDown';
 import useOptionSelector from 'hooks/useOptionSelector';
-import { COUNTRY } from 'constants/dropDownOptions';
+import { COUNTRY } from 'constants/options';
 import { IoIosSearch } from 'react-icons/io';
 import { useForm } from 'react-hook-form';
 import parseSummonerName from 'utils/parseSummonerName';
