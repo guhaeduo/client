@@ -5,7 +5,7 @@ import { emailValidation, passwordValidation } from 'utils/validatior';
 import { RiDiscordFill } from 'react-icons/ri';
 import LOCATION from 'constants/location';
 import Input from 'components/input/Input';
-import useLoginForm from 'hooks/useLoginForm';
+import useLoginForm from 'hooks/form/useLoginForm';
 const cn = classNames.bind(styles);
 
 export default function LoginPage() {

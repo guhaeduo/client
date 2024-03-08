@@ -1,4 +1,4 @@
-import { useState, MouseEventHandler } from 'react';
+import { useState, MouseEventHandler, useRef } from 'react';
 import styles from './header.module.scss';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
@@ -7,11 +7,11 @@ import useCustomNavigation from 'hooks/useCustomNavigation';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineProfile } from 'react-icons/ai';
 import { MdLogout } from 'react-icons/md';
-import useWindowClickEvent from 'hooks/useWindowClickEvent';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
 import { logout } from 'store/userSlice';
 import { Link } from 'react-router-dom';
+import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import LOCATION from 'constants/location';
 const cn = classNames.bind(styles);
 
@@ -26,6 +26,7 @@ const SEARCH_BAR_HIDDEN_PATH = [
 ];
 const BUTTONS_HIDDEN_PATH = ['login', 'signup', 'profile', 'auth', 'accounts'];
 const HEADER_HIDDEN_PATH = ['oauth'];
+
 /**
  * 미리 스타일을 지정해둔 헤더입니다.
  */
@@ -47,18 +48,21 @@ export default function Header() {
   // 유저 객체입니다.
   const user = useSelector(selectUser);
   const dispath = useDispatch();
-
-  // 만약 윈도우가 클릭되었고, isUserMenuOpen이 true면 userMenu를 닫습니다.
-  const closeMenu = () => isUserMenuOpen && setIsUserMenuOpen(false);
-  useWindowClickEvent(closeMenu, [isUserMenuOpen]);
+  const userMenuRef = useRef<HTMLDivElement | null>(null);
 
   const { navHome, navLogin, navFindDuo } = useCustomNavigation();
 
   // userMenu의 open 여부를 제어하는 함수입니다.
-  const userMenuButtonOnClick: MouseEventHandler = (e) => {
-    e.stopPropagation();
+  const userMenuButtonOnClick: MouseEventHandler = () => {
     setIsUserMenuOpen((prevOption) => !prevOption);
   };
+
+  // 외부 클릭시 메뉴창 닫기
+  useHandleOutsideClick({
+    isOpen: isUserMenuOpen,
+    setIsOpen: setIsUserMenuOpen,
+    ref: userMenuRef,
+  });
 
   // userMenu 로그아웃 함수입니다.
   const logoutOnClick = () => {
@@ -86,11 +90,14 @@ export default function Header() {
             </button>
             {user.isLogin ? (
               <div className={cn('userMenuWrapper')}>
-                <div className={cn('userMenuButton')}>
+                <div ref={userMenuRef} className={cn('userMenuButton')}>
                   <BsThreeDots onClick={userMenuButtonOnClick} />
                 </div>
                 {isUserMenuOpen && (
-                  <div className={cn('userMenuContainer')}>
+                  <div
+                    className={cn('userMenuContainer')}
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
                     <Link to={LOCATION.PROFILE} className={cn('userMenu')}>
                       <span>프로필</span>
                       <AiOutlineProfile size={17} />

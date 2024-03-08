@@ -3,7 +3,7 @@ import instance from './instance';
 import { ServerAPIErrorResponse, RiotAPIErrorCode } from 'types/Api';
 import { RIOT_API_ERROR_MESSAGE } from 'constants/api';
 import axios, { AxiosResponse } from 'axios';
-import COUNTRY from 'constants/country';
+import { COUNTRY } from 'constants/options';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
 /**

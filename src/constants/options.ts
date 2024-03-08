@@ -1,4 +1,4 @@
-const COUNTRY = [
+export const COUNTRY = [
   { key: 'kr', display: 'KR', region: 'kr' },
   { key: 'jp', display: 'JP', region: 'jp1' },
   { key: 'ph', display: 'PH', region: 'ph2' },
@@ -17,4 +17,23 @@ const COUNTRY = [
   { key: 'tr', display: 'TR', region: 'tr1' },
 ];
 
-export default COUNTRY;
+export const QUEUE = [
+  { key: 'ALL', display: '모든 큐' },
+  { key: 'SOLO', display: '솔로랭크' },
+  { key: 'FREE', display: '자유랭크' },
+  { key: 'NORMAL', display: '일반' },
+  { key: 'ARAM', display: '칼바람' },
+];
+
+export const TIER = [
+  { key: 'ALL', display: '전체 티어' },
+  { key: 'CHALLENGER', display: '챌린저' },
+  { key: 'GRANDMASTER', display: '그랜드마스터' },
+  { key: 'MASTER', display: '마스터' },
+  { key: 'EMERALD', display: '에메랄드' },
+  { key: 'PLATINUM', display: '플레티넘' },
+  { key: 'GOLD', display: '골드' },
+  { key: 'SILVER', display: '실버' },
+  { key: 'BRONZE', display: '브론즈' },
+  { key: 'IRON', display: '아이언' },
+];

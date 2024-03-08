@@ -79,7 +79,7 @@ export default function SummonerMatchListContainer({
             setQueueType={setMatchQueueType}
           />
           <LaneSelector
-            options={matchListLaneOption}
+            option={matchListLaneOption}
             onChange={setMatchListLaneOption}
             size={30}
             disableLane={disableLane}

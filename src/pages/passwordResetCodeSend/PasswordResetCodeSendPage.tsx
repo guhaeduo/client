@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import LOCATION from 'constants/location';
 import Input from 'components/input/Input';
 import { emailValidation } from 'utils/validatior';
-import usePasswordResetCodeSendForm from 'hooks/usePasswordResetCodeSendForm';
+import usePasswordResetCodeSendForm from 'hooks/form/usePasswordResetCodeSendForm';
 import { FaCheckCircle } from 'react-icons/fa';
 import mapKoreanEmailServiceToDomain from 'utils/mapKoreanEmailServiceToDomain';
 const cn = classNames.bind(styles);

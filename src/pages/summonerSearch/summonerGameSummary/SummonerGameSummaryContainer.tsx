@@ -171,7 +171,7 @@ export default function SummonerGameSummaryContainer({
           <h5>라인별 상세정보 / 모스트 챔피언</h5>
           <div className={cn('details')}>
             <LaneSelector
-              options={summaryLaneOption}
+              option={summaryLaneOption}
               onChange={setSummaryLaneOption}
               size={30}
               disableLane={disableLane}
