@@ -26,6 +26,7 @@ export const QUEUE = [
 ];
 
 export const TIER = [
+  { key: 'ALL', display: '전체 티어' },
   { key: 'CHALLENGER', display: '챌린저' },
   { key: 'GRANDMASTER', display: '그랜드마스터' },
   { key: 'MASTER', display: '마스터' },

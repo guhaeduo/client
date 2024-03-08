@@ -1,22 +1,28 @@
 import useOptionSelector from 'hooks/useOptionSelector';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 export default function useFindDuo() {
-  const [tierOptions, setTierOptions] = useOptionSelector({
+  const [tierOption, setTierOption] = useOptionSelector({
     type: 'singular',
     defaultOptions: ['ALL'],
   });
-  const [queueOptions, setQueueOptions] = useOptionSelector({
+  const [queueOption, setQueueOption] = useOptionSelector({
     type: 'singular',
     defaultOptions: ['ALL'],
   });
-  const [laneOptions, setLaneOptions] = useOptionSelector({
+  const [laneOption, setLaneOption] = useOptionSelector({
     type: 'singular',
     defaultOptions: ['ALL'],
   });
+
   const [isTierDropDownOpen, setIsTierDropDownOpen] = useState(false);
   const [isQueueDropDownOpen, setIsQueueDropDownOpen] = useState(false);
+  const isTierDropDownOpenHandler = (isOpen: boolean) => {
+    setIsTierDropDownOpen(isOpen);
+  };
+  const isQueueDropDownOpenHandler = (isOpen: boolean) => {
+    setIsQueueDropDownOpen(isOpen);
+  };
 
   //   const {
   //     data: duoPosts,
@@ -29,15 +35,15 @@ export default function useFindDuo() {
   //   });
 
   return {
-    tierOptions,
-    setTierOptions,
-    queueOptions,
-    setQueueOptions,
-    laneOptions,
-    setLaneOptions,
+    tierOption,
+    setTierOption,
+    queueOption,
+    setQueueOption,
+    laneOption,
+    setLaneOption,
     isTierDropDownOpen,
-    setIsTierDropDownOpen,
+    isTierDropDownOpenHandler,
     isQueueDropDownOpen,
-    setIsQueueDropDownOpen,
+    isQueueDropDownOpenHandler,
   };
 }

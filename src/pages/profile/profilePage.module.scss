@@ -24,7 +24,7 @@
   }
 
   .myAccount {
-    & > div:not(:last-child) {
+    & > div {
       display: flex;
       flex-direction: column;
       gap: 10px;

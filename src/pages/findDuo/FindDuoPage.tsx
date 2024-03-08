@@ -3,21 +3,24 @@ import classNames from 'classnames/bind';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import DropDown from 'components/dropDown/DropDown';
 import useFindDuo from 'hooks/business/useFindDuo';
+import { QUEUE, TIER } from 'constants/options';
+import { useRef } from 'react';
 const cn = classNames.bind(styles);
 
 export default function FindDuoPage() {
   const {
-    tierOptions,
-    setTierOptions,
-    queueOptions,
-    setQueueOptions,
-    laneOptions,
-    setLaneOptions,
+    tierOption,
+    setTierOption,
+    queueOption,
+    setQueueOption,
+    laneOption,
+    setLaneOption,
     isTierDropDownOpen,
-    setIsTierDropDownOpen,
+    isTierDropDownOpenHandler,
     isQueueDropDownOpen,
-    setIsQueueDropDownOpen,
+    isQueueDropDownOpenHandler,
   } = useFindDuo();
+
   return (
     <div>
       <div
@@ -27,10 +30,30 @@ export default function FindDuoPage() {
         }}
       />
       <div className={cn('main', 'container')}>
-        <div className={cn('Menu')}>
-          <DropDown />
-          <DropDown />
-          <LaneSelector />
+        <div className={cn('menu')}>
+          <DropDown
+            options={QUEUE}
+            option={queueOption}
+            onChange={setQueueOption}
+            isOpen={isQueueDropDownOpen}
+            setIsOpen={isQueueDropDownOpenHandler}
+            type="border"
+            className={cn('findDuoDropDown')}
+          />
+          <DropDown
+            options={TIER}
+            option={tierOption}
+            onChange={setTierOption}
+            isOpen={isTierDropDownOpen}
+            setIsOpen={isTierDropDownOpenHandler}
+            type="border"
+            className={cn('findDuoDropDown')}
+          />
+          <LaneSelector
+            option={laneOption}
+            onChange={setLaneOption}
+            size={33}
+          />
         </div>
       </div>
     </div>

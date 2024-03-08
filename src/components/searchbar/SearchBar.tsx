@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './searchBar.module.scss';
 import classNames from 'classnames/bind';
 import DropDown from '../dropDown/DropDown';
@@ -10,7 +10,7 @@ import parseSummonerName from 'utils/parseSummonerName';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import SearchHistoryContainer from './SearchHistoryContainer';
 import getNewRecentSearchHistory from 'utils/getNewRecentSearchHistory';
-import useWindowClickEvent from 'hooks/useWindowClickEvent';
+import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import { useLocation } from 'react-router-dom';
 import { SearchHistory } from 'types/summoner';
 const cn = classNames.bind(styles);
@@ -32,6 +32,9 @@ export default function SearchBar({ className, type }: Props) {
     type: 'singular',
     defaultOptions: ['kr'],
   });
+
+  // searchHistoryRef 입니다.
+  const searchHistoryRef = useRef<HTMLFormElement | null>(null);
 
   // pathname 입니다.
   const { pathname } = useLocation();
@@ -56,9 +59,9 @@ export default function SearchBar({ className, type }: Props) {
   // 검색창을 클릭하였을 때, inputSearchFocus 상태를 업데이트하는 함수입니다.
   const searchInputFocusHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsSearchInputFocus(true);
-    e.stopPropagation();
-    // 드롭다운이 열려있다면 닫습니다.
-    if (isCountryDropDownOpen) setIsCountryDropDownOpen(false);
+    // e.stopPropagation();
+    // // 드롭다운이 열려있다면 닫습니다.
+    // if (isCountryDropDownOpen) setIsCountryDropDownOpen(false);
   };
 
   // 드롭다운 오픈 여부를 제어하는 함수입니다.
@@ -68,19 +71,17 @@ export default function SearchBar({ className, type }: Props) {
     if (isSearchInputFocus) setIsSearchInputFocus(false);
   };
 
-  // 윈도우를 클릭하였을 때 실행시킬 함수로써, 검색기록창과 드롭다운 오픈 상태를 모두 false로 변경합니다.
-  const windowClickHandler = () => {
-    if (isSearchInputFocus) setIsSearchInputFocus(false);
-    setIsCountryDropDownOpen(false);
-  };
-
-  useWindowClickEvent(windowClickHandler, [isSearchInputFocus]);
-
   useEffect(() => {
     // pathname이 변경된다면, searchInput의 값을 초기화 하고 InputFocus를 false로 변경합니다.
     setValue('summonerName', '');
     setIsSearchInputFocus(false);
   }, [pathname]);
+
+  useHandleOutsideClick({
+    isOpen: isSearchInputFocus,
+    setIsOpen: setIsSearchInputFocus,
+    ref: searchHistoryRef,
+  });
 
   // 소환사 이름, 태그, 국가를 입력받아 소환사 검색 페이지 이동 및 최근 검색 기록을 업데이트 하는 함수입니다.
   const summonerSearch = (name: string, tag: string, country: string) => {
@@ -132,7 +133,7 @@ export default function SearchBar({ className, type }: Props) {
           isOpen={isCountryDropDownOpen}
           setIsOpen={modalOpenHandler}
         />
-        <form onSubmit={onSearchSubmitHandler}>
+        <form ref={searchHistoryRef} onSubmit={onSearchSubmitHandler}>
           <input
             type="text"
             className={cn('searchInput')}

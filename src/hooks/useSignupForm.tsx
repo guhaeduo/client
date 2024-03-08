@@ -34,7 +34,7 @@ export default function useSignupForm() {
 
   const submitHandler = handleSubmit((data) => {
     const { email, password } = getValues();
-    console.log({ email, password, data }, 'hello');
+    { email, password, data }, 'hello');
   });
 
   return {

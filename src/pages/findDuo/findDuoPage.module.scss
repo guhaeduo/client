@@ -3,3 +3,24 @@
   height: 240px;
   background: no-repeat center / cover;
 }
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.findDuoDropDown {
+  width: 120px;
+  :global {
+    .dropDownHeader {
+      padding: 13px;
+      font-size: 13px;
+    }
+    .dropDownContent {
+      li {
+        font-size: 12px;
+        padding: 9px;
+      }
+    }
+  }
+}
