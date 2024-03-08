@@ -3,7 +3,7 @@ import styles from './summonerInfoContainer.module.scss';
 import classNames from 'classnames/bind';
 import { SummonerInfo, SummonerRankInfo } from 'types/summoner';
 import URL from 'constants/url';
-import calculateWinRate from 'utils/calculateWinRate';
+import { calculateWinRate } from 'utils/calculate';
 const cn = classNames.bind(styles);
 
 type Props = {

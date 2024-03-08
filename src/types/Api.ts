@@ -14,4 +14,5 @@ export type RiotAPIErrorCode =
 export interface ServerAPIErrorResponse {
   error: string;
   status: number;
+  message: string;
 }

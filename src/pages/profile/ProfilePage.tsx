@@ -49,6 +49,10 @@ export default function ProfilePage() {
             <h6>이메일</h6>
             <span>{user.email}</span>
           </div>
+          <div className={cn('createdAt')}>
+            <h6>가입 날짜</h6>
+            <span>{user.createdAt}</span>
+          </div>
           {user.loginType === 'SITE' && (
             <div className={cn('passwordChange')}>
               <h6>비밀번호 변경</h6>

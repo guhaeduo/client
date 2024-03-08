@@ -9,7 +9,7 @@ import { Lane } from 'types/summoner';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
-import calculateGrade from 'utils/calculateGrade';
+import { calculateGrade } from 'utils/calculate';
 import { useNavigate } from 'react-router-dom';
 const cn = classNames.bind(styles);
 
