@@ -122,7 +122,7 @@ export default function SearchBar({ className, type }: Props) {
     <div className={cn(className, 'searchBarWrapper')}>
       <div className={cn('searchBar', type)}>
         <DropDown
-          option={countryOption}
+          currentOptionKey={countryOption}
           onChange={setCountryOption}
           options={COUNTRY}
           type="dark"

@@ -43,7 +43,7 @@ export default function FindDuoPage() {
           </LoadingButton>
           <DropDown
             options={QUEUE}
-            option={queueOption}
+            currentOptionKey={queueOption}
             onChange={setQueueOption}
             isOpen={isQueueDropDownOpen}
             setIsOpen={isQueueDropDownOpenHandler}
@@ -52,7 +52,7 @@ export default function FindDuoPage() {
           />
           <DropDown
             options={TIER}
-            option={tierOption}
+            currentOptionKey={tierOption}
             onChange={setTierOption}
             isOpen={isTierDropDownOpen}
             setIsOpen={isTierDropDownOpenHandler}

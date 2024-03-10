@@ -12,11 +12,13 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config) => {
+    // 토큰 검사를 수행합니다.
     await tokenReIssue();
     const {
       user: { accessToken, tokenType },
     } = store.getState();
     if (accessToken) {
+      // 만약 accessToken이 존재한다면 headers에 싣어서 전송합니다.
       config.headers.Authorization = `${tokenType} ${accessToken}`;
     }
     return config;
