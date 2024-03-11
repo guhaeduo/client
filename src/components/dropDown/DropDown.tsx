@@ -6,7 +6,7 @@ import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 const cn = classNames.bind(styles);
 
 type Props = {
-  options: { key: string; display: string }[];
+  options: { key: string; display: string; icon?: string }[];
   onChange: (option: string) => void;
   className?: string;
   currentOptionKey: string;
@@ -17,7 +17,7 @@ type Props = {
 
 /**
  * 미리 스타일을 지정해둔 드롭다운 메뉴입니다.
- * @param {{ key: string; display: string }[]} options - 드롭다운 메뉴의 옵션 리스트 값입니다.
+ * @param {{ key: string; display: string; icon?: string  }[]} options - 드롭다운 메뉴의 옵션 리스트 값입니다.
  * @param {(option: string) => void} onChange - 드롭다운 메뉴의 항목을 선택했을 때 실행되는 함수 입니다.
  * @param {string?} className - 드롭다운 메뉴의 클래스입니다.
  * @param {string[]} currentOptionKey - 드롭다운 메뉴의 현재 옵션 값입니다.

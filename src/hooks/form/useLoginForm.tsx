@@ -23,7 +23,7 @@ export default function useLoginForm() {
       dispatch(
         login({
           email: 'example@example.com',
-          riotAccount: [
+          riotAccountList: [
             {
               country: 'KR',
               name: 'test',
