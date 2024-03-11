@@ -9,7 +9,7 @@ type Props = {
   options: { key: string; display: string }[];
   onChange: (option: string) => void;
   className?: string;
-  currentOptionKey: string[];
+  currentOptionKey: string;
   type: 'dark' | 'border';
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -56,7 +56,7 @@ export default function DropDown({
 
   // 현재 옵션의 display값을 빼옵니다.
   const currentOption = options.find(
-    (el) => el.key === currentOptionKey[0],
+    (el) => el.key === currentOptionKey,
   )?.display;
   return (
     <div ref={dropMenuRef} className={cn('dropDownContainer', className, type)}>

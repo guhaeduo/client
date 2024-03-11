@@ -1,18 +1,15 @@
-import useOptionSelector from 'hooks/useOptionSelector';
+import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useState } from 'react';
 
 export default function useFindDuo() {
-  const [tierOption, setTierOption] = useOptionSelector({
-    type: 'singular',
-    defaultOptions: ['ALL'],
+  const [tierOption, setTierOption] = useSignularOptionSelector({
+    defaultOption: 'ALL',
   });
-  const [queueOption, setQueueOption] = useOptionSelector({
-    type: 'singular',
-    defaultOptions: ['ALL'],
+  const [queueOption, setQueueOption] = useSignularOptionSelector({
+    defaultOption: 'ALL',
   });
-  const [laneOption, setLaneOption] = useOptionSelector({
-    type: 'singular',
-    defaultOptions: ['ALL'],
+  const [laneOption, setLaneOption] = useSignularOptionSelector({
+    defaultOption: 'ALL',
   });
   const [isRiotVerified, setIsRiotVerified] = useState(false);
   const [isTierDropDownOpen, setIsTierDropDownOpen] = useState(false);

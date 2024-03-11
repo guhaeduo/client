@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import styles from './searchBar.module.scss';
 import classNames from 'classnames/bind';
 import DropDown from '../dropDown/DropDown';
-import useOptionSelector from 'hooks/useOptionSelector';
+import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { COUNTRY } from 'constants/options';
 import { IoIosSearch } from 'react-icons/io';
 import { useForm } from 'react-hook-form';
@@ -28,9 +28,8 @@ type Props = {
 
 export default function SearchBar({ className, type }: Props) {
   // country를 관리하는 옵션상태 및 상태 변경함수 입니다.
-  const [countryOption, setCountryOption] = useOptionSelector({
-    type: 'singular',
-    defaultOptions: ['kr'],
+  const [countryOption, setCountryOption] = useSignularOptionSelector({
+    defaultOption: 'kr',
   });
 
   // searchHistoryRef 입니다.

@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
 import QueueTypeTab from '../components/QueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
-import useOptionSelector from 'hooks/useOptionSelector';
+import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import { useEffect, useState } from 'react';
 import { SummaryChampionStats } from 'types/summoner';
@@ -35,12 +35,11 @@ export default function SummonerGameSummaryContainer({
   setSummaryQueueType,
 }: Props) {
   const { info, lane } = summonerGameSummary;
-  const [summaryLaneOption, setSummaryLaneOption] = useOptionSelector({
-    type: 'singular',
-    defaultOptions: ['ALL'],
+  const [summaryLaneOption, setSummaryLaneOption] = useSignularOptionSelector({
+    defaultOption: 'ALL',
   });
   const { pathname } = useLocation();
-  const detailsLane = summaryLaneOption[0] as Lane;
+  const detailsLane = summaryLaneOption as Lane;
   const detailData = lane[detailsLane];
   const laneKey = Object.keys(lane) as Lane[];
   const disableLane = laneKey.filter(
