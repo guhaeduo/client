@@ -26,5 +26,14 @@ type Props = {
 export default function PostModal({ postData }: Props) {
   const user = useSelector(selectUser);
 
-  return <div>글 작성</div>;
+  return (
+    <div>
+      <div>
+        <div></div>
+        <div></div>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+  );
 }
