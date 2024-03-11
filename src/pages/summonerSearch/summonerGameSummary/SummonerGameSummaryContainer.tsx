@@ -76,9 +76,7 @@ export default function SummonerGameSummaryContainer({
     return isAllZero ? [1] : data;
   };
   const gameCntChartColor = (lane: Lane) =>
-    summaryLaneOption[0] === lane || summaryLaneOption[0] === 'ALL'
-      ? '#4c97ff'
-      : '#2f2f2f';
+    detailsLane === lane || detailsLane === 'ALL' ? '#4c97ff' : '#2f2f2f';
 
   const detailGameCntData = {
     labels: [],
@@ -204,7 +202,7 @@ export default function SummonerGameSummaryContainer({
                       height={200}
                     />
                     <div className={cn('chartDetail')}>
-                      <span>{summaryLaneOption[0]}</span>
+                      <span>{summaryLaneOption}</span>
                       <span>{detailData.cntGame} 게임</span>
                     </div>
                   </div>

@@ -41,7 +41,7 @@ export default function SummonerMatchListContainer({
       defaultOption: 'ALL',
     });
   const navigate = useNavigate();
-  const matchListLane = matchListLaneOption[0] as Lane;
+  const matchListLane = matchListLaneOption as Lane;
   const matchListData =
     matchListLane === 'ALL'
       ? summonerMatchData
