@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface RiotAccount {
+export interface RiotAccount {
   country: string;
   name: string;
   tag: string;
@@ -15,7 +15,7 @@ interface Token {
 interface UserState extends Token {
   isLogin: boolean;
   email?: string;
-  riotAccount?: RiotAccount[];
+  riotAccountList?: RiotAccount[];
   createdAt?: string;
   loginType?: 'SITE' | 'KAKAO' | 'DISCORD';
 }

@@ -37,3 +37,16 @@ export const TIER = [
   { key: 'BRONZE', display: '브론즈' },
   { key: 'IRON', display: '아이언' },
 ];
+
+export const CHAMPION = () => {
+  const localChampionData = JSON.parse(
+    localStorage.getItem('championData') as string,
+  ).championData;
+  const keys = Object.keys(localChampionData);
+
+  return keys.map((key) => ({
+    key,
+    display: localChampionData[key].name,
+    icon: localChampionData[key].icon,
+  }));
+};
