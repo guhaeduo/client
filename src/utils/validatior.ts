@@ -21,12 +21,12 @@ const passwordValidation = {
 const verificationCodeValidation = {
   required: '인증번호를 입력하세요.',
   minLength: {
-    value: 4,
-    message: '인증번호는 4글자여야 합니다.',
+    value: 6,
+    message: '인증번호는 6글자여야 합니다.',
   },
   maxLength: {
-    value: 4,
-    message: '인증번호는 4글자여야 합니다.',
+    value: 6,
+    message: '인증번호는 6글자여야 합니다.',
   },
 };
 

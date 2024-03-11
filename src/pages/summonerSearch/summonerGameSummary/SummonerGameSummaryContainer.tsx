@@ -3,9 +3,9 @@ import styles from './summonerGameSummaryContainer.module.scss';
 import { Lane, SummonerGameSummary } from 'types/summoner';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
-import QueueTypeTab from '../component/QueueTypeTab';
+import QueueTypeTab from '../components/QueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
-import useOptionSelector from 'hooks/useOptionSelector';
+import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import { useEffect, useState } from 'react';
 import { SummaryChampionStats } from 'types/summoner';
@@ -35,12 +35,11 @@ export default function SummonerGameSummaryContainer({
   setSummaryQueueType,
 }: Props) {
   const { info, lane } = summonerGameSummary;
-  const [summaryLaneOption, setSummaryLaneOption] = useOptionSelector({
-    type: 'singular',
-    defaultOptions: ['ALL'],
+  const [summaryLaneOption, setSummaryLaneOption] = useSignularOptionSelector({
+    defaultOption: 'ALL',
   });
   const { pathname } = useLocation();
-  const detailsLane = summaryLaneOption[0] as Lane;
+  const detailsLane = summaryLaneOption as Lane;
   const detailData = lane[detailsLane];
   const laneKey = Object.keys(lane) as Lane[];
   const disableLane = laneKey.filter(
@@ -77,9 +76,7 @@ export default function SummonerGameSummaryContainer({
     return isAllZero ? [1] : data;
   };
   const gameCntChartColor = (lane: Lane) =>
-    summaryLaneOption[0] === lane || summaryLaneOption[0] === 'ALL'
-      ? '#4c97ff'
-      : '#2f2f2f';
+    detailsLane === lane || detailsLane === 'ALL' ? '#4c97ff' : '#2f2f2f';
 
   const detailGameCntData = {
     labels: [],
@@ -205,7 +202,7 @@ export default function SummonerGameSummaryContainer({
                       height={200}
                     />
                     <div className={cn('chartDetail')}>
-                      <span>{summaryLaneOption[0]}</span>
+                      <span>{summaryLaneOption}</span>
                       <span>{detailData.cntGame} 게임</span>
                     </div>
                   </div>

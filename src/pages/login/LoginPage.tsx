@@ -30,14 +30,12 @@ export default function LoginPage() {
               className={cn('idInput')}
               type="text"
               error={errors.email}
-              placeholder="이메일을 입력해주세요."
             />
             <Input
               {...register('password', passwordValidation)}
               label="비밀번호"
               type="password"
               error={errors.password}
-              placeholder="영문+숫자 형식의 비밀번호를 입력해주세요."
             />
             <span
               className={cn('forgotPasswordBtn')}

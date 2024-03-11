@@ -79,18 +79,13 @@ button {
 
 input {
   background-color: transparent;
-  border: 1px solid;
-  border-radius: 2px;
+  border: none;
   padding: 3px 6px;
   outline: none;
-  border-color: rgb(170, 170, 170);
   transition: 0.1s;
   letter-spacing: 1px;
+  border-radius: 0;
   font-size: 1rem;
-  &:focus {
-    opacity: 1;
-    border-color: white;
-  }
 }
 
 .error-message {
@@ -98,11 +93,11 @@ input {
   color: red;
 }
 
-label {
+/* label {
   position: absolute;
   left: -9999%;
   top: -9999%;
-}
+} */
 
 .tooltip {
   background-color: var(--grey-900) !important;
