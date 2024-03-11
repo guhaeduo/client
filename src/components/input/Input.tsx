@@ -35,14 +35,15 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   return (
     <div className={cn('inputWrapper', { error }, className)}>
-      <label htmlFor={name}>{label}</label>
       <input
         name={name}
         ref={ref}
         {...rest}
+        placeholder=""
         className={cn({ password: isPassword })}
         type={isPassword && visiblePassword ? 'text' : type}
       />
+      <label htmlFor={name}>{label}</label>
       {isPassword && (
         <span
           className={cn('visiblePasswordBtn')}

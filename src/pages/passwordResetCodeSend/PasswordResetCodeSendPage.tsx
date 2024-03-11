@@ -44,7 +44,6 @@ export default function PasswordResetCodeSendPage() {
                 type="text"
                 label="이메일"
                 error={errors.email}
-                placeholder="이메일을 입력해주세요."
               />
               <button className={cn({ isValid })} type="submit">
                 비밀번호 재설정하기

@@ -39,7 +39,6 @@ export default function SignupPage() {
                   type="text"
                   label="이메일"
                   error={errors.email}
-                  placeholder="이메일을 입력해주세요."
                 />
                 <button
                   type="button"
@@ -61,7 +60,7 @@ export default function SignupPage() {
               <Input
                 {...register('verificationCode', verificationCodeValidation)}
                 type="text"
-                label="인증번호 확인"
+                label="인증번호"
                 error={errors.verificationCode}
                 disabled={!isVerificationCodeSent}
               />
@@ -70,7 +69,6 @@ export default function SignupPage() {
                 type="password"
                 label="비밀번호"
                 error={errors.password}
-                placeholder="영문+숫자 형식의 비밀번호를 입력해주세요."
               />
               <Input
                 {...register('passwordCheck', {
@@ -81,7 +79,6 @@ export default function SignupPage() {
                 type="password"
                 label="비밀번호 재확인"
                 error={errors.passwordCheck}
-                placeholder="비밀번호 재확인"
               />
               <button className={cn('signupBtn', { isValid })} type="submit">
                 회원가입
