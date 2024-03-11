@@ -3,7 +3,7 @@ import styles from './summonerGameSummaryContainer.module.scss';
 import { Lane, SummonerGameSummary } from 'types/summoner';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
-import QueueTypeTab from '../component/QueueTypeTab';
+import QueueTypeTab from '../components/QueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
 import useOptionSelector from 'hooks/useOptionSelector';
 import LaneSelector from 'components/laneSelector/LaneSelector';

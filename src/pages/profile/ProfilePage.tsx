@@ -8,8 +8,8 @@ import { FaPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/userSlice';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import AccountDeleteModal from './component/accountDeleteModal/AccountDeleteModal';
-import PasswordChangeModal from './component/passwordChangeModal/PasswordChangeModal';
+import AccountDeleteModal from './components/accountDeleteModal/AccountDeleteModal';
+import PasswordChangeModal from './components/passwordChangeModal/PasswordChangeModal';
 import Modal from 'components/modal/Modal';
 const cn = classNames.bind(styles);
 

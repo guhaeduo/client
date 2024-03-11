@@ -1,7 +1,7 @@
 import styles from './summonerMatchListContainer.module.scss';
 import classNames from 'classnames/bind';
 import { MatchData, MatchDataQueueType } from 'types/summoner';
-import QueueTypeTab from '../component/QueueTypeTab';
+import QueueTypeTab from '../components/QueueTypeTab';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import useOptionSelector from 'hooks/useOptionSelector';
 import MatchCard from './matchCard/MatchCard';
