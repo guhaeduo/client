@@ -1,0 +1,35 @@
+.toggleWrapper {
+  label {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  .toggle {
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    background-color: var(--black-100);
+    border-radius: 50px;
+    position: relative;
+    transition: 0.2s;
+    div {
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      position: absolute;
+      top: 2.5px;
+      left: 2.5px;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    &.checked {
+      background-color: var(--green);
+      div {
+        left: 100%;
+        transform: translateX(calc(-100% + -2.5px));
+      }
+    }
+  }
+}
