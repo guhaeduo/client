@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './postModal.module.scss';
 import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,8 @@ import LaneSelector from 'components/laneSelector/LaneSelector';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { QUEUE, CHAMPION } from 'constants/options';
+import { IoAlertCircleOutline } from 'react-icons/io5';
+
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -79,35 +81,38 @@ export default function PostModal({ postData }: Props) {
         <div>
           {' '}
           {riotAccountOptions ? (
-            <DropDown
-              options={riotAccountOptions}
-              currentOptionKey={riotAccount}
-              onChange={setRiotAccount}
-              type="dark"
-              isOpen={isRiotAccountOpen}
-              setIsOpen={setIsRiotAccountOpen}
-            />
+            <>
+              <label>게임 계정</label>
+              <DropDown
+                options={riotAccountOptions}
+                currentOptionKey={riotAccount}
+                onChange={setRiotAccount}
+                type="dark"
+                isOpen={isRiotAccountOpen}
+                setIsOpen={setIsRiotAccountOpen}
+                className={cn('dropDown')}
+              />
+            </>
           ) : (
             <Input
               type="text"
               label="소환사 이름"
               {...register('riotAccount')}
             />
-          )}{' '}
+          )}
         </div>
         <div>
-          <Toggle
-            label="마이크 사용"
-            isChecked={isMicOn}
-            setIsChecked={setIsMicOn}
-          />
+          <label>마이크 사용</label>
+          <Toggle isChecked={isMicOn} setIsChecked={setIsMicOn} />
         </div>
       </div>
       <div>
         <div>
-          <LaneSelector size={20} option={mostLane} onChange={setMostLane} />
+          <label>선호 라인</label>
+          <LaneSelector size={28} option={mostLane} onChange={setMostLane} />
         </div>
         <div>
+          <label>게임 타입</label>
           <DropDown
             options={QUEUE}
             type="dark"
@@ -115,14 +120,17 @@ export default function PostModal({ postData }: Props) {
             onChange={setQueueType}
             isOpen={isQueueTypeOpen}
             setIsOpen={setIsQueueTypeOpen}
+            className={cn('dropDown')}
           />
         </div>
       </div>
       <div>
         <div>
-          <LaneSelector size={20} option={subLane} onChange={setSubLane} />
+          <label>서브 라인</label>
+          <LaneSelector size={28} option={subLane} onChange={setSubLane} />
         </div>
         <div>
+          <label>메인 챔피언</label>
           <DropDown
             options={championOptions}
             currentOptionKey={mainChampion}
@@ -130,18 +138,21 @@ export default function PostModal({ postData }: Props) {
             type="dark"
             isOpen={isMainChampionOpen}
             setIsOpen={setIsMainChampionOpen}
+            className={cn('dropDown')}
           />
         </div>
       </div>
       <div>
         <div>
+          <label>찾는 라인</label>
           <LaneSelector
-            size={20}
+            size={28}
             option={selectLane}
             onChange={setSelectLane}
           />
         </div>
         <div>
+          <label>서브 챔피언</label>
           <DropDown
             options={championOptions}
             currentOptionKey={subChampion}
@@ -149,16 +160,30 @@ export default function PostModal({ postData }: Props) {
             type="dark"
             isOpen={isSubChampionOpen}
             setIsOpen={setIsSubChampionOpen}
+            className={cn('dropDown')}
           />
         </div>
       </div>
       <div>
-        <Input type="text" label="메모" {...register('memo')} />
+        <Input
+          type="text"
+          label="메모"
+          maxLength={100}
+          {...register('memo')}
+          className={cn('memo')}
+        />
       </div>
-      <p></p>
-      <div className={cn('buttons')}>
-        <button>취소</button>
-        <button>등록</button>
+      <div className={cn('footer')}>
+        <p>
+          <IoAlertCircleOutline />
+          타인에 대한 모욕, 명예훼손, 성희롱 등의 행위는 법적 처벌을 받을 수
+          있습니다.
+        </p>
+        <div className={cn('buttons')}>
+          {' '}
+          <button>취소</button>
+          <button>등록</button>
+        </div>
       </div>
     </div>
   );

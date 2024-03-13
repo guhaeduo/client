@@ -15,6 +15,7 @@ export default function useHandleOutsideClick<T extends HTMLElement>({
     const handleOutsideClose = (e: MouseEvent) => {
       if (isOpen && ref.current && !ref.current.contains(e.target as Node)) {
         setIsOpen(false);
+        console.log('외부 클릭됨');
       }
     };
     document.addEventListener('click', handleOutsideClose);

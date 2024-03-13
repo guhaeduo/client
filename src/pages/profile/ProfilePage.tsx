@@ -38,7 +38,6 @@ export default function ProfilePage() {
       <Modal
         isOpen={isPasswordChangeModalOpen}
         setIsOpen={setIsPasswordChangeModalOpen}
-        closeButton
       >
         <PasswordChangeModal />
       </Modal>

@@ -1,13 +1,12 @@
-import React, { ReactNode } from 'react';
-import { IoClose } from 'react-icons/io5';
+import React, { ReactNode, useRef } from 'react';
 import styles from './modal.module.scss';
 import classNames from 'classnames/bind';
 import { createPortal } from 'react-dom';
 const cn = classNames.bind(styles);
 import { useEffect } from 'react';
+import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 
 type Props = {
-  closeButton?: boolean;
   children: ReactNode;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,12 +20,9 @@ type Props = {
  * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsOpen - 모달의 오픈 여부를 제어하는 함수입니다.
  */
 
-export default function Modal({
-  closeButton = false,
-  children,
-  isOpen,
-  setIsOpen,
-}: Props) {
+export default function Modal({ children, isOpen, setIsOpen }: Props) {
+  const modalRef = useRef(null);
+  useHandleOutsideClick({ isOpen, setIsOpen, ref: modalRef });
   useEffect(() => {
     // 모달이 열림 상태면 스크롤을 제한합니다.
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
@@ -35,20 +31,10 @@ export default function Modal({
   // 모달이 닫힘 상태면 null을 리턴합니다.
   if (!isOpen) return null;
 
-  // 모달을 닫는 함수입니다.
-  const modalCloseHandler = () => {
-    setIsOpen(false);
-  };
-
   // portal을 활용하여 모달을 root단계에 위치시킨다.
   return createPortal(
-    <div onClick={modalCloseHandler} className={cn('modalBackground')}>
-      <div onClick={(e) => e.stopPropagation()} className={cn('modal')}>
-        {closeButton && (
-          <button onClick={modalCloseHandler} className={cn('closeButton')}>
-            <IoClose />
-          </button>
-        )}
+    <div className={cn('modalBackground')}>
+      <div ref={modalRef} className={cn('modal')}>
         {children}
       </div>
     </div>,
