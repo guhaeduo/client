@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './postModal.module.scss';
 import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import LaneSelector from 'components/laneSelector/LaneSelector';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { QUEUE, CHAMPION } from 'constants/options';
+import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -86,6 +87,7 @@ export default function PostModal({ postData }: Props) {
               type="dark"
               isOpen={isRiotAccountOpen}
               setIsOpen={setIsRiotAccountOpen}
+              className={cn('dropDown')}
             />
           ) : (
             <Input
@@ -115,6 +117,7 @@ export default function PostModal({ postData }: Props) {
             onChange={setQueueType}
             isOpen={isQueueTypeOpen}
             setIsOpen={setIsQueueTypeOpen}
+            className={cn('dropDown')}
           />
         </div>
       </div>
@@ -130,6 +133,7 @@ export default function PostModal({ postData }: Props) {
             type="dark"
             isOpen={isMainChampionOpen}
             setIsOpen={setIsMainChampionOpen}
+            className={cn('dropDown')}
           />
         </div>
       </div>
@@ -149,6 +153,7 @@ export default function PostModal({ postData }: Props) {
             type="dark"
             isOpen={isSubChampionOpen}
             setIsOpen={setIsSubChampionOpen}
+            className={cn('dropDown')}
           />
         </div>
       </div>

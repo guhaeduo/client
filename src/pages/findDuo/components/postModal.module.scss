@@ -9,4 +9,16 @@
       flex: 1;
     }
   }
+  .dropDown {
+    width: 100%;
+    :global {
+      .dropDownHeader {
+        padding: 10px;
+        background-color: grey;
+      }
+      .dropDownContent {
+        z-index: 10;
+      }
+    }
+  }
 }
