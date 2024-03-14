@@ -11,6 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
 import SocialLoginAuthPage from 'pages/socialLoginAuth/SocialLoginAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
+import Footer from 'components/footer/Footer';
 const requiredLoginPathname = ['/profile'];
 const requiredUnLoginPathname = [
   '/accounts/reset-password',
@@ -66,24 +67,27 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        {pages.map((page) => (
-          <Route
-            path={page.pathname}
-            element={
-              <ProtectedRoute
-                requiredLogin={requiredLoginPathname.includes(page.pathname)}
-                requiredUnLogin={requiredUnLoginPathname.includes(
-                  page.pathname,
-                )}
-              >
-                {page.element}
-              </ProtectedRoute>
-            }
-            key={page.pathname}
-          />
-        ))}
-      </Routes>
+      <main>
+        <Routes>
+          {pages.map((page) => (
+            <Route
+              path={page.pathname}
+              element={
+                <ProtectedRoute
+                  requiredLogin={requiredLoginPathname.includes(page.pathname)}
+                  requiredUnLogin={requiredUnLoginPathname.includes(
+                    page.pathname,
+                  )}
+                >
+                  {page.element}
+                </ProtectedRoute>
+              }
+              key={page.pathname}
+            />
+          ))}
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 }

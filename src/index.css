@@ -42,9 +42,11 @@ button,
 a {
   color: white;
 }
+
 a {
   text-decoration: none;
 }
+
 body {
   font-family: 'Roboto', 'Noto Sans KR' !important;
   background-color: var(--back-color);
@@ -88,16 +90,10 @@ input {
   font-size: 1rem;
 }
 
-.error-message {
-  padding: 3px;
-  color: red;
+main {
+  height: auto;
+  min-height: calc(100dvh - 70px);
 }
-
-/* label {
-  position: absolute;
-  left: -9999%;
-  top: -9999%;
-} */
 
 .tooltip {
   background-color: var(--grey-900) !important;
@@ -119,7 +115,6 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100dvh - 70px);
+  min-height: calc(100dvh - 70px);
   width: 100%;
-  margin-top: -30px;
 }

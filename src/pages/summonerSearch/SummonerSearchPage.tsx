@@ -102,7 +102,7 @@ export default function SummonerSearchPage() {
     isSummonerRankInfoFetching;
 
   return (
-    <main className={cn('main', 'container')}>
+    <div className={cn('main', 'container')}>
       {summonerInfo && summonerRankInfo && firstLoading ? (
         <SummonerInfoContainer
           summonerInfo={summonerInfo}
@@ -146,6 +146,6 @@ export default function SummonerSearchPage() {
           setMatchQueueType={setMatchQueueType}
         />
       )}
-    </main>
+    </div>
   );
 }

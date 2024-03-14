@@ -25,7 +25,6 @@ const SEARCH_BAR_HIDDEN_PATH = [
   'accounts',
 ];
 const BUTTONS_HIDDEN_PATH = ['login', 'signup', 'profile', 'auth', 'accounts'];
-const HEADER_HIDDEN_PATH = ['oauth'];
 
 /**
  * 미리 스타일을 지정해둔 헤더입니다.
@@ -68,7 +67,6 @@ export default function Header() {
   const logoutOnClick = () => {
     dispath(logout());
   };
-  if (HEADER_HIDDEN_PATH.includes(firstPathname)) return null;
 
   return (
     <header
