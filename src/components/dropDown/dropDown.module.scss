@@ -56,6 +56,18 @@
   cursor: pointer;
   font-weight: bold;
   background-color: rgb(58, 58, 58);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  .icon {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      transform: scale(1.1);
+    }
+  }
   &:hover {
     background-color: rgb(45, 45, 45);
   }

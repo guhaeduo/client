@@ -72,8 +72,13 @@ export default function DropDown({
       <ul
         className={`${cn('dropDownContent', { visibleOption: isOpen })} dropDownContent`}
       >
-        {options.map(({ key, display }) => (
+        {options.map(({ key, display, icon }) => (
           <li key={key} onClick={() => onClickHandler(key)}>
+            {icon && (
+              <div className={cn('icon')}>
+                <img src={icon} />
+              </div>
+            )}
             {display}
           </li>
         ))}
