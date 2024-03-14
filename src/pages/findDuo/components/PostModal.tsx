@@ -97,6 +97,7 @@ export default function PostModal({ postData }: Props) {
             <Input
               type="text"
               label="소환사 이름"
+              className={cn('summonerNameInput')}
               {...register('riotAccount')}
             />
           )}

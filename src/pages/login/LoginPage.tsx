@@ -34,6 +34,7 @@ export default function LoginPage() {
             <Input
               {...register('password', passwordValidation)}
               label="비밀번호"
+              className={cn('passwordInput')}
               type="password"
               error={errors.password}
             />

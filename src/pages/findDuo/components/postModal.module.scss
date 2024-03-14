@@ -3,6 +3,9 @@
   flex-direction: column;
   gap: 20px;
   width: 520px;
+  .summonerNameInput input {
+    height: 45px;
+  }
   & > div {
     display: flex;
     gap: 30px;

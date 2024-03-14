@@ -23,12 +23,15 @@ export default function SignupPage() {
     isValid,
     isEmailiValid,
   } = useSignupForm();
+
   return (
     <div className="centerContainer">
       <div className={cn('main', 'container')}>
-        <div className={cn('signupImg')}>
-          <img src={process.env.PUBLIC_URL + '/images/thresh.png'} alt="" />
-        </div>
+        <img
+          className={cn('signupImg')}
+          src={process.env.PUBLIC_URL + '/images/thresh.png'}
+          alt=""
+        />
         <div>
           <div className={cn('signupWrapper')}>
             <h3>회원가입</h3>
