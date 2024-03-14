@@ -36,7 +36,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   return (
     <div className={cn('inputWrapper', { error }, className)}>
       <input
-        name={name}
+        id={name}
         ref={ref}
         {...rest}
         placeholder=""
