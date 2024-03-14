@@ -33,11 +33,11 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   const onClickVisiblePasswordBtnhandler = () =>
     setVisiblePassword((prev) => !prev);
   const errorMessage = typeof error === 'string' ? error : error?.message;
-
   return (
     <div className={cn('inputWrapper', { error }, className)}>
       <input
         id={name}
+        name={name}
         ref={ref}
         {...rest}
         placeholder=""

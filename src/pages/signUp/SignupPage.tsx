@@ -2,7 +2,7 @@ import styles from './signupPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import Input from 'components/input/Input';
-import useSignupForm from 'hooks/useSignupForm';
+import useSignupForm from 'hooks/form/useSignupForm';
 import {
   emailValidation,
   passwordValidation,
@@ -16,12 +16,14 @@ export default function SignupPage() {
   const {
     isVerificationCodeSent,
     verificationCodeSendHandler,
+    verificationCodeConfirmation,
     register,
     submitHandler,
     errors,
     watch,
     isValid,
     isEmailiValid,
+    isVerficationCodeValid,
   } = useSignupForm();
 
   return (
@@ -60,13 +62,25 @@ export default function SignupPage() {
                   주세요.
                 </p>
               )}
-              <Input
-                {...register('verificationCode', verificationCodeValidation)}
-                type="text"
-                label="인증번호"
-                error={errors.verificationCode}
-                disabled={!isVerificationCodeSent}
-              />
+
+              <div className={cn('emailInputWrapper')}>
+                <Input
+                  {...register('verificationCode', verificationCodeValidation)}
+                  type="text"
+                  label="인증번호"
+                  error={errors.verificationCode}
+                  disabled={!isVerificationCodeSent}
+                />{' '}
+                <button
+                  type="button"
+                  className={cn('verificationCodeBtn', {
+                    isValid: isVerficationCodeValid,
+                  })}
+                  onClick={verificationCodeConfirmation}
+                >
+                  인증번호 확인
+                </button>
+              </div>
               <Input
                 {...register('password', passwordValidation)}
                 type="password"

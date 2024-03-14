@@ -20,6 +20,7 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
     // 회원탈퇴 요청
     navHome();
   };
+
   return (
     <div className={cn('container')}>
       <h3>계정 삭제하기</h3>
