@@ -24,66 +24,25 @@
 .buttons {
   display: flex;
   margin-left: auto;
-  gap: 50px;
+  align-items: center;
+  gap: 30px;
 }
 
 .searchBar {
   margin-left: 50px;
 }
 
-.findDuoButton,
-.loginButton {
+.findDuoBtn,
+.myPageBtn,
+.loginBtn {
   font-size: 14px;
   font-weight: bold;
   color: var(--white);
 }
 
-.loginButton {
+.loginBtn {
   color: var(--light-blue);
   &:hover {
     color: var(--light-blue-hover);
-  }
-}
-
-.userMenuWrapper {
-  position: relative;
-}
-
-.userMenuButton {
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: 3px;
-  svg {
-    font-size: 22px;
-  }
-}
-
-.userMenuContainer {
-  position: absolute;
-  z-index: 10;
-  background-color: var(--grey-900);
-  left: 50%;
-  top: 40px;
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.userMenu {
-  display: flex;
-  gap: 50px;
-  align-items: center;
-  padding: 15px;
-  span {
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    width: 60px;
-  }
-  &:hover {
-    background-color: var(--black-200);
   }
 }

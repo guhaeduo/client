@@ -11,9 +11,7 @@
   background-color: rgb(57, 58, 60);
   border-radius: 3px;
   gap: 7px;
-  form {
-    width: 400px;
-  }
+
   input {
     flex: 1;
     color: white;
@@ -23,6 +21,7 @@
 .searchBar {
   &.header {
     form {
+      width: 300px;
       svg {
         font-size: 26px;
       }
@@ -36,6 +35,7 @@
   &.main {
     padding: 7px;
     form {
+      width: 400px;
       svg {
         font-size: 26px;
       }
@@ -161,9 +161,19 @@
 
 // 반응형
 
-@include tablet {
+@include laptop {
+  .searchBar {
+    &.header {
+      form {
+        width: 80%;
+      }
+      input {
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+  }
 }
-
 @include tablet {
   .searchBar {
     &.header {
