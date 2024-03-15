@@ -46,7 +46,7 @@ export default function ProfilePage() {
         isOpen={isPasswordChangeModalOpen}
         setIsOpen={setIsPasswordChangeModalOpen}
       >
-        <PasswordChangeModal />
+        <PasswordChangeModal setIsModalOpen={setIsPasswordChangeModalOpen} />
       </Modal>
       <div className={cn('main')}>
         <div className={cn('myAccount')}>
