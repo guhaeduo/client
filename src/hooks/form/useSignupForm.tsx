@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import instance from 'service/instance';
 import { ServerAPIErrorResponse } from 'types/Api';
-import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import axios from 'axios';
 interface FormValue {
   email: string;
