@@ -34,7 +34,7 @@ export default function useCustomNavigation() {
     country: string;
     name: string;
     tag: string;
-  }) => navigate(`summoners/${country}/${name}-${tag}`);
+  }) => navigate(`/summoners/${country}/${name}-${tag}`);
 
   // 듀오 검색 페이지로 이동하는 함수입니다.
   const navFindDuo = () => navigate(PATH.FIND_DUO);
