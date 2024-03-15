@@ -87,7 +87,7 @@ export default function PostModal({ postData, setIsOpen }: Props) {
           ) : (
             <Input
               type="text"
-              label="소환사 이름"
+              label="소환사 이름#태그"
               error={errors.summonerName}
               className={cn('summonerNameInput')}
               {...register('summonerName', summonerNameTagValidation)}

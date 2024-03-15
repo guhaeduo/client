@@ -65,6 +65,7 @@ const pages = [
     element: <SocialLoginAuthPage socialType="DISCORD" />,
   },
 ];
+
 function App() {
   updateDDragonData();
   return (
