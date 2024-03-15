@@ -101,7 +101,7 @@ export default function SummonerSearchPage() {
     isSummonerRankInfoFetching;
 
   return (
-    <div className={cn('main', 'container')}>
+    <div className={cn('summonerSearch', 'container')}>
       {summonerInfo && summonerRankInfo && firstLoading ? (
         <SummonerInfoContainer
           summonerInfo={summonerInfo}
