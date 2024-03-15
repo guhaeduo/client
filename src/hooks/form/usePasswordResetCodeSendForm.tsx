@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
-
+import useSearchParams from 'hooks/useSearchParams';
 interface FormValue {
   email: string;
 }
@@ -9,11 +8,9 @@ interface FormValue {
 export default function usePasswordResetCodeSendForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-
+  const getParams = useSearchParams();
   // 쿼리 문자열에서 특정 파라미터의 값을 가져옵니다.
-  const email = searchParams.get('email');
+  const email = getParams('email');
 
   const {
     register,
