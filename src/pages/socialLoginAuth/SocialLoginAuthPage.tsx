@@ -53,7 +53,7 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
 
   return error ? (
     <div className={cn('kakaoAuthPage')}>
-      <span>{error}</span>
+      <p>{error}</p>
       <button className={'toHomeBtn'} onClick={navHome}>
         홈으로 이동
       </button>
