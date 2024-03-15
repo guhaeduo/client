@@ -26,13 +26,15 @@ export default function useSignupForm() {
   const isEmailiValid = watch('email') && !errors.email;
   const isVerficationCodeValid = watch('verificationCode');
   const email = watch('email');
-
+  const emailValidHandler = () => {
+    setError('email', {
+      type: 'pattern',
+      message: '올바른 이메일 주소를 입력하세요.',
+    });
+  };
   const verificationCodeSendHandler = async () => {
     if (!isEmailiValid) {
-      setError('email', {
-        type: 'pattern',
-        message: '올바른 이메일 주소를 입력하세요.',
-      });
+      emailValidHandler();
       return;
     }
     try {
@@ -52,10 +54,7 @@ export default function useSignupForm() {
 
   const verificationCodeConfirmation = async () => {
     if (!isEmailiValid) {
-      setError('email', {
-        type: 'pattern',
-        message: '올바른 이메일 주소를 입력하세요.',
-      });
+      emailValidHandler();
       return;
     }
     try {
