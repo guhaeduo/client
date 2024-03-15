@@ -1,8 +1,7 @@
 import { SummonerGameSummary, SummaryQueueType } from './../types/summoner';
-import { ServerAPIErrorResponse } from 'types/Api';
+import isCustomAxiosError from './customAxiosError';
 import instance from './instance';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
-import axios from 'axios';
 
 export default async function getSummonerGameSummary(
   puuid: string,
@@ -22,7 +21,7 @@ export default async function getSummonerGameSummary(
     );
     return summaryRes.data;
   } catch (err) {
-    if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+    if (isCustomAxiosError(err) && err.response) {
       throw err.response.data.error;
     }
     throw UNKNOWN_NET_ERROR_MESSAGE;

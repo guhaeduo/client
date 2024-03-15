@@ -2,8 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import LOCATION from 'constants/location';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { ServerAPIErrorResponse } from 'types/Api';
+import isCustomAxiosError from 'service/customAxiosError';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import styles from './socialLoginAuthPage.module.scss';
 import classNames from 'classnames/bind';
@@ -37,7 +36,7 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
       await fetchUser();
       navHome();
     } catch (err) {
-      if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+      if (isCustomAxiosError(err) && err.response) {
         setError(err.response.data.message);
       }
       setError(UNKNOWN_NET_ERROR_MESSAGE);

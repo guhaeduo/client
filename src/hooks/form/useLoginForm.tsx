@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import instance from 'service/instance';
-import { ServerAPIErrorResponse } from 'types/Api';
-import axios from 'axios';
+import isCustomAxiosError from 'service/customAxiosError';
 import { fetchUser } from 'service/fetchUser';
 interface FormValue {
   email: string;
@@ -27,7 +26,7 @@ export default function useLoginForm() {
       });
       await fetchUser();
     } catch (err) {
-      if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+      if (isCustomAxiosError(err) && err.response) {
         setError('email', {
           type: 'pattern',
           message: err.response.data.message,

@@ -1,7 +1,6 @@
-import { ServerAPIErrorResponse } from './../types/Api';
 import { SummonerRankInfo } from 'types/summoner';
+import isCustomAxiosError from './customAxiosError';
 import instance from './instance';
-import axios from 'axios';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
 export default async function getSummonerRankInfo(
@@ -20,7 +19,7 @@ export default async function getSummonerRankInfo(
     );
     return rankRes.data;
   } catch (err) {
-    if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+    if (isCustomAxiosError(err) && err.response) {
       throw err.response.data.error;
     }
     throw UNKNOWN_NET_ERROR_MESSAGE;

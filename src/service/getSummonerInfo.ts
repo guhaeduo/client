@@ -1,8 +1,10 @@
 import { SummonerBasicData, SummonerInfo } from 'types/summoner';
 import instance from './instance';
-import { ServerAPIErrorResponse, RiotAPIErrorCode } from 'types/Api';
+import { RiotAPIErrorCode } from 'types/Api';
+import isCustomAxiosError from './customAxiosError';
+
 import { RIOT_API_ERROR_MESSAGE } from 'constants/api';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { COUNTRY } from 'constants/options';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
@@ -33,7 +35,7 @@ export default async function getSummonerInfo(
     };
     return summonerInfo;
   } catch (err) {
-    if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+    if (isCustomAxiosError(err) && err.response) {
       const errorCode = err.response.data.status;
       const errorMessage =
         RIOT_API_ERROR_MESSAGE[errorCode as RiotAPIErrorCode];

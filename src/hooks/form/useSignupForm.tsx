@@ -1,8 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import instance from 'service/instance';
-import { ServerAPIErrorResponse } from 'types/Api';
-import axios from 'axios';
+import isCustomAxiosError from 'service/customAxiosError';
 interface FormValue {
   email: string;
   verificationCode: string;
@@ -43,7 +42,7 @@ export default function useSignupForm() {
       });
       setIsVerificationCodeSent(true);
     } catch (err) {
-      if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+      if (isCustomAxiosError(err) && err.response) {
         setError('email', {
           type: 'pattern',
           message: err.response.data.message,
@@ -65,7 +64,7 @@ export default function useSignupForm() {
       });
       setIsVerificationCodeConfirm(true);
     } catch (err) {
-      if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+      if (isCustomAxiosError(err) && err.response) {
         setError('verificationCode', {
           type: 'pattern',
           message: err.response.data.message,
@@ -87,7 +86,7 @@ export default function useSignupForm() {
       await instance.post('/api/site/signup', { email, password });
       alert('환영합니다.');
     } catch (err) {
-      if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+      if (isCustomAxiosError(err) && err.response) {
         setErrorMsg(err.response.data.message);
       }
     }
