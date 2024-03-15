@@ -9,6 +9,7 @@ import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import instance from 'service/instance';
 import { fetchUser } from 'service/fetchUser';
+import ErrorComponent from 'components/errorComponent/ErrorComponent';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -51,14 +52,5 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
     socialLogin();
   }, [code]);
 
-  return error ? (
-    <div className={cn('kakaoAuthPage')}>
-      <p>{error}</p>
-      <button className={'toHomeBtn'} onClick={navHome}>
-        홈으로 이동
-      </button>
-    </div>
-  ) : (
-    <></>
-  );
+  return error ? <ErrorComponent errorMessage={error} /> : <></>;
 }

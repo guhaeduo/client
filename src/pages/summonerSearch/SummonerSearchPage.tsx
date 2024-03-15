@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
 import SummonerInfoContainer from './summonerInfoContainer/SummonerInfoContainer';
-import SummonerSearchErrorContainer from './summonerSearchErrorContainer/SummonerSearchErrorContainer';
+import ErrorComponent from 'components/errorComponent/ErrorComponent';
 import SummonerGameSummaryContainer from './summonerGameSummary/SummonerGameSummaryContainer';
 import useSummonerInfo from 'hooks/business/useSummonerInfo';
 import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
@@ -90,8 +90,9 @@ export default function SummonerSearchPage() {
     summonerRankInfoError ||
     summonerGameSummaryError ||
     summonerMatchDataError;
+
   if (errorMessage && typeof errorMessage === 'string') {
-    return <SummonerSearchErrorContainer errorMessage={errorMessage} />;
+    return <ErrorComponent errorMessage={errorMessage} />;
   }
 
   const isDataRefetching =

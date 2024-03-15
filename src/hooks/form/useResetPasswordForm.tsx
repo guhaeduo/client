@@ -38,7 +38,7 @@ export default function useResetPasswordForm() {
         {
           password: newPassword,
         },
-        { headers: { Authorization: code } },
+        { headers: { Authorization: `Bearer ${code}` } },
       );
       navLogin();
     } catch (err) {

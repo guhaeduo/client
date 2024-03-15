@@ -3,9 +3,7 @@ import classNames from 'classnames/bind';
 import useResetPasswordForm from 'hooks/form/useResetPasswordForm';
 import { FaCheck } from 'react-icons/fa6';
 import Input from 'components/input/Input';
-import useCustomNavigation from 'hooks/useCustomNavigation';
-import { Link } from 'react-router-dom';
-import PATH from 'constants/path';
+import ErrorComponent from 'components/errorComponent/ErrorComponent';
 const cn = classNames.bind(styles);
 
 export default function ResetPasswordPage() {
@@ -21,12 +19,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="centerContainer">
       {error ? (
-        <div className={cn('errorContainer')}>
-          <p>{error}</p>
-          <Link className={'toHomeBtn'} to={PATH.HOME}>
-            홈으로
-          </Link>
-        </div>
+        <ErrorComponent centered errorMessage={error} />
       ) : (
         <div className={cn('resetPasswordContainer')}>
           <h3>신규 비밀번호 입력</h3>
