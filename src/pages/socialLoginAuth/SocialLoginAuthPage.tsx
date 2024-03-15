@@ -1,15 +1,15 @@
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LOCATION from 'constants/location';
+import PATH from 'constants/path';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { ServerAPIErrorResponse } from 'types/Api';
+import isCustomAxiosError from 'service/customAxiosError';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import styles from './socialLoginAuthPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import instance from 'service/instance';
 import { fetchUser } from 'service/fetchUser';
+import ErrorComponent from 'components/errorComponent/ErrorComponent';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -37,7 +37,7 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
       await fetchUser();
       navHome();
     } catch (err) {
-      if (axios.isAxiosError<ServerAPIErrorResponse>(err) && err.response) {
+      if (isCustomAxiosError(err) && err.response) {
         setError(err.response.data.message);
       }
       setError(UNKNOWN_NET_ERROR_MESSAGE);
@@ -46,20 +46,11 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
 
   useEffect(() => {
     if (!code || code.trim() === '') {
-      navigate(LOCATION.HOME, { replace: true });
+      navigate(PATH.HOME, { replace: true });
       alert('잘못된 접근입니다.');
     }
     socialLogin();
   }, [code]);
 
-  return error ? (
-    <div className={cn('kakaoAuthPage')}>
-      <span>{error}</span>
-      <button className={'toHomeBtn'} onClick={navHome}>
-        홈으로 이동
-      </button>
-    </div>
-  ) : (
-    <></>
-  );
+  return error ? <ErrorComponent errorMessage={error} /> : <></>;
 }

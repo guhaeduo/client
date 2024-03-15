@@ -1,3 +1,5 @@
+@import '/src/css/mixin';
+
 .header {
   background-color: rgb(45, 43, 46);
   box-shadow: 1px 1px 10px 1px rgba(26, 26, 26, 0.4);
@@ -24,67 +26,53 @@
 .buttons {
   display: flex;
   margin-left: auto;
-  gap: 50px;
+  align-items: center;
+  gap: 30px;
 }
 
 .searchBar {
   margin-left: 50px;
 }
 
-.findDuoButton,
-.loginButton {
+.findDuoBtn,
+.myPageBtn,
+.loginBtn {
   font-size: 14px;
   font-weight: bold;
   color: var(--white);
 }
 
-.loginButton {
-  padding: 8px 37px 7px;
-  background-color: var(--blue-button);
+.loginBtn {
+  color: var(--light-blue);
   &:hover {
-    background-color: var(--blue-button-hover);
+    color: var(--light-blue-hover);
   }
 }
 
-.userMenuWrapper {
-  position: relative;
+.hidden {
+  visibility: hidden;
 }
 
-.userMenuButton {
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: 3px;
-  svg {
-    font-size: 22px;
-  }
-}
+// 반응형
 
-.userMenuContainer {
-  position: absolute;
-  z-index: 10;
-  background-color: var(--grey-900);
-  left: 50%;
-  top: 40px;
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.userMenu {
-  display: flex;
-  gap: 50px;
-  align-items: center;
-  padding: 15px;
-  span {
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    width: 60px;
-  }
-  &:hover {
-    background-color: var(--black-200);
+@include tablet {
+  .container {
+    flex-wrap: wrap;
+    display: flex;
+    height: 110px;
+    justify-content: space-between;
+    padding: 20px 0;
+    align-items: start;
+    .searchBar {
+      margin-top: 15px;
+      margin-left: 0;
+      order: 2;
+      width: 100%;
+    }
+    .buttons {
+      order: 1;
+      margin-left: 0;
+      padding-top: 4px;
+    }
   }
 }

@@ -1,26 +1,24 @@
-import { current } from '@reduxjs/toolkit';
 import styles from './passwordChangeModal.module.scss';
 import classNames from 'classnames/bind';
 import Input from 'components/input/Input';
 import usePasswordChangeForm from 'hooks/form/usePasswordChangeForm';
 import { FaCheck } from 'react-icons/fa6';
-import hasAlphaNumeric from 'utils/hasAlphaNumeric';
 const cn = classNames.bind(styles);
 
-export default function PasswordChangeModal() {
-  const { register, submitHandler, watch } = usePasswordChangeForm();
+type Props = {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-  const currentPassword = watch('currentPassword');
-  const newPassword = watch('newPassword');
-  const newPasswordCheck = watch('newPasswordCheck');
-
-  const isLengthValid = newPassword?.length > 7;
-  const isHasAlphaNumericValid = hasAlphaNumeric(newPassword);
-  const isMatch = newPassword && newPassword === newPasswordCheck;
-  const isDiffrentValid =
-    newPassword?.length > 7 &&
-    currentPassword?.length > 7 &&
-    currentPassword !== newPassword;
+export default function PasswordChangeModal({ setIsModalOpen }: Props) {
+  const {
+    register,
+    submitHandler,
+    error,
+    isLengthValid,
+    isHasAlphaNumericValid,
+    isMatch,
+    isDiffrentValid,
+  } = usePasswordChangeForm({ setIsModalOpen });
 
   return (
     <div className={cn('container')}>
@@ -62,18 +60,24 @@ export default function PasswordChangeModal() {
             <FaCheck /> 현재 비밀번호와 다른 비밀번호
           </div>
         </div>
-        <button
-          className={cn({
-            isValid:
-              isLengthValid &&
-              isHasAlphaNumericValid &&
-              isMatch &&
-              isDiffrentValid,
-          })}
-          type="submit"
-        >
-          비밀번호 재설정하기
-        </button>
+        <p className={cn('errorMsg')}>{error}</p>
+        <div className={cn('buttons')}>
+          <button onClick={() => setIsModalOpen(false)} type="button">
+            취소
+          </button>
+          <button
+            className={cn({
+              isValid:
+                isLengthValid &&
+                isHasAlphaNumericValid &&
+                isMatch &&
+                isDiffrentValid,
+            })}
+            type="submit"
+          >
+            비밀번호 재설정하기
+          </button>
+        </div>
       </form>
     </div>
   );

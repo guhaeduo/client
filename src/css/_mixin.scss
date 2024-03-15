@@ -1,0 +1,21 @@
+@import './variable';
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+// 태블릿 : 최소'태블릿'사이즈부터 ~ 최대 '태블릿에서 노트북'사이즈까지
+@mixin tablet {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+// 노트북 : 최소 '노트북'사이즈부터 ~ 최대 '노트북에서 데스크탑'사이즈까지
+@mixin laptop {
+  @media (max-width: #{$breakpoint-laptop}) {
+    @content;
+  }
+}

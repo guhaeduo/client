@@ -2,7 +2,7 @@ import CreateDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store'; // Redux 스토어 및 Persistor 가져오기
-import './index.css';
+import './index.scss';
 import App from './App';
 import { Reset } from 'styled-reset';
 import { BrowserRouter } from 'react-router-dom';

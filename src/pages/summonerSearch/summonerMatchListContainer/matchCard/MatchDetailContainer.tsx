@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default function MatchDetailContainer({ matchData }: Props) {
-  const { info } = matchData;
+  const { info, currentSummonerMatchData } = matchData;
   const { maxData } = info;
   const { country } = usePathSummonerData();
   const { navSummonerSearch } = useCustomNavigation();
@@ -119,6 +119,7 @@ export default function MatchDetailContainer({ matchData }: Props) {
           teamData={matchData.blue}
           maxDamage={maxData.maxDamage.damage}
           teamName="블루팀"
+          currentSummonerPuuid={currentSummonerMatchData.puuid}
         />
         {info.quickShutdown || (
           <MatchTotalDataContainer matchData={matchData} />
@@ -127,6 +128,7 @@ export default function MatchDetailContainer({ matchData }: Props) {
           teamData={matchData.red}
           maxDamage={maxData.maxDamage.damage}
           teamName="레드팀"
+          currentSummonerPuuid={currentSummonerMatchData.puuid}
         />
       </div>
     </div>

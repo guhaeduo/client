@@ -30,4 +30,17 @@ const verificationCodeValidation = {
   },
 };
 
-export { emailValidation, passwordValidation, verificationCodeValidation };
+const summonerNameTagValidation = {
+  required: '소환사 이름을 입력해주세요',
+  pattern: {
+    value: /^[^\s#]+(\s?[^\s#]+)*#[^\s#]+$/,
+    message: '소환사 이름 형식을 다시 확인해주세요',
+  },
+};
+
+export {
+  emailValidation,
+  passwordValidation,
+  verificationCodeValidation,
+  summonerNameTagValidation,
+};

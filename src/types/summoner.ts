@@ -168,6 +168,7 @@ type MaxDataItem = {
   riotGameName: string;
   riotGameTag: string;
 };
+
 // 매치 데이터 타입
 export interface MatchData {
   matchId: string;

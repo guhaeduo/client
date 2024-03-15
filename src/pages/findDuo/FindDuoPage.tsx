@@ -29,7 +29,7 @@ export default function FindDuoPage() {
     isRiotVerifiedHandler,
   } = useFindDuo();
 
-  const postWriteBtn: React.MouseEventHandler = (e) => {
+  const onPostWriteBtnClick: React.MouseEventHandler = (e) => {
     e.stopPropagation();
     setIsOpen(true);
   };
@@ -37,7 +37,7 @@ export default function FindDuoPage() {
   return (
     <div>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-        <PostModal />
+        <PostModal setIsOpen={setIsOpen} />
       </Modal>
       <div
         className={cn('duoHeader')}
@@ -86,7 +86,7 @@ export default function FindDuoPage() {
             </div>
             <span>인증된 소환사만</span>
           </button>
-          <button className={cn('writePostBtn')} onClick={postWriteBtn}>
+          <button className={cn('writePostBtn')} onClick={onPostWriteBtnClick}>
             글쓰기
           </button>
         </div>

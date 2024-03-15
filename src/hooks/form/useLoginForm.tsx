@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { login } from 'store/userSlice';
-import useCustomNavigation from '../useCustomNavigation';
+import instance from 'service/instance';
+import isCustomAxiosError from 'service/customAxiosError';
+import { fetchUser } from 'service/fetchUser';
+
 interface FormValue {
   email: string;
   password: string;
@@ -13,33 +14,27 @@ export default function useLoginForm() {
     handleSubmit,
     formState: { errors, isValid },
     getValues,
+    setError,
+    setValue,
   } = useForm<FormValue>({ mode: 'onChange' });
-  const dispatch = useDispatch();
-  const { navHome } = useCustomNavigation();
-  const submitHandler = handleSubmit((data) => {
-    const { email, password } = getValues();
-    try {
-      // 로그인 요청 코드
-      dispatch(
-        login({
-          email: 'example@example.com',
-          riotAccountList: [
-            {
-              country: 'KR',
-              name: 'test',
-              tag: '1234',
-            },
-          ],
-          createdAt: '23-3-21',
-          loginType: 'SITE',
-        }),
-      );
-      navHome();
-    } catch (err) {
-      console.log(err);
-    }
 
-    // console.log({ email, password, data }, 'hello');
+  const submitHandler = handleSubmit(async (data) => {
+    const { email, password } = data;
+    try {
+      await instance.post('/api/site/login', {
+        email,
+        password,
+      });
+      await fetchUser();
+    } catch (err) {
+      if (isCustomAxiosError(err) && err.response) {
+        setError('email', {
+          type: 'pattern',
+          message: err.response.data.message,
+        });
+        setValue('password', '');
+      }
+    }
   });
 
   return {

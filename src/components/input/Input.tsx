@@ -5,7 +5,7 @@ import { FieldError } from 'react-hook-form';
 const cn = classNames.bind(styles);
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  error?: FieldError;
+  error?: FieldError | string;
   label: string;
   name: string;
   className?: string;
@@ -14,7 +14,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 /**
  * 미리 스타일을 지정해둔 인풋입니다.
- * @param {FieldError?} error - 인풋의 에러 값을 받습니다.
+ * @param {FieldError | string} error - 인풋의 에러 값을 받습니다.
  * @param {string} label - 인풋의 라벨 입니다.
  * @param {string} name - 인풋의 이름 입니다.
  * @param {string?} className - 클래스네임 입니다.
@@ -32,10 +32,11 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   // 패스워드를 보여주는것을 제어하는 함수입니다.
   const onClickVisiblePasswordBtnhandler = () =>
     setVisiblePassword((prev) => !prev);
-
+  const errorMessage = typeof error === 'string' ? error : error?.message;
   return (
     <div className={cn('inputWrapper', { error }, className)}>
       <input
+        id={name}
         name={name}
         ref={ref}
         {...rest}
@@ -52,7 +53,9 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           {visiblePassword ? '숨기기' : '보기'}
         </span>
       )}
-      <span className={cn('errorMessage')}>{error?.message}</span>
+      {errorMessage && (
+        <span className={cn('errorMessage')}>{errorMessage}</span>
+      )}
     </div>
   );
 };

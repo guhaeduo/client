@@ -9,14 +9,14 @@ const cn = classNames.bind(styles);
 export default function HomePage() {
   const { navHome } = useCustomNavigation();
   return (
-    <main className={`${cn('homeMain')} container`}>
-      <div className={cn('homeSideImage')}>
-        <img src={process.env.PUBLIC_URL + `/images/akali.png`} alt="" />
-      </div>
+    <div className={`${cn('homeMain', 'centerContainer')}`}>
       <div className={cn('searchArea')}>
+        <div className={cn('homeSideImage')}>
+          <img src={process.env.PUBLIC_URL + `/images/akali.png`} alt="" />
+        </div>
         <h1 onClick={navHome}>구해듀오</h1>
         <SearchBar type="main" />
       </div>
-    </main>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEventHandler } from 'react';
 import styles from './profilePage.module.scss';
 import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
@@ -26,7 +26,14 @@ export default function ProfilePage() {
     dispatch(logout());
     navHome();
   };
-
+  const onPasswordChangeOnClick: MouseEventHandler = (e) => {
+    e.stopPropagation();
+    setIsPasswordChangeModalOpen(true);
+  };
+  const onAccountDeleteClick: MouseEventHandler = (e) => {
+    e.stopPropagation();
+    setIsAccountDeleteModalOpen(true);
+  };
   return (
     <div className={cn('centerContainer')}>
       <Modal
@@ -39,7 +46,7 @@ export default function ProfilePage() {
         isOpen={isPasswordChangeModalOpen}
         setIsOpen={setIsPasswordChangeModalOpen}
       >
-        <PasswordChangeModal />
+        <PasswordChangeModal setIsModalOpen={setIsPasswordChangeModalOpen} />
       </Modal>
       <div className={cn('main')}>
         <div className={cn('myAccount')}>
@@ -57,9 +64,7 @@ export default function ProfilePage() {
           {user.loginType === 'SITE' && (
             <div className={cn('passwordChange')}>
               <h6>비밀번호 변경</h6>
-              <button onClick={() => setIsPasswordChangeModalOpen(true)}>
-                변경
-              </button>
+              <button onClick={onPasswordChangeOnClick}>변경</button>
             </div>
           )}
         </div>
@@ -83,7 +88,7 @@ export default function ProfilePage() {
           </button>
           <button
             className={cn('accountDeleteBtn')}
-            onClick={() => setIsAccountDeleteModalOpen(true)}
+            onClick={onAccountDeleteClick}
           >
             회원 탈퇴
           </button>

@@ -1,86 +1,77 @@
-import { useState } from 'react';
 import styles from './postModal.module.scss';
 import classNames from 'classnames/bind';
-import { useSelector } from 'react-redux';
-import { RiotAccount, selectUser } from 'store/userSlice';
+import { RiotAccount } from 'store/userSlice';
 import Input from 'components/input/Input';
 import DropDown from 'components/dropDown/DropDown';
 import Toggle from 'components/toggle/Toggle';
 import LaneSelector from 'components/laneSelector/LaneSelector';
-import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
-import { useForm } from 'react-hook-form';
-import { QUEUE, CHAMPION } from 'constants/options';
+import { summonerNameTagValidation } from 'utils/validatior';
+import { QUEUE } from 'constants/options';
 import { IoAlertCircleOutline } from 'react-icons/io5';
+import useWritePostForm from 'hooks/form/useWritePostForm';
 
 const cn = classNames.bind(styles);
 
-type Props = {
-  postData?: {
-    postId: number;
-    memberId: string;
-    summonerName: string;
-    summonerTag: string;
-    mainLane: string;
-    subLane: string;
-    selectLane: string;
-    isMicOn: boolean;
-    queueType: string;
-    mainChampion: string;
-    subChampion: string;
-    memo: string;
-    riotAccount: RiotAccount[];
-  };
+export type PostData = {
+  postId: number;
+  memberId: string;
+  summonerName: string;
+  summonerTag: string;
+  mainLane: string;
+  subLane: string;
+  selectLane: string;
+  isMicOn: boolean;
+  queueType: string;
+  mainChampion: string;
+  subChampion: string;
+  memo: string;
+  riotAccount: RiotAccount[];
 };
 
-export default function PostModal({ postData }: Props) {
-  const user = useSelector(selectUser);
-  const { isLogin, riotAccountList } = user;
+type Props = {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  postData?: PostData;
+};
 
-  const [isRiotAccountOpen, setIsRiotAccountOpen] = useState(false);
-  const [isQueueTypeOpen, setIsQueueTypeOpen] = useState(false);
-  const [isMainChampionOpen, setIsMainChampionOpen] = useState(false);
-  const [isSubChampionOpen, setIsSubChampionOpen] = useState(false);
-  const riotAccountOptions = riotAccountList?.map((account) => ({
-    key: account.name + account.tag,
-    display: `${account.name}#${account.tag}`,
-  }));
-  const championOptions = CHAMPION();
-  const { register } = useForm();
-
-  const [riotAccount, setRiotAccount] = useSignularOptionSelector({
-    defaultOption: postData
-      ? `${postData.summonerName}${postData.summonerTag}`
-      : riotAccountOptions
-        ? riotAccountOptions[0].key
-        : '',
-  });
-
-  const [mostLane, setMostLane] = useSignularOptionSelector({
-    defaultOption: postData?.mainLane || 'ALL',
-  });
-  const [subLane, setSubLane] = useSignularOptionSelector({
-    defaultOption: postData?.subLane || 'ALL',
-  });
-  const [selectLane, setSelectLane] = useSignularOptionSelector({
-    defaultOption: postData?.selectLane || 'ALL',
-  });
-  const [queueType, setQueueType] = useSignularOptionSelector({
-    defaultOption: postData?.queueType || 'ALL',
-  });
-  const [mainChampion, setMainChampion] = useSignularOptionSelector({
-    defaultOption: postData?.mainChampion || championOptions[0].key,
-  });
-  const [subChampion, setSubChampion] = useSignularOptionSelector({
-    defaultOption: postData?.subChampion || championOptions[0].key,
-  });
-
-  const [isMicOn, setIsMicOn] = useState(postData?.isMicOn || false);
+export default function PostModal({ postData, setIsOpen }: Props) {
+  const {
+    isLogin,
+    isRiotAccountOpen,
+    setIsRiotAccountOpen,
+    isQueueTypeOpen,
+    setIsQueueTypeOpen,
+    isMainChampionOpen,
+    setIsMainChampionOpen,
+    isSubChampionOpen,
+    setIsSubChampionOpen,
+    register,
+    riotAccount,
+    setRiotAccount,
+    mostLane,
+    setMostLane,
+    subLane,
+    setSubLane,
+    selectLane,
+    setSelectLane,
+    queueType,
+    setQueueType,
+    mainChampion,
+    setMainChampion,
+    subChampion,
+    setSubChampion,
+    isMicOn,
+    setIsMicOn,
+    riotAccountOptions,
+    championOptions,
+    submitHandler,
+    errors,
+  } = useWritePostForm({ postData, setIsOpen });
   return (
     <div className={cn('postModal')}>
       <div>
         <div>
           {' '}
-          {riotAccountOptions ? (
+          {riotAccountOptions?.length ? (
             <>
               <label>게임 계정</label>
               <DropDown
@@ -96,8 +87,10 @@ export default function PostModal({ postData }: Props) {
           ) : (
             <Input
               type="text"
-              label="소환사 이름"
-              {...register('riotAccount')}
+              label="소환사 이름#태그"
+              error={errors.summonerName}
+              className={cn('summonerNameInput')}
+              {...register('summonerName', summonerNameTagValidation)}
             />
           )}
         </div>
@@ -109,7 +102,7 @@ export default function PostModal({ postData }: Props) {
       <div>
         <div>
           <label>선호 라인</label>
-          <LaneSelector size={28} option={mostLane} onChange={setMostLane} />
+          <LaneSelector size={27} option={mostLane} onChange={setMostLane} />
         </div>
         <div>
           <label>게임 타입</label>
@@ -127,7 +120,7 @@ export default function PostModal({ postData }: Props) {
       <div>
         <div>
           <label>서브 라인</label>
-          <LaneSelector size={28} option={subLane} onChange={setSubLane} />
+          <LaneSelector size={27} option={subLane} onChange={setSubLane} />
         </div>
         <div>
           <label>메인 챔피언</label>
@@ -146,7 +139,7 @@ export default function PostModal({ postData }: Props) {
         <div>
           <label>찾는 라인</label>
           <LaneSelector
-            size={28}
+            size={27}
             option={selectLane}
             onChange={setSelectLane}
           />
@@ -180,9 +173,8 @@ export default function PostModal({ postData }: Props) {
           있습니다.
         </p>
         <div className={cn('buttons')}>
-          {' '}
-          <button>취소</button>
-          <button>등록</button>
+          <button onClick={() => setIsOpen(false)}>취소</button>
+          <button onClick={submitHandler}>등록</button>
         </div>
       </div>
     </div>
