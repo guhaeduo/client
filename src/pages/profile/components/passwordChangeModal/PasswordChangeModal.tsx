@@ -1,4 +1,3 @@
-import { current } from '@reduxjs/toolkit';
 import styles from './passwordChangeModal.module.scss';
 import classNames from 'classnames/bind';
 import Input from 'components/input/Input';
