@@ -34,13 +34,13 @@
 
 @include laptop {
   :root {
-    --inner: 85%;
+    --inner: 80%;
   }
 }
 
 @include mobile {
   :root {
-    --inner: 95%;
+    --inner: 90%;
   }
 }
 
