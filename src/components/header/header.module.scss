@@ -1,3 +1,5 @@
+@import '/src/css/mixin';
+
 .header {
   background-color: rgb(45, 43, 46);
   box-shadow: 1px 1px 10px 1px rgba(26, 26, 26, 0.4);
@@ -44,5 +46,33 @@
   color: var(--light-blue);
   &:hover {
     color: var(--light-blue-hover);
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+// 반응형
+
+@include tablet {
+  .container {
+    flex-wrap: wrap;
+    display: flex;
+    height: 110px;
+    justify-content: space-between;
+    padding: 20px 0;
+    align-items: start;
+    .searchBar {
+      margin-top: 15px;
+      margin-left: 0;
+      order: 2;
+      width: 100%;
+    }
+    .buttons {
+      order: 1;
+      margin-left: 0;
+      padding-top: 4px;
+    }
   }
 }

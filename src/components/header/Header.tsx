@@ -44,14 +44,13 @@ export default function Header() {
       className={cn('header', { transparent: isLogoHidden || isButtonsHidden })}
     >
       <div className={`${cn('container')} container`}>
-        {isLogoHidden || (
-          <h1 className={cn('title')} onClick={navHome}>
-            구해듀오
-          </h1>
-        )}
-        {isSearchBarHidden || (
-          <SearchBar type="header" className={cn('searchBar')} />
-        )}
+        <h1 className={cn('title', { hidden: isLogoHidden })} onClick={navHome}>
+          구해듀오
+        </h1>
+        <SearchBar
+          type="header"
+          className={cn('searchBar', { hidden: isSearchBarHidden })}
+        />
         {isButtonsHidden || (
           <div hidden={isButtonsHidden} className={cn('buttons')}>
             <button className={cn('findDuoBtn')} onClick={navFindDuo}>
