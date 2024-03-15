@@ -1,3 +1,5 @@
+@import '/src/css/_mixin.scss';
+
 :root {
   --blue-button: #286cff;
   --blue-button-hover: #006aff;
@@ -28,6 +30,18 @@
   --green-hover: #016601;
   --riot-main: #ff1313;
   --min-height: calc(100dvh - 70px - 200px);
+}
+
+@include laptop {
+  :root {
+    --inner: 85%;
+  }
+}
+
+@include mobile {
+  :root {
+    --inner: 95%;
+  }
 }
 
 html {
@@ -113,7 +127,6 @@ main {
 }
 
 .centerContainer {
-  padding-top: 100px;
   display: flex;
   justify-content: center;
   align-items: center;

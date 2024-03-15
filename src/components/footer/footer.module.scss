@@ -1,3 +1,5 @@
+@import '/src/css/_mixin.scss';
+
 .footer {
   height: 100px;
   margin: 60px 0 40px;
@@ -15,5 +17,15 @@
   }
   h1 img {
     width: 200px;
+  }
+}
+
+// 반응형
+
+@include tablet {
+  .footer {
+    p {
+      width: 80%;
+    }
   }
 }

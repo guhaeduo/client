@@ -1,3 +1,5 @@
+@import '/src/css/_mixin.scss';
+
 .searchBarWrapper {
   position: relative;
 }
@@ -9,15 +11,23 @@
   background-color: rgb(57, 58, 60);
   border-radius: 3px;
   gap: 7px;
+  form {
+    width: 400px;
+  }
   input {
+    flex: 1;
     color: white;
   }
 }
 
 .searchBar {
   &.header {
+    form {
+      svg {
+        font-size: 26px;
+      }
+    }
     input {
-      width: 240px;
       font-size: 13px;
       font-weight: 600;
     }
@@ -25,8 +35,12 @@
 
   &.main {
     padding: 7px;
+    form {
+      svg {
+        font-size: 26px;
+      }
+    }
     input {
-      width: 400px;
       font-size: 16px;
       font-weight: 900;
     }
@@ -70,6 +84,7 @@
 .searchBar form {
   display: flex;
   align-items: center;
+  flex: 1;
   button {
     padding: 2px 5px 0px;
     font-weight: bold;
@@ -142,4 +157,63 @@
 
 .historyDeleteButton {
   font-size: 20px;
+}
+
+// 반응형
+
+@include tablet {
+}
+
+@include tablet {
+  .searchBar {
+    &.header {
+      input {
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+    &.main {
+      input {
+        font-size: 14px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+@include mobile {
+  .searchBarDropDown {
+    &.main {
+      width: 65px;
+      :global {
+        .dropDownHeader {
+          padding: 10px 8px 9px;
+          font-size: 12px;
+        }
+        .dropDownContent {
+          li {
+            font-size: 12px;
+            padding: 10px 8px;
+          }
+        }
+      }
+    }
+  }
+  .searchBar {
+    &.header {
+      input {
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+    &.main {
+      form svg {
+        font-size: 20px;
+      }
+      input {
+        font-size: 12px;
+        font-weight: 700;
+      }
+    }
+  }
 }

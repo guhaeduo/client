@@ -1,7 +1,10 @@
+@import '/src/css/_mixin.scss';
+
 .homeMain {
   position: relative;
   display: flex;
   justify-content: center;
+  padding-top: 100px;
   width: 100%;
 }
 
@@ -27,5 +30,36 @@
     font-weight: bold;
     text-align: center;
     letter-spacing: 5px;
+  }
+}
+
+// 반응형
+@include laptop {
+  .homeSideImage {
+    z-index: -1;
+    position: absolute;
+    top: -250px;
+    left: -250px;
+    img {
+      width: 600px;
+    }
+  }
+}
+
+@include tablet {
+  .searchArea {
+    width: 80%;
+  }
+  .homeSideImage {
+    display: none;
+  }
+}
+
+@include mobile {
+  .homeMain {
+    padding-top: 120px;
+  }
+  .searchArea {
+    width: 95%;
   }
 }

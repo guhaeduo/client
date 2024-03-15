@@ -141,7 +141,7 @@ export default function SearchBar({ className, type }: Props) {
             onClick={searchInputFocusHandler}
           />
           <button type="submit" className={cn('submitButton', type)}>
-            <IoIosSearch size={isHeader ? 23 : 26} />
+            <IoIosSearch />
           </button>
         </form>
       </div>
