@@ -15,11 +15,13 @@ type Props = {
   teamName: string;
   teamData: Team;
   maxDamage: number;
+  currentSummonerPuuid: string;
 };
 export default function MatchTeamContainer({
   teamName,
   teamData,
   maxDamage,
+  currentSummonerPuuid,
 }: Props) {
   const result = teamData.win ? '승리' : '패배';
   const { navSummonerSearch } = useCustomNavigation();
@@ -45,7 +47,12 @@ export default function MatchTeamContainer({
       </div>
       <div className={cn('participantsContainer')}>
         {teamData.participants.map((participant) => (
-          <div key={participant.puuid} className={cn('participantCard')}>
+          <div
+            key={participant.puuid}
+            className={cn('participantCard', {
+              currentUser: currentSummonerPuuid === participant.puuid,
+            })}
+          >
             <div className={cn('summonerData')}>
               <ChampionIcon
                 championName={participant.championName}

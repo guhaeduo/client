@@ -247,6 +247,9 @@
   &.win {
     .participantCard {
       background-color: rgba(73, 160, 242, 0.1);
+      &.currentUser {
+        background-color: rgba(73, 160, 242, 0.2);
+      }
     }
     .result span {
       color: var(--light-blue);
@@ -255,6 +258,9 @@
   &.lose {
     .participantCard {
       background-color: rgba(242, 84, 73, 0.1);
+      &.currentUser {
+        background-color: rgba(242, 84, 73, 0.2);
+      }
     }
     .result span {
       color: var(--light-red);
