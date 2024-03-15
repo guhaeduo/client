@@ -29,7 +29,7 @@
   --green: rgb(0, 123, 0);
   --green-hover: #016601;
   --riot-main: #ff1313;
-  --min-height: calc(100dvh - 70px - 200px);
+  --min-height: calc(100dvh - 70px - 180px);
 }
 
 @include laptop {
@@ -110,8 +110,6 @@ input {
   background-color: var(--grey-900) !important;
   padding: 8px 12px !important;
 }
-
-
 
 .toHomeBtn {
   padding: 12px 23px;
