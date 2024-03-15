@@ -12,7 +12,7 @@ import { selectUser } from 'store/userSlice';
 import { logout } from 'store/userSlice';
 import { Link } from 'react-router-dom';
 import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
-import LOCATION from 'constants/location';
+import PATH from 'constants/path';
 const cn = classNames.bind(styles);
 
 const LOGO_HIDDEN_PATH = [''];
@@ -96,7 +96,7 @@ export default function Header() {
                     className={cn('userMenuContainer')}
                     onClick={() => setIsUserMenuOpen(false)}
                   >
-                    <Link to={LOCATION.PROFILE} className={cn('userMenu')}>
+                    <Link to={PATH.PROFILE} className={cn('userMenu')}>
                       <span>프로필</span>
                       <AiOutlineProfile size={17} />
                     </Link>

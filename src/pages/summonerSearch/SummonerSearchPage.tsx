@@ -49,7 +49,6 @@ export default function SummonerSearchPage() {
     summonerInfo,
     country,
     name,
-
     tag,
   });
   const {

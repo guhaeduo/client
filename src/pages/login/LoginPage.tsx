@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import { emailValidation, passwordValidation } from 'utils/validatior';
 import { RiDiscordFill } from 'react-icons/ri';
-import LOCATION from 'constants/location';
+import PATH from 'constants/path';
 import Input from 'components/input/Input';
 import useLoginForm from 'hooks/form/useLoginForm';
 const cn = classNames.bind(styles);
@@ -14,9 +14,9 @@ export default function LoginPage() {
     useLoginForm();
 
   const onClickKakaoBtnHandler = () =>
-    (window.location.href = LOCATION.KAKAO_AUTH_URL);
+    (window.location.href = PATH.KAKAO_AUTH_URL);
   const onClickDiscordBtnHandler = () =>
-    (window.location.href = LOCATION.DISCORD_AUTH_URL);
+    (window.location.href = PATH.DISCORD_AUTH_URL);
 
   return (
     <div className="centerContainer">

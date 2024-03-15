@@ -12,53 +12,56 @@ import updateDDragonData from 'service/updateDDragonData';
 import SocialLoginAuthPage from 'pages/socialLoginAuth/SocialLoginAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
 import Footer from 'components/footer/Footer';
-const requiredLoginPathname = ['/profile'];
+import PATH from 'constants/path';
+
+const requiredLoginPathname = [PATH.PROFILE];
 const requiredUnLoginPathname = [
-  '/accounts/reset-password',
-  '/auth/reset-password',
-  '/login',
-  '/signup',
-  '/oauth/kakao',
+  PATH.RESET_PASSWORD_EMAIL_SEND,
+  PATH.RESET_PASSWORD,
+  PATH.LOGIN,
+  PATH.SIGN_UP,
+  PATH.KAKAO_LOGIN_PAGE,
+  PATH.DISCORD_LOGIN_PAGE,
 ];
 const pages = [
   {
-    pathname: '/',
+    pathname: PATH.HOME,
     element: <HomePage />,
   },
   {
-    pathname: '/profile',
+    pathname: PATH.PROFILE,
     element: <ProfilePage />,
   },
   {
-    pathname: '/accounts/reset-password',
+    pathname: PATH.RESET_PASSWORD_EMAIL_SEND,
     element: <PasswordResetCodeSendPage />,
   },
   {
-    pathname: '/auth/reset-password',
+    pathname: PATH.RESET_PASSWORD,
     element: <ResetPasswordPage />,
   },
   {
-    pathname: '/find-duo',
+    pathname: PATH.FIND_DUO,
     element: <FindDuoPage />,
   },
   {
-    pathname: '/login',
+    pathname: PATH.LOGIN,
     element: <LoginPage />,
   },
   {
-    pathname: '/signup',
+    pathname: PATH.SIGN_UP,
     element: <SignupPage />,
   },
   {
-    pathname: '/summoners/:country/:summonerName',
+    pathname: PATH.SUMMONER_SEARCH,
     element: <SummonerSearchPage />,
   },
   {
-    pathname: '/oauth/kakao',
+    pathname: PATH.KAKAO_LOGIN_PAGE,
     element: <SocialLoginAuthPage socialType="KAKAO" />,
   },
   {
-    pathname: '/oauth/discord',
+    pathname: PATH.DISCORD_LOGIN_PAGE,
     element: <SocialLoginAuthPage socialType="DISCORD" />,
   },
 ];

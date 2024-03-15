@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LOCATION from 'constants/location';
+import PATH from 'constants/path';
 import { useEffect, useState } from 'react';
 import isCustomAxiosError from 'service/customAxiosError';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
@@ -45,7 +45,7 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
 
   useEffect(() => {
     if (!code || code.trim() === '') {
-      navigate(LOCATION.HOME, { replace: true });
+      navigate(PATH.HOME, { replace: true });
       alert('잘못된 접근입니다.');
     }
     socialLogin();
