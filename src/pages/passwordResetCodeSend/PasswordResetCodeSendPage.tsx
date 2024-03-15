@@ -10,15 +10,8 @@ import mapKoreanEmailServiceToDomain from 'utils/mapKoreanEmailServiceToDomain';
 const cn = classNames.bind(styles);
 
 export default function PasswordResetCodeSendPage() {
-  const {
-    register,
-    submitHandler,
-    errors,
-    isValid,
-    isSuccess,
-    error,
-    getValues,
-  } = usePasswordResetCodeSendForm();
+  const { register, submitHandler, errors, isValid, isSuccess, getValues } =
+    usePasswordResetCodeSendForm();
 
   const companyDomain = mapKoreanEmailServiceToDomain(getValues('email'));
   return (
