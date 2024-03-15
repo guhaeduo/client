@@ -27,6 +27,7 @@
   --green: rgb(0, 123, 0);
   --green-hover: #016601;
   --riot-main: #ff1313;
+  --min-height: calc(100dvh - 70px - 200px);
 }
 
 html {
@@ -62,6 +63,7 @@ body {
 
 .main {
   padding-top: 30px;
+  min-height: var(--min-height);
 }
 
 #modal-root {
@@ -92,7 +94,6 @@ input {
 
 main {
   height: auto;
-  min-height: calc(100dvh - 70px);
 }
 
 .tooltip {
@@ -112,10 +113,11 @@ main {
 }
 
 .centerContainer {
+  padding-top: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100dvh - 70px);
+  min-height: var(--min-height);
   width: 100%;
 }
 
