@@ -76,6 +76,7 @@ export default function SearchBar({ className, type }: Props) {
     setIsSearchInputFocus(false);
   }, [pathname]);
 
+  // ref에 등록된 요소 외의 영역 클릭시 searchHistory를 닫습니다.
   useHandleOutsideClick({
     isOpen: isSearchInputFocus,
     setIsOpen: setIsSearchInputFocus,
@@ -114,6 +115,7 @@ export default function SearchBar({ className, type }: Props) {
       if (err instanceof Error) alert(err.message);
     }
   });
+
   // 타입이 Header인지 여부를 관리하는 변수입니다.
   const isHeader = type === 'header';
 
