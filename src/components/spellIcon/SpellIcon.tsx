@@ -9,7 +9,15 @@ type Props = {
   spellNumber: number;
   className?: string;
 };
+
+/**
+ * 미리 스타일을 지정해둔 스펠 아이콘입니다.
+ * @param {number} spellNumber - 스펠 번호입니다.
+ * @param {string} className? - 스펠 아이콘 클래스 입니다.
+ */
+
 export default function SpellIcon({ spellNumber, className }: Props) {
+  // 스펠 번호를 통해 스펠 데이터를 받아옵니다.
   const spellDetail = getSpellData(spellNumber);
   const { name, description, icon } = spellDetail;
   return (
