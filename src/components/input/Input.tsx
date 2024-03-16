@@ -27,12 +27,17 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 ) => {
   // 패스워드 인풋의 패스워드를 보여주는것을 관리하는 상태입니다.
   const [visiblePassword, setVisiblePassword] = useState(false);
+
   // 인풋의 타입이 패스워드인지 저장하는 값입니다.
   const isPassword = type === 'password';
+
   // 패스워드를 보여주는것을 제어하는 함수입니다.
   const onClickVisiblePasswordBtnhandler = () =>
     setVisiblePassword((prev) => !prev);
+
+  // error 객체에서 메세지를 빼옵니다.
   const errorMessage = typeof error === 'string' ? error : error?.message;
+
   return (
     <div className={cn('inputWrapper', { error }, className)}>
       <input
