@@ -1,4 +1,3 @@
-// import Tooltip from 'components/tooltip/Tooltip';
 import { getItemData } from 'utils/getLocalData';
 import styles from './itemIcon.module.scss';
 import classNames from 'classnames/bind';
