@@ -4,6 +4,10 @@ import classNames from 'classnames/bind';
 
 const cn = classNames.bind(styles);
 
+/**
+ * 미리 스타일을 지정해둔 푸터입니다.
+ */
+
 export default function Footer() {
   return (
     <footer className={cn('footer')}>
