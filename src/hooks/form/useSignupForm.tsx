@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import instance from 'service/instance';
+import useCustomNavigation from 'hooks/useCustomNavigation';
 import isCustomAxiosError from 'service/customAxiosError';
 
 interface FormValue {
@@ -22,7 +23,7 @@ export default function useSignupForm() {
     watch,
     setError,
   } = useForm<FormValue>({ mode: 'onChange' });
-
+  const { navLogin } = useCustomNavigation();
   const isEmailiValid = watch('email') && !errors.email;
   const isVerficationCodeValid = watch('verificationCode');
   const email = watch('email');
@@ -85,7 +86,7 @@ export default function useSignupForm() {
     }
     try {
       await instance.post('/api/site/signup', { email, password });
-      alert('환영합니다.');
+      navLogin();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         setErrorMsg(err.response.data.message);

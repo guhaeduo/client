@@ -4,21 +4,25 @@ import CheckBox from 'components/checkBox/CheckBox';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/userSlice';
-import useCustomNavigation from 'hooks/useCustomNavigation';
+import instance from 'service/instance';
 const cn = classNames.bind(styles);
 
 type Props = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 export default function AccountDeleteModal({ setIsModalOpen }: Props) {
   const [isAccountDeleteCheck, setIsAccountDeleteCheck] = useState(false);
   const dispatch = useDispatch();
-  const { navHome } = useCustomNavigation();
-  const accountDelete = () => {
+  const accountDelete = async () => {
     if (!isAccountDeleteCheck) return;
-    dispatch(logout());
-    // 회원탈퇴 요청
-    navHome();
+    setIsModalOpen(false);
+    try {
+      await instance.delete('/api/member/delete');
+      dispatch(logout());
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

@@ -36,6 +36,7 @@ export default function DropDown({
   isOpen,
   setIsOpen,
 }: Props) {
+  // dropMenuRef를 생성하여 dropDown에 연결합니다.
   const dropMenuRef = useRef<HTMLDivElement | null>(null);
   const onClickHandler = (option: string) => {
     // 전달받은 onChange함수로 option을 전달하고, 드롭다운 메뉴를 닫습니다.
@@ -43,6 +44,7 @@ export default function DropDown({
     setIsOpen(false);
   };
 
+  // dropDown이 아닌 외부가 클릭되면 dropDown을 닫습니다.
   useHandleOutsideClick<HTMLDivElement>({
     isOpen,
     setIsOpen,
@@ -58,6 +60,7 @@ export default function DropDown({
   const currentOption = options.find(
     (el) => el.key === currentOptionKey,
   )?.display;
+
   return (
     <div ref={dropMenuRef} className={cn('dropDownContainer', className, type)}>
       <div

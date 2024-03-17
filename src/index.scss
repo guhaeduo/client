@@ -46,6 +46,21 @@
 
 html {
   font-size: 10px;
+  &::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(166, 166, 166);
+    border-radius: 6px;
+    &:hover {
+      background-color: rgb(195, 195, 195);
+    }
+  }
 }
 
 * {
@@ -140,5 +155,12 @@ input {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.Toastify__toast-body {
+  margin: 4px 0;
+  div:last-child {
+    padding-top: 2px;
   }
 }

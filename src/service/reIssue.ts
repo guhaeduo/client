@@ -4,7 +4,7 @@ import isTokenExpired from 'utils/isTokenExpired';
 import axios from 'axios';
 import { logout } from 'store/userSlice';
 import { handleTokenUpdate } from './instance';
-
+import Toast from 'utils/toast';
 interface ReIssueErrorResponse {
   code: string;
   message: string;
@@ -33,10 +33,8 @@ export default async function tokenReIssue() {
         if (err.response.data.message === REFRESH_TOKEN_EXPIRED_ERROR_MESSAGE) {
           // refreshToken 만료 응답이 온다면 로그아웃 시키고 로그인 페이지로 이동시킵니다.
           store.dispatch(logout());
-          setTimeout(() => {
-            alert('세션이 만료되었습니다.');
-            window.location.replace('/login');
-          }, 100);
+          Toast.info('세션이 만료되었습니다.');
+          window.location.replace('/login');
         }
       }
     }

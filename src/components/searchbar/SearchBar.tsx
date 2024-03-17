@@ -13,6 +13,7 @@ import getNewRecentSearchHistory from 'utils/getNewRecentSearchHistory';
 import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import { useLocation } from 'react-router-dom';
 import { SearchHistory } from 'types/summoner';
+import Toast from 'utils/toast';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -76,6 +77,7 @@ export default function SearchBar({ className, type }: Props) {
     setIsSearchInputFocus(false);
   }, [pathname]);
 
+  // ref에 등록된 요소 외의 영역 클릭시 searchHistory를 닫습니다.
   useHandleOutsideClick({
     isOpen: isSearchInputFocus,
     setIsOpen: setIsSearchInputFocus,
@@ -111,9 +113,10 @@ export default function SearchBar({ className, type }: Props) {
       const country = countryOption;
       summonerSearch(name, tag, country);
     } catch (err) {
-      if (err instanceof Error) alert(err.message);
+      if (err instanceof Error) Toast.info(err.message);
     }
   });
+
   // 타입이 Header인지 여부를 관리하는 변수입니다.
   const isHeader = type === 'header';
 

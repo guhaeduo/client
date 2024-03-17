@@ -23,6 +23,7 @@ type Props = {
  */
 
 export default function CustomTooltip({ title, body, children, name }: Props) {
+  // 툴팁의 이름에서 공백을 슬래시로 제거합니다.
   const tooltipName = name.replace(/\s+/g, '-');
   return (
     <div>

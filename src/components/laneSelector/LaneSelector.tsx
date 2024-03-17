@@ -30,10 +30,12 @@ export default function LaneSelector({
   className,
   disableLane = [],
 }: Props) {
+  // 라인을 옵션을 클릭했을때 실행할 함수입니다.
   const laneOnclick = (lane: Lane) => {
-    if (disableLane.includes(lane)) return;
-    onChange(lane);
+    // disableLane에 옵션이 포함이 되어있지 않으면 onChangee에 option을 전달합니다.
+    if (!disableLane.includes(lane)) onChange(lane);
   };
+
   return (
     <div className={cn(className, 'laneSelectorWrapper')}>
       {LANE_OPTIONS.map((lane) => (
