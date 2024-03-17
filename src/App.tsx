@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from 'components/header/Header';
 import HomePage from 'pages/home/HomePage';
 import ProfilePage from 'pages/profile/ProfilePage';
@@ -13,6 +15,7 @@ import SocialLoginAuthPage from 'pages/socialLoginAuth/SocialLoginAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
 import Footer from 'components/footer/Footer';
 import PATH from 'constants/path';
+import Toast from 'utils/toast';
 
 const requiredLoginPathname = [PATH.PROFILE];
 const requiredUnLoginPathname = [
@@ -70,6 +73,19 @@ function App() {
   updateDDragonData();
   return (
     <div className="App">
+      <button onClick={() => Toast.info('info')}>info</button>
+      <button onClick={() => Toast.success('success')}>success</button>
+      <button onClick={() => Toast.error('error')}>error</button>
+      <ToastContainer
+        position="top-right" // 알람 위치 지정
+        autoClose={113000} // 자동 off 시간
+        hideProgressBar={true} // 진행시간바 숨김
+        rtl={false} // 알림 좌우 반전
+        pauseOnFocusLoss // 화면을 벗어나면 알람 정지
+        draggable // 드래그 가능
+        theme="dark"
+        limit={1} // 알람 개수 제한
+      />
       <Header />
       <main>
         <Routes>
