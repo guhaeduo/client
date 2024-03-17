@@ -13,7 +13,6 @@ export default function PasswordChangeModal({ setIsModalOpen }: Props) {
   const {
     register,
     submitHandler,
-    error,
     isLengthValid,
     isHasAlphaNumericValid,
     isMatch,
@@ -60,7 +59,6 @@ export default function PasswordChangeModal({ setIsModalOpen }: Props) {
             <FaCheck /> 현재 비밀번호와 다른 비밀번호
           </div>
         </div>
-        <p className={cn('errorMsg')}>{error}</p>
         <div className={cn('buttons')}>
           <button onClick={() => setIsModalOpen(false)} type="button">
             취소
