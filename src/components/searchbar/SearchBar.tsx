@@ -13,6 +13,7 @@ import getNewRecentSearchHistory from 'utils/getNewRecentSearchHistory';
 import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import { useLocation } from 'react-router-dom';
 import { SearchHistory } from 'types/summoner';
+import Toast from 'utils/toast';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -112,7 +113,7 @@ export default function SearchBar({ className, type }: Props) {
       const country = countryOption;
       summonerSearch(name, tag, country);
     } catch (err) {
-      if (err instanceof Error) alert(err.message);
+      if (err instanceof Error) Toast.info(err.message);
     }
   });
 

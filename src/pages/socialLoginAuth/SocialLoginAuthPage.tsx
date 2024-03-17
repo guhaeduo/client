@@ -1,16 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import PATH from 'constants/path';
 import { useEffect, useState } from 'react';
 import isCustomAxiosError from 'service/customAxiosError';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
-import styles from './socialLoginAuthPage.module.scss';
-import classNames from 'classnames/bind';
-import useCustomNavigation from 'hooks/useCustomNavigation';
 import instance from 'service/instance';
 import { fetchUser } from 'service/fetchUser';
 import ErrorComponent from 'components/errorComponent/ErrorComponent';
-const cn = classNames.bind(styles);
 
 type Props = {
   socialType: 'KAKAO' | 'DISCORD';
@@ -19,10 +13,8 @@ type Props = {
 export default function SocialLoginAuthPage({ socialType }: Props) {
   const [error, setError] = useState('');
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const code = searchParams.get('code');
-  const { navHome } = useCustomNavigation();
-
+  const isFail = !code || code.trim() === '';
   const redirectUri =
     socialType === 'KAKAO'
       ? process.env.REACT_APP_KAKAO_REDIRECT_URL
@@ -35,7 +27,6 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
         redirectUri,
       });
       await fetchUser();
-      navHome();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         setError(err.response.data.message);
@@ -45,12 +36,12 @@ export default function SocialLoginAuthPage({ socialType }: Props) {
   }
 
   useEffect(() => {
-    if (!code || code.trim() === '') {
-      navigate(PATH.HOME, { replace: true });
-      alert('잘못된 접근입니다.');
-    }
-    socialLogin();
+    if (!isFail) socialLogin();
   }, [code]);
 
-  return error ? <ErrorComponent errorMessage={error} /> : <></>;
+  return error || isFail ? (
+    <ErrorComponent errorMessage={error || '잘못된 접근입니다.'} />
+  ) : (
+    <></>
+  );
 }

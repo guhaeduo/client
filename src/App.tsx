@@ -84,7 +84,7 @@ function App() {
         pauseOnFocusLoss // 화면을 벗어나면 알람 정지
         draggable // 드래그 가능
         theme="dark"
-        limit={1} // 알람 개수 제한
+        limit={3} // 알람 개수 제한
       />
       <Header />
       <main>
