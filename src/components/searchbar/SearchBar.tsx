@@ -113,7 +113,8 @@ export default function SearchBar({ className, type }: Props) {
       const country = countryOption;
       summonerSearch(name, tag, country);
     } catch (err) {
-      if (err instanceof Error) Toast.info(err.message);
+      if (err instanceof Error)
+        Toast.info(err.message, { toastId: 'summonerSearchInfo' });
     }
   });
 
