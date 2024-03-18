@@ -12,7 +12,7 @@ export default function SEOMeta({ pageData }: Props) {
   const { title, pageUrl, description } = pageData;
   const keywords = '구해듀오에서 함께 게임을 플레이할 소환사를 모집하세요.';
   const siteUrl = 'https://www.guhaeduo.com';
-  const ogImage = siteUrl + '/images/metaLogo.png';
+  const ogImage = process.env.PUBLIC_URL + '/images/metaImage.png';
 
   return (
     <Helmet>
@@ -28,10 +28,7 @@ export default function SEOMeta({ pageData }: Props) {
       <meta property="og:image:height" content="630" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta
-        name="twitter:image"
-        content={process.env.PUBLIC_URL + 'images/metaImage.png'}
-      />
+      <meta name="twitter:image" content={ogImage} />
     </Helmet>
   );
 }
