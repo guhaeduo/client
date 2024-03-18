@@ -82,7 +82,7 @@
       "--no-sandbox",
       "--disable-setuid-sandbox"
     ],
-    "staticPaths": [
+    "include": [
       "/",
       "/login",
       "/signup",
