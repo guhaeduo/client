@@ -78,6 +78,10 @@
     ]
   },
   "reactSnap": {
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
     "staticPaths": [
       "/",
       "/login",
@@ -89,10 +93,6 @@
       "/find-duo",
       "/oauth/kakao",
       "/oauth/discord"
-    ],
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
     ]
   }
 }
