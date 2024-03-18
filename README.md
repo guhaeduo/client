@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+## GuhaeDuo - 구해듀오
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align='center'><img src='https://github.com/guhaeduo/client/assets/114664128/c6b2f278-2caf-4397-bb0b-9953e5a7c5c4'/></p>
 
-## Available Scripts
+> 개발 기간 - 2024.02 ~ 2024.04  
+> 배포 주소 - https://www.guhaeduo.com
 
-In the project directory, you can run:
+## 팀원 소개
 
-### `npm start`
+|백엔드|프론트엔드|
+|:--:|:--:|
+||<img width="150"  src="https://github.com/guhaeduo/client/assets/114664128/c231adb4-8c04-404c-8848-adaf638366c4">|
+|[신창호](https://github.com/Gloom-shin)|[유명인](https://github.com/myeongin0926)|
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 프로젝트 소개
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+구해듀오는 `league of legends` 라는 게임을 즐기는 사용자를 위한 사이트입니다. 
 
-### `npm test`
+게임을 혼자 플레이하기 싫은 사용자를 위해 같이 게임을 플레이할 사용자를 모집할 수 있습니다.  
+더욱 투명한 팀원 모집을 위해 사용자의 플레이 기록 검색을 지원하며 사용자의 게임을 요약하여 볼 수 있습니다.  
+또한, 팀원을 구할 때에 원하는 조건을 통해 사용자를 유저를 추려낼 수 있습니다.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 기술 스택
 
-### `npm run build`
+### 환경
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+### 개발
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 소통
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
