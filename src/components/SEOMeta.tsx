@@ -28,6 +28,14 @@ export default function SEOMeta({ pageData }: Props) {
       <meta property="og:image:height" content="630" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+      <meta
+        name="naver-site-verification"
+        content="cceff99a5be293645f95dce8c8b93083dfced2a0"
+      />
+      <meta
+        name="google-site-verification"
+        content="FZsTDbn_-ESpDb78-BKh_QUs4wiGuUOboZfeAiJxWtY"
+      />
       <meta name="twitter:image" content={ogImage} />
     </Helmet>
   );
