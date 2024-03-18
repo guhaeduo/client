@@ -78,6 +78,18 @@
     ]
   },
   "reactSnap": {
+    "staticPaths": [
+      "/",
+      "/login",
+      "/signup",
+      "/accounts/reset-code-send",
+      "/auth/reset-password",
+      "/profile",
+      "/summoners/:country/:summonerName",
+      "/find-duo",
+      "/oauth/kakao",
+      "/oauth/discord"
+    ],
     "puppeteerArgs": [
       "--no-sandbox",
       "--disable-setuid-sandbox"
