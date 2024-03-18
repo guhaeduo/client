@@ -4,7 +4,9 @@ import hasAlphaNumeric from 'utils/hasAlphaNumeric';
 import instance from 'service/instance';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import isCustomAxiosError from 'service/customAxiosError';
+import Toast from 'utils/toast';
 import { useEffect, useState } from 'react';
+import MESSAGE from 'constants/message';
 interface FormValue {
   newPassword: string;
   newPasswordCheck: string;
@@ -40,10 +42,10 @@ export default function useResetPasswordForm() {
         },
         { headers: { Authorization: `Bearer ${code}` } },
       );
+      Toast.success(MESSAGE.PASSWORD_CHANGE_SUCCESS);
       navLogin();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
-        console.log(err);
         setError('잘못된 토큰 정보입니다.');
       }
     }

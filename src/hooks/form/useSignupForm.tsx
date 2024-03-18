@@ -3,7 +3,8 @@ import { useState } from 'react';
 import instance from 'service/instance';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import isCustomAxiosError from 'service/customAxiosError';
-
+import Toast from 'utils/toast';
+import MESSAGE from 'constants/message';
 interface FormValue {
   email: string;
   verificationCode: string;
@@ -65,6 +66,7 @@ export default function useSignupForm() {
         code: verificationCode,
       });
       setIsVerificationCodeConfirm(true);
+      Toast.success(MESSAGE.VERIFICATION_CODE_CONFIRM_SUCCESS);
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         setError('verificationCode', {

@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { worker } from 'mocks/browsers';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
+import { HelmetProvider } from 'react-helmet-async';
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -39,10 +39,12 @@ root.render(
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}>
         <Reset />
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-          <App />
-          <ReactQueryDevtools initialIsOpen={true} />
-        </BrowserRouter>
+        <HelmetProvider>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <App />
+            <ReactQueryDevtools initialIsOpen={true} />
+          </BrowserRouter>
+        </HelmetProvider>
       </QueryClientProvider>
     </PersistGate>
   </Provider>,

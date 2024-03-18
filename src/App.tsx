@@ -15,7 +15,8 @@ import SocialLoginAuthPage from 'pages/socialLoginAuth/SocialLoginAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
 import Footer from 'components/footer/Footer';
 import PATH from 'constants/path';
-import Toast from 'utils/toast';
+import SEOMeta from 'components/SEOMeta';
+import SEO_DATA from 'constants/seoData';
 
 const requiredLoginPathname = [PATH.PROFILE];
 const requiredUnLoginPathname = [
@@ -72,43 +73,45 @@ const pages = [
 function App() {
   updateDDragonData();
   return (
-    <div className="App">
-      <button onClick={() => Toast.info('info')}>info</button>
-      <button onClick={() => Toast.success('success')}>success</button>
-      <button onClick={() => Toast.error('error')}>error</button>
-      <ToastContainer
-        position="top-right" // 알람 위치 지정
-        autoClose={3000} // 자동 off 시간
-        hideProgressBar={true} // 진행시간바 숨김
-        rtl={false} // 알림 좌우 반전
-        pauseOnFocusLoss // 화면을 벗어나면 알람 정지
-        draggable // 드래그 가능
-        theme="dark"
-        limit={3} // 알람 개수 제한
-      />
-      <Header />
-      <main>
-        <Routes>
-          {pages.map((page) => (
-            <Route
-              path={page.pathname}
-              element={
-                <ProtectedRoute
-                  requiredLogin={requiredLoginPathname.includes(page.pathname)}
-                  requiredUnLogin={requiredUnLoginPathname.includes(
-                    page.pathname,
-                  )}
-                >
-                  {page.element}
-                </ProtectedRoute>
-              }
-              key={page.pathname}
-            />
-          ))}
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <>
+      <SEOMeta pageData={SEO_DATA.home} />
+      <div className="App">
+        <ToastContainer
+          position="top-right" // 알람 위치 지정
+          autoClose={3000} // 자동 off 시간
+          hideProgressBar={true} // 진행시간바 숨김
+          rtl={false} // 알림 좌우 반전
+          pauseOnFocusLoss // 화면을 벗어나면 알람 정지
+          draggable // 드래그 가능
+          theme="dark"
+          limit={3} // 알람 개수 제한
+        />
+        <Header />
+        <main>
+          <Routes>
+            {pages.map((page) => (
+              <Route
+                path={page.pathname}
+                element={
+                  <ProtectedRoute
+                    requiredLogin={requiredLoginPathname.includes(
+                      page.pathname,
+                    )}
+                    requiredUnLogin={requiredUnLoginPathname.includes(
+                      page.pathname,
+                    )}
+                  >
+                    {page.element}
+                  </ProtectedRoute>
+                }
+                key={page.pathname}
+              />
+            ))}
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
 

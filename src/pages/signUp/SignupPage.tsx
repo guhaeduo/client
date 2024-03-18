@@ -8,7 +8,8 @@ import {
   passwordValidation,
   verificationCodeValidation,
 } from 'utils/validatior';
-import { FaCheck } from 'react-icons/fa6';
+import SEOMeta from 'components/SEOMeta';
+import SEO_DATA from 'constants/seoData';
 
 const cn = classNames.bind(styles);
 export default function SignupPage() {
@@ -30,93 +31,99 @@ export default function SignupPage() {
   } = useSignupForm();
 
   return (
-    <div className="centerContainer">
-      <div className={cn('main', 'container')}>
-        <img
-          className={cn('signupImg')}
-          src={process.env.PUBLIC_URL + '/images/thresh.png'}
-          alt=""
-        />
-        <div>
-          <div className={cn('signupWrapper')}>
-            <h3>회원가입</h3>
-            <form onSubmit={submitHandler}>
-              <div className={cn('emailInputWrapper')}>
-                <Input
-                  {...register('email', emailValidation)}
-                  type="text"
-                  label="이메일"
-                  error={errors.email}
-                  disabled={isVerificationConfirm}
-                />
-                {isVerificationConfirm || (
-                  <button
-                    type="button"
-                    className={cn('verificationCodeBtn', {
-                      isValid: isEmailiValid,
-                      success: isVerificationConfirm,
-                    })}
-                    onClick={verificationCodeSendHandler}
-                  >
-                    인증번호 받기
-                  </button>
+    <>
+      <SEOMeta pageData={SEO_DATA.signup} />
+      <div className="centerContainer">
+        <div className={cn('main', 'container')}>
+          <img
+            className={cn('signupImg')}
+            src={process.env.PUBLIC_URL + '/images/thresh.png'}
+            alt=""
+          />
+          <div>
+            <div className={cn('signupWrapper')}>
+              <h3>회원가입</h3>
+              <form onSubmit={submitHandler}>
+                <div className={cn('emailInputWrapper')}>
+                  <Input
+                    {...register('email', emailValidation)}
+                    type="text"
+                    label="이메일"
+                    error={errors.email}
+                    disabled={isVerificationConfirm}
+                  />
+                  {isVerificationConfirm || (
+                    <button
+                      type="button"
+                      className={cn('verificationCodeBtn', {
+                        isValid: isEmailiValid,
+                        success: isVerificationConfirm,
+                      })}
+                      onClick={verificationCodeSendHandler}
+                    >
+                      인증번호 받기
+                    </button>
+                  )}
+                </div>
+                {isVerificationCodeSent && !isVerificationConfirm && (
+                  <p className={cn('verificationCodeSentMessage')}>
+                    인증 번호가 전송되었습니다.(유효시간 30분) <br />
+                    인증 번호가 오지 않으면 입력하신 정보가 정확한지 확인하여
+                    주세요.
+                  </p>
                 )}
-              </div>
-              {isVerificationCodeSent && !isVerificationConfirm && (
-                <p className={cn('verificationCodeSentMessage')}>
-                  인증 번호가 전송되었습니다.(유효시간 30분) <br />
-                  인증 번호가 오지 않으면 입력하신 정보가 정확한지 확인하여
-                  주세요.
-                </p>
-              )}
-              <div className={cn('emailInputWrapper')}>
+                <div className={cn('emailInputWrapper')}>
+                  <Input
+                    {...register(
+                      'verificationCode',
+                      verificationCodeValidation,
+                    )}
+                    type="text"
+                    label="인증번호"
+                    error={errors.verificationCode}
+                    disabled={!isVerificationCodeSent || isVerificationConfirm}
+                  />
+                  {isVerificationConfirm || (
+                    <button
+                      type="button"
+                      className={cn('verificationCodeBtn', {
+                        isValid: isVerficationCodeValid,
+                      })}
+                      onClick={verificationCodeConfirmation}
+                    >
+                      인증번호 확인
+                    </button>
+                  )}
+                </div>
                 <Input
-                  {...register('verificationCode', verificationCodeValidation)}
-                  type="text"
-                  label="인증번호"
-                  error={errors.verificationCode}
-                  disabled={!isVerificationCodeSent || isVerificationConfirm}
+                  {...register('password', passwordValidation)}
+                  type="password"
+                  label="비밀번호"
+                  error={errors.password}
                 />
-                {isVerificationConfirm || (
-                  <button
-                    type="button"
-                    className={cn('verificationCodeBtn', {
-                      isValid: isVerficationCodeValid,
-                    })}
-                    onClick={verificationCodeConfirmation}
-                  >
-                    인증번호 확인
-                  </button>
-                )}
-              </div>
-              <Input
-                {...register('password', passwordValidation)}
-                type="password"
-                label="비밀번호"
-                error={errors.password}
-              />
-              <Input
-                {...register('passwordCheck', {
-                  validate: (value: string) =>
-                    value === watch('password') ||
-                    '비밀번호가 일치하지 않습니다.',
-                })}
-                type="password"
-                label="비밀번호 재확인"
-                error={errors.passwordCheck}
-              />
-              {errorMsg && <p className={cn('signupError')}>{errorMsg}</p>}
-              <button className={cn('signupBtn', { isValid })} type="submit">
-                회원가입
-              </button>
-            </form>
-            <p className={cn('toLogin')}>
-              이미 구해듀오의 회원이신가요?
-              <span onClick={navLogin}>로그인</span>
-            </p>
+                <Input
+                  {...register('passwordCheck', {
+                    validate: (value: string) =>
+                      value === watch('password') ||
+                      '비밀번호가 일치하지 않습니다.',
+                  })}
+                  type="password"
+                  label="비밀번호 재확인"
+                  error={errors.passwordCheck}
+                />
+                {errorMsg && <p className={cn('signupError')}>{errorMsg}</p>}
+                <button className={cn('signupBtn', { isValid })} type="submit">
+                  회원가입
+                </button>
+              </form>
+              <p className={cn('toLogin')}>
+                이미 구해듀오의 회원이신가요?
+                <span onClick={navLogin}>로그인</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

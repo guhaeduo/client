@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import instance from 'service/instance';
 import isCustomAxiosError from 'service/customAxiosError';
 import { fetchUser } from 'service/fetchUser';
-import { toast } from 'react-toastify';
 
 interface FormValue {
   email: string;
@@ -27,7 +26,6 @@ export default function useLoginForm() {
         password,
       });
       await fetchUser();
-      toast.success('환영합니다');
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         setError('email', {

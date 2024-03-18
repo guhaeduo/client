@@ -15,12 +15,15 @@ import SummonerMatchListContainerSkeleton from './skeleton/SummonerMatchListCont
 import SummonerMatchListContainer from './summonerMatchListContainer/SummonerMatchListContainer';
 import LoadingButton from 'components/loadingButton/LoadingButton';
 import { useQueryClient } from '@tanstack/react-query';
+import SEOMeta from 'components/SEOMeta';
+import SEO_DATA from 'constants/seoData';
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
   const { country, name, tag } = usePathSummonerData();
   const [firstLoading, setFirstLoading] = useState(false);
   const queryClient = useQueryClient();
+  const seoTitle = `${name}#${tag} - 게임 전적`;
   const handleClick = () => {
     const queryKeys = [
       ['summoner', 'info', country, name, tag],
@@ -102,50 +105,53 @@ export default function SummonerSearchPage() {
     isSummonerRankInfoFetching;
 
   return (
-    <div className={cn('summonerSearch', 'container')}>
-      {summonerInfo && summonerRankInfo && firstLoading ? (
-        <SummonerInfoContainer
-          summonerInfo={summonerInfo}
-          summonerRankInfo={summonerRankInfo}
-        />
-      ) : (
-        <SummonerInfoContainerSkeleton />
-      )}
-      {firstLoading && (
-        <LoadingButton
-          name={`${country}_${name}_${tag}`}
-          onClickHandler={handleClick}
-          className={cn('summonerDataRefetchButton')}
-          isFetching={isDataRefetching}
-          clickLimitTime={120}
-        >
-          전적 갱신
-        </LoadingButton>
-      )}
-      {summonerGameSummary && firstLoading ? (
-        <SummonerGameSummaryContainer
-          summonerGameSummary={summonerGameSummary}
-          summaryQueueType={summaryQueueType}
-          setSummaryQueueType={setSummaryQueueType}
-        />
-      ) : (
-        <SummonerGameSummarySkeleton
-          summaryQueueType={summaryQueueType}
-          setSummaryQueueType={setSummaryQueueType}
-        />
-      )}
-      {summonerMatchData && firstLoading ? (
-        <SummonerMatchListContainer
-          summonerMatchData={summonerMatchData}
-          matchQueueType={matchQueueType}
-          setMatchQueueType={setMatchQueueType}
-        />
-      ) : (
-        <SummonerMatchListContainerSkeleton
-          matchQueueType={matchQueueType}
-          setMatchQueueType={setMatchQueueType}
-        />
-      )}
-    </div>
+    <>
+      <SEOMeta pageData={{ ...SEO_DATA.summonerSearch, title: seoTitle }} />
+      <div className={cn('summonerSearch', 'container')}>
+        {summonerInfo && summonerRankInfo && firstLoading ? (
+          <SummonerInfoContainer
+            summonerInfo={summonerInfo}
+            summonerRankInfo={summonerRankInfo}
+          />
+        ) : (
+          <SummonerInfoContainerSkeleton />
+        )}
+        {firstLoading && (
+          <LoadingButton
+            name={`${country}_${name}_${tag}`}
+            onClickHandler={handleClick}
+            className={cn('summonerDataRefetchButton')}
+            isFetching={isDataRefetching}
+            clickLimitTime={120}
+          >
+            전적 갱신
+          </LoadingButton>
+        )}
+        {summonerGameSummary && firstLoading ? (
+          <SummonerGameSummaryContainer
+            summonerGameSummary={summonerGameSummary}
+            summaryQueueType={summaryQueueType}
+            setSummaryQueueType={setSummaryQueueType}
+          />
+        ) : (
+          <SummonerGameSummarySkeleton
+            summaryQueueType={summaryQueueType}
+            setSummaryQueueType={setSummaryQueueType}
+          />
+        )}
+        {summonerMatchData && firstLoading ? (
+          <SummonerMatchListContainer
+            summonerMatchData={summonerMatchData}
+            matchQueueType={matchQueueType}
+            setMatchQueueType={setMatchQueueType}
+          />
+        ) : (
+          <SummonerMatchListContainerSkeleton
+            matchQueueType={matchQueueType}
+            setMatchQueueType={setMatchQueueType}
+          />
+        )}
+      </div>
+    </>
   );
 }

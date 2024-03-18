@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/userSlice';
 import instance from 'service/instance';
+import Toast from 'utils/toast';
+import MESSAGE from 'constants/message';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -20,6 +22,7 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
     try {
       await instance.delete('/api/member/delete');
       dispatch(logout());
+      Toast.success(MESSAGE.ACCOUNT_DELETE_SUCCESS);
     } catch (err) {
       console.log(err);
     }
