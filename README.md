@@ -1,6 +1,6 @@
 ## GuhaeDuo - 구해듀오
 
-<p align='center'><img src='https://github.com/guhaeduo/client/assets/114664128/0c705bac-fbb7-4d9a-b40d-f8181404b387'/></p>
+<p align='center'><img src='https://github.com/guhaeduo/client/assets/114664128/9b038b05-f1b7-4592-a463-809497f8a889'/></p>
 
 > 개발 기간 - 2024.02 ~ 2024.04  
 > 배포 주소 - https://www.guhaeduo.com
