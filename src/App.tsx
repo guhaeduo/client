@@ -15,7 +15,6 @@ import SocialLoginAuthPage from 'pages/socialLoginAuth/SocialLoginAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
 import Footer from 'components/footer/Footer';
 import PATH from 'constants/path';
-import Toast from 'utils/toast';
 
 const requiredLoginPathname = [PATH.PROFILE];
 const requiredUnLoginPathname = [
@@ -73,9 +72,6 @@ function App() {
   updateDDragonData();
   return (
     <div className="App">
-      <button onClick={() => Toast.info('info')}>info</button>
-      <button onClick={() => Toast.success('success')}>success</button>
-      <button onClick={() => Toast.error('error')}>error</button>
       <ToastContainer
         position="top-right" // 알람 위치 지정
         autoClose={3000} // 자동 off 시간
