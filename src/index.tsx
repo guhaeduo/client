@@ -1,4 +1,4 @@
-import CreateDOM from 'react-dom/client';
+import { hydrateRoot, createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store'; // Redux 스토어 및 Persistor 가져오기
@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { worker } from 'mocks/browsers';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { HelmetProvider } from 'react-helmet-async';
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -30,11 +31,10 @@ if (
   });
 }
 
-const root = CreateDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+const container = document.getElementById('root') as HTMLElement;
+const root = createRoot(container);
 
-root.render(
+const app = (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}>
@@ -47,5 +47,11 @@ root.render(
         </HelmetProvider>
       </QueryClientProvider>
     </PersistGate>
-  </Provider>,
+  </Provider>
 );
+
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  root.render(app);
+}
