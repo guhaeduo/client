@@ -74,7 +74,6 @@ function App() {
   updateDDragonData();
   return (
     <>
-      <SEOMeta pageData={SEO_DATA.home} />
       <div className="App">
         <ToastContainer
           position="top-right" // 알람 위치 지정
