@@ -50,10 +50,8 @@ const app = (
   </Provider>
 );
 
-// if (container.hasChildNodes()) {
-//   hydrateRoot(container, app);
-// } else {
-//   root.render(app);
-// }
-
-root.render(app);
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  root.render(app);
+}
