@@ -8,14 +8,13 @@ import MESSAGE from 'constants/message';
 export default function parseSummonerName(input: string) {
   // 소환사 이름과 태그 구분자의 인덱스
   const index = input.indexOf('#');
-  const name = input.substring(0, index);
-  const tag = input.substring(index + 1);
-
-  // 예외처리
-  if (!name || input.trim() === '') throw new Error(MESSAGE.INVALID_NAME);
 
   // 태그가 없다면 임의의 태그를 리턴
+  if (input.trim() === '') throw new Error(MESSAGE.INVALID_NAME);
   if (index === -1) return { name: input, tag: 'KR1' };
+
+  const name = input.substring(0, index);
+  const tag = input.substring(index + 1);
 
   // 모두 통과했다면, 이름과 태그 반환
   return { name, tag };
