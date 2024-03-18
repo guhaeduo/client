@@ -1,4 +1,5 @@
-import { hydrateRoot, createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store'; // Redux 스토어 및 Persistor 가져오기
@@ -50,8 +51,4 @@ const app = (
   </Provider>
 );
 
-if (container.hasChildNodes()) {
-  hydrateRoot(container, app);
-} else {
-  root.render(app);
-}
+root.render(app);
