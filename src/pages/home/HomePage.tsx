@@ -14,7 +14,12 @@ export default function HomePage() {
         <div className={cn('homeSideImage')}>
           <img src={process.env.PUBLIC_URL + `/images/akali.png`} alt="" />
         </div>
-        <h1 onClick={navHome}>구해듀오</h1>
+        <h1 onClick={navHome}>
+          <img
+            src={process.env.PUBLIC_URL + '/images/logo.png'}
+            alt="구해듀오 로고"
+          />
+        </h1>
         <SearchBar type="main" />
       </div>
     </div>

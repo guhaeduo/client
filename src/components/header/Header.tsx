@@ -55,7 +55,10 @@ export default function Header() {
     >
       <div className={`${cn('container')} container`}>
         <h1 className={cn('title', { hidden: isLogoHidden })} onClick={navHome}>
-          구해듀오
+          <img
+            src={process.env.PUBLIC_URL + '/images/logo.png'}
+            alt="구해듀오 로고"
+          />
         </h1>
         <SearchBar
           type="header"

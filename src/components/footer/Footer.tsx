@@ -22,7 +22,6 @@ export default function Footer() {
         opinions of Riot Games or anyone officially involved in producing or
         managing League of Legends.
       </p>
-      <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="" />
     </footer>
   );
 }
