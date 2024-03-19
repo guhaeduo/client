@@ -101,3 +101,12 @@
     display: none;
   }
 }
+
+@include tablet {
+  .optionContainer {
+    display: block;
+    & > div:last-child {
+      margin-top: 15px;
+    }
+  }
+}
