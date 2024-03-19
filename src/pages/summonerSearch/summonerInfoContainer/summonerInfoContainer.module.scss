@@ -1,6 +1,12 @@
+@import '/src/css/mixin';
+
 .summonerInfo {
   display: flex;
   align-items: center;
+  & > div:first-child {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .summonerIcon {
@@ -53,9 +59,29 @@
 
 .rankDataContainer {
   display: flex;
+  align-items: center;
   gap: 15px;
   margin-top: 5px;
   min-width: 200px;
+}
+
+.rankTierContainerSpread {
+  display: none;
+  width: 100%;
+  & > div {
+    flex: 1;
+    &:first-child {
+      border-right: 1px solid var(--border);
+    }
+  }
+
+  .title {
+    border-top: 1px solid var(--border);
+    background-color: var(--black-100);
+    font-size: 13px;
+    font-weight: bold;
+    padding: 14px 16px;
+  }
 }
 
 .rankTierIcon {
@@ -106,5 +132,87 @@
   .summonerNameTag {
     height: 60px;
     width: 200px;
+  }
+}
+
+// 반응형
+@include laptop {
+  .summonerInfo {
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+  .summonerIcon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .summonerNameTag {
+    margin-left: 15px;
+    font-size: 35px;
+    .summonerTag {
+      padding-left: 10px;
+    }
+  }
+  .rankTierContainer {
+    display: none;
+  }
+  .rankTierContainerSpread {
+    display: flex;
+    margin: 10px 0;
+    .rankDataContainer {
+      padding: 14px 16px;
+      margin-top: 0;
+      .rankTierIcon {
+        order: 2;
+      }
+      .rankWrapper {
+        order: 1;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .summonerIcon {
+    width: 50px;
+    height: 50px;
+  }
+  .summonerInfo.skeleton {
+    .summonerNameTag {
+      height: 50px;
+      width: 150px;
+    }
+    .rankTierIcon {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  .summonerNameTag {
+    margin-left: 10px;
+    font-size: 25px;
+    .summonerTag {
+      padding-left: 5px;
+    }
+  }
+  .rankTierContainerSpread {
+    flex-direction: column;
+    .rankTierIcon {
+      width: 50px;
+      height: 50px;
+    }
+    .title {
+      border: none;
+    }
+    & > div:first-child {
+      border: none;
+    }
+    .rankTier {
+      font-size: 16px;
+    }
+    .rankPoint,
+    .winningWrapper {
+      font-size: 11px;
+    }
   }
 }

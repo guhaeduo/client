@@ -22,7 +22,7 @@
   --grey-100: #9c9c9c;
   --grey-200: #858585;
   --grey-300: #323232;
-  --black-100: #3f3f3f;
+  --black-100: rgb(57, 58, 60);
   --black-200: #303030;
   --black-300: #232323;
   --light-green: rgb(0, 231, 0);
@@ -34,13 +34,13 @@
 
 @include laptop {
   :root {
-    --inner: 80%;
+    --inner: 85%;
   }
 }
 
 @include mobile {
   :root {
-    --inner: 90%;
+    --inner: 95%;
   }
 }
 

@@ -30,7 +30,7 @@ type Tier =
   | 'unRanked';
 
 // 랭크 티어 데이터 타입
-type RankData = {
+export type RankData = {
   tier: Tier;
   level: number;
   point: number;
