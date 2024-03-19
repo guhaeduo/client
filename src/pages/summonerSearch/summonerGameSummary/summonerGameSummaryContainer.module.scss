@@ -1,3 +1,9 @@
+@import '/src/css/mixin';
+
+.summaryContainer {
+  margin-top: 20px;
+}
+
 .chartDetail {
   width: 70px;
   position: absolute;
@@ -16,7 +22,7 @@
   display: flex;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  h5 {
+  .summaryTitle {
     background-color: rgb(57, 58, 60);
     font-size: 13px;
     padding: 18px 20px 17px;
@@ -65,6 +71,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  & > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .infoKDA {
@@ -114,10 +125,10 @@
 
 .detailsTop {
   display: flex;
-  & > div:first-child {
+  .mostChampions {
     padding-right: 20px;
   }
-  & > div:last-child {
+  .detailGameCntChartContainer {
     flex: 1;
   }
 }
@@ -286,5 +297,85 @@
   }
   .detailDataItem {
     height: 112px;
+  }
+}
+
+// 반응형
+
+@include laptop {
+  .infoDivider,
+  .chart {
+    display: none;
+  }
+  .summary {
+    flex-direction: column;
+    border: none;
+    .summaryTitle {
+      padding: 16 14px;
+    }
+    & > div {
+      width: 100%;
+    }
+    .informationContainer {
+      border: none;
+      .infomations {
+        align-items: start;
+        gap: 20px;
+        padding: 30px 20px;
+      }
+      .infoDataContainer {
+        flex-direction: row;
+        align-items: center;
+        .infoLane {
+          margin: 0 0 0 30px;
+        }
+      }
+    }
+  }
+  .detailWrapper {
+    display: flex;
+  }
+  .detailData {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    & > div {
+      padding: 0;
+      span:first-child {
+        font-size: 18px;
+      }
+      span:last-child {
+        font-size: 14px;
+      }
+    }
+  }
+  .summaryContainer.skeleton .detailDataItem {
+    height: auto;
+  }
+}
+
+@include tablet {
+  .detailWrapper {
+    flex-direction: column;
+  }
+  .detailData > div {
+    padding: 20px;
+  }
+  .summaryContainer.skeleton .detailDataItem {
+    height: 87px;
+  }
+}
+
+@include mobile {
+  .detailsTop {
+    .mostChampions {
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  .championTag {
+    width: 100%;
   }
 }

@@ -125,6 +125,7 @@ export default function SearchBar({ className, type }: Props) {
     <div className={cn(className, 'searchBarWrapper')}>
       <div className={cn('searchBar', type)}>
         <DropDown
+          label="소환사 검색 국가 선택 메뉴"
           currentOptionKey={countryOption}
           onChange={setCountryOption}
           options={COUNTRY}
@@ -137,15 +138,24 @@ export default function SearchBar({ className, type }: Props) {
           setIsOpen={modalOpenHandler}
         />
         <form ref={searchHistoryRef} onSubmit={onSearchSubmitHandler}>
+          <label className="visuallyHidden" htmlFor="summonerSearchInput">
+            소환사 검색 인풋
+          </label>
           <input
             type="text"
+            id="summonerSearchInput"
             className={cn('searchInput')}
             {...register('summonerName')}
             autoComplete="off"
             onClick={searchInputFocusHandler}
           />
-          <button type="submit" className={cn('submitButton', type)}>
+          <button
+            type="submit"
+            id="summonerSearchBtn"
+            className={cn('submitButton', type)}
+          >
             <IoIosSearch />
+            <span className="visuallyHidden">소환사 검색 버튼</span>
           </button>
         </form>
       </div>

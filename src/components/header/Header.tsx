@@ -2,10 +2,10 @@ import styles from './header.module.scss';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 import SearchBar from '../searchbar/SearchBar';
-import useCustomNavigation from 'hooks/useCustomNavigation';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
 import PATH from 'constants/path';
+import { Link } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
 
@@ -47,36 +47,40 @@ export default function Header() {
   // 유저 객체입니다.
   const user = useSelector(selectUser);
 
-  const { navHome, navLogin, navFindDuo, navProfile } = useCustomNavigation();
-
   return (
     <header
       className={cn('header', { transparent: isLogoHidden || isButtonsHidden })}
     >
       <div className={`${cn('container')} container`}>
-        <h1 className={cn('title', { hidden: isLogoHidden })} onClick={navHome}>
-          <img
-            src={process.env.PUBLIC_URL + '/images/logo.png'}
-            alt="구해듀오 로고"
+        {isLogoHidden || (
+          <h1 className={cn('title')}>
+            <Link to={PATH.HOME}>
+              <img
+                src={process.env.PUBLIC_URL + '/images/logo.png'}
+                alt="구해듀오 로고"
+              />
+            </Link>
+          </h1>
+        )}
+        {isSearchBarHidden || (
+          <SearchBar
+            type="header"
+            className={cn('searchBar', { hidden: isSearchBarHidden })}
           />
-        </h1>
-        <SearchBar
-          type="header"
-          className={cn('searchBar', { hidden: isSearchBarHidden })}
-        />
+        )}
         {isButtonsHidden || (
           <div hidden={isButtonsHidden} className={cn('buttons')}>
-            <button className={cn('findDuoBtn')} onClick={navFindDuo}>
+            <Link to={PATH.FIND_DUO} className={cn('findDuoBtn')}>
               듀오찾기
-            </button>
+            </Link>
             {user.isLogin ? (
-              <button className={cn('myPageBtn')} onClick={navProfile}>
+              <Link to={PATH.PROFILE} className={cn('myPageBtn')}>
                 프로필
-              </button>
+              </Link>
             ) : (
-              <button className={cn('loginBtn')} onClick={navLogin}>
+              <Link to={PATH.LOGIN} className={cn('loginBtn')}>
                 로그인
-              </button>
+              </Link>
             )}
           </div>
         )}

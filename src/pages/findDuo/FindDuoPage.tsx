@@ -58,6 +58,7 @@ export default function FindDuoPage() {
               업데이트
             </LoadingButton>
             <DropDown
+              label="듀오 검색 게임 타입 메뉴"
               options={QUEUE}
               currentOptionKey={queueOption}
               onChange={setQueueOption}
@@ -67,6 +68,7 @@ export default function FindDuoPage() {
               className={cn('findDuoDropDown')}
             />
             <DropDown
+              label="듀오 검색 티어 선택 메뉴"
               options={TIER}
               currentOptionKey={tierOption}
               onChange={setTierOption}
