@@ -10,6 +10,7 @@ import ParticipantPreviewCard from './ParticipantPreviewCard';
 import { IoIosArrowDown } from 'react-icons/io';
 import SpellIcon from 'components/spellIcon/SpellIcon';
 import PerksIcon from 'components/perksIcon/PerksIcon';
+import { calculateGrade } from 'utils/calculate';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -71,10 +72,22 @@ export default function CurrentSummonerMatchCard({
                   perksStyle={currentSummonerMatchData.perks.sub.perkStyle}
                 />
               </div>
-              <div className={cn('grade')}>
-                <span>{currentSummonerMatchData.kill} /</span>
-                <span> {currentSummonerMatchData.death} </span>
-                <span>/ {currentSummonerMatchData.assists}</span>
+              <div className={cn('kda')}>
+                <div className={cn('summonerKda')}>
+                  <span>{currentSummonerMatchData.kill} </span>
+                  <span>/</span>
+                  <span>{currentSummonerMatchData.death}</span>
+                  <span>/</span>
+                  <span>{currentSummonerMatchData.assists}</span>
+                </div>
+                <div className={cn('grade')}>
+                  {calculateGrade(
+                    currentSummonerMatchData.kill,
+                    currentSummonerMatchData.death,
+                    currentSummonerMatchData.assists,
+                  )}
+                  :1 평점
+                </div>
               </div>
             </div>
             <div className={cn('itemList')}>
