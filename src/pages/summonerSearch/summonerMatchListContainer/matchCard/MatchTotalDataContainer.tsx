@@ -10,7 +10,7 @@ type Props = {
 export default function MatchTotalDataContainer({ matchData }: Props) {
   return (
     <div className={cn('matchTotalData')}>
-      <Objectives objectives={matchData.red.objectives} team="blue" />
+      <Objectives objectives={matchData.blue.objectives} team="blue" />
       <div className={cn('totalData')}>
         <div className={cn('totalKill')}>
           <span>Total Kill</span>
@@ -37,7 +37,7 @@ export default function MatchTotalDataContainer({ matchData }: Props) {
           </div>
         </div>
       </div>
-      <Objectives objectives={matchData.blue.objectives} team="red" />
+      <Objectives objectives={matchData.red.objectives} team="red" />
     </div>
   );
 }
