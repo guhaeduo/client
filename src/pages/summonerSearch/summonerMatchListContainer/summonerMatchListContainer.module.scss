@@ -1,3 +1,5 @@
+@import '/src/css/mixin';
+
 .matchListContainer {
   margin-top: 30px;
   display: flex;
@@ -91,5 +93,11 @@
   }
   .matchListSummary {
     height: 200px;
+  }
+}
+
+@include laptop {
+  .matchListSummary {
+    display: none;
   }
 }
