@@ -129,9 +129,9 @@ export default function SummonerGameSummaryContainer({
       />
       <div className={cn('summary')}>
         <div className={cn('informationContainer')}>
-          <h5>정보</h5>
+          <div className={cn('summaryTitle')}>정보</div>
           <div className={cn('infomations')}>
-            <div className={cn('winningRateChartContainer')}>
+            <div className={cn('winningRateChartContainer', 'chart')}>
               <Doughnut data={infoWinningRateData} options={options} />
               <div className={cn('chartDetail')}>
                 <span className={cn('infoWinningRate')}>
@@ -145,11 +145,13 @@ export default function SummonerGameSummaryContainer({
             </div>
             <div className={cn('infoDivider')}></div>
             <div className={cn('infoDataContainer')}>
-              <span className={cn('infoKDA')}>KDA {info.kda}</span>
-              <div className={cn('infoKDS')}>
-                <span>{info.killAvg} /</span>
-                <span className={cn('infoDeathAvg')}> {info.deathAvg} </span>
-                <span>/ {info.assistAvg}</span>
+              <div>
+                <span className={cn('infoKDA')}>KDA {info.kda}</span>
+                <div className={cn('infoKDS')}>
+                  <span>{info.killAvg} /</span>
+                  <span className={cn('infoDeathAvg')}> {info.deathAvg} </span>
+                  <span>/ {info.assistAvg}</span>
+                </div>
               </div>
               <div className={cn('infoLane')}>
                 <div>
@@ -165,7 +167,9 @@ export default function SummonerGameSummaryContainer({
           </div>
         </div>
         <div className={cn('detailsContainer')}>
-          <h5>라인별 상세정보 / 모스트 챔피언</h5>
+          <div className={cn('summaryTitle')}>
+            라인별 상세정보 / 모스트 챔피언
+          </div>
           <div className={cn('details')}>
             <LaneSelector
               option={summaryLaneOption}
@@ -179,50 +183,52 @@ export default function SummonerGameSummaryContainer({
               </div>
             ) : (
               <>
-                <div className={cn('detailsTop')}>
-                  <div className={cn('mostChampions')}>
-                    {currentDetailChampion &&
-                      detailData.mostChampionlist.map((champion) => (
-                        <ChampionTag
-                          currentDetailChampion={currentDetailChampion}
-                          setCurrentDetailChampion={setCurrentDetailChampion}
-                          key={champion.championName}
-                          champion={champion}
-                        />
-                      ))}
-                  </div>
-                  <div className={cn('detailGameCntChartContainer')}>
-                    <Doughnut
-                      data={detailGameCntData}
-                      options={{
-                        ...options,
-                        aspectRatio: 0.1,
-                      }}
-                      width={400}
-                      height={200}
-                    />
-                    <div className={cn('chartDetail')}>
-                      <span>{summaryLaneOption}</span>
-                      <span>{detailData.cntGame} 게임</span>
+                <div className={cn('detailWrapper')}>
+                  <div className={cn('detailsTop')}>
+                    <div className={cn('mostChampions')}>
+                      {currentDetailChampion &&
+                        detailData.mostChampionlist.map((champion) => (
+                          <ChampionTag
+                            currentDetailChampion={currentDetailChampion}
+                            setCurrentDetailChampion={setCurrentDetailChampion}
+                            key={champion.championName}
+                            champion={champion}
+                          />
+                        ))}
+                    </div>
+                    <div className={cn('detailGameCntChartContainer', 'chart')}>
+                      <Doughnut
+                        data={detailGameCntData}
+                        options={{
+                          ...options,
+                          aspectRatio: 0.1,
+                        }}
+                        width={400}
+                        height={200}
+                      />
+                      <div className={cn('chartDetail')}>
+                        <span>{summaryLaneOption}</span>
+                        <span>{detailData.cntGame} 게임</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className={cn('detailData')}>
-                  <div>
-                    <span>{currentDetailChampion?.csPerMinute}</span>
-                    <span>분당 CS</span>
-                  </div>
-                  <div>
-                    <span>{currentDetailChampion?.kda}</span>
-                    <span>시야 점수</span>
-                  </div>
-                  <div>
-                    <span>{currentDetailChampion?.winningRate}</span>
-                    <span>승률</span>
-                  </div>
-                  <div>
-                    <span>{currentDetailChampion?.killParticipation}</span>
-                    <span>킬 관여율</span>
+                  <div className={cn('detailData')}>
+                    <div>
+                      <span>{currentDetailChampion?.csPerMinute}</span>
+                      <span>분당 CS</span>
+                    </div>
+                    <div>
+                      <span>{currentDetailChampion?.kda}</span>
+                      <span>시야 점수</span>
+                    </div>
+                    <div>
+                      <span>{currentDetailChampion?.winningRate}</span>
+                      <span>승률</span>
+                    </div>
+                    <div>
+                      <span>{currentDetailChampion?.killParticipation}</span>
+                      <span>킬 관여율</span>
+                    </div>
                   </div>
                 </div>
               </>

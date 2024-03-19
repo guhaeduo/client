@@ -25,15 +25,17 @@ export default function SummonerGameSummarySkeleton({
       />
       <div className={cn('summary')}>
         <div className={cn('informationContainer')}>
-          <h5>정보</h5>
+          <div className={cn('summaryTitle')}>정보</div>
           <div className={cn('infomations')}>
-            <div className={cn('winningRateChartContainer')}>
+            <div className={cn('winningRateChartContainer', 'chart')}>
               <Skeleton className={cn('infomationWinningRate')} />
             </div>
             <div className={cn('infoDivider')}></div>
             <div className={cn('infoDataContainer')}>
-              <Skeleton className={cn('infoKDA')} />
-              <Skeleton className={cn('infoKDS')} />
+              <div>
+                <Skeleton className={cn('infoKDA')} />
+                <Skeleton className={cn('infoKDS')} />
+              </div>
               <div className={cn('infoLane')}>
                 <div>
                   <Skeleton className={cn('infoLaneOption')} />
@@ -48,24 +50,28 @@ export default function SummonerGameSummarySkeleton({
           </div>
         </div>
         <div className={cn('detailsContainer')}>
-          <h5>라인별 상세정보 / 모스트 챔피언</h5>
+          <div className={cn('summaryTitle')}>
+            라인별 상세정보 / 모스트 챔피언
+          </div>
           <div className={cn('details')}>
             <Skeleton className={cn('laneSelector')} />
-            <div className={cn('detailsTop')}>
-              <div className={cn('mostChampions')}>
-                <Skeleton className={cn('championTag')} />
-                <Skeleton className={cn('championTag')} />
-                <Skeleton className={cn('championTag')} />
+            <div className={cn('detailWrapper')}>
+              <div className={cn('detailsTop')}>
+                <div className={cn('mostChampions')}>
+                  <Skeleton className={cn('championTag')} />
+                  <Skeleton className={cn('championTag')} />
+                  <Skeleton className={cn('championTag')} />
+                </div>
+                <div className={cn('detailGameCntChartContainer', 'chart')}>
+                  <Skeleton className={cn('detailGameCnt')} />
+                </div>
               </div>
-              <div className={cn('detailGameCntChartContainer')}>
-                <Skeleton className={cn('detailGameCnt')} />
+              <div className={cn('detailData')}>
+                <Skeleton className={cn('detailDataItem')} />
+                <Skeleton className={cn('detailDataItem')} />
+                <Skeleton className={cn('detailDataItem')} />
+                <Skeleton className={cn('detailDataItem')} />
               </div>
-            </div>
-            <div className={cn('detailData')}>
-              <Skeleton className={cn('detailDataItem')} />
-              <Skeleton className={cn('detailDataItem')} />
-              <Skeleton className={cn('detailDataItem')} />
-              <Skeleton className={cn('detailDataItem')} />
             </div>
           </div>
         </div>
