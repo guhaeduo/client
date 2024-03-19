@@ -223,7 +223,6 @@
       border-radius: 2px;
       font-weight: bold;
       font-size: 12px;
-
       .value {
         margin: 13px 0 20px;
         font-size: 25px;
@@ -255,12 +254,15 @@
   border-radius: 2px;
   overflow: hidden;
   margin-top: 10px;
+  .participantMatchCard {
+    position: relative;
+  }
 }
 
 .matchTeamContainer {
   font-size: 13px;
   &.win {
-    .participantCard {
+    .participantMatchCard {
       background-color: rgba(73, 160, 242, 0.1);
       &.currentUser {
         background-color: rgba(73, 160, 242, 0.2);
@@ -271,7 +273,7 @@
     }
   }
   &.lose {
-    .participantCard {
+    .participantMatchCard {
       background-color: rgba(242, 84, 73, 0.1);
       &.currentUser {
         background-color: rgba(242, 84, 73, 0.2);
@@ -283,7 +285,7 @@
   }
   .header {
     padding: 13px 15px;
-    background-color: var(--black-200);
+    background-color: var(--grey-300);
     display: flex;
     justify-content: space-between;
     .result {
@@ -318,10 +320,11 @@
     width: 48px;
   }
   .participantsContainer {
-    .participantCard {
-      color: var(--white-200);
+    .participantMatchCard {
       padding: 13px 15px;
       display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
       justify-content: space-between;
       .championIcon {
         width: 35px;
@@ -330,6 +333,8 @@
       .data {
         display: flex;
         gap: 30px;
+        font-weight: 500;
+        align-items: center;
       }
       .summonerSkills {
         margin-left: 3px;
@@ -351,6 +356,7 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          overflow: hidden;
           gap: 2px;
           margin-left: 5px;
           .name {
@@ -376,7 +382,7 @@
         justify-content: center;
         align-items: center;
         gap: 2px;
-        font-weight: 400;
+        font-weight: 500;
         .summonerKda {
           font-size: 12px;
         }
@@ -395,8 +401,10 @@
         }
         .damageBar {
           width: 50px;
-          height: 5px;
-          background-color: var(--black-100);
+          height: 7px;
+          background-color: #525252;
+          border-radius: 2px;
+          overflow: hidden;
           div {
             height: inherit;
             background-color: rgb(255, 119, 119);
@@ -515,9 +523,50 @@
 
 // 반응형
 
+@media (max-width: 900px) {
+  .matchTeamContainer .header > *:not(:first-child) {
+    display: none;
+  }
+  .item {
+    flex-basis: 100%;
+  }
+  .data {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+  }
+}
+
 @media (max-width: 800px) {
   .participantsPreview {
     display: none;
+  }
+  .matchTeamContainer .participantsContainer .participantMatchCard .data {
+    gap: 0px;
+  }
+  .participantMatchContainer .maxData {
+    flex-direction: column;
+    & > div {
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      position: relative;
+      gap: 7px;
+      & > div:nth-child(2) {
+        margin: 0;
+        font-size: 16px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 12px;
+      }
+      & > div:nth-child(3) {
+        flex-basis: 100%;
+      }
+    }
   }
 }
 
@@ -526,11 +575,38 @@
     align-items: end;
     margin-right: 15px;
   }
+  .matchTotalData {
+    flex-direction: column;
+    padding: 12px 10px 10px;
+    height: auto;
+    align-items: center;
+    gap: 8px;
+    .objectives {
+      display: flex;
+    }
+    .totalData {
+      width: 100%;
+      margin-top: -6px;
+    }
+  }
 }
 
 @media (max-width: 550px) {
   .currentSummonerMatchCard .gradeSummary {
     display: none;
+  }
+  .matchTeamContainer .participantsContainer .participantMatchCard .data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    place-items: center;
+    .visionScore,
+    .minionKill,
+    .grade,
+    span {
+      font-size: 10px;
+    }
   }
 }
 
@@ -567,6 +643,25 @@
         width: 20px;
         height: 20px;
       }
+    }
+  }
+  .matchTeamContainer .participantsContainer .participantMatchCard {
+    .championIcon {
+      width: 30px;
+      height: 30px;
+    }
+    .summonerSkills {
+      grid-template-columns: 14px 14px;
+      grid-template-rows: 14px 14px;
+      .spellIcon,
+      .perksIcon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    .item .itemIcon {
+      width: 18px;
+      height: 18px;
     }
   }
 }

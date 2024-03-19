@@ -9,6 +9,7 @@ import usePathSummonerData from 'hooks/usePathSummonerData';
 import { calculateGrade, calculateDamagePercentage } from 'utils/calculate';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
 import ItemIcon from 'components/itemIcon/ItemIcon';
+import CustomTooltip from 'components/tooltip/CustomTooltip';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -49,7 +50,7 @@ export default function MatchTeamContainer({
         {teamData.participants.map((participant) => (
           <div
             key={participant.puuid}
-            className={cn('participantCard', {
+            className={cn('participantMatchCard', {
               currentUser: currentSummonerPuuid === participant.puuid,
             })}
           >
@@ -121,14 +122,19 @@ export default function MatchTeamContainer({
                   />
                 </div>
               </div>
-              <div className={cn('wards')}>
-                <div className={cn('visionScore')}>
-                  {participant.visionScore}
+              <CustomTooltip
+                body={`시야 점수 - ${participant.visionScore} 제어 와드 - ${participant.visionWards} 와드설치 - ${participant.wardPlaced}`}
+                name={`${currentSummonerPuuid}wards`}
+              >
+                <div className={cn('wards')}>
+                  <span className={cn('visionScore')}>
+                    {participant.visionScore}
+                  </span>
+                  <span>
+                    {participant.visionWards} / {participant.wardPlaced}
+                  </span>
                 </div>
-                <div>
-                  {participant.visionWards} / {participant.wardPlaced}
-                </div>
-              </div>
+              </CustomTooltip>
               <div className={cn('cs')}>
                 <span className={cn('minionKill')}>
                   {participant.minionKill}
