@@ -75,6 +75,7 @@ export default function PostModal({ postData, setIsOpen }: Props) {
             <>
               <label>게임 계정</label>
               <DropDown
+                label="게임 계정 선택 메뉴"
                 options={riotAccountOptions}
                 currentOptionKey={riotAccount}
                 onChange={setRiotAccount}
@@ -107,6 +108,7 @@ export default function PostModal({ postData, setIsOpen }: Props) {
         <div>
           <label>게임 타입</label>
           <DropDown
+            label="게임 타입 선택 메뉴"
             options={QUEUE}
             type="dark"
             currentOptionKey={queueType}
@@ -125,6 +127,7 @@ export default function PostModal({ postData, setIsOpen }: Props) {
         <div>
           <label>메인 챔피언</label>
           <DropDown
+            label="메인 챔피언 선택 메뉴"
             options={championOptions}
             currentOptionKey={mainChampion}
             onChange={setMainChampion}
@@ -147,6 +150,7 @@ export default function PostModal({ postData, setIsOpen }: Props) {
         <div>
           <label>서브 챔피언</label>
           <DropDown
+            label="서브 챔피언 선택 메뉴"
             options={championOptions}
             currentOptionKey={subChampion}
             onChange={setSubChampion}

@@ -36,7 +36,6 @@
   overflow-y: scroll;
   position: absolute;
   box-sizing: border-box;
-  margin: 0;
   margin-top: 5px;
   display: none;
   padding: 0;
@@ -52,10 +51,11 @@
   }
 }
 
-.dropDownContent li {
-  cursor: pointer;
+.dropDownContent button {
   font-weight: bold;
-  background-color: rgb(58, 58, 58);
+  width: 100%;
+  padding: 10px;
+  background-color: var(--black-100);
   display: flex;
   align-items: center;
   gap: 7px;
@@ -69,6 +69,6 @@
     }
   }
   &:hover {
-    background-color: rgb(45, 45, 45);
+    background-color: var(--grey-300);
   }
 }

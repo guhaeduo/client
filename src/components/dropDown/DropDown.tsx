@@ -13,6 +13,7 @@ type Props = {
   type: 'dark' | 'border';
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  label: string;
 };
 
 /**
@@ -35,6 +36,7 @@ export default function DropDown({
   type,
   isOpen,
   setIsOpen,
+  label,
 }: Props) {
   // dropMenuRef를 생성하여 dropDown에 연결합니다.
   const dropMenuRef = useRef<HTMLDivElement | null>(null);
@@ -69,23 +71,27 @@ export default function DropDown({
       >
         {currentOption}
         <button className={cn({ open: isOpen })}>
+          <span className="visuallyHidden">
+            {label} {isOpen ? '닫기' : '열기'} 버튼
+          </span>
           <IoCaretDownSharp className="dropDownSharpIcon" />
         </button>
       </div>
-      <ul
+      <div
         className={`${cn('dropDownContent', { visibleOption: isOpen })} dropDownContent`}
       >
         {options.map(({ key, display, icon }) => (
-          <li key={key} onClick={() => onClickHandler(key)}>
+          <button key={key} onClick={() => onClickHandler(key)}>
             {icon && (
               <div className={cn('icon')}>
                 <img src={icon} />
               </div>
             )}
+            <span className={cn('visuallyHidden')}>{label}</span>
             {display}
-          </li>
+          </button>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
