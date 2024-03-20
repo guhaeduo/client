@@ -1,3 +1,5 @@
+@import '/src/css/mixin';
+
 .duoHeader {
   width: 100%;
   height: 240px;
@@ -7,11 +9,29 @@
 .menu {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
+  margin-top: 10px;
+  & > div {
+    display: flex;
+    gap: 7px;
+  }
+  .buttons {
+    width: 100%;
+  }
+}
+
+.duoUpdateBtn {
+  font-size: 12px;
+  margin-left: auto;
+  width: 100px;
+  button {
+    border-radius: 3px;
+    height: 38px;
+  }
 }
 
 .findDuoDropDown {
-  width: 120px;
+  width: 100px;
   :global {
     .dropDownHeader {
       height: 36px;
@@ -58,20 +78,39 @@
   height: 38px;
   border-radius: 3px;
   background-color: var(--green);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 1px;
   &:hover {
     background-color: var(--green-hover);
   }
-  margin-left: auto;
 }
 
-.duoUpdateBtn {
-  margin-right: 15px;
-  width: 100px;
-  button {
-    border-radius: 3px;
-    height: 38px;
+// 반응형
+
+@media (max-width: 830px) {
+  .menu {
+    flex-direction: column;
+    align-items: start;
+    .buttons {
+      order: 1;
+    }
+    .dropMenu {
+      order: 2;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .menu > div > * {
+    width: 100%;
+  }
+  .riotVerifiedBtn {
+    padding: 0px 6px;
+    justify-content: center;
+    svg {
+      font-size: 14px;
+    }
   }
 }

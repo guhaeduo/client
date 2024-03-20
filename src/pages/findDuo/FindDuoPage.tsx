@@ -4,13 +4,14 @@ import classNames from 'classnames/bind';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import DropDown from 'components/dropDown/DropDown';
 import useFindDuo from 'hooks/business/useFindDuo';
-import { QUEUE, TIER } from 'constants/options';
+import { QUEUE, TIER, LANE } from 'constants/options';
 import LoadingButton from 'components/loadingButton/LoadingButton';
 import Modal from 'components/modal/Modal';
 import { useState } from 'react';
 import PostModal from './components/PostModal';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+
 const cn = classNames.bind(styles);
 
 export default function FindDuoPage() {
@@ -23,9 +24,11 @@ export default function FindDuoPage() {
     laneOption,
     setLaneOption,
     isTierDropDownOpen,
-    isTierDropDownOpenHandler,
+    setIsTierDropDownOpen,
     isQueueDropDownOpen,
-    isQueueDropDownOpenHandler,
+    setIsQueueDropDownOpen,
+    isLaneDropDownOpen,
+    setIsLaneDropDownOpen,
     isRiotVerified,
     isRiotVerifiedHandler,
   } = useFindDuo();
@@ -50,53 +53,62 @@ export default function FindDuoPage() {
         />
         <div className={cn('main', 'container')}>
           <div className={cn('menu')}>
-            <LoadingButton
-              isFetching={false}
-              onClickHandler={() => console.log('')}
-              className={cn('duoUpdateBtn')}
-            >
-              업데이트
-            </LoadingButton>
-            <DropDown
-              label="듀오 검색 게임 타입 메뉴"
-              options={QUEUE}
-              currentOptionKey={queueOption}
-              onChange={setQueueOption}
-              isOpen={isQueueDropDownOpen}
-              setIsOpen={isQueueDropDownOpenHandler}
-              type="border"
-              className={cn('findDuoDropDown')}
-            />
-            <DropDown
-              label="듀오 검색 티어 선택 메뉴"
-              options={TIER}
-              currentOptionKey={tierOption}
-              onChange={setTierOption}
-              isOpen={isTierDropDownOpen}
-              setIsOpen={isTierDropDownOpenHandler}
-              type="border"
-              className={cn('findDuoDropDown')}
-            />
-            <LaneSelector
-              option={laneOption}
-              onChange={setLaneOption}
-              size={30}
-            />
-            <button
-              onClick={isRiotVerifiedHandler}
-              className={cn('riotVerifiedBtn', { verified: isRiotVerified })}
-            >
-              <div className={cn('riotBadge')}>
-                <SiRiotgames />
-              </div>
-              <span>인증된 소환사만</span>
-            </button>
-            <button
-              className={cn('writePostBtn')}
-              onClick={onPostWriteBtnClick}
-            >
-              글쓰기
-            </button>
+            <div className={cn('dropMenu')}>
+              <DropDown
+                label="듀오 검색 게임 타입 메뉴"
+                options={QUEUE}
+                currentOptionKey={queueOption}
+                onChange={setQueueOption}
+                isOpen={isQueueDropDownOpen}
+                setIsOpen={setIsQueueDropDownOpen}
+                type="border"
+                className={cn('findDuoDropDown', 'queueType')}
+              />
+              <DropDown
+                label="듀오 검색 티어 선택 메뉴"
+                options={TIER}
+                currentOptionKey={tierOption}
+                onChange={setTierOption}
+                isOpen={isTierDropDownOpen}
+                setIsOpen={setIsTierDropDownOpen}
+                type="border"
+                className={cn('findDuoDropDown', 'tier')}
+              />
+              <DropDown
+                label="듀오 검색 라인 선택 메뉴"
+                options={LANE}
+                currentOptionKey={laneOption}
+                onChange={setLaneOption}
+                isOpen={isLaneDropDownOpen}
+                setIsOpen={setIsLaneDropDownOpen}
+                type="border"
+                className={cn('findDuoDropDown', 'lane')}
+              />
+            </div>
+            <div className={cn('buttons')}>
+              <button
+                onClick={isRiotVerifiedHandler}
+                className={cn('riotVerifiedBtn', { verified: isRiotVerified })}
+              >
+                <div className={cn('riotBadge')}>
+                  <SiRiotgames />
+                </div>
+                <span>인증된 소환사만</span>
+              </button>
+              <LoadingButton
+                isFetching={false}
+                onClickHandler={() => console.log('')}
+                className={cn('duoUpdateBtn')}
+              >
+                업데이트
+              </LoadingButton>
+              <button
+                className={cn('writePostBtn')}
+                onClick={onPostWriteBtnClick}
+              >
+                글쓰기
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -38,6 +38,15 @@ export const TIER = [
   { key: 'IRON', display: '아이언' },
 ];
 
+export const LANE = [
+  { key: 'ALL', display: '모든 라인' },
+  { key: 'TOP', display: '탑' },
+  { key: 'JUG', display: '정글' },
+  { key: 'MID', display: '미드' },
+  { key: 'ADC', display: '원딜' },
+  { key: 'SUP', display: '서포터' },
+];
+
 export const CHAMPION = () => {
   const localChampionData = JSON.parse(
     localStorage.getItem('championData') as string,
