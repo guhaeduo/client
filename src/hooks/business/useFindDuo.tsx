@@ -1,5 +1,8 @@
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useState } from 'react';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import getFindDuoPosts from 'service/getFindDuoPosts';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function useFindDuo() {
   const [tierOption, setTierOption] = useSignularOptionSelector({
@@ -16,18 +19,46 @@ export default function useFindDuo() {
   const [isQueueDropDownOpen, setIsQueueDropDownOpen] = useState(false);
   const [isLaneDropDownOpen, setIsLaneDropDownOpen] = useState(false);
 
+  const queryClient = useQueryClient();
+
   const isRiotVerifiedHandler = () => {
     setIsRiotVerified((prevVerified) => !prevVerified);
   };
-  //   const {
-  //     data: duoPosts,
-  //     isLoading: isduoPostsLoading,
-  //     error: duoPostsError,
-  //     isFetching: isduoPostsFetching,
-  //   } = useQuery<>({
-  //     queryKey: ['duo', tierOptions, queueOptions, laneOptions, isRiotVerified],
-  //     queryFn: () => getSummonerGameSummary(puuid, summaryQueueType, region),
-  //   });
+
+  const onQueryUpdateHandler = () => {
+    queryClient.invalidateQueries({
+      queryKey: [
+        'duoPosts',
+        laneOption,
+        queueOption,
+        tierOption,
+        isRiotVerified,
+      ],
+    });
+  };
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
+    useInfiniteQuery({
+      queryKey: [
+        'duoPosts',
+        laneOption,
+        queueOption,
+        tierOption,
+        isRiotVerified,
+      ],
+      queryFn: ({ pageParam }) =>
+        getFindDuoPosts(
+          laneOption,
+          queueOption,
+          tierOption,
+          isRiotVerified,
+          pageParam,
+        ),
+      initialPageParam: 1,
+      getNextPageParam: (data) => (data.last ? null : data.pageable.pageNumber),
+    });
+
+  const postData = data?.pages.flatMap((page) => page.content);
 
   return {
     tierOption,
@@ -44,5 +75,11 @@ export default function useFindDuo() {
     setIsLaneDropDownOpen,
     isRiotVerified,
     isRiotVerifiedHandler,
+    postData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+    onQueryUpdateHandler,
   };
 }

@@ -3,7 +3,7 @@ import styles from './findDuoPage.module.scss';
 import classNames from 'classnames/bind';
 import LaneSelector from 'components/laneSelector/LaneSelector';
 import DropDown from 'components/dropDown/DropDown';
-import useFindDuo from 'hooks/business/useFindDuo';
+import useDuoPostWriteForm from 'hooks/business/useFindDuo';
 import { QUEUE, TIER, LANE } from 'constants/options';
 import LoadingButton from 'components/loadingButton/LoadingButton';
 import Modal from 'components/modal/Modal';
@@ -31,13 +31,19 @@ export default function FindDuoPage() {
     setIsLaneDropDownOpen,
     isRiotVerified,
     isRiotVerifiedHandler,
-  } = useFindDuo();
+    postData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+    onQueryUpdateHandler,
+  } = useDuoPostWriteForm();
 
   const onPostWriteBtnClick: React.MouseEventHandler = (e) => {
     e.stopPropagation();
     setIsOpen(true);
   };
-
+  console.log(postData);
   return (
     <>
       <SEOMeta pageData={SEO_DATA.findDuo} />
@@ -96,8 +102,8 @@ export default function FindDuoPage() {
                 <span>인증된 소환사만</span>
               </button>
               <LoadingButton
-                isFetching={false}
-                onClickHandler={() => console.log('')}
+                isFetching={isFetching}
+                onClickHandler={onQueryUpdateHandler}
                 className={cn('duoUpdateBtn')}
               >
                 업데이트
@@ -110,6 +116,22 @@ export default function FindDuoPage() {
               </button>
             </div>
           </div>
+          {postData?.length ? (
+            <div className={cn('postsWrapper')}>
+              {hasNextPage && (
+                <button
+                  onClick={() => fetchNextPage()}
+                  className={cn('moreBtn')}
+                >
+                  더보기
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className={cn('postsNotFound')}>
+              데이터가 존재하지 않습니다.
+            </div>
+          )}
         </div>
       </div>
     </>

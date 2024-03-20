@@ -31,7 +31,7 @@
 }
 
 .findDuoDropDown {
-  width: 100px;
+  width: 110px;
   :global {
     .dropDownHeader {
       height: 36px;
@@ -84,6 +84,20 @@
   &:hover {
     background-color: var(--green-hover);
   }
+}
+
+.postsWrapper {
+  margin-top: 20px;
+  .moreBtn {
+  }
+}
+
+.postsNotFound {
+  text-align: center;
+  padding: 150px 0;
+  color: var(--border);
+  font-weight: bold;
+  text-align: center;
 }
 
 // 반응형
