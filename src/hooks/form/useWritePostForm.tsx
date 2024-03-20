@@ -1,33 +1,23 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
-import { PostData } from 'pages/findDuo/components/PostModal';
+import { PostContent } from 'types/post';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { CHAMPION } from 'constants/options';
 import { useState } from 'react';
+import instance from 'service/instance';
+import isCustomAxiosError from 'service/customAxiosError';
+import Toast from 'utils/toast';
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  postData?: PostData;
+  postData?: PostContent;
 };
 
 type FormValue = {
   summonerName: string;
   memo: string;
-};
-
-type NewPostData = {
-  isMicOn: boolean;
-  mostLane: string;
-  subLane: string;
-  selectLane: string;
-  queueType: string;
-  mainChampion: string;
-  subChampion: string;
-  memo: string;
-  summonerName: string;
-  summonerTag: string;
 };
 
 export default function useWritePostForm({ setIsOpen, postData }: Props) {
@@ -48,7 +38,7 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
 
   const [riotAccount, setRiotAccount] = useSignularOptionSelector({
     defaultOption: postData
-      ? `${postData.summonerName}#${postData.summonerTag}`
+      ? `${postData.riotGameName}#${postData.riotGameTag}`
       : riotAccountOptions?.length
         ? riotAccountOptions[0].key
         : '',
@@ -60,12 +50,15 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
   const [subLane, setSubLane] = useSignularOptionSelector({
     defaultOption: postData?.subLane || 'ALL',
   });
+
   const [selectLane, setSelectLane] = useSignularOptionSelector({
-    defaultOption: postData?.selectLane || 'ALL',
+    defaultOption: postData?.needPosition || 'ALL',
   });
+
   const [queueType, setQueueType] = useSignularOptionSelector({
-    defaultOption: postData?.queueType || 'ALL',
+    defaultOption: postData?.needQueueType || 'SOLO',
   });
+
   const [mainChampion, setMainChampion] = useSignularOptionSelector({
     defaultOption: postData?.mainChampion || championOptions[0].key,
   });
@@ -73,7 +66,7 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
     defaultOption: postData?.subChampion || championOptions[0].key,
   });
   //   console.log(errors);
-  const [isMicOn, setIsMicOn] = useState(postData?.isMicOn || false);
+  const [isMicOn, setIsMicOn] = useState(postData?.micOn || false);
 
   const {
     register,
@@ -87,39 +80,55 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
     if (postData) {
       setValue(
         'summonerName',
-        `${postData.summonerName}#${postData.summonerTag}`,
+        `${postData.riotGameName}#${postData.riotGameTag}`,
       );
     }
   }, []);
 
-  const submitHandler = handleSubmit((data) => {
-    const newPostData: NewPostData = {
-      isMicOn,
-      mostLane,
-      subLane,
-      selectLane,
-      queueType,
-      mainChampion,
-      subChampion,
-      memo: data.memo,
-      summonerName: '',
-      summonerTag: '',
-    };
+  const submitHandler = handleSubmit(async (data) => {
+    const isNew = !postData;
+    try {
+      if (isNew) {
+        const newPostData = {
+          region: 'kr',
+          riotGameName: '',
+          riotGameTag: '',
+          isRiotVerified: false,
+          needPosition: selectLane,
+          queueType: queueType,
+          myMainLane: mostLane,
+          myMainChampionName: mainChampion,
+          mySubLane: subLane,
+          mySubChampionName: subChampion,
+          isMicOn: isMicOn,
+          memo: data.memo,
+        };
 
-    const setSummonerInfo = (name: string, tag: string) => {
-      newPostData.summonerName = name;
-      newPostData.summonerTag = tag;
-    };
+        console.log(newPostData);
 
-    if (riotAccountList?.length) {
-      const [name, tag] = riotAccount.split('#');
-      setSummonerInfo(name, tag);
-    } else {
-      const [name, tag] = data.summonerName.split('#');
-      setSummonerInfo(name, tag);
+        const setSummonerInfo = (name: string, tag: string) => {
+          newPostData.riotGameName = name;
+          newPostData.riotGameTag = tag;
+        };
+
+        if (riotAccountList?.length) {
+          const [name, tag] = riotAccount.split('#');
+          setSummonerInfo(name, tag);
+          newPostData.isRiotVerified = true;
+        } else {
+          const [name, tag] = data.summonerName.split('#');
+          setSummonerInfo(name, tag);
+        }
+
+        await instance.post('api/duo/post', newPostData);
+      } else {
+      }
+    } catch (err) {
+      if (isCustomAxiosError(err) && err.response) {
+        Toast.error(err.response.data.message);
+      }
+      console.log(err);
     }
-
-    console.log(newPostData);
   });
 
   return {

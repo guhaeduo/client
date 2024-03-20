@@ -18,7 +18,6 @@ export const COUNTRY = [
 ];
 
 export const QUEUE = [
-  { key: 'ALL', display: '모든 큐' },
   { key: 'SOLO', display: '솔로랭크' },
   { key: 'FREE', display: '자유랭크' },
   { key: 'NORMAL', display: '일반' },
