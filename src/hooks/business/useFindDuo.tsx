@@ -14,12 +14,8 @@ export default function useFindDuo() {
   const [isRiotVerified, setIsRiotVerified] = useState(false);
   const [isTierDropDownOpen, setIsTierDropDownOpen] = useState(false);
   const [isQueueDropDownOpen, setIsQueueDropDownOpen] = useState(false);
-  const isTierDropDownOpenHandler = (isOpen: boolean) => {
-    setIsTierDropDownOpen(isOpen);
-  };
-  const isQueueDropDownOpenHandler = (isOpen: boolean) => {
-    setIsQueueDropDownOpen(isOpen);
-  };
+  const [isLaneDropDownOpen, setIsLaneDropDownOpen] = useState(false);
+
   const isRiotVerifiedHandler = () => {
     setIsRiotVerified((prevVerified) => !prevVerified);
   };
@@ -41,9 +37,11 @@ export default function useFindDuo() {
     laneOption,
     setLaneOption,
     isTierDropDownOpen,
-    isTierDropDownOpenHandler,
+    setIsTierDropDownOpen,
     isQueueDropDownOpen,
-    isQueueDropDownOpenHandler,
+    setIsQueueDropDownOpen,
+    isLaneDropDownOpen,
+    setIsLaneDropDownOpen,
     isRiotVerified,
     isRiotVerifiedHandler,
   };

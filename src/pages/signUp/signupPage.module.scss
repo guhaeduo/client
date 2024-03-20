@@ -1,3 +1,5 @@
+@import '/src/css/mixin';
+
 .main {
   display: flex;
   justify-content: center;
@@ -19,6 +21,7 @@
   flex-direction: column;
   align-items: center;
   width: 340px;
+
   h3 {
     font-size: 28px;
     color: var(--white-100);
@@ -96,5 +99,18 @@
       color: var(--light-blue);
       cursor: pointer;
     }
+  }
+}
+
+// 반응형
+@include laptop {
+  .signupImg {
+    display: none;
+  }
+}
+
+@include mobile {
+  .signupWrapper {
+    width: 100%;
   }
 }

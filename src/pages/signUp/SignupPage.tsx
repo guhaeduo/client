@@ -40,7 +40,7 @@ export default function SignupPage() {
             src={process.env.PUBLIC_URL + '/images/thresh.png'}
             alt=""
           />
-          <div>
+          <div className={cn('signupContainer')}>
             <div className={cn('signupWrapper')}>
               <h3>회원가입</h3>
               <form onSubmit={submitHandler}>

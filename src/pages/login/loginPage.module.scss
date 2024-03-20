@@ -1,7 +1,5 @@
-.main {
-  display: flex;
-  justify-content: center;
-}
+@import '/src/css/mixin';
+
 .loginWrapper {
   display: flex;
   flex-direction: column;
@@ -116,5 +114,13 @@
       color: var(--light-blue);
       cursor: pointer;
     }
+  }
+}
+
+// 반응형
+
+@include mobile {
+  .loginWrapper {
+    width: var(--inner);
   }
 }
