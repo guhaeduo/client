@@ -1,0 +1,120 @@
+.postsContainer {
+  margin-top: 20px;
+}
+
+.postsHeader > div,
+.postItem > div,
+.postItem > button {
+  display: flex;
+  justify-content: center;
+  &:nth-child(1),
+  &:nth-child(8) {
+    width: 150px;
+  }
+  &:nth-child(2),
+  &:nth-child(3),
+  &:nth-child(4),
+  &:nth-child(9) {
+    width: 50px;
+  }
+  &:nth-child(5),
+  &:nth-child(6),
+  &:nth-child(7) {
+    width: 60px;
+  }
+
+  &:nth-child(10) {
+    width: 20px;
+  }
+}
+
+.postsHeader {
+  border-radius: 5px 5px 0 0;
+  padding: 7px 5px;
+  font-size: 12px;
+  background-color: var(--black-100);
+  display: flex;
+  justify-content: space-between;
+}
+
+.postsWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  gap: 2px;
+}
+
+.postItem {
+  background-color: var(--grey-300);
+  padding: 7px 5px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  align-items: center;
+  .tier {
+    width: 35px;
+  }
+  .champion {
+    width: 30px;
+    border-radius: 50%;
+  }
+  .lane {
+    width: 30px;
+    margin-top: 2px;
+  }
+  .memo {
+    font-size: 11px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-wrap: break-word;
+    line-height: 1.2;
+  }
+}
+
+.summonerInfo {
+  display: flex;
+  gap: 5px;
+}
+
+.summonerIcon {
+  width: 30px;
+  height: 30px;
+  img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.summonerNameTag {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 13px;
+  width: calc(100% - 30px - 5px);
+  .name {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tag {
+    color: var(--grey-200);
+  }
+  .copy {
+    margin-left: 5px;
+    background-color: var(--black-300);
+    padding: 2px 3px;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 3px;
+    &:hover {
+      background-color: var(--black-200);
+    }
+  }
+}

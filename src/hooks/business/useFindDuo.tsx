@@ -9,7 +9,7 @@ export default function useFindDuo() {
     defaultOption: 'ALL',
   });
   const [queueOption, setQueueOption] = useSignularOptionSelector({
-    defaultOption: 'ALL',
+    defaultOption: 'SOLO',
   });
   const [laneOption, setLaneOption] = useSignularOptionSelector({
     defaultOption: 'ALL',
@@ -58,8 +58,29 @@ export default function useFindDuo() {
       getNextPageParam: (data) => (data.last ? null : data.pageable.pageNumber),
     });
 
-  const postData = data?.pages.flatMap((page) => page.content);
+  // const postData = data?.pages.flatMap((page) => page.content);
 
+  const postData = [
+    {
+      isLogin: false,
+      postId: 23,
+      riotGameName: 'gameName23gameName23gameName23',
+      riotGameTag: 'KR23',
+      needPosition: 'ALL',
+      needQueueType: 'SOLO',
+      mainLane: 'TOP',
+      mainChampion: 'ahri',
+      subLane: 'ADC',
+      subChampion: 'aatrox',
+      soloRankTier: 'GOLD',
+      freeRankTier: 'GOLD',
+      memo: '메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모',
+      puuid: 'ABCTEST23',
+      micOn: false,
+      riotVerified: false,
+      isGuestPost: true,
+    },
+  ];
   return {
     tierOption,
     setTierOption,

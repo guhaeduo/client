@@ -1,13 +1,3 @@
-interface MyPosition {
-  lane: string;
-  championName: string;
-}
-
-interface RankTier {
-  tier: string;
-  level: string;
-}
-
 export interface PostContent {
   isLogin: boolean;
   postId: number;
@@ -15,18 +5,17 @@ export interface PostContent {
   riotGameTag: string;
   needPosition: string;
   needQueueType: string;
-  myPosition: {
-    main: MyPosition;
-    sub: MyPosition;
-  };
-  myRankTier: {
-    solo: RankTier;
-    free: RankTier;
-  };
+  mainLane: string;
+  mainChampion: string;
+  subLane: string;
+  subChampion: string;
+  soloRankTier: string;
+  freeRankTier: string;
   memo: string;
   puuid: string;
   micOn: boolean;
   riotVerified: boolean;
+  isGuestPost: boolean;
 }
 
 export interface PostsDataRes {

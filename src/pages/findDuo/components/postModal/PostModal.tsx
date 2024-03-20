@@ -1,6 +1,5 @@
 import styles from './postModal.module.scss';
 import classNames from 'classnames/bind';
-import { RiotAccount } from 'store/userSlice';
 import Input from 'components/input/Input';
 import DropDown from 'components/dropDown/DropDown';
 import Toggle from 'components/toggle/Toggle';
@@ -9,28 +8,12 @@ import { summonerNameTagValidation } from 'utils/validatior';
 import { QUEUE } from 'constants/options';
 import { IoAlertCircleOutline } from 'react-icons/io5';
 import useWritePostForm from 'hooks/form/useWritePostForm';
-
+import { PostContent } from 'types/post';
 const cn = classNames.bind(styles);
-
-export type PostData = {
-  postId: number;
-  memberId: string;
-  summonerName: string;
-  summonerTag: string;
-  mainLane: string;
-  subLane: string;
-  selectLane: string;
-  isMicOn: boolean;
-  queueType: string;
-  mainChampion: string;
-  subChampion: string;
-  memo: string;
-  riotAccount: RiotAccount[];
-};
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  postData?: PostData;
+  postData?: PostContent;
 };
 
 export default function PostModal({ postData, setIsOpen }: Props) {

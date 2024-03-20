@@ -1,14 +1,14 @@
 import { SiRiotgames } from 'react-icons/si';
 import styles from './findDuoPage.module.scss';
 import classNames from 'classnames/bind';
-import LaneSelector from 'components/laneSelector/LaneSelector';
+import PostsContainer from './components/postsContainer/PostsContainer';
 import DropDown from 'components/dropDown/DropDown';
 import useDuoPostWriteForm from 'hooks/business/useFindDuo';
 import { QUEUE, TIER, LANE } from 'constants/options';
 import LoadingButton from 'components/loadingButton/LoadingButton';
 import Modal from 'components/modal/Modal';
 import { useState } from 'react';
-import PostModal from './components/PostModal';
+import PostModal from './components/postModal/PostModal';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
 
@@ -117,7 +117,8 @@ export default function FindDuoPage() {
             </div>
           </div>
           {postData?.length ? (
-            <div className={cn('postsWrapper')}>
+            <>
+              <PostsContainer postData={postData} />
               {hasNextPage && (
                 <button
                   onClick={() => fetchNextPage()}
@@ -126,7 +127,7 @@ export default function FindDuoPage() {
                   더보기
                 </button>
               )}
-            </div>
+            </>
           ) : (
             <div className={cn('postsNotFound')}>
               데이터가 존재하지 않습니다.
