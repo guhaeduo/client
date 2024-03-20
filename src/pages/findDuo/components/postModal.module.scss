@@ -1,3 +1,5 @@
+@import '/src/css/mixin';
+
 .postModal {
   display: flex;
   flex-direction: column;
@@ -59,6 +61,9 @@
 .footer {
   flex-direction: column;
   gap: 10px !important;
+  p {
+    line-height: 1.2;
+  }
 }
 
 .buttons {
@@ -85,5 +90,16 @@
         background-color: var(--green-hover);
       }
     }
+  }
+}
+
+// 반응형
+
+@include tablet {
+  .postModal > div {
+    flex-direction: column;
+  }
+  .postModal {
+    width: 100%;
   }
 }

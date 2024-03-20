@@ -1,3 +1,5 @@
+@import '/src/css/mixin';
+
 .container {
   width: 340px;
   h3 {
@@ -28,12 +30,15 @@
     display: flex;
     gap: 12px;
     .checkBox {
-      width: 36px;
+      width: 22px;
       height: 22px;
       padding-top: 1px;
       svg {
         font-size: 13px;
       }
+    }
+    p {
+      flex: 1;
     }
   }
   .buttons {
@@ -68,5 +73,13 @@
         }
       }
     }
+  }
+}
+
+// 반응형
+
+@include mobile {
+  .container {
+    width: 100%;
   }
 }

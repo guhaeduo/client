@@ -29,12 +29,18 @@
   --green: rgb(0, 123, 0);
   --green-hover: #016601;
   --riot-main: #ff1313;
-  --min-height: calc(100dvh - 70px - 180px);
+  --min-height: calc(100dvh - 70px - 160px);
 }
 
 @include laptop {
   :root {
     --inner: 85%;
+  }
+}
+
+@include tablet {
+  :root {
+    --min-height: calc(100dvh - 120px - 160px);
   }
 }
 
