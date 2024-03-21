@@ -184,3 +184,15 @@ input {
     font-size: 14px;
   }
 }
+
+.copy {
+  margin-left: 5px;
+  background-color: var(--black-300);
+  padding: 2px 3px;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 3px;
+  &:hover {
+    background-color: var(--black-200);
+  }
+}

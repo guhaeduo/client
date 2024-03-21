@@ -1,21 +1,24 @@
 export interface PostContent {
-  isLogin: boolean;
+  isGuestPost: boolean;
   postId: number;
+  createdAt: number;
+  summonerIconNumber: number;
   riotGameName: string;
   riotGameTag: string;
   needPosition: string;
-  needQueueType: string;
-  mainLane: string;
-  mainChampion: string;
-  subLane: string;
-  subChampion: string;
+  queueType: string;
+  myMainLane: string;
+  myMainChampionName: string;
+  mySubLane: string;
+  mySubChampionName: string;
   soloRankTier: string;
+  soloRankLevel: string;
   freeRankTier: string;
+  freeRankLevel: string;
   memo: string;
+  isMicOn: boolean;
+  isRiotVerified: boolean;
   puuid: string;
-  micOn: boolean;
-  riotVerified: boolean;
-  isGuestPost: boolean;
 }
 
 export interface PostsDataRes {

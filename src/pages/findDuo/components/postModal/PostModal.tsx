@@ -1,169 +1,131 @@
+import React from 'react';
+import { PostContent } from 'types/post';
 import styles from './postModal.module.scss';
 import classNames from 'classnames/bind';
-import Input from 'components/input/Input';
-import DropDown from 'components/dropDown/DropDown';
-import Toggle from 'components/toggle/Toggle';
-import LaneSelector from 'components/laneSelector/LaneSelector';
-import { summonerNameTagValidation } from 'utils/validatior';
-import { QUEUE } from 'constants/options';
-import { IoAlertCircleOutline } from 'react-icons/io5';
-import useWritePostForm from 'hooks/form/useWritePostForm';
-import { PostContent } from 'types/post';
+import { IoMic } from 'react-icons/io5';
+import { SiRiotgames } from 'react-icons/si';
+import clipBoardCopy from 'utils/clipBoardCopy';
+import URL from 'constants/url';
+import ChampionIcon from 'components/championIcon/ChampionIcon';
 const cn = classNames.bind(styles);
 
 type Props = {
+  postData: PostContent;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  postData?: PostContent;
+  gameType: string;
 };
 
-export default function PostModal({ postData, setIsOpen }: Props) {
+export default function PostModal({ postData, gameType, setIsOpen }: Props) {
+  console.log(postData);
   const {
-    isLogin,
-    isRiotAccountOpen,
-    setIsRiotAccountOpen,
-    isQueueTypeOpen,
-    setIsQueueTypeOpen,
-    isMainChampionOpen,
-    setIsMainChampionOpen,
-    isSubChampionOpen,
-    setIsSubChampionOpen,
-    register,
-    riotAccount,
-    setRiotAccount,
-    mostLane,
-    setMostLane,
-    subLane,
-    setSubLane,
-    selectLane,
-    setSelectLane,
-    queueType,
-    setQueueType,
-    mainChampion,
-    setMainChampion,
-    subChampion,
-    setSubChampion,
+    riotGameName,
+    riotGameTag,
     isMicOn,
-    setIsMicOn,
-    riotAccountOptions,
-    championOptions,
-    submitHandler,
-    errors,
-  } = useWritePostForm({ postData, setIsOpen });
+    isRiotVerified,
+    freeRankTier,
+    soloRankTier,
+    freeRankLevel,
+    soloRankLevel,
+    myMainLane,
+    myMainChampionName,
+    mySubLane,
+    mySubChampionName,
+    needPosition,
+    summonerIconNumber,
+    memo,
+  } = postData;
+  memo;
   return (
     <div className={cn('postModal')}>
-      <div>
+      <div className={cn('basicData')}>
         <div>
-          {' '}
-          {riotAccountOptions?.length ? (
-            <>
-              <label>게임 계정</label>
-              <DropDown
-                label="게임 계정 선택 메뉴"
-                options={riotAccountOptions}
-                currentOptionKey={riotAccount}
-                onChange={setRiotAccount}
-                type="dark"
-                isOpen={isRiotAccountOpen}
-                setIsOpen={setIsRiotAccountOpen}
-                className={cn('dropDown')}
-              />
-            </>
-          ) : (
-            <Input
-              type="text"
-              label="소환사 이름#태그"
-              error={errors.summonerName}
-              className={cn('summonerNameInput')}
-              {...register('summonerName', summonerNameTagValidation)}
+          <img
+            src={URL.profileIcon(summonerIconNumber)}
+            alt="소환사 프로필 아이콘"
+          />
+        </div>
+        <div>
+          <div>
+            <span>{riotGameName}</span>
+            <div>
+              {isMicOn && <IoMic className={cn('mic')} />}
+              {isRiotVerified && (
+                <div className={cn('riotBadge')}>
+                  <SiRiotgames />
+                </div>
+              )}
+            </div>
+          </div>
+          <div>
+            <span className={cn('tag')}>#{riotGameTag}</span>
+            <button
+              onClick={() => clipBoardCopy(`${riotGameName}#${riotGameTag}`)}
+              className={cn('copy')}
+            >
+              복사
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className={cn('tier', 'wrapper')}>
+        <div>
+          <span>솔로랭크 티어</span>
+          <div>
+            <img src={URL.tierIcon(soloRankTier)} alt="솔로랭크 티어 아이콘" />
+            <span>
+              {soloRankTier} {soloRankLevel}
+            </span>
+          </div>
+        </div>
+        <div>
+          <span>자유랭크 티어</span>
+          <div>
+            <img src={URL.tierIcon(freeRankTier)} alt="자유랭크 티어 아이콘" />
+            <span>
+              {freeRankTier} {freeRankLevel}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className={cn('position', 'wrapper')}>
+        <div>
+          <span>주 역할군 / 주 챔피언</span>
+          <div>
+            <img src={URL.laneIcon(myMainLane)} alt="주 라인" />
+            <ChampionIcon
+              championName={myMainChampionName}
+              className={cn('champion')}
             />
-          )}
+          </div>
         </div>
         <div>
-          <label>마이크 사용</label>
-          <Toggle isChecked={isMicOn} setIsChecked={setIsMicOn} />
+          <span>서브 역할군 / 서브 챔피언</span>
+          <div>
+            <img src={URL.laneIcon(mySubLane)} alt="부 라인" />
+            <ChampionIcon
+              championName={mySubChampionName}
+              className={cn('champion')}
+            />
+          </div>
         </div>
       </div>
-      <div>
+      <div className={cn('select', 'wrapper')}>
         <div>
-          <label>선호 라인</label>
-          <LaneSelector size={27} option={mostLane} onChange={setMostLane} />
+          <span>선호 게임</span>
+          <span className={cn('queueType')}>{gameType}</span>
         </div>
         <div>
-          <label>게임 타입</label>
-          <DropDown
-            label="게임 타입 선택 메뉴"
-            options={QUEUE}
-            type="dark"
-            currentOptionKey={queueType}
-            onChange={setQueueType}
-            isOpen={isQueueTypeOpen}
-            setIsOpen={setIsQueueTypeOpen}
-            className={cn('dropDown')}
-          />
+          <span>찾는 포지션</span>
+          <img src={URL.laneIcon(needPosition)} alt="찾는 라인" />
         </div>
       </div>
-      <div>
-        <div>
-          <label>서브 라인</label>
-          <LaneSelector size={27} option={subLane} onChange={setSubLane} />
-        </div>
-        <div>
-          <label>메인 챔피언</label>
-          <DropDown
-            label="메인 챔피언 선택 메뉴"
-            options={championOptions}
-            currentOptionKey={mainChampion}
-            onChange={setMainChampion}
-            type="dark"
-            isOpen={isMainChampionOpen}
-            setIsOpen={setIsMainChampionOpen}
-            className={cn('dropDown')}
-          />
-        </div>
+      <div className={cn('memo')}>
+        <span>메모</span>
+        <div className={cn('memoContent')}>{memo}</div>
       </div>
-      <div>
-        <div>
-          <label>찾는 라인</label>
-          <LaneSelector
-            size={27}
-            option={selectLane}
-            onChange={setSelectLane}
-          />
-        </div>
-        <div>
-          <label>서브 챔피언</label>
-          <DropDown
-            label="서브 챔피언 선택 메뉴"
-            options={championOptions}
-            currentOptionKey={subChampion}
-            onChange={setSubChampion}
-            type="dark"
-            isOpen={isSubChampionOpen}
-            setIsOpen={setIsSubChampionOpen}
-            className={cn('dropDown')}
-          />
-        </div>
-      </div>
-      <div>
-        <Input
-          type="text"
-          label="메모"
-          maxLength={100}
-          {...register('memo')}
-          className={cn('memo')}
-        />
-      </div>
-      <div className={cn('footer')}>
-        <p>
-          <IoAlertCircleOutline />
-          타인에 대한 모욕, 명예훼손, 성희롱 등의 행위는 법적 처벌을 받을 수
-          있습니다.
-        </p>
-        <div className={cn('buttons')}>
-          <button onClick={() => setIsOpen(false)}>취소</button>
-          <button onClick={submitHandler}>등록</button>
-        </div>
-      </div>
+      <button onClick={() => setIsOpen(false)} className={cn('closeBtn')}>
+        닫기
+      </button>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { QUEUE, TIER, LANE } from 'constants/options';
 import LoadingButton from 'components/loadingButton/LoadingButton';
 import Modal from 'components/modal/Modal';
 import { useState } from 'react';
-import PostModal from './components/postModal/PostModal';
+import PostWriteModal from './components/postWriteModal/PostWriteModal';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
 
@@ -47,10 +47,10 @@ export default function FindDuoPage() {
   return (
     <>
       <SEOMeta pageData={SEO_DATA.findDuo} />
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+        <PostWriteModal setIsOpen={setIsOpen} />
+      </Modal>
       <div>
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-          <PostModal setIsOpen={setIsOpen} />
-        </Modal>
         <div
           className={cn('duoHeader')}
           style={{
@@ -118,7 +118,7 @@ export default function FindDuoPage() {
           </div>
           {postData?.length ? (
             <>
-              <PostsContainer postData={postData} />
+              <PostsContainer postsData={postData} />
               {hasNextPage && (
                 <button
                   onClick={() => fetchNextPage()}

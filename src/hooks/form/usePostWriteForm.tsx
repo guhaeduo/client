@@ -20,7 +20,7 @@ type FormValue = {
   memo: string;
 };
 
-export default function useWritePostForm({ setIsOpen, postData }: Props) {
+export default function usePostWriteForm({ setIsOpen, postData }: Props) {
   const user = useSelector(selectUser);
   const { isLogin, riotAccountList } = user;
 
@@ -45,10 +45,10 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
   });
 
   const [mostLane, setMostLane] = useSignularOptionSelector({
-    defaultOption: postData?.mainLane || 'ALL',
+    defaultOption: postData?.myMainLane || 'ALL',
   });
   const [subLane, setSubLane] = useSignularOptionSelector({
-    defaultOption: postData?.subLane || 'ALL',
+    defaultOption: postData?.mySubLane || 'ALL',
   });
 
   const [selectLane, setSelectLane] = useSignularOptionSelector({
@@ -56,17 +56,17 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
   });
 
   const [queueType, setQueueType] = useSignularOptionSelector({
-    defaultOption: postData?.needQueueType || 'SOLO',
+    defaultOption: postData?.queueType || 'SOLO',
   });
 
   const [mainChampion, setMainChampion] = useSignularOptionSelector({
-    defaultOption: postData?.mainChampion || championOptions[0].key,
+    defaultOption: postData?.myMainChampionName || championOptions[0].key,
   });
   const [subChampion, setSubChampion] = useSignularOptionSelector({
-    defaultOption: postData?.subChampion || championOptions[0].key,
+    defaultOption: postData?.mySubChampionName || championOptions[0].key,
   });
-  //   console.log(errors);
-  const [isMicOn, setIsMicOn] = useState(postData?.micOn || false);
+  console.log(mainChampion, subChampion);
+  const [isMicOn, setIsMicOn] = useState(postData?.isMicOn || false);
 
   const {
     register,
@@ -96,15 +96,13 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
           isRiotVerified: false,
           needPosition: selectLane,
           queueType: queueType,
-          myMainLane: mostLane,
+          myMyMainLane: mostLane,
           myMainChampionName: mainChampion,
-          mySubLane: subLane,
+          myMySubLane: subLane,
           mySubChampionName: subChampion,
           isMicOn: isMicOn,
           memo: data.memo,
         };
-
-        console.log(newPostData);
 
         const setSummonerInfo = (name: string, tag: string) => {
           newPostData.riotGameName = name;

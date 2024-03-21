@@ -1,0 +1,105 @@
+@import '/src/css/mixin';
+
+.postModal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 480px;
+  .summonerNameInput input {
+    height: 45px;
+  }
+  & > div {
+    display: flex;
+    gap: 20px;
+    label {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 0 0 5px 0;
+      display: block;
+    }
+    & > div {
+      flex: 1;
+    }
+  }
+  p {
+    color: red;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    svg {
+      margin-bottom: 1px;
+      font-size: 20px;
+    }
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .dropDown {
+    width: 100%;
+    :global {
+      font-size: 14px;
+      .dropDownHeader {
+        padding: 10px;
+        background-color: rgb(52, 52, 52);
+      }
+      .dropDownContent {
+        max-height: 200px;
+        z-index: 10;
+        li {
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
+
+.memo {
+  input {
+    height: 45px;
+  }
+}
+
+.footer {
+  flex-direction: column;
+  gap: 10px !important;
+  p {
+    line-height: 1.2;
+  }
+}
+
+.buttons {
+  display: flex;
+  margin-top: 10px;
+  gap: 20px;
+  button {
+    padding-top: 2px;
+    height: 45px;
+    font-size: 13px;
+    flex: 1;
+    border-radius: 3px;
+    font-weight: bold;
+    &:first-child {
+      border: 1px solid var(--white-100);
+      color: var(--white-100);
+      &:hover {
+        background-color: var(--grey-300);
+      }
+    }
+    &:last-child {
+      background-color: var(--green);
+      &:hover {
+        background-color: var(--green-hover);
+      }
+    }
+  }
+}
+
+// 반응형
+
+@include tablet {
+  .postModal > div {
+    flex-direction: column;
+  }
+  .postModal {
+    width: 100%;
+  }
+}

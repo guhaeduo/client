@@ -1,104 +1,131 @@
 @import '/src/css/mixin';
 
 .postModal {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 480px;
-  .summonerNameInput input {
-    height: 45px;
-  }
+  width: 340px;
+  font-size: 12px;
+  font-weight: 500;
   & > div {
     display: flex;
-    gap: 20px;
-    label {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 0 0 5px 0;
-      display: block;
-    }
-    & > div {
-      flex: 1;
-    }
   }
-  p {
-    color: red;
+}
+
+.basicData {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  img {
+    border-radius: 50%;
+    width: 40px;
+  }
+  & > div:last-child {
+    font-size: 15px;
     display: flex;
-    align-items: center;
-    gap: 3px;
-    svg {
-      margin-bottom: 1px;
-      font-size: 20px;
+    flex-direction: column;
+    color: white;
+    div {
+      align-items: center;
+      display: flex;
     }
-    font-size: 13px;
-    font-weight: 500;
   }
-  .dropDown {
-    width: 100%;
-    :global {
-      font-size: 14px;
-      .dropDownHeader {
-        padding: 10px;
-        background-color: rgb(52, 52, 52);
+  .tag {
+    color: var(--grey-200);
+  }
+  .mic {
+    color: var(--light-green);
+    font-size: 22px;
+  }
+  .riotBadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    padding-right: 2px;
+    background-color: red;
+    border-radius: 50%;
+  }
+}
+
+.wrapper > div {
+  margin-top: 25px;
+  flex: 1;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.tier {
+  & > div {
+    img {
+      width: 45px;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
+
+.position {
+  & > div {
+    & > div {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      img {
+        width: 40px;
       }
-      .dropDownContent {
-        max-height: 200px;
-        z-index: 10;
-        li {
-          padding: 10px;
+      .champion {
+        border-radius: 50%;
+        img {
+          width: 35px;
         }
       }
     }
   }
 }
 
+.select {
+  & > div {
+    .queueType {
+      margin-top: 5px;
+    }
+    img {
+      width: 40px;
+    }
+  }
+}
+
 .memo {
-  input {
-    height: 45px;
-  }
-}
-
-.footer {
-  flex-direction: column;
-  gap: 10px !important;
-  p {
-    line-height: 1.2;
-  }
-}
-
-.buttons {
-  display: flex;
   margin-top: 10px;
-  gap: 20px;
-  button {
-    padding-top: 2px;
-    height: 45px;
-    font-size: 13px;
-    flex: 1;
-    border-radius: 3px;
-    font-weight: bold;
-    &:first-child {
-      border: 1px solid var(--white-100);
-      color: var(--white-100);
-      &:hover {
-        background-color: var(--grey-300);
-      }
-    }
-    &:last-child {
-      background-color: var(--green);
-      &:hover {
-        background-color: var(--green-hover);
-      }
-    }
+  flex-direction: column;
+  .memoContent {
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 1px;
+    background-color: #3c3c3c;
+    line-height: 1.2;
+    word-wrap: break-word;
+  }
+}
+
+.closeBtn {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  &:hover {
+    background-color: var(--grey-300);
   }
 }
 
 // 반응형
 
-@include tablet {
-  .postModal > div {
-    flex-direction: column;
-  }
+@include mobile {
   .postModal {
     width: 100%;
   }
