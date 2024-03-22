@@ -13,10 +13,6 @@ export default async function getFindDuoPosts(
     const duoPostsRes = await instance.get<PostsDataRes>(
       `/api/duo?lane=${lane}&queueType=${queueType}&tier=${tier}&isRiotVerified=${isRiotVerified}&page=${page}`,
     );
-    console.log(
-      `/api/duo?lane=${lane}&queueType=${queueType}&tier=${tier}&isRiotVerified=${isRiotVerified}&page=${page}`,
-      duoPostsRes.data,
-    );
 
     return duoPostsRes.data;
   } catch (err) {

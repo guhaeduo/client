@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import ChampionIcon from 'components/championIcon/ChampionIcon';
 import ItemIcon from 'components/itemIcon/ItemIcon';
 import usePathSummonerData from 'hooks/usePathSummonerData';
-import { calculateGameEndStamp, calculateGameDuration } from 'utils/calculate';
+import { calculateTimeStamp, calculateGameDuration } from 'utils/calculate';
 import ParticipantPreviewCard from './ParticipantPreviewCard';
 import { IoIosArrowDown } from 'react-icons/io';
 import SpellIcon from 'components/spellIcon/SpellIcon';
@@ -35,7 +35,7 @@ export default function CurrentSummonerMatchCard({
     [info.gameDuration],
   );
   const formattedGameEndStamp = useMemo(
-    () => calculateGameEndStamp(info.gameEndStamp),
+    () => calculateTimeStamp(info.gameEndStamp),
     [info.gameEndStamp],
   );
   return (

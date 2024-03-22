@@ -45,34 +45,6 @@
     margin-top: 30px;
     display: flex;
     gap: 20px;
-    button {
-      padding-top: 2px;
-      height: 40px;
-      font-size: 13px;
-      flex: 1;
-      border-radius: 3px;
-      font-weight: bold;
-      &:first-child {
-        border: 1px solid var(--white-100);
-        color: var(--white-100);
-        &:hover {
-          background-color: var(--grey-300);
-        }
-      }
-      &:last-child {
-        background-color: var(--black-200);
-        color: var(--white-100);
-        cursor: not-allowed;
-        &.isCheck {
-          cursor: pointer;
-          color: white;
-          background-color: var(--red-button);
-          &:hover {
-            background-color: var(--red-button-hover);
-          }
-        }
-      }
-    }
   }
 }
 

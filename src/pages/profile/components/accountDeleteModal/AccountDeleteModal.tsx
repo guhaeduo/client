@@ -58,10 +58,19 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
         </p>
       </div>
       <div className={cn('buttons')}>
-        <button onClick={() => setIsModalOpen(false)}>취소</button>
+        <button
+          type="button"
+          className={cn('cancelBtn')}
+          onClick={() => setIsModalOpen(false)}
+        >
+          취소
+        </button>
         <button
           onClick={accountDelete}
-          className={cn({ isCheck: isAccountDeleteCheck })}
+          className={cn({
+            redBtn: isAccountDeleteCheck,
+            disabledBtn: !isAccountDeleteCheck,
+          })}
         >
           삭제
         </button>

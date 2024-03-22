@@ -39,20 +39,20 @@ export default function ProfilePage() {
   };
   return (
     <>
+      <Modal
+        isOpen={isAccountDeleteModalOpen}
+        setIsOpen={setIsAccountDeleteModalOpen}
+      >
+        <AccountDeleteModal setIsModalOpen={setIsAccountDeleteModalOpen} />
+      </Modal>
+      <Modal
+        isOpen={isPasswordChangeModalOpen}
+        setIsOpen={setIsPasswordChangeModalOpen}
+      >
+        <PasswordChangeModal setIsModalOpen={setIsPasswordChangeModalOpen} />
+      </Modal>
       <SEOMeta pageData={SEO_DATA.profile} />
       <div className={cn('centerContainer')}>
-        <Modal
-          isOpen={isAccountDeleteModalOpen}
-          setIsOpen={setIsAccountDeleteModalOpen}
-        >
-          <AccountDeleteModal setIsModalOpen={setIsAccountDeleteModalOpen} />
-        </Modal>
-        <Modal
-          isOpen={isPasswordChangeModalOpen}
-          setIsOpen={setIsPasswordChangeModalOpen}
-        >
-          <PasswordChangeModal setIsModalOpen={setIsPasswordChangeModalOpen} />
-        </Modal>
         <div className={cn('main')}>
           <div className={cn('myAccount')}>
             <h3>내 계정</h3>

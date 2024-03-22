@@ -17,6 +17,7 @@ export default function PasswordChangeModal({ setIsModalOpen }: Props) {
     isHasAlphaNumericValid,
     isMatch,
     isDiffrentValid,
+    isValid,
   } = usePasswordChangeForm({ setIsModalOpen });
 
   return (
@@ -60,16 +61,17 @@ export default function PasswordChangeModal({ setIsModalOpen }: Props) {
           </div>
         </div>
         <div className={cn('buttons')}>
-          <button onClick={() => setIsModalOpen(false)} type="button">
+          <button
+            className={cn('cancelBtn')}
+            onClick={() => setIsModalOpen(false)}
+            type="button"
+          >
             취소
           </button>
           <button
             className={cn({
-              isValid:
-                isLengthValid &&
-                isHasAlphaNumericValid &&
-                isMatch &&
-                isDiffrentValid,
+              greenBtn: isValid,
+              disabledBtn: !isValid,
             })}
             type="submit"
           >

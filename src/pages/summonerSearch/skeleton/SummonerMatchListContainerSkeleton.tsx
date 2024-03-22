@@ -27,26 +27,9 @@ export default function SummonerMatchListContainerSkeleton({
           <Skeleton className={cn('laneSelector')} />
         </div>
         <ul className={cn('matchCardContainer')}>
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
-          <Skeleton className={cn('matchCard')} />
+          {[...Array(20)].map((_, i) => (
+            <Skeleton key={i} className={cn('matchCard')} />
+          ))}
         </ul>
       </div>
       <Skeleton className={cn('matchListSummary')} />

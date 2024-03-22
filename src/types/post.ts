@@ -1,27 +1,47 @@
 export interface PostContent {
-  isLogin: boolean;
+  isGuestPost: boolean;
   postId: number;
+  createdAt: number;
+  summonerIconNumber: number;
   riotGameName: string;
   riotGameTag: string;
   needPosition: string;
-  needQueueType: string;
-  mainLane: string;
-  mainChampion: string;
-  subLane: string;
-  subChampion: string;
+  queueType: string;
+  myMainLane: string;
+  myMainChampionName: string;
+  mySubLane: string;
+  mySubChampionName: string;
   soloRankTier: string;
+  soloRankLevel: string;
   freeRankTier: string;
+  freeRankLevel: string;
   memo: string;
+  isMicOn: boolean;
+  isRiotVerified: boolean;
   puuid: string;
-  micOn: boolean;
-  riotVerified: boolean;
-  isGuestPost: boolean;
+  memberId?: number;
 }
 
 export interface PostsDataRes {
   content: PostContent[];
-  last: boolean;
-  pageable: {
-    pageNumber: number;
-  };
+  hasNextPage: boolean;
+  nextPageNumber: number;
+}
+
+export interface PostWriteForm {
+  region: string;
+  riotGameName: string;
+  riotGameTag: string;
+  needPosition: string;
+  queueType: string;
+  myMainLane: string;
+  myMainChampionName: string;
+  mySubLane: string;
+  mySubChampionName: string;
+  isRiotVerified: boolean;
+  isMicOn: boolean;
+  memo: string;
+  password?: string;
+  isGuestPost: boolean;
+  passwordCheck?: string;
 }

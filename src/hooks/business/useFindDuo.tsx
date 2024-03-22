@@ -1,6 +1,6 @@
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
-import { useState } from 'react';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import getFindDuoPosts from 'service/getFindDuoPosts';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -25,8 +25,8 @@ export default function useFindDuo() {
     setIsRiotVerified((prevVerified) => !prevVerified);
   };
 
-  const onQueryUpdateHandler = () => {
-    queryClient.invalidateQueries({
+  const onQueryRemoveHandler = () => {
+    queryClient.removeQueries({
       queryKey: [
         'duoPosts',
         laneOption,
@@ -37,6 +37,23 @@ export default function useFindDuo() {
     });
   };
 
+  const onQueryUpdateHandler = () => {
+    queryClient.invalidateQueries({
+      queryKey: [
+        'duoPosts',
+        laneOption,
+        queueOption,
+        tierOption,
+        isRiotVerified,
+      ],
+    });
+    onQueryRemoveHandler();
+  };
+
+  useEffect(() => {
+    onQueryUpdateHandler();
+  }, [laneOption, queueOption, tierOption, isRiotVerified]);
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useInfiniteQuery({
       queryKey: [
@@ -46,41 +63,24 @@ export default function useFindDuo() {
         tierOption,
         isRiotVerified,
       ],
-      queryFn: ({ pageParam }) =>
-        getFindDuoPosts(
+      queryFn: ({ pageParam }) => {
+        return getFindDuoPosts(
           laneOption,
           queueOption,
           tierOption,
           isRiotVerified,
           pageParam,
-        ),
+        );
+      },
       initialPageParam: 1,
-      getNextPageParam: (data) => (data.last ? null : data.pageable.pageNumber),
+      getNextPageParam: (data) => {
+        const { hasNextPage, nextPageNumber } = data;
+        return hasNextPage ? nextPageNumber : null;
+      },
     });
 
-  // const postData = data?.pages.flatMap((page) => page.content);
+  const postData = data?.pages.flatMap((page) => page.content);
 
-  const postData = [
-    {
-      isLogin: false,
-      postId: 23,
-      riotGameName: 'gameName23gameName23gameName23',
-      riotGameTag: 'KR23',
-      needPosition: 'ALL',
-      needQueueType: 'SOLO',
-      mainLane: 'TOP',
-      mainChampion: 'ahri',
-      subLane: 'ADC',
-      subChampion: 'aatrox',
-      soloRankTier: 'GOLD',
-      freeRankTier: 'GOLD',
-      memo: '메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모',
-      puuid: 'ABCTEST23',
-      micOn: false,
-      riotVerified: false,
-      isGuestPost: true,
-    },
-  ];
   return {
     tierOption,
     setTierOption,

@@ -34,6 +34,13 @@ export default function Modal({ children, isOpen, setIsOpen }: Props) {
   // 모달이 닫힘 상태면 null을 리턴합니다.
   if (!isOpen) return null;
 
+  return (
+    <div className={cn('modalBackground')}>
+      <div ref={modalRef} className={cn('modal')}>
+        {children}
+      </div>
+    </div>
+  );
   // portal을 활용하여 모달을 root단계에 위치시킨다.
   return createPortal(
     <div className={cn('modalBackground')}>

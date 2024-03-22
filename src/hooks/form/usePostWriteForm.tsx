@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
-import { PostContent } from 'types/post';
+import { PostContent, PostWriteForm } from 'types/post';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { CHAMPION } from 'constants/options';
@@ -9,18 +9,27 @@ import { useState } from 'react';
 import instance from 'service/instance';
 import isCustomAxiosError from 'service/customAxiosError';
 import Toast from 'utils/toast';
+import MESSAGE from 'constants/message';
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   postData?: PostContent;
+  setQueueOption: (queueOption: string) => void;
+  onQueryUpdateHandler: () => void;
 };
 
 type FormValue = {
   summonerName: string;
   memo: string;
+  password: string;
 };
 
-export default function useWritePostForm({ setIsOpen, postData }: Props) {
+export default function usePostWriteForm({
+  setIsOpen,
+  postData,
+  setQueueOption,
+  onQueryUpdateHandler,
+}: Props) {
   const user = useSelector(selectUser);
   const { isLogin, riotAccountList } = user;
 
@@ -45,10 +54,10 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
   });
 
   const [mostLane, setMostLane] = useSignularOptionSelector({
-    defaultOption: postData?.mainLane || 'ALL',
+    defaultOption: postData?.myMainLane || 'ALL',
   });
   const [subLane, setSubLane] = useSignularOptionSelector({
-    defaultOption: postData?.subLane || 'ALL',
+    defaultOption: postData?.mySubLane || 'ALL',
   });
 
   const [selectLane, setSelectLane] = useSignularOptionSelector({
@@ -56,22 +65,20 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
   });
 
   const [queueType, setQueueType] = useSignularOptionSelector({
-    defaultOption: postData?.needQueueType || 'SOLO',
+    defaultOption: postData?.queueType || 'SOLO',
   });
 
   const [mainChampion, setMainChampion] = useSignularOptionSelector({
-    defaultOption: postData?.mainChampion || championOptions[0].key,
+    defaultOption: postData?.myMainChampionName || championOptions[0].key,
   });
   const [subChampion, setSubChampion] = useSignularOptionSelector({
-    defaultOption: postData?.subChampion || championOptions[0].key,
+    defaultOption: postData?.mySubChampionName || championOptions[0].key,
   });
-  //   console.log(errors);
-  const [isMicOn, setIsMicOn] = useState(postData?.micOn || false);
+  const [isMicOn, setIsMicOn] = useState(postData?.isMicOn || false);
 
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
     setValue,
   } = useForm<FormValue>();
@@ -82,6 +89,7 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
         'summonerName',
         `${postData.riotGameName}#${postData.riotGameTag}`,
       );
+      setValue('memo', postData.memo);
     }
   }, []);
 
@@ -89,23 +97,21 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
     const isNew = !postData;
     try {
       if (isNew) {
-        const newPostData = {
+        const newPostData: PostWriteForm = {
           region: 'kr',
           riotGameName: '',
           riotGameTag: '',
-          isRiotVerified: false,
           needPosition: selectLane,
-          queueType: queueType,
+          queueType,
           myMainLane: mostLane,
           myMainChampionName: mainChampion,
           mySubLane: subLane,
           mySubChampionName: subChampion,
-          isMicOn: isMicOn,
+          isRiotVerified: false,
+          isMicOn,
           memo: data.memo,
+          isGuestPost: !user.isLogin,
         };
-
-        console.log(newPostData);
-
         const setSummonerInfo = (name: string, tag: string) => {
           newPostData.riotGameName = name;
           newPostData.riotGameTag = tag;
@@ -120,9 +126,55 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
           setSummonerInfo(name, tag);
         }
 
+        if (!isLogin) {
+          newPostData.password = data.password;
+        }
         await instance.post('api/duo/post', newPostData);
+        Toast.success(MESSAGE.DUO_POST_UPLOAD_SUCCESS);
       } else {
+        const modifyPostData: PostWriteForm = {
+          region: 'kr',
+          riotGameName: '',
+          riotGameTag: '',
+          needPosition: selectLane,
+          queueType,
+          myMainLane: mostLane,
+          myMainChampionName: mainChampion,
+          mySubLane: subLane,
+          mySubChampionName: subChampion,
+          isRiotVerified: false,
+          isMicOn,
+          memo: data.memo,
+          isGuestPost: postData.isGuestPost,
+        };
+
+        const setSummonerInfo = (name: string, tag: string) => {
+          modifyPostData.riotGameName = name;
+          modifyPostData.riotGameTag = tag;
+        };
+
+        if (riotAccountList?.length) {
+          const [name, tag] = riotAccount.split('#');
+          setSummonerInfo(name, tag);
+          modifyPostData.isRiotVerified = true;
+        } else {
+          const [name, tag] = data.summonerName.split('#');
+          setSummonerInfo(name, tag);
+        }
+
+        if (!isLogin) {
+          modifyPostData.passwordCheck = data.password;
+        }
+
+        await instance.put(
+          `https://guhaeduo.site/api/duo/post/${postData.postId}`,
+          modifyPostData,
+        );
+        Toast.success(MESSAGE.DUO_POST_MODIFY_SUCCESS);
       }
+      setIsOpen(false);
+      setQueueOption(queueType);
+      onQueryUpdateHandler();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);
@@ -163,5 +215,6 @@ export default function useWritePostForm({ setIsOpen, postData }: Props) {
     championOptions,
     submitHandler,
     errors,
+    isGuestPost: postData?.isGuestPost,
   };
 }

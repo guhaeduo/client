@@ -184,3 +184,52 @@ input {
     font-size: 14px;
   }
 }
+
+.copy {
+  margin-left: 5px;
+  background-color: var(--black-300);
+  padding: 2px 3px;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 3px;
+  &:hover {
+    background-color: var(--black-200);
+  }
+}
+
+.cancelBtn,
+.redBtn,
+.greenBtn,
+.disabledBtn {
+  border-radius: 3px;
+  padding: 10px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.cancelBtn {
+  border: 1px solid var(--border);
+  &:hover {
+    background-color: var(--grey-300);
+  }
+}
+
+.redBtn {
+  background-color: var(--red-button);
+  &:hover {
+    background-color: var(--red-button-hover);
+  }
+}
+
+.greenBtn {
+  background-color: var(--green);
+  &:hover {
+    background-color: var(--green-hover);
+  }
+}
+
+.disabledBtn {
+  background-color: var(--black-200);
+  color: var(--white-100);
+  cursor: not-allowed;
+}
