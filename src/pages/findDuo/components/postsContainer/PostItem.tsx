@@ -158,13 +158,13 @@ export default function PostItem({ post }: Props) {
             <>
               <BsThreeDots />
               <span className="visuallyHidden">옵션 박스 열거 버튼</span>
-              <div className={cn('optionBox', { open: isOptionOpen })}>
-                <button onClick={onPostModifyBtnClickHandler}>수정</button>
-                <button onClick={onPostDeleteBtnClickHandler}>삭제</button>
-              </div>
             </>
           )}
         </button>
+        <div className={cn('optionBox', { open: isOptionOpen })}>
+          <button onClick={onPostModifyBtnClickHandler}>수정</button>
+          <button onClick={onPostDeleteBtnClickHandler}>삭제</button>
+        </div>
       </div>
     </>
   );

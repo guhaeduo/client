@@ -24,7 +24,7 @@ export default function PostsContainer({ postsData }: Props) {
           <div>메모</div>
           <div>등록일시</div>
         </div>
-        <div></div>
+        <div className={cn('optionBtn')}></div>
       </div>
       <div className={cn('postsWrapper')}>
         {postsData.map((post) => (

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
-import { PostContent } from 'types/post';
+import { PostContent, PostWriteForm } from 'types/post';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { CHAMPION } from 'constants/options';
@@ -9,7 +9,7 @@ import { useState } from 'react';
 import instance from 'service/instance';
 import isCustomAxiosError from 'service/customAxiosError';
 import Toast from 'utils/toast';
-
+import MESSAGE from 'constants/message';
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   postData?: PostContent;
@@ -88,21 +88,22 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
 
   const submitHandler = handleSubmit(async (data) => {
     const isNew = !postData;
+    console.log(isNew, errors, data);
     try {
       if (isNew) {
-        const newPostData = {
+        const newPostData: PostWriteForm = {
           region: 'kr',
           riotGameName: '',
           riotGameTag: '',
-          isRiotVerified: false,
           needPosition: selectLane,
-          queueType: queueType,
-          myMyMainLane: mostLane,
+          queueType,
+          myMainLane: mostLane,
           myMainChampionName: mainChampion,
-          myMySubLane: subLane,
+          mySubLane: subLane,
           mySubChampionName: subChampion,
-          isMicOn: isMicOn,
-          memo: data.memo,
+          isRiotVerified: false,
+          isMicOn,
+          memo: '',
         };
 
         const setSummonerInfo = (name: string, tag: string) => {
@@ -119,9 +120,15 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
           setSummonerInfo(name, tag);
         }
 
+        if (!isLogin) {
+          newPostData.password = data.password;
+        }
         await instance.post('api/duo/post', newPostData);
+        Toast.success(MESSAGE.DUO_POST_UPLOAD_SUCCESS);
       } else {
+        console.log('수정입니당');
       }
+      setIsOpen(false);
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);

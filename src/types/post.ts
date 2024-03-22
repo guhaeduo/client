@@ -29,3 +29,19 @@ export interface PostsDataRes {
     pageNumber: number;
   };
 }
+
+export interface PostWriteForm {
+  region: string;
+  riotGameName: string;
+  riotGameTag: string;
+  needPosition: string;
+  queueType: string;
+  myMainLane: string;
+  myMainChampionName: string;
+  mySubLane: string;
+  mySubChampionName: string;
+  isRiotVerified: boolean;
+  isMicOn: boolean;
+  memo: string;
+  password?: string;
+}

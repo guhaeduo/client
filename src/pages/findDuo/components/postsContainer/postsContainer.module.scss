@@ -3,8 +3,7 @@
 }
 
 .postsHeader > div,
-.postItem > div,
-.postItem > button {
+.postItem > div {
   &:first-child > div {
     display: flex;
     justify-content: center;
@@ -23,9 +22,6 @@
     &:nth-child(7) {
       width: 60px;
     }
-  }
-  &:last-child {
-    width: 50px;
   }
 }
 
@@ -55,6 +51,7 @@
 }
 
 .postItem {
+  position: relative;
   background-color: var(--grey-300);
   padding: 7px 5px;
   height: 50px;
@@ -153,36 +150,37 @@
 }
 
 .optionBtn {
-  position: relative;
-
+  width: 30px;
   svg {
     font-size: 18px;
     color: var(--grey-200);
   }
-  .optionBox {
-    display: none;
-    position: absolute;
-    border: 1px solid var(--border);
-    z-index: 1;
-    width: 100px;
-    background-color: var(--black-100);
-    right: 0;
-    top: 20px;
-    border-radius: 3px;
-    flex-direction: column;
-    overflow: hidden;
-    &.open {
-      display: flex;
+}
+
+.optionBox {
+  display: none;
+  position: absolute;
+  border: 1px solid var(--border);
+  z-index: 1;
+  width: 100px;
+  background-color: var(--black-100);
+  right: 0;
+  top: 40px;
+  border-radius: 3px;
+  flex-direction: column;
+  overflow: hidden;
+  &.open {
+    display: flex;
+  }
+  & > button {
+    width: 100%;
+    font: 600;
+    padding: 10px 0;
+    &:first-child {
+      border-bottom: 1px solid var(--black-200);
     }
-    & > button {
-      font: 600;
-      padding: 10px 0;
-      &:first-child {
-        border-bottom: 1px solid var(--black-200);
-      }
-      &:hover {
-        background-color: #494949;
-      }
+    &:hover {
+      background-color: #494949;
     }
   }
 }

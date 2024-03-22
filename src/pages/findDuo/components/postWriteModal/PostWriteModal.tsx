@@ -160,9 +160,9 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
           <Input
             type="text"
             label="비밀번호"
-            {...register('password')}
+            {...register('password', duoPostPasswordValidation)}
             error={errors.password}
-            className={cn('password', duoPostPasswordValidation)}
+            className={cn('password')}
           />
         </div>
       )}
