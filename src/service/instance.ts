@@ -21,6 +21,7 @@ instance.interceptors.request.use(
       // 만약 accessToken이 존재한다면 headers에 싣어서 전송합니다.
       config.headers.Authorization = `${tokenType} ${accessToken}`;
     }
+    console.log(config);
     return config;
   },
   (error) => {

@@ -10,9 +10,12 @@ import instance from 'service/instance';
 import isCustomAxiosError from 'service/customAxiosError';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
+
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   postData?: PostContent;
+  setQueueOption: (queueOption: string) => void;
+  onQueryUpdateHandler: () => void;
 };
 
 type FormValue = {
@@ -21,7 +24,12 @@ type FormValue = {
   password: string;
 };
 
-export default function usePostWriteForm({ setIsOpen, postData }: Props) {
+export default function usePostWriteForm({
+  setIsOpen,
+  postData,
+  setQueueOption,
+  onQueryUpdateHandler,
+}: Props) {
   const user = useSelector(selectUser);
   const { isLogin, riotAccountList } = user;
 
@@ -71,7 +79,6 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
     setValue,
   } = useForm<FormValue>();
@@ -88,7 +95,6 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
 
   const submitHandler = handleSubmit(async (data) => {
     const isNew = !postData;
-    console.log(isNew, errors, data);
     try {
       if (isNew) {
         const newPostData: PostWriteForm = {
@@ -103,9 +109,9 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
           mySubChampionName: subChampion,
           isRiotVerified: false,
           isMicOn,
-          memo: '',
+          memo: data.memo,
+          isGuestPost: !user.isLogin,
         };
-
         const setSummonerInfo = (name: string, tag: string) => {
           newPostData.riotGameName = name;
           newPostData.riotGameTag = tag;
@@ -126,9 +132,49 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
         await instance.post('api/duo/post', newPostData);
         Toast.success(MESSAGE.DUO_POST_UPLOAD_SUCCESS);
       } else {
-        console.log('수정입니당');
+        const modifyPostData: PostWriteForm = {
+          region: 'kr',
+          riotGameName: '',
+          riotGameTag: '',
+          needPosition: selectLane,
+          queueType,
+          myMainLane: mostLane,
+          myMainChampionName: mainChampion,
+          mySubLane: subLane,
+          mySubChampionName: subChampion,
+          isRiotVerified: false,
+          isMicOn,
+          memo: data.memo,
+          isGuestPost: postData.isGuestPost,
+        };
+
+        const setSummonerInfo = (name: string, tag: string) => {
+          modifyPostData.riotGameName = name;
+          modifyPostData.riotGameTag = tag;
+        };
+
+        if (riotAccountList?.length) {
+          const [name, tag] = riotAccount.split('#');
+          setSummonerInfo(name, tag);
+          modifyPostData.isRiotVerified = true;
+        } else {
+          const [name, tag] = data.summonerName.split('#');
+          setSummonerInfo(name, tag);
+        }
+
+        if (!isLogin) {
+          modifyPostData.passwordCheck = data.password;
+        }
+
+        await instance.put(
+          `https://guhaeduo.site/api/duo/post/${postData.postId}`,
+          modifyPostData,
+        );
+        Toast.success(MESSAGE.DUO_POST_MODIFY_SUCCESS);
       }
       setIsOpen(false);
+      setQueueOption(queueType);
+      onQueryUpdateHandler();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);

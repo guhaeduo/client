@@ -10,14 +10,22 @@ import { IoAlertCircleOutline } from 'react-icons/io5';
 import usePostWriteForm from 'hooks/form/usePostWriteForm';
 import { PostContent } from 'types/post';
 import { duoPostPasswordValidation } from 'utils/validator';
+import URL from 'constants/url';
 const cn = classNames.bind(styles);
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   postData?: PostContent;
+  setQueueOption: (queueOption: string) => void;
+  onQueryUpdateHandler: () => void;
 };
 
-export default function PostWriteModal({ postData, setIsOpen }: Props) {
+export default function PostWriteModal({
+  postData,
+  setIsOpen,
+  setQueueOption,
+  onQueryUpdateHandler,
+}: Props) {
   const {
     isLogin,
     isRiotAccountOpen,
@@ -50,13 +58,29 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
     submitHandler,
     errors,
     isGuestPost,
-  } = usePostWriteForm({ postData, setIsOpen });
+  } = usePostWriteForm({
+    postData,
+    setIsOpen,
+    setQueueOption,
+    onQueryUpdateHandler,
+  });
 
   return (
     <div className={cn('postModal')}>
       <div>
         <div>
-          {riotAccountOptions?.length ? (
+          {postData ? (
+            <div className={cn('summonerProfile')}>
+              <img
+                src={URL.profileIcon(postData.summonerIconNumber)}
+                alt="소환사 아이콘"
+              />
+              <div>
+                <span>{postData.riotGameName}</span>
+                <span className={cn('tag')}>#{postData.riotGameTag}</span>
+              </div>
+            </div>
+          ) : riotAccountOptions?.length ? (
             <>
               <label>게임 계정</label>
               <DropDown
@@ -87,8 +111,12 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
       </div>
       <div>
         <div>
-          <label>선호 라인</label>
-          <LaneSelector size={27} option={mostLane} onChange={setMostLane} />
+          <label>찾는 라인</label>
+          <LaneSelector
+            size={27}
+            option={selectLane}
+            onChange={setSelectLane}
+          />
         </div>
         <div>
           <label>게임 타입</label>
@@ -105,9 +133,10 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
         </div>
       </div>
       <div>
+        {' '}
         <div>
-          <label>서브 라인</label>
-          <LaneSelector size={27} option={subLane} onChange={setSubLane} />
+          <label>메인 라인</label>
+          <LaneSelector size={27} option={mostLane} onChange={setMostLane} />
         </div>
         <div>
           <label>메인 챔피언</label>
@@ -124,13 +153,10 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
         </div>
       </div>
       <div>
+        {' '}
         <div>
-          <label>찾는 라인</label>
-          <LaneSelector
-            size={27}
-            option={selectLane}
-            onChange={setSelectLane}
-          />
+          <label>서브 라인</label>
+          <LaneSelector size={27} option={subLane} onChange={setSubLane} />
         </div>
         <div>
           <label>서브 챔피언</label>

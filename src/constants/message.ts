@@ -6,6 +6,7 @@ const MESSAGE = {
   VERIFICATION_CODE_CONFIRM_SUCCESS: '인증코드 인증 성공',
   DUO_POST_UPLOAD_SUCCESS: '작성 완료.',
   DUO_POST_MODIFY_SUCCESS: '수정 완료.',
+  DUO_POST_DELETE_SUCCESS: '삭제 완료.',
 };
 
 export default MESSAGE;

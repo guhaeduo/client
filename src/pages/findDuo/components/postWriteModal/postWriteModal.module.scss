@@ -8,6 +8,25 @@
   .summonerNameInput input {
     height: 45px;
   }
+  .summonerProfile {
+    display: flex;
+    gap: 5px;
+    img {
+      width: 40px;
+      border-radius: 50%;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      font-size: 15px;
+      font-weight: 600;
+      .tag {
+        color: var(--grey-200);
+      }
+    }
+  }
+
   & > div {
     display: flex;
     gap: 20px;

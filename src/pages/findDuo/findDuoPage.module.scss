@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  margin-top: 20px;
+  margin: 20px 0;
   & > div {
     display: flex;
     gap: 7px;
@@ -86,13 +86,33 @@
   }
 }
 
-
-.post .postsNotFound {
+.postsNotFound {
   text-align: center;
   padding: 150px 0;
   color: var(--border);
   font-weight: bold;
   text-align: center;
+}
+
+.findDuoFooter {
+  display: flex;
+  justify-content: center;
+  .moreBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    width: 25px;
+    height: 25px;
+    background-color: var(--green);
+    border-radius: 50%;
+    svg {
+      font-size: 17px;
+    }
+    &:hover {
+      background-color: var(--green-hover);
+    }
+  }
 }
 
 // 반응형

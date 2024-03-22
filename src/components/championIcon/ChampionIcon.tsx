@@ -19,9 +19,15 @@ export default function ChampionIcon({ championName, className }: Props) {
   // 챔피언의 상세 정보를 받아와 저장합니다.
   const championDetail = getChampionData(championName);
   return (
-    <CustomTooltip name={championDetail.name} body={championDetail.name}>
+    <CustomTooltip
+      name={championDetail?.name || ''}
+      body={championDetail?.name || ''}
+    >
       <div className={cn('championIcon', className)}>
-        <img src={championDetail.icon} alt={`${championDetail.name} 아이콘`} />
+        <img
+          src={championDetail?.icon || ''}
+          alt={`${championDetail?.name || ''} 아이콘`}
+        />
       </div>
     </CustomTooltip>
   );

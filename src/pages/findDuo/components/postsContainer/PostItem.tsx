@@ -21,9 +21,15 @@ const cn = classNames.bind(styles);
 
 type Props = {
   post: PostContent;
+  setQueueOption: (queueOption: string) => void;
+  onQueryUpdateHandler: () => void;
 };
 
-export default function PostItem({ post }: Props) {
+export default function PostItem({
+  post,
+  setQueueOption,
+  onQueryUpdateHandler,
+}: Props) {
   const [isOptionOpen, setIsOptionOpen] = useState(false);
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [isPostModifyModalOpen, setIsPostModifyModalOpen] = useState(false);
@@ -71,7 +77,12 @@ export default function PostItem({ post }: Props) {
         isOpen={isPostModifyModalOpen}
         setIsOpen={setIsPostModifyModalOpen}
       >
-        <PostWriteModal setIsOpen={setIsPostModifyModalOpen} postData={post} />
+        <PostWriteModal
+          setQueueOption={setQueueOption}
+          setIsOpen={setIsPostModifyModalOpen}
+          postData={post}
+          onQueryUpdateHandler={onQueryUpdateHandler}
+        />
       </Modal>
       <Modal isOpen={isPostModalOpen} setIsOpen={setIsPostModalOpen}>
         <PostModal
@@ -84,7 +95,11 @@ export default function PostItem({ post }: Props) {
         isOpen={isPostDeleteModalOpen}
         setIsOpen={setIsPostDeleteModalOpen}
       >
-        <PostDeleteModal setIsOpen={setIsPostDeleteModalOpen} postData={post} />
+        <PostDeleteModal
+          onQueryUpdateHandler={onQueryUpdateHandler}
+          setIsOpen={setIsPostDeleteModalOpen}
+          postData={post}
+        />
       </Modal>
       <div key={post.postId} className={cn('postItem')}>
         <div onClick={onPostItemClickHandler} className={cn('postDataWrapper')}>

@@ -24,10 +24,8 @@ export interface PostContent {
 
 export interface PostsDataRes {
   content: PostContent[];
-  last: boolean;
-  pageable: {
-    pageNumber: number;
-  };
+  hasNextPage: boolean;
+  nextPageNumber: number;
 }
 
 export interface PostWriteForm {
@@ -44,4 +42,6 @@ export interface PostWriteForm {
   isMicOn: boolean;
   memo: string;
   password?: string;
+  isGuestPost: boolean;
+  passwordCheck?: string;
 }

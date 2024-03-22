@@ -118,10 +118,12 @@ export default function PostModal({ postData, gameType, setIsOpen }: Props) {
           <img src={URL.laneIcon(needPosition)} alt="찾는 라인" />
         </div>
       </div>
-      <div className={cn('memo')}>
-        <span>메모</span>
-        <div className={cn('memoContent')}>{memo}</div>
-      </div>
+      {memo && (
+        <div className={cn('memo')}>
+          <span>메모</span>
+          <div className={cn('memoContent')}>{memo}</div>
+        </div>
+      )}
       <button
         type="button"
         onClick={() => setIsOpen(false)}

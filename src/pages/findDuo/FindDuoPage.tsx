@@ -11,6 +11,8 @@ import { useState } from 'react';
 import PostWriteModal from './components/postWriteModal/PostWriteModal';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+import PostsContainerSkeleton from './components/skeleton/PostsContainerSkeleton';
+import { IoArrowDownOutline } from 'react-icons/io5';
 
 const cn = classNames.bind(styles);
 
@@ -47,7 +49,11 @@ export default function FindDuoPage() {
     <>
       <SEOMeta pageData={SEO_DATA.findDuo} />
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-        <PostWriteModal setIsOpen={setIsOpen} />
+        <PostWriteModal
+          setQueueOption={setQueueOption}
+          setIsOpen={setIsOpen}
+          onQueryUpdateHandler={onQueryUpdateHandler}
+        />
       </Modal>
       <div>
         <div
@@ -112,24 +118,33 @@ export default function FindDuoPage() {
                 onClick={onPostWriteBtnClick}
               >
                 글쓰기
-              </button>
+              </button>{' '}
             </div>
           </div>
           {postData?.length ? (
             <>
-              <PostsContainer postsData={postData} />
-              {hasNextPage && (
-                <button
-                  onClick={() => fetchNextPage()}
-                  className={cn('moreBtn')}
-                >
-                  더보기
-                </button>
+              <PostsContainer
+                postsData={postData}
+                isFetchingNextPage={isFetchingNextPage}
+                setQueueOption={setQueueOption}
+                onQueryUpdateHandler={onQueryUpdateHandler}
+              />
+              {hasNextPage && !isFetchingNextPage && (
+                <div className={cn('findDuoFooter')}>
+                  <button
+                    className={cn('moreBtn')}
+                    onClick={() => fetchNextPage()}
+                  >
+                    <IoArrowDownOutline />
+                  </button>
+                </div>
               )}
             </>
+          ) : isFetching ? (
+            <PostsContainerSkeleton />
           ) : (
             <div className={cn('postsNotFound')}>
-              데이터가 존재하지 않습니다.
+              게시글이 존재하지 않습니다.
             </div>
           )}
         </div>

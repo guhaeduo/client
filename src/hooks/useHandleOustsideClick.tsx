@@ -14,6 +14,7 @@ export default function useHandleOutsideClick<T extends HTMLElement>({
   useEffect(() => {
     const handleOutsideClose = (e: MouseEvent) => {
       if (isOpen && ref.current && !ref.current.contains(e.target as Node)) {
+        console.log('외부 클릭됨');
         setIsOpen(false);
       }
     };

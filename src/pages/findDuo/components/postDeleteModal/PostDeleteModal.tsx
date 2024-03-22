@@ -5,26 +5,55 @@ import classNames from 'classnames/bind';
 import { duoPostPasswordValidation } from 'utils/validator';
 import { useForm } from 'react-hook-form';
 import Input from 'components/input/Input';
+import instance from 'service/instance';
+import Toast from 'utils/toast';
+import MESSAGE from 'constants/message';
+import isCustomAxiosError from 'service/customAxiosError';
+
 const cn = classNames.bind(styles);
 
 type Props = {
   postData: PostContent;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onQueryUpdateHandler: () => void;
 };
 
 type FormValue = {
   password: string;
 };
 
-export default function PostDeleteModal({ postData, setIsOpen }: Props) {
+export default function PostDeleteModal({
+  postData,
+  setIsOpen,
+  onQueryUpdateHandler,
+}: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValue>();
 
-  const onSubmitHandler = handleSubmit((data) => {
-    console.log(data);
+  const onSubmitHandler = handleSubmit(async (data) => {
+    try {
+      console.log({
+        isGuestPost: postData.isGuestPost,
+        password: data.password,
+      });
+      await instance.delete(`/api/duo/post/${postData.postId}`, {
+        data: {
+          memberId: 1,
+          isGuestPost: postData.isGuestPost,
+          passwordCheck: data.password,
+        },
+      });
+      setIsOpen(false);
+      Toast.success(MESSAGE.DUO_POST_DELETE_SUCCESS);
+      onQueryUpdateHandler();
+    } catch (err) {
+      if (isCustomAxiosError(err) && err.response) {
+        Toast.error(err.response.data.message);
+      }
+    }
   });
 
   return (

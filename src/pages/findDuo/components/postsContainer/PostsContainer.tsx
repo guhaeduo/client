@@ -2,14 +2,23 @@ import { PostContent } from 'types/post';
 import styles from './postsContainer.module.scss';
 import classNames from 'classnames/bind';
 import PostItem from './PostItem';
+import PostsContainerSkeleton from '../skeleton/PostsContainerSkeleton';
 
 const cn = classNames.bind(styles);
 
 type Props = {
   postsData: PostContent[];
+  isFetchingNextPage: boolean;
+  setQueueOption: (queueOption: string) => void;
+  onQueryUpdateHandler: () => void;
 };
 
-export default function PostsContainer({ postsData }: Props) {
+export default function PostsContainer({
+  postsData,
+  isFetchingNextPage,
+  setQueueOption,
+  onQueryUpdateHandler,
+}: Props) {
   return (
     <div className={cn('postsContainer')}>
       <div className={cn('postsHeader')}>
@@ -28,8 +37,14 @@ export default function PostsContainer({ postsData }: Props) {
       </div>
       <div className={cn('postsWrapper')}>
         {postsData.map((post) => (
-          <PostItem key={post.postId} post={post} />
+          <PostItem
+            setQueueOption={setQueueOption}
+            onQueryUpdateHandler={onQueryUpdateHandler}
+            key={post.postId}
+            post={post}
+          />
         ))}
+        {isFetchingNextPage && <PostsContainerSkeleton />}
       </div>
     </div>
   );
