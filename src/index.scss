@@ -196,3 +196,40 @@ input {
     background-color: var(--black-200);
   }
 }
+
+.cancelBtn,
+.redBtn,
+.greenBtn,
+.disabledBtn {
+  border-radius: 3px;
+  padding: 10px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.cancelBtn {
+  border: 1px solid var(--border);
+  &:hover {
+    background-color: var(--grey-300);
+  }
+}
+
+.redBtn {
+  background-color: var(--red-button);
+  &:hover {
+    background-color: var(--red-button-hover);
+  }
+}
+
+.greenBtn {
+  background-color: var(--green);
+  &:hover {
+    background-color: var(--green-hover);
+  }
+}
+
+.disabledBtn {
+  background-color: var(--black-200);
+  color: var(--white-100);
+  cursor: not-allowed;
+}

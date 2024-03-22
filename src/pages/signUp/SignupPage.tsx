@@ -7,7 +7,7 @@ import {
   emailValidation,
   passwordValidation,
   verificationCodeValidation,
-} from 'utils/validatior';
+} from 'utils/validator';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
 

@@ -1,0 +1,36 @@
+@import '/src/css/mixin';
+
+.postDeleteModal {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  & > button {
+    flex: 1;
+  }
+}
+
+.warnning {
+  text-align: center;
+  font-size: 14px;
+  color: var(--light-red);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.passwordInput > input {
+  height: 45px;
+}
+
+// 반응형
+
+@include mobile {
+  .postDeleteModal {
+    width: 100%;
+  }
+}

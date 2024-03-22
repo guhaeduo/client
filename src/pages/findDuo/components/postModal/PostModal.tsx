@@ -16,7 +16,6 @@ type Props = {
 };
 
 export default function PostModal({ postData, gameType, setIsOpen }: Props) {
-  console.log(postData);
   const {
     riotGameName,
     riotGameTag,
@@ -123,7 +122,11 @@ export default function PostModal({ postData, gameType, setIsOpen }: Props) {
         <span>메모</span>
         <div className={cn('memoContent')}>{memo}</div>
       </div>
-      <button onClick={() => setIsOpen(false)} className={cn('closeBtn')}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(false)}
+        className={cn('cancelBtn', 'closeBtn')}
+      >
         닫기
       </button>
     </div>

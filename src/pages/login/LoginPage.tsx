@@ -1,7 +1,7 @@
 import styles from './loginPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import { emailValidation, passwordValidation } from 'utils/validatior';
+import { emailValidation, passwordValidation } from 'utils/validator';
 import { RiDiscordFill } from 'react-icons/ri';
 import PATH from 'constants/path';
 import Input from 'components/input/Input';

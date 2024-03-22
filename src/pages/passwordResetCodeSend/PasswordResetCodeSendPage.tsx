@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import PATH from 'constants/path';
 import Input from 'components/input/Input';
-import { emailValidation } from 'utils/validatior';
+import { emailValidation } from 'utils/validator';
 import usePasswordResetCodeSendForm from 'hooks/form/usePasswordResetCodeSendForm';
 import { FaCheckCircle } from 'react-icons/fa';
 import mapKoreanEmailServiceToDomain from 'utils/mapKoreanEmailServiceToDomain';

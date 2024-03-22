@@ -30,6 +30,8 @@ export default function usePasswordChangeForm({ setIsModalOpen }: Props) {
     currentPassword?.length > 7 &&
     currentPassword !== newPassword;
 
+  const isValid =
+    isLengthValid && isHasAlphaNumericValid && isMatch && isDiffrentValid;
   const submitHandler = handleSubmit(async (data) => {
     if (
       !(isLengthValid && isHasAlphaNumericValid && isMatch && isDiffrentValid)
@@ -58,5 +60,6 @@ export default function usePasswordChangeForm({ setIsModalOpen }: Props) {
     isHasAlphaNumericValid,
     isMatch,
     isDiffrentValid,
+    isValid,
   };
 }

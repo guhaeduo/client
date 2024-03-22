@@ -16,7 +16,7 @@
     &:nth-child(3),
     &:nth-child(4),
     &:nth-child(9) {
-      width: 50px;
+      width: 70px;
     }
     &:nth-child(5),
     &:nth-child(6),
@@ -83,12 +83,17 @@
     .memo {
       font-size: 11px;
       overflow: hidden;
+      text-align: center;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
       word-wrap: break-word;
       line-height: 1.2;
       font-weight: 500;
+    }
+    .timeStamp {
+      color: var(--grey-200);
+      font-size: 12px;
     }
   }
 }
@@ -149,12 +154,15 @@
 
 .optionBtn {
   position: relative;
+
   svg {
     font-size: 18px;
+    color: var(--grey-200);
   }
   .optionBox {
     display: none;
     position: absolute;
+    border: 1px solid var(--border);
     z-index: 1;
     width: 100px;
     background-color: var(--black-100);
@@ -167,7 +175,11 @@
       display: flex;
     }
     & > button {
+      font: 600;
       padding: 10px 0;
+      &:first-child {
+        border-bottom: 1px solid var(--black-200);
+      }
       &:hover {
         background-color: #494949;
       }

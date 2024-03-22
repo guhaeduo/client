@@ -19,6 +19,7 @@ export interface PostContent {
   isMicOn: boolean;
   isRiotVerified: boolean;
   puuid: string;
+  memberId?: number;
 }
 
 export interface PostsDataRes {

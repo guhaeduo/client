@@ -43,7 +43,6 @@ export default function FindDuoPage() {
     e.stopPropagation();
     setIsOpen(true);
   };
-  console.log(postData);
   return (
     <>
       <SEOMeta pageData={SEO_DATA.findDuo} />

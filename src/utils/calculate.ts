@@ -20,7 +20,6 @@ export function calculateGameDuration(gameDuration: number) {
 export function calculateTimeStamp(gameEndDate: number): string {
   const now = Date.now();
   const timeDiff = now - gameEndDate;
-  console.log(timeDiff, gameEndDate);
   const seconds = Math.floor(timeDiff / 1000);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);

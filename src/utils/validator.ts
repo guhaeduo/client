@@ -38,9 +38,15 @@ const summonerNameTagValidation = {
   },
 };
 
+const duoPostPasswordValidation = {
+  required: '비밀번호는 필수 입력 사항 입니다.',
+  minLength: { value: 4, message: '최소 4자 이상 입력해주세요.' },
+};
+
 export {
   emailValidation,
   passwordValidation,
   verificationCodeValidation,
   summonerNameTagValidation,
+  duoPostPasswordValidation,
 };

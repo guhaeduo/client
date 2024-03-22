@@ -18,6 +18,7 @@ type Props = {
 type FormValue = {
   summonerName: string;
   memo: string;
+  password: string;
 };
 
 export default function usePostWriteForm({ setIsOpen, postData }: Props) {
@@ -65,7 +66,6 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
   const [subChampion, setSubChampion] = useSignularOptionSelector({
     defaultOption: postData?.mySubChampionName || championOptions[0].key,
   });
-  console.log(mainChampion, subChampion);
   const [isMicOn, setIsMicOn] = useState(postData?.isMicOn || false);
 
   const {
@@ -82,6 +82,7 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
         'summonerName',
         `${postData.riotGameName}#${postData.riotGameTag}`,
       );
+      setValue('memo', postData.memo);
     }
   }, []);
 
@@ -161,5 +162,6 @@ export default function usePostWriteForm({ setIsOpen, postData }: Props) {
     championOptions,
     submitHandler,
     errors,
+    isGuestPost: postData?.isGuestPost,
   };
 }

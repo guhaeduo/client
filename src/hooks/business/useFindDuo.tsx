@@ -82,6 +82,7 @@ export default function useFindDuo() {
       isMicOn: true,
       isRiotVerified: false,
       puuid: '테스트puuid',
+      memberId: 1,
     },
     {
       isGuestPost: true,
@@ -125,6 +126,7 @@ export default function useFindDuo() {
       memo: '메모메모메모메모메모메모메모메모메모메모 메모메모메모메모메모 메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모',
       isMicOn: false,
       isRiotVerified: false,
+      memberId: 2,
       puuid: '테스트puuid',
     },
   ];

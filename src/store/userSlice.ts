@@ -18,6 +18,7 @@ interface UserState extends Token {
   riotAccountList?: RiotAccount[];
   createdAt?: string;
   loginType?: 'SITE' | 'KAKAO' | 'DISCORD';
+  memberId?: number;
 }
 
 const initialState: UserState = {

@@ -8,7 +8,7 @@ const isTokenExpired = (token: string): boolean => {
     return true;
   }
   const currentTime = Math.floor(Date.now() / 1000) + 5; // 현재 시간에서 5초를 더해서 검사
-  console.log(payload.exp, currentTime);
+  payload.exp, currentTime;
   return payload.exp < currentTime;
 };
 

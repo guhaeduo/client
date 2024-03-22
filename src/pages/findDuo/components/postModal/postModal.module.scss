@@ -111,16 +111,7 @@
 }
 
 .closeBtn {
-  width: 100%;
-  text-align: center;
-  padding: 10px 0;
   margin-top: 20px;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  &:hover {
-    background-color: var(--grey-300);
-  }
 }
 
 // 반응형

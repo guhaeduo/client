@@ -15,6 +15,8 @@ import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import { calculateTimeStamp } from 'utils/calculate';
 import { IoMic } from 'react-icons/io5';
 import { SiRiotgames } from 'react-icons/si';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'store/userSlice';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -28,6 +30,7 @@ export default function PostItem({ post }: Props) {
   const [isPostDeleteModalOpen, setIsPostDeleteModalOpen] = useState(false);
   const optionBoxRef = useRef(null);
 
+  const user = useSelector(selectUser);
   const gameType = QUEUE.find((queue) => queue.key === post.queueType)
     ?.display as string;
   const onOptionBtnClickHandler = () => {
@@ -142,19 +145,25 @@ export default function PostItem({ post }: Props) {
             />
           </div>
           <div className={cn('memo')}>{post.memo}</div>
-          <div>{calculateTimeStamp(post.createdAt)}</div>
+          <div className={cn('timeStamp')}>
+            {calculateTimeStamp(post.createdAt)}
+          </div>
         </div>
         <button
           onClick={onOptionBtnClickHandler}
           className={cn('optionBtn')}
           ref={optionBoxRef}
         >
-          <BsThreeDots />
-          <span className="visuallyHidden">옵션 박스 열거 버튼</span>
-          <div className={cn('optionBox', { open: isOptionOpen })}>
-            <button onClick={onPostModifyBtnClickHandler}>수정</button>
-            <button onClick={onPostDeleteBtnClickHandler}>삭제</button>
-          </div>
+          {(post.isGuestPost || post.memberId === user.memberId) && (
+            <>
+              <BsThreeDots />
+              <span className="visuallyHidden">옵션 박스 열거 버튼</span>
+              <div className={cn('optionBox', { open: isOptionOpen })}>
+                <button onClick={onPostModifyBtnClickHandler}>수정</button>
+                <button onClick={onPostDeleteBtnClickHandler}>삭제</button>
+              </div>
+            </>
+          )}
         </button>
       </div>
     </>

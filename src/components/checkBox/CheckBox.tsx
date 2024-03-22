@@ -1,6 +1,7 @@
 import { FaCheck } from 'react-icons/fa';
 import styles from './checkBox.module.scss';
 import classNames from 'classnames/bind';
+import { MouseEventHandler } from 'react';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -17,9 +18,13 @@ type Props = {
  */
 
 export default function CheckBox({ value, setValue, className }: Props) {
+  const onClickHandler: MouseEventHandler = (e) => {
+    e.stopPropagation();
+    setValue((prevValue) => !prevValue);
+  };
   return (
     <div
-      onClick={() => setValue((prevValue) => !prevValue)}
+      onClick={onClickHandler}
       className={cn('checkBox', className, { active: value })}
     >
       {value && <FaCheck />}

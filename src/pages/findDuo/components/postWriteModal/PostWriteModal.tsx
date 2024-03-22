@@ -4,11 +4,12 @@ import Input from 'components/input/Input';
 import DropDown from 'components/dropDown/DropDown';
 import Toggle from 'components/toggle/Toggle';
 import LaneSelector from 'components/laneSelector/LaneSelector';
-import { summonerNameTagValidation } from 'utils/validatior';
+import { summonerNameTagValidation } from 'utils/validator';
 import { QUEUE } from 'constants/options';
 import { IoAlertCircleOutline } from 'react-icons/io5';
 import usePostWriteForm from 'hooks/form/usePostWriteForm';
 import { PostContent } from 'types/post';
+import { duoPostPasswordValidation } from 'utils/validator';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -48,6 +49,7 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
     championOptions,
     submitHandler,
     errors,
+    isGuestPost,
   } = usePostWriteForm({ postData, setIsOpen });
 
   return (
@@ -153,6 +155,17 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
           className={cn('memo')}
         />
       </div>
+      {((postData && isGuestPost) || (!postData && !isLogin)) && (
+        <div>
+          <Input
+            type="text"
+            label="비밀번호"
+            {...register('password')}
+            error={errors.password}
+            className={cn('password', duoPostPasswordValidation)}
+          />
+        </div>
+      )}
       <div className={cn('footer')}>
         <p>
           <IoAlertCircleOutline />
@@ -160,8 +173,16 @@ export default function PostWriteModal({ postData, setIsOpen }: Props) {
           있습니다.
         </p>
         <div className={cn('buttons')}>
-          <button onClick={() => setIsOpen(false)}>취소</button>
-          <button onClick={submitHandler}>등록</button>
+          <button
+            type="button"
+            className={cn('cancelBtn')}
+            onClick={() => setIsOpen(false)}
+          >
+            취소
+          </button>
+          <button className={cn('greenBtn')} onClick={submitHandler}>
+            {postData ? '수정' : '등록'}
+          </button>
         </div>
       </div>
     </div>
