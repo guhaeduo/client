@@ -50,11 +50,12 @@
 .riotVerifiedBtn {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 120px;
   gap: 10px;
   background-color: var(--grey-300);
   border-radius: 3px;
   height: 38px;
-  padding: 0px 10px;
   svg {
     font-size: 18px;
     margin-top: 3px;
@@ -74,7 +75,7 @@
 }
 
 .writePostBtn {
-  width: 120px;
+  width: 100px;
   height: 38px;
   border-radius: 3px;
   background-color: var(--green);
@@ -127,6 +128,9 @@
     .dropMenu {
       order: 2;
       width: 100%;
+      & > * {
+        width: 100%;
+      }
     }
   }
 }
@@ -136,8 +140,7 @@
     width: 100%;
   }
   .riotVerifiedBtn {
-    padding: 0px 6px;
-    justify-content: center;
+    font-size: 10px;
     svg {
       font-size: 14px;
     }

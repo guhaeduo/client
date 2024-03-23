@@ -7,7 +7,7 @@ const cn = classNames.bind(styles);
 export default function PostsContainerSkeleton() {
   return (
     <div className={cn('postsWrapper')}>
-      {[...Array(20)].map((_, i) => (
+      {[...Array(5)].map((_, i) => (
         <Skeleton key={i} className={cn('postItem')} />
       ))}
     </div>

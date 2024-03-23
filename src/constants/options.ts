@@ -35,6 +35,7 @@ export const TIER = [
   { key: 'SILVER', display: '실버' },
   { key: 'BRONZE', display: '브론즈' },
   { key: 'IRON', display: '아이언' },
+  { key: 'UNRANKED', display: '언랭크' },
 ];
 
 export const LANE = [
