@@ -99,6 +99,12 @@
     flex-direction: column;
   }
   .postModal {
+    width: 350px;
+  }
+}
+
+@include mobile {
+  .postModal {
     width: 100%;
   }
 }

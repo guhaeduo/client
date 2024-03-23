@@ -22,10 +22,15 @@
   padding: 30px;
 }
 
+@include tablet {
+  .modal {
+    overflow-y: scroll;
+    max-height: 500px;
+  }
+}
+
 @include mobile {
   .modal {
     width: 100%;
-    overflow: scroll;
-    max-height: 500px;
   }
 }

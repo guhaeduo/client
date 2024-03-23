@@ -17,6 +17,7 @@ import { IoMic } from 'react-icons/io5';
 import { SiRiotgames } from 'react-icons/si';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
+import { useEffect } from 'react';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -34,6 +35,8 @@ export default function PostItem({
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [isPostModifyModalOpen, setIsPostModifyModalOpen] = useState(false);
   const [isPostDeleteModalOpen, setIsPostDeleteModalOpen] = useState(false);
+  const [timeStamp, setTimeStamp] = useState('');
+
   const optionBoxRef = useRef(null);
 
   const user = useSelector(selectUser);
@@ -52,6 +55,13 @@ export default function PostItem({
     e.stopPropagation();
     setIsPostModalOpen(true);
   };
+
+  useEffect(() => {
+    const timeStampInterval = setInterval(() => {
+      setTimeStamp(calculateTimeStamp(post.createdAt));
+    }, 100);
+    return () => clearInterval(timeStampInterval);
+  }, []);
 
   const onPostModifyBtnClickHandler: MouseEventHandler = (e) => {
     e.stopPropagation();
@@ -114,7 +124,10 @@ export default function PostItem({
               <span className={cn('name')}>{post.riotGameName}</span>
               <div className={cn('tag')}>
                 <span>#{post.riotGameTag}</span>
-                <button className={cn('copy')} onClick={onCopyHandler}>
+                <button
+                  className={cn('copy', 'copyBtn')}
+                  onClick={onCopyHandler}
+                >
                   복사
                 </button>
                 {post.isMicOn && <IoMic className={cn('mic')} />}
@@ -127,20 +140,16 @@ export default function PostItem({
             </div>
           </div>
           <div className={cn('gameType')}>{gameType}</div>
-          <div>
-            <img
-              className={cn('tier')}
-              src={URL.tierIcon(post.soloRankTier)}
-              alt="솔랭 티어"
-            />
-          </div>
-          <div>
-            <img
-              className={cn('tier')}
-              src={URL.tierIcon(post.freeRankTier)}
-              alt="자랭 티어"
-            />
-          </div>{' '}
+          {post.queueType !== 'FREE' && (
+            <div className={cn('tier')}>
+              <img src={URL.tierIcon(post.soloRankTier)} alt="솔랭 티어" />
+            </div>
+          )}
+          {post.queueType === 'FREE' && (
+            <div className={cn('tier')}>
+              <img src={URL.tierIcon(post.freeRankTier)} alt="자랭 티어" />
+            </div>
+          )}{' '}
           <div>
             <img
               src={URL.laneIcon(post.myMainLane)}
@@ -160,9 +169,7 @@ export default function PostItem({
             />
           </div>
           <div className={cn('memo')}>{post.memo}</div>
-          <div className={cn('timeStamp')}>
-            {calculateTimeStamp(post.createdAt)}
-          </div>
+          <div className={cn('timeStamp')}>{timeStamp}</div>
         </div>
         <button
           onClick={onOptionBtnClickHandler}

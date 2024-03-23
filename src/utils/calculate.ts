@@ -33,6 +33,7 @@ export function calculateTimeStamp(date: number): string {
   if (days > 0) return `${days}일 전`;
   if (hours > 0) return `${hours}시간 전`;
   if (minutes > 0) return `${minutes}분 전`;
+  if (seconds > 0) return `${seconds}초 전`;
   return '방금 전';
 }
 

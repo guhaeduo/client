@@ -25,8 +25,7 @@ export default function PostsContainer({
         <div>
           <div>소환사 이름</div>
           <div>선호 게임</div>
-          <div>솔랭 티어</div>
-          <div>자랭 티어</div>
+          <div>티어</div>
           <div>주 포지션</div>
           <div>선호 챔피언</div>
           <div>찾는 포지션</div>
