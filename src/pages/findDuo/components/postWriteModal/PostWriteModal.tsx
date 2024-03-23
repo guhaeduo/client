@@ -149,6 +149,7 @@ export default function PostWriteModal({
             isOpen={isMainChampionOpen}
             setIsOpen={setIsMainChampionOpen}
             className={cn('dropDown')}
+            isSearch
           />
         </div>
       </div>
@@ -169,6 +170,7 @@ export default function PostWriteModal({
             isOpen={isSubChampionOpen}
             setIsOpen={setIsSubChampionOpen}
             className={cn('dropDown')}
+            isSearch
           />
         </div>
       </div>

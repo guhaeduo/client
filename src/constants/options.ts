@@ -53,9 +53,15 @@ export const CHAMPION = () => {
   ).championData;
   const keys = Object.keys(localChampionData);
 
-  return keys.map((key) => ({
-    key,
-    display: localChampionData[key].name,
-    icon: localChampionData[key].icon,
-  }));
+  return keys
+    .map((key) => ({
+      key,
+      display: localChampionData[key].name,
+      icon: localChampionData[key].icon,
+    }))
+    .sort((a, b) => {
+      const nameA = a.display.replace(/[^ㄱ-힣]/g, '');
+      const nameB = b.display.replace(/[^ㄱ-힣]/g, '');
+      return nameA.localeCompare(nameB, 'ko');
+    });
 };

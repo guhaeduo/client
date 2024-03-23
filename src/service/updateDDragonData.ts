@@ -42,6 +42,7 @@ async function updateChampionData() {
         name: value.name,
       };
     }
+
     localStorage.setItem(
       'championData',
       JSON.stringify({ version: VERSION, championData: newChampionData }),

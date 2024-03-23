@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from './dropDown.module.scss';
 import classNames from 'classnames/bind';
 import { IoCaretDownSharp } from 'react-icons/io5';
@@ -14,6 +14,7 @@ type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   label: string;
+  isSearch?: boolean;
 };
 
 /**
@@ -26,6 +27,7 @@ type Props = {
  * @param {string} isOpen - 드롭다운 메뉴의 오픈 여부를 관리하는 상태입니다
  * @param {string} setIsOpen - 드롭다운 메뉴의 오픈 여부를 제어하는 함수입니다.
  * @param {React.RefObject<HTMLDivElement>} dropMenuRef - 드롭다운 메뉴의 ref입니다.
+ * @param {boolean} isSearch - 검색이 가능한 드롭박스인지 나타내는 값입니다.
  */
 
 export default function DropDown({
@@ -37,13 +39,27 @@ export default function DropDown({
   isOpen,
   setIsOpen,
   label,
+  isSearch,
 }: Props) {
   // dropMenuRef를 생성하여 dropDown에 연결합니다.
   const dropMenuRef = useRef<HTMLDivElement | null>(null);
+
+  // searchInputRef
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+
+  // 검색 가능한 드롭다운일때 검색 키워드를 저장합니다.
+  const [searchValue, setSearchValue] = useState('');
+
   const onClickHandler = (option: string) => {
     // 전달받은 onChange함수로 option을 전달하고, 드롭다운 메뉴를 닫습니다.
     onChange(option);
     setIsOpen(false);
+  };
+
+  const onSearchValueChangeHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setSearchValue(e.target.value);
   };
 
   // dropDown이 아닌 외부가 클릭되면 dropDown을 닫습니다.
@@ -63,8 +79,23 @@ export default function DropDown({
     (el) => el.key === currentOptionKey,
   )?.display;
 
+  // 검색 인풋일 경우 키워드에 따라 옵션 분류
+  const filteredOptions =
+    isSearch && searchValue
+      ? options.filter((option) => {
+          const displayName = option.display;
+          const searchValueNormalized = searchValue.normalize('NFC');
+          return [...searchValueNormalized].every((char) =>
+            displayName.includes(char),
+          );
+        })
+      : options;
+
   return (
-    <div ref={dropMenuRef} className={cn('dropDownContainer', className, type)}>
+    <div
+      ref={dropMenuRef}
+      className={cn('dropDownContainer', { search: isSearch }, className, type)}
+    >
       <div
         onClick={dropDownOpenHandler}
         className={`${cn('dropDownHeader')} dropDownHeader`}
@@ -77,10 +108,20 @@ export default function DropDown({
           <IoCaretDownSharp className="dropDownSharpIcon" />
         </button>
       </div>
+      {isSearch && isOpen && (
+        <input
+          type="text"
+          value={searchValue}
+          onChange={onSearchValueChangeHandler}
+          ref={searchInputRef}
+          autoFocus
+          className={cn('searchInput')}
+        />
+      )}
       <div
         className={`${cn('dropDownContent', { visibleOption: isOpen })} dropDownContent`}
       >
-        {options.map(({ key, display, icon }) => (
+        {filteredOptions.map(({ key, display, icon }) => (
           <button key={key} onClick={() => onClickHandler(key)}>
             {icon && (
               <div className={cn('icon')}>
