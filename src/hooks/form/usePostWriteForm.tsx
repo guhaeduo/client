@@ -162,9 +162,10 @@ export default function usePostWriteForm({
           setSummonerInfo(name, tag);
         }
 
-        if (!isLogin) {
+        if (postData.isGuestPost) {
           modifyPostData.passwordCheck = data.password;
         }
+        console.log(modifyPostData);
 
         await instance.put(
           `https://guhaeduo.site/api/duo/post/${postData.postId}`,
