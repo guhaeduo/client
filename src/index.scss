@@ -233,3 +233,9 @@ input {
   color: var(--white-100);
   cursor: not-allowed;
 }
+
+:global {
+  .react-tooltip {
+    z-index: 100 !important;
+  }
+}

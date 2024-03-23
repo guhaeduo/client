@@ -124,7 +124,7 @@ export default function MatchTeamContainer({
               </div>
               <CustomTooltip
                 body={`시야 점수 - ${participant.visionScore} 제어 와드 - ${participant.visionWards} 와드설치 - ${participant.wardPlaced}`}
-                name={`${currentSummonerPuuid}wards`}
+                name={`${participant.puuid}wards`}
               >
                 <div className={cn('wards')}>
                   <span className={cn('visionScore')}>
@@ -148,6 +148,7 @@ export default function MatchTeamContainer({
                   className={cn('itemIcon')}
                   key={i}
                   itemNumber={itemNumber}
+                  puuid={participant.puuid}
                 />
               ))}
             </div>

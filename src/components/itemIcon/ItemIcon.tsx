@@ -7,6 +7,7 @@ const cn = classNames.bind(styles);
 type Props = {
   className?: string;
   itemNumber: number;
+  puuid?: string;
 };
 
 /**
@@ -15,7 +16,7 @@ type Props = {
  * @param {number} itemNumber - 아이템 번호입니다.
  */
 
-export default function ItemIcon({ className, itemNumber }: Props) {
+export default function ItemIcon({ className, itemNumber, puuid }: Props) {
   // 아이템의 상세 정보를 받아와 저장합니다.
   const itemDetail = getItemData(itemNumber);
 
@@ -25,7 +26,7 @@ export default function ItemIcon({ className, itemNumber }: Props) {
 
   return (
     <CustomTooltip
-      name={itemDetail.name}
+      name={itemDetail.name + puuid}
       title={itemDetail.name}
       body={itemDetail.description}
     >
