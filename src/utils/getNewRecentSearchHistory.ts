@@ -16,7 +16,6 @@ export default function getNewRecentSearchHistory(
   recentSearchHistory: SearchHistory[],
   favoriteSearchHistory: SearchHistory[],
 ) {
-  console.log(name, tag, country, recentSearchHistory, favoriteSearchHistory);
   // 중복된 항목을 찾는 함수입니다.
   const isDuplicated = (history: SearchHistory) =>
     history.name === name && history.tag === tag && history.country === country;

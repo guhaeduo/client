@@ -65,6 +65,8 @@ export default function SearchHistoryContainer({
     history: SearchHistory,
   ) => {
     e.stopPropagation();
+    console.log(history);
+
     const { name, tag, country, isFavorite } = history;
     // 기존의 즐겨찾기 항목과 전달받은 검색 기록을 통해 새로운 즐겨찾기를 관리하는 변수입니다.
     const newFavoriteSearchHistory = getNewFavoriteSearchHistory(
@@ -87,15 +89,18 @@ export default function SearchHistoryContainer({
     // 즐겨찾기된 항목을 최근 검색기록에도 업데이트 적용한 변수입니다.
     const updatedRecentSearchHistory = recentSearchHistory.map(
       (recentHistory) => {
-        if (recentHistory === history) {
-          console.log(recentHistory);
+        // 즐겨찾기 요소와 값을 비교하여 일치하면 isFavorite을 반대로 변경한후 리턴합니다.
+        if (
+          recentHistory.name === history.name &&
+          recentHistory.tag === history.tag &&
+          recentHistory.country === history.country
+        ) {
           return { ...recentHistory, isFavorite: !history.isFavorite };
         }
         return recentHistory;
       },
     );
 
-    console.log(history, updatedRecentSearchHistory);
     // 업데이트된 최근 검색기록으로 상태를 업데이트 합니다.
     setRecentSearchHistory(updatedRecentSearchHistory);
     // 업데이트된 최근 검색기록으로 로컬스토리지를 업데이트 합니다.
