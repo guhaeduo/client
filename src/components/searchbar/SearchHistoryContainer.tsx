@@ -74,22 +74,28 @@ export default function SearchHistoryContainer({
       isFavorite,
       favoriteSearchHistory,
     );
+
     // 새로운 즐겨찾기로 상태를 업데이트 합니다.
     setFavoriteSearchHistory(newFavoriteSearchHistory);
+
     // 새로운 즐겨찾기로 로컬스토리지를 업데이트 합니다.
     localStorage.setItem(
       'favoriteSearchHistory',
       JSON.stringify(newFavoriteSearchHistory),
     );
+
     // 즐겨찾기된 항목을 최근 검색기록에도 업데이트 적용한 변수입니다.
     const updatedRecentSearchHistory = recentSearchHistory.map(
       (recentHistory) => {
         if (recentHistory === history) {
+          console.log(recentHistory);
           return { ...recentHistory, isFavorite: !history.isFavorite };
         }
         return recentHistory;
       },
     );
+
+    console.log(history, updatedRecentSearchHistory);
     // 업데이트된 최근 검색기록으로 상태를 업데이트 합니다.
     setRecentSearchHistory(updatedRecentSearchHistory);
     // 업데이트된 최근 검색기록으로 로컬스토리지를 업데이트 합니다.
