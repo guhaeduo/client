@@ -10,6 +10,7 @@ import instance from 'service/instance';
 import isCustomAxiosError from 'service/customAxiosError';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
+import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -165,7 +166,6 @@ export default function usePostWriteForm({
         if (postData.isGuestPost) {
           modifyPostData.passwordCheck = data.password;
         }
-        console.log(modifyPostData);
 
         await instance.put(
           `https://guhaeduo.site/api/duo/post/${postData.postId}`,
@@ -179,8 +179,9 @@ export default function usePostWriteForm({
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);
+        return;
       }
-      console.log(err);
+      Toast.error(UNKNOWN_NET_ERROR_MESSAGE);
     }
   });
 

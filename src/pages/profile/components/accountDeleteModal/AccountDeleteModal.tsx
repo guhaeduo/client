@@ -7,6 +7,8 @@ import { logout } from 'store/userSlice';
 import instance from 'service/instance';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
+import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
+import isCustomAxiosError from 'service/customAxiosError';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -24,7 +26,11 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
       dispatch(logout());
       Toast.success(MESSAGE.ACCOUNT_DELETE_SUCCESS);
     } catch (err) {
-      console.log(err);
+      if (isCustomAxiosError(err) && err.response) {
+        Toast.error(err.response.data.message);
+        return;
+      }
+      Toast.error(UNKNOWN_NET_ERROR_MESSAGE);
     }
   };
 

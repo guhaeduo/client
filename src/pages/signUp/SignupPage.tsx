@@ -51,6 +51,7 @@ export default function SignupPage() {
                     label="이메일"
                     error={errors.email}
                     disabled={isVerificationConfirm}
+                    autoFocus
                   />
                   {isVerificationConfirm || (
                     <button

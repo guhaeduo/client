@@ -4,6 +4,7 @@ import isCustomAxiosError from 'service/customAxiosError';
 import hasAlphaNumeric from 'utils/hasAlphaNumeric';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
+import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 interface FormValue {
   currentPassword: string;
   newPassword: string;
@@ -49,6 +50,7 @@ export default function usePasswordChangeForm({ setIsModalOpen }: Props) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);
       }
+      Toast.error(UNKNOWN_NET_ERROR_MESSAGE);
     }
   });
 

@@ -9,6 +9,7 @@ import instance from 'service/instance';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
 import isCustomAxiosError from 'service/customAxiosError';
+import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
 const cn = classNames.bind(styles);
 
@@ -35,10 +36,6 @@ export default function PostDeleteModal({
 
   const onSubmitHandler = handleSubmit(async (data) => {
     try {
-      console.log({
-        isGuestPost: postData.isGuestPost,
-        password: data.password,
-      });
       await instance.delete(`/api/duo/post/${postData.postId}`, {
         data: {
           memberId: 1,
@@ -52,7 +49,9 @@ export default function PostDeleteModal({
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);
+        return;
       }
+      Toast.error(UNKNOWN_NET_ERROR_MESSAGE);
     }
   });
 

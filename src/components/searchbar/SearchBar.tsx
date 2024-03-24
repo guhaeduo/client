@@ -59,9 +59,6 @@ export default function SearchBar({ className, type }: Props) {
   // 검색창을 클릭하였을 때, inputSearchFocus 상태를 업데이트하는 함수입니다.
   const searchInputFocusHandler = () => {
     setIsSearchInputFocus(true);
-    // e.stopPropagation();
-    // // 드롭다운이 열려있다면 닫습니다.
-    // if (isCountryDropDownOpen) setIsCountryDropDownOpen(false);
   };
 
   // 드롭다운 오픈 여부를 제어하는 함수입니다.
@@ -92,6 +89,7 @@ export default function SearchBar({ className, type }: Props) {
       tag,
       country,
       recentSearchHistory,
+      favoriteSearchHistory,
     );
     // 전달받은 데이터를 갖고 소환사 검색 페이지로 이동합니다.
     navSummonerSearch(newSearch);

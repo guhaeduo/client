@@ -26,7 +26,6 @@ export default function PasswordResetCodeSendPage() {
             <div className={cn('successMsg')}>
               <FaCheckCircle />
               <span>이메일함을 확인하여 주세요.</span>
-
               <a href={`https://mail.${companyDomain}`}>바로가기</a>
             </div>
           ) : (
@@ -42,6 +41,7 @@ export default function PasswordResetCodeSendPage() {
                   type="text"
                   label="이메일"
                   error={errors.email}
+                  autoFocus
                 />
                 <button className={cn({ isValid })} type="submit">
                   비밀번호 재설정하기

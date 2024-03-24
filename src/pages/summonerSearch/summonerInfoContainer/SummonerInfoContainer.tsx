@@ -19,7 +19,6 @@ export default function SummonerInfoContainer({
   summonerRankInfo,
 }: Props) {
   const [rankType, setRankType] = useState<RankType>('soloRank');
-  console.log(summonerRankInfo);
   const { gameName, tagLine, profileIconId } = summonerInfo;
 
   const renderRankTierContainer = (rankData: RankData) => (

@@ -34,6 +34,7 @@ export default function LoginPage() {
               className={cn('idInput')}
               type="text"
               error={errors.email}
+              autoFocus
             />
             <Input
               {...register('password', passwordValidation)}

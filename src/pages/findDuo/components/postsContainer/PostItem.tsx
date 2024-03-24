@@ -18,6 +18,7 @@ import { SiRiotgames } from 'react-icons/si';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -121,7 +122,12 @@ export default function PostItem({
               />
             </div>
             <div className={cn('basicData')}>
-              <span className={cn('name')}>{post.riotGameName}</span>
+              <Link
+                to={`/summoners/kr/${post.riotGameName}-${post.riotGameTag}`}
+                className={cn('name')}
+              >
+                {post.riotGameName}
+              </Link>
               <div className={cn('tag')}>
                 <span>#{post.riotGameTag}</span>
                 <button
