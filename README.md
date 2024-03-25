@@ -2,9 +2,9 @@
 
 <p align='center'><img src='https://github.com/guhaeduo/client/assets/114664128/9b038b05-f1b7-4592-a463-809497f8a889'/></p>
 
-> 개발 기간 - 2024.02 ~ 2024.03
-> 배포 주소 - https://www.guhaeduo.com
-
+> 개발 기간 - 2024.02 ~ 2024.03  
+> 배포 주소 - https://www.guhaeduo.com  
+> 문서 - [Notion](https://cerulean-dew-30f.notion.site/070c15d6fa3241d5ba3d805915b1d73b?pvs=4)
 
 ## 팀원 소개
 
