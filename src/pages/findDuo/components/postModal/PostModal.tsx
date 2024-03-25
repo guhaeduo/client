@@ -33,7 +33,7 @@ export default function PostModal({ postData, gameType, setIsOpen }: Props) {
     summonerIconNumber,
     memo,
   } = postData;
-  memo;
+
   return (
     <div className={cn('postModal')}>
       <div className={cn('basicData')}>
