@@ -58,6 +58,7 @@ export default function MatchTeamContainer({
               <ChampionIcon
                 championName={participant.championName}
                 className={cn('championIcon')}
+                championLevel={participant.championLevel}
               />
               <div className={cn('summonerSkills')}>
                 <SpellIcon
