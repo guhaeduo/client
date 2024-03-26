@@ -27,6 +27,7 @@ export default function ChampionIcon({ championName, className }: Props) {
         <img
           src={championDetail?.icon || ''}
           alt={`${championDetail?.name || ''} 아이콘`}
+          loading="lazy"
         />
       </div>
     </CustomTooltip>
