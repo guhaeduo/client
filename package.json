@@ -16,7 +16,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-toastify": "^4.1.0",
     "@types/react-tooltip": "^4.2.4",
-    "@types/redux-persist": "^4.3.1",
+    "@ypes/redux-persist": "^4.3.1",
     "chart.js": "^4.4.1",
     "classnames": "^2.5.1",
     "html-react-parser": "^5.1.5",
