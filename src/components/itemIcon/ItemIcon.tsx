@@ -31,7 +31,7 @@ export default function ItemIcon({ className, itemNumber, puuid }: Props) {
       body={itemDetail.description}
     >
       <div className={cn('itemIcon', className)}>
-        <img src={itemDetail.icon} alt="아이템 아이콘" />
+        <img src={itemDetail.icon} alt="아이템 아이콘" loading="lazy" />
       </div>
     </CustomTooltip>
   );

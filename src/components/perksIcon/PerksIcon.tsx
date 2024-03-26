@@ -27,14 +27,14 @@ export default function PerksIcon({ className, perksStyle }: Props) {
         name={perksDetail.name}
       >
         <div className={cn('perksIcon', className)}>
-          <img src={perksDetail.icon} alt="소환사 룬 아이콘" />
+          <img src={perksDetail.icon} alt="소환사 룬 아이콘" loading="lazy" />
         </div>
       </CustomTooltip>
     );
   }
   return (
     <div className={cn('perksIcon', className)}>
-      <img src={perksDetail.icon} alt="소환사 룬 아이콘" />
+      <img src={perksDetail.icon} alt="소환사 룬 아이콘" loading="lazy" />
     </div>
   );
 }
