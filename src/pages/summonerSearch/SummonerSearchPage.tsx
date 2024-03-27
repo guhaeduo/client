@@ -24,7 +24,8 @@ export default function SummonerSearchPage() {
   const [firstLoading, setFirstLoading] = useState(true);
   const queryClient = useQueryClient();
   const seoTitle = `${name}#${tag} - 게임 전적`;
-  const handleClick = () => {
+
+  const onRecordUpdateClickHandler = () => {
     const queryKeys = [
       ['summoner', 'info', country, name, tag],
       ['summoner', 'info', 'rankInfo', country, name, tag],
@@ -44,6 +45,7 @@ export default function SummonerSearchPage() {
       name,
       tag,
     });
+
   const {
     summonerRankInfo,
     isSummonerRankInfoFetching,
@@ -54,6 +56,7 @@ export default function SummonerSearchPage() {
     name,
     tag,
   });
+
   const {
     summonerGameSummary,
     isSummonerGameSummaryFetching,
@@ -61,6 +64,7 @@ export default function SummonerSearchPage() {
     setSummaryQueueType,
     summonerGameSummaryError,
   } = useSummonerGameSummary({ summonerInfo, country, name, tag });
+
   const {
     summonerMatchData,
     matchQueueType,
@@ -72,6 +76,7 @@ export default function SummonerSearchPage() {
   useEffect(() => {
     if (summonerInfo && summonerGameSummary && summonerMatchData) {
       setFirstLoading(false);
+      console.log('firstLoading false 설정');
     }
   }, [summonerInfo, summonerGameSummary, summonerMatchData]);
 
@@ -84,7 +89,8 @@ export default function SummonerSearchPage() {
     return () => {
       setSummaryQueueType('ALL');
       setMatchQueueType('ALL');
-      setFirstLoading(false);
+      setFirstLoading(true);
+      console.log('firstLoading true 설정');
     };
   }, [country, name, tag]);
 
@@ -93,7 +99,7 @@ export default function SummonerSearchPage() {
     summonerRankInfoError ||
     summonerGameSummaryError ||
     summonerMatchDataError;
-  console.log(errorMessage);
+
   if (errorMessage && typeof errorMessage === 'string') {
     return <ErrorComponent errorMessage={errorMessage} />;
   }
@@ -104,6 +110,7 @@ export default function SummonerSearchPage() {
     isSummonerGameSummaryFetching ||
     isSummonerRankInfoFetching;
 
+  console.log(firstLoading);
   return (
     <>
       <SEOMeta pageData={{ ...SEO_DATA.summonerSearch, title: seoTitle }} />
@@ -119,7 +126,7 @@ export default function SummonerSearchPage() {
         {!firstLoading && (
           <LoadingButton
             name={`${country}_${name}_${tag}`}
-            onClickHandler={handleClick}
+            onClickHandler={onRecordUpdateClickHandler}
             className={cn('summonerDataRefetchButton')}
             isFetching={isDataRefetching}
             clickLimitTime={120}
