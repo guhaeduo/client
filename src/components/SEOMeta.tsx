@@ -10,13 +10,14 @@ type Props = {
 
 export default function SEOMeta({ pageData }: Props) {
   const { title, pageUrl, description } = pageData;
-  const keywords = '구해듀오에서 함께 게임을 플레이할 소환사를 모집하세요.';
+  const keywords = '롤, 구해듀오, 듀오, 리그오브레전드, lol, gg, 롤 전적';
   const siteUrl = 'https://www.guhaeduo.com';
   const ogImage = process.env.PUBLIC_URL + '/images/metaImage.png';
 
   return (
     <Helmet>
       <title>{title}</title>
+      <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta property="og:type" content="website" />

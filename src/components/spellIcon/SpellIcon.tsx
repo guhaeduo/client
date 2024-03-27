@@ -23,7 +23,7 @@ export default function SpellIcon({ spellNumber, className }: Props) {
   return (
     <CustomTooltip title={name} body={description} name={name}>
       <div className={cn('spellIcon', className)}>
-        <img src={icon} alt="소환사 스펠 아이콘" />
+        <img src={icon} alt="소환사 스펠 아이콘" loading="lazy" />
       </div>
     </CustomTooltip>
   );

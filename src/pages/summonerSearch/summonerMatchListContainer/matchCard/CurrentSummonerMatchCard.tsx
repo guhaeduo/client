@@ -53,6 +53,7 @@ export default function CurrentSummonerMatchCard({
               <ChampionIcon
                 className={cn('championIcon')}
                 championName={currentSummonerMatchData.championName}
+                championLevel={currentSummonerMatchData.championLevel}
               />
               <div className={cn('summonerSkills')}>
                 <SpellIcon

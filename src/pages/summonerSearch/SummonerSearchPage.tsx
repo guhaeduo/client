@@ -21,7 +21,7 @@ const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
   const { country, name, tag } = usePathSummonerData();
-  const [firstLoading, setFirstLoading] = useState(false);
+  const [firstLoading, setFirstLoading] = useState(true);
   const queryClient = useQueryClient();
   const seoTitle = `${name}#${tag} - 게임 전적`;
   const handleClick = () => {
@@ -71,7 +71,7 @@ export default function SummonerSearchPage() {
 
   useEffect(() => {
     if (summonerInfo && summonerGameSummary && summonerMatchData) {
-      setFirstLoading(true);
+      setFirstLoading(false);
     }
   }, [summonerInfo, summonerGameSummary, summonerMatchData]);
 
@@ -93,7 +93,7 @@ export default function SummonerSearchPage() {
     summonerRankInfoError ||
     summonerGameSummaryError ||
     summonerMatchDataError;
-
+  console.log(errorMessage);
   if (errorMessage && typeof errorMessage === 'string') {
     return <ErrorComponent errorMessage={errorMessage} />;
   }
@@ -108,7 +108,7 @@ export default function SummonerSearchPage() {
     <>
       <SEOMeta pageData={{ ...SEO_DATA.summonerSearch, title: seoTitle }} />
       <div className={cn('summonerSearch', 'container')}>
-        {summonerInfo && summonerRankInfo && firstLoading ? (
+        {summonerInfo && summonerRankInfo && !firstLoading ? (
           <SummonerInfoContainer
             summonerInfo={summonerInfo}
             summonerRankInfo={summonerRankInfo}
@@ -116,7 +116,7 @@ export default function SummonerSearchPage() {
         ) : (
           <SummonerInfoContainerSkeleton />
         )}
-        {firstLoading && (
+        {!firstLoading && (
           <LoadingButton
             name={`${country}_${name}_${tag}`}
             onClickHandler={handleClick}
@@ -127,7 +127,7 @@ export default function SummonerSearchPage() {
             전적 갱신
           </LoadingButton>
         )}
-        {summonerGameSummary && firstLoading ? (
+        {summonerGameSummary && !firstLoading ? (
           <SummonerGameSummaryContainer
             summonerGameSummary={summonerGameSummary}
             summaryQueueType={summaryQueueType}
@@ -139,7 +139,7 @@ export default function SummonerSearchPage() {
             setSummaryQueueType={setSummaryQueueType}
           />
         )}
-        {summonerMatchData && firstLoading ? (
+        {summonerMatchData && !firstLoading ? (
           <SummonerMatchListContainer
             summonerMatchData={summonerMatchData}
             matchQueueType={matchQueueType}
