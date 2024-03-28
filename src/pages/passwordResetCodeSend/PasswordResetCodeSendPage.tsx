@@ -6,7 +6,7 @@ import Input from 'components/input/Input';
 import { emailValidation } from 'utils/validator';
 import usePasswordResetCodeSendForm from 'hooks/form/usePasswordResetCodeSendForm';
 import { FaCheckCircle } from 'react-icons/fa';
-import mapKoreanEmailServiceToDomain from 'utils/mapKoreanEmailServiceToDomain';
+import emailServiceToDomain from 'utils/emailServiceToDomain';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
 
@@ -16,7 +16,7 @@ export default function PasswordResetCodeSendPage() {
   const { register, submitHandler, errors, isValid, isSuccess, getValues } =
     usePasswordResetCodeSendForm();
 
-  const companyDomain = mapKoreanEmailServiceToDomain(getValues('email'));
+  const companyDomain = emailServiceToDomain(getValues('email'));
   return (
     <>
       <SEOMeta pageData={SEO_DATA.passwordResetCodeSend} />
