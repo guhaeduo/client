@@ -19,6 +19,8 @@ export default function PerksIcon({ className, perksStyle }: Props) {
   // 룬 번호에 맞는 데이터를 가져옵니다.
   const perksDetail = getPerksData(perksStyle);
 
+  if (!perksDetail) return <></>;
+
   if (perksDetail.shortDesc) {
     return (
       <CustomTooltip

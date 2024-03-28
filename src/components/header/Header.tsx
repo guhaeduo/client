@@ -37,6 +37,16 @@ const BUTTONS_HIDDEN_PATH = [LOGIN, SIGN_UP, PROFILE, ...AUTH];
 export default function Header() {
   // pathname
   const { pathname } = useLocation();
+  console.log(pathname, {
+    HOME,
+    LOGIN,
+    SIGN_UP,
+    PROFILE,
+    KAKAO_LOGIN_PAGE,
+    DISCORD_LOGIN_PAGE,
+    RESET_PASSWORD,
+    RESET_PASSWORD_EMAIL_SEND,
+  });
   // pathname에 따라 Logo를 가릴지 여부를 결정하는 값입니다.
   const isLogoHidden = LOGO_HIDDEN_PATH.includes(pathname);
   // pathname에 따라 SearchBar를 가릴지 여부를 결정하는 값입니다.

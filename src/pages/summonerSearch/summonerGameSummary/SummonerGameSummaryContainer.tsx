@@ -156,11 +156,11 @@ export default function SummonerGameSummaryContainer({
               <div className={cn('infoLane')}>
                 <div>
                   {renderInfoLaneImage(info.mainLane)}
-                  <h6>모스트 라인</h6>
+                  <span>모스트 라인</span>
                 </div>
                 <div>
                   {renderInfoLaneImage(info.subLane)}
-                  <h6>서브 라인</h6>
+                  <span>서브 라인</span>
                 </div>
               </div>
             </div>

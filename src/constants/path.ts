@@ -3,7 +3,7 @@ const PATH = {
   LOGIN: '/login',
   SIGN_UP: '/signup',
   RESET_PASSWORD_EMAIL_SEND: '/accounts/reset-code-send',
-  RESET_PASSWORD: '/auth/reset-password',
+  RESET_PASSWORD: '/auth/reset-password/',
   PROFILE: '/profile',
   SUMMONER_SEARCH: '/summoners/:country/:summonerName',
   FIND_DUO: '/find-duo',

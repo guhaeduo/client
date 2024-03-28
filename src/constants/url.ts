@@ -1,4 +1,4 @@
-export const VERSION = '14.4.1';
+export const VERSION = '14.6.1';
 
 const URL = {
   profileIcon: (iconId: number) =>
