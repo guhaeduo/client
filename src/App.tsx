@@ -1,22 +1,30 @@
+import { Suspense, lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from 'components/header/Header';
-import HomePage from 'pages/home/HomePage';
-import ProfilePage from 'pages/profile/ProfilePage';
-import ResetPasswordPage from 'pages/resetPassword/ResetPasswordPage';
-import LoginPage from 'pages/login/LoginPage';
-import SignupPage from 'pages/signUp/SignupPage';
-import SummonerSearchPage from 'pages/summonerSearch/SummonerSearchPage';
-import PasswordResetCodeSendPage from 'pages/passwordResetCodeSend/PasswordResetCodeSendPage';
-import FindDuoPage from 'pages/findDuo/FindDuoPage';
+import Footer from 'components/footer/Footer';
 import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
-import SocialLoginAuthPage from 'pages/socialLoginAuth/SocialLoginAuthPage';
 import ProtectedRoute from 'components/ProtectedRoute';
-import Footer from 'components/footer/Footer';
 import PATH from 'constants/path';
-import SEOMeta from 'components/SEOMeta';
-import SEO_DATA from 'constants/seoData';
+
+const HomePage = lazy(() => import('pages/home/HomePage'));
+const ProfilePage = lazy(() => import('pages/profile/ProfilePage'));
+const ResetPasswordPage = lazy(
+  () => import('pages/resetPassword/ResetPasswordPage'),
+);
+const LoginPage = lazy(() => import('pages/login/LoginPage'));
+const SignupPage = lazy(() => import('pages/signUp/SignupPage'));
+const SummonerSearchPage = lazy(
+  () => import('pages/summonerSearch/SummonerSearchPage'),
+);
+const PasswordResetCodeSendPage = lazy(
+  () => import('pages/passwordResetCodeSend/PasswordResetCodeSendPage'),
+);
+const FindDuoPage = lazy(() => import('pages/findDuo/FindDuoPage'));
+const SocialLoginAuthPage = lazy(
+  () => import('pages/socialLoginAuth/SocialLoginAuthPage'),
+);
 
 const requiredLoginPathname = [PATH.PROFILE];
 const requiredUnLoginPathname = [
@@ -75,40 +83,42 @@ function App() {
   return (
     <>
       <div className="App">
-        <ToastContainer
-          position="top-right" // 알람 위치 지정
-          autoClose={3000} // 자동 off 시간
-          hideProgressBar={true} // 진행시간바 숨김
-          rtl={false} // 알림 좌우 반전
-          pauseOnFocusLoss // 화면을 벗어나면 알람 정지
-          draggable // 드래그 가능
-          theme="dark"
-          limit={3} // 알람 개수 제한
-        />
-        <Header />
-        <main>
-          <Routes>
-            {pages.map((page) => (
-              <Route
-                path={page.pathname}
-                element={
-                  <ProtectedRoute
-                    requiredLogin={requiredLoginPathname.includes(
-                      page.pathname,
-                    )}
-                    requiredUnLogin={requiredUnLoginPathname.includes(
-                      page.pathname,
-                    )}
-                  >
-                    {page.element}
-                  </ProtectedRoute>
-                }
-                key={page.pathname}
-              />
-            ))}
-          </Routes>
-        </main>
-        <Footer />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ToastContainer
+            position="top-right" // 알람 위치 지정
+            autoClose={3000} // 자동 off 시간
+            hideProgressBar={true} // 진행시간바 숨김
+            rtl={false} // 알림 좌우 반전
+            pauseOnFocusLoss // 화면을 벗어나면 알람 정지
+            draggable // 드래그 가능
+            theme="dark"
+            limit={3} // 알람 개수 제한
+          />
+          <Header />
+          <main>
+            <Routes>
+              {pages.map((page) => (
+                <Route
+                  path={page.pathname}
+                  element={
+                    <ProtectedRoute
+                      requiredLogin={requiredLoginPathname.includes(
+                        page.pathname,
+                      )}
+                      requiredUnLogin={requiredUnLoginPathname.includes(
+                        page.pathname,
+                      )}
+                    >
+                      {page.element}
+                    </ProtectedRoute>
+                  }
+                  key={page.pathname}
+                />
+              ))}
+            </Routes>
+          </main>
+          <Footer />
+        </Suspense>
       </div>
     </>
   );
