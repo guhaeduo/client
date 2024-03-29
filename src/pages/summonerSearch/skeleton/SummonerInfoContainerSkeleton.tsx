@@ -1,6 +1,6 @@
 import styles from '../summonerInfoContainer/summonerInfoContainer.module.scss';
 import classNames from 'classnames/bind';
-import Skeleton from 'components/skeleton/Skeleton';
+import Skeleton from 'components/common/skeleton/Skeleton';
 const cn = classNames.bind(styles);
 
 export default function SummonerInfoContainerSkeleton() {

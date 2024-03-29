@@ -1,7 +1,7 @@
 import { MatchData } from 'types/summoner';
 import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
-import ChampionIcon from 'components/championIcon/ChampionIcon';
+import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
 import MatchTeamContainer from './MatchTeamContainer';
 import MatchTotalDataContainer from './MatchTotalDataContainer';

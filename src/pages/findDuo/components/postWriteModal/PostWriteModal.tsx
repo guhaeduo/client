@@ -1,9 +1,9 @@
 import styles from './postWriteModal.module.scss';
 import classNames from 'classnames/bind';
-import Input from 'components/input/Input';
-import DropDown from 'components/dropDown/DropDown';
-import Toggle from 'components/toggle/Toggle';
-import LaneSelector from 'components/laneSelector/LaneSelector';
+import Input from 'components/common/input/Input';
+import DropDown from 'components/common/dropDown/DropDown';
+import Toggle from 'components/common/toggle/Toggle';
+import LaneSelector from 'components/common/laneSelector/LaneSelector';
 import { summonerNameTagValidation } from 'utils/validator';
 import { QUEUE } from 'constants/options';
 import { IoAlertCircleOutline } from 'react-icons/io5';

@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import updateDDragonData from 'service/updateDDragonData';
 import ProtectedRoute from 'components/ProtectedRoute';
 import PATH from 'constants/path';
+import ErrorComponent from 'components/common/errorComponent/ErrorComponent';
 
 const HomePage = lazy(() => import('pages/home/HomePage'));
 const ProfilePage = lazy(() => import('pages/profile/ProfilePage'));
@@ -75,6 +76,10 @@ const pages = [
   {
     pathname: PATH.DISCORD_LOGIN_PAGE,
     element: <SocialLoginAuthPage socialType="DISCORD" />,
+  },
+  {
+    pathname: '*',
+    element: <ErrorComponent errorMessage="존재하지 않는 페이지입니다." />,
   },
 ];
 

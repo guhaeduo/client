@@ -1,7 +1,7 @@
 import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import { MatchData } from 'types/summoner';
-import CustomTooltip from 'components/tooltip/CustomTooltip';
+import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 
 const cn = classNames.bind(styles);
 type Props = {

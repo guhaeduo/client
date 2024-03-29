@@ -2,14 +2,14 @@ import { MatchData } from 'types/summoner';
 import { useMemo } from 'react';
 import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
-import ChampionIcon from 'components/championIcon/ChampionIcon';
-import ItemIcon from 'components/itemIcon/ItemIcon';
+import ChampionIcon from 'components/common/championIcon/ChampionIcon';
+import ItemIcon from 'components/common/itemIcon/ItemIcon';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import { calculateTimeStamp, calculateGameDuration } from 'utils/calculate';
 import ParticipantPreviewCard from './ParticipantPreviewCard';
 import { IoIosArrowDown } from 'react-icons/io';
-import SpellIcon from 'components/spellIcon/SpellIcon';
-import PerksIcon from 'components/perksIcon/PerksIcon';
+import SpellIcon from 'components/common/spellIcon/SpellIcon';
+import PerksIcon from 'components/common/perksIcon/PerksIcon';
 import { calculateGrade } from 'utils/calculate';
 const cn = classNames.bind(styles);
 

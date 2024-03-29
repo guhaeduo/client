@@ -6,7 +6,7 @@ import { SummaryQueueType } from 'types/summoner';
 import QueueTypeTab from '../components/QueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
-import LaneSelector from 'components/laneSelector/LaneSelector';
+import LaneSelector from 'components/common/laneSelector/LaneSelector';
 import { useEffect, useState } from 'react';
 import { SummaryChampionStats } from 'types/summoner';
 import ChampionTag from './ChampionTag';

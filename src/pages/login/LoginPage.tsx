@@ -4,7 +4,7 @@ import useCustomNavigation from 'hooks/useCustomNavigation';
 import { emailValidation, passwordValidation } from 'utils/validator';
 import { RiDiscordFill } from 'react-icons/ri';
 import PATH from 'constants/path';
-import Input from 'components/input/Input';
+import Input from 'components/common/input/Input';
 import useLoginForm from 'hooks/form/useLoginForm';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';

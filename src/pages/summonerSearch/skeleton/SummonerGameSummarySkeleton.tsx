@@ -3,7 +3,7 @@ import styles from '../summonerGameSummary/summonerGameSummaryContainer.module.s
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
 import QueueTypeTab from '../components/QueueTypeTab';
-import Skeleton from 'components/skeleton/Skeleton';
+import Skeleton from 'components/common/skeleton/Skeleton';
 import { SUMMARY_TAB_MENUS } from '../summonerGameSummary/SummonerGameSummaryContainer';
 const cn = classNames.bind(styles);
 

@@ -1,4 +1,4 @@
-import CustomTooltip from 'components/tooltip/CustomTooltip';
+import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 import { getSpellData } from 'utils/getLocalData';
 import styles from './spellIcon.module.scss';
 import classNames from 'classnames/bind';

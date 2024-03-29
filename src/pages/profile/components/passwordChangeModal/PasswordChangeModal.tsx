@@ -1,6 +1,6 @@
 import styles from './passwordChangeModal.module.scss';
 import classNames from 'classnames/bind';
-import Input from 'components/input/Input';
+import Input from 'components/common/input/Input';
 import usePasswordChangeForm from 'hooks/form/usePasswordChangeForm';
 import { FaCheck } from 'react-icons/fa6';
 const cn = classNames.bind(styles);

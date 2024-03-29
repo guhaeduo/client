@@ -1,15 +1,15 @@
 import { Team } from 'types/summoner';
 import styles from './matchCard.module.scss';
-import ChampionIcon from 'components/championIcon/ChampionIcon';
+import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import classNames from 'classnames/bind';
-import SpellIcon from 'components/spellIcon/SpellIcon';
-import PerksIcon from 'components/perksIcon/PerksIcon';
+import SpellIcon from 'components/common/spellIcon/SpellIcon';
+import PerksIcon from 'components/common/perksIcon/PerksIcon';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import { calculateGrade, calculateDamagePercentage } from 'utils/calculate';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
-import ItemIcon from 'components/itemIcon/ItemIcon';
-import CustomTooltip from 'components/tooltip/CustomTooltip';
+import ItemIcon from 'components/common/itemIcon/ItemIcon';
+import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 const cn = classNames.bind(styles);
 
 type Props = {

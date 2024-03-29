@@ -6,7 +6,7 @@ import { IoMic } from 'react-icons/io5';
 import { SiRiotgames } from 'react-icons/si';
 import clipBoardCopy from 'utils/clipBoardCopy';
 import URL from 'constants/url';
-import ChampionIcon from 'components/championIcon/ChampionIcon';
+import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 const cn = classNames.bind(styles);
 
 type Props = {

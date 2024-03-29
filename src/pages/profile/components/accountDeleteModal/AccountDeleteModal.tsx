@@ -1,6 +1,6 @@
 import styles from './accountDeleteModal.module.scss';
 import classNames from 'classnames/bind';
-import CheckBox from 'components/checkBox/CheckBox';
+import CheckBox from 'components/common/checkBox/CheckBox';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from 'store/userSlice';

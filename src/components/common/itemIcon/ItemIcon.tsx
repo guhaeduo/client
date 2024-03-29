@@ -1,7 +1,7 @@
 import { getItemData } from 'utils/getLocalData';
 import styles from './itemIcon.module.scss';
 import classNames from 'classnames/bind';
-import CustomTooltip from 'components/tooltip/CustomTooltip';
+import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 const cn = classNames.bind(styles);
 
 type Props = {

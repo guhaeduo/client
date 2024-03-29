@@ -3,7 +3,7 @@ import styles from '../summonerMatchListContainer/summonerMatchListContainer.mod
 import classNames from 'classnames/bind';
 import { MATH_LIST_TAB_MENUS } from '../summonerMatchListContainer/SummonerMatchListContainer';
 import QueueTypeTab from '../components/QueueTypeTab';
-import Skeleton from 'components/skeleton/Skeleton';
+import Skeleton from 'components/common/skeleton/Skeleton';
 const cn = classNames.bind(styles);
 
 type Props = {

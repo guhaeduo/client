@@ -1,10 +1,10 @@
 import styles from './postsContainer.module.scss';
 import classNames from 'classnames/bind';
 import URL from 'constants/url';
-import ChampionIcon from 'components/championIcon/ChampionIcon';
+import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import { QUEUE } from 'constants/options';
 import { BsThreeDots } from 'react-icons/bs';
-import Modal from 'components/modal/Modal';
+import Modal from 'components/common/modal/Modal';
 import PostWriteModal from '../postWriteModal/PostWriteModal';
 import PostModal from '../postModal/PostModal';
 import PostDeleteModal from '../postDeleteModal/PostDeleteModal';

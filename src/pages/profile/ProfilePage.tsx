@@ -10,7 +10,7 @@ import { logout } from 'store/userSlice';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import AccountDeleteModal from './components/accountDeleteModal/AccountDeleteModal';
 import PasswordChangeModal from './components/passwordChangeModal/PasswordChangeModal';
-import Modal from 'components/modal/Modal';
+import Modal from 'components/common/modal/Modal';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
 

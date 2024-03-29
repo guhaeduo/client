@@ -1,6 +1,6 @@
 import styles from './perksIcon.module.scss';
 import classNames from 'classnames/bind';
-import CustomTooltip from 'components/tooltip/CustomTooltip';
+import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 import { getPerksData } from 'utils/getLocalData';
 const cn = classNames.bind(styles);
 

@@ -1,7 +1,7 @@
 import styles from './header.module.scss';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
-import SearchBar from '../searchbar/SearchBar';
+import SearchBar from '../common/searchbar/SearchBar';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
 import PATH from 'constants/path';

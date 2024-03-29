@@ -1,6 +1,6 @@
 import styles from './home.module.scss';
 import classNames from 'classnames/bind';
-import SearchBar from 'components/searchbar/SearchBar';
+import SearchBar from 'components/common/searchbar/SearchBar';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';

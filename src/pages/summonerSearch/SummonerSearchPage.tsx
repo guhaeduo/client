@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
 import SummonerInfoContainer from './summonerInfoContainer/SummonerInfoContainer';
-import ErrorComponent from 'components/errorComponent/ErrorComponent';
+import ErrorComponent from 'components/common/errorComponent/ErrorComponent';
 import SummonerGameSummaryContainer from './summonerGameSummary/SummonerGameSummaryContainer';
 import useSummonerInfo from 'hooks/business/useSummonerInfo';
 import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
@@ -13,7 +13,7 @@ import SummonerGameSummarySkeleton from './skeleton/SummonerGameSummarySkeleton'
 import useSummonerMatchData from 'hooks/business/useSummonerMatchData';
 import SummonerMatchListContainerSkeleton from './skeleton/SummonerMatchListContainerSkeleton';
 import SummonerMatchListContainer from './summonerMatchListContainer/SummonerMatchListContainer';
-import LoadingButton from 'components/loadingButton/LoadingButton';
+import LoadingButton from 'components/common/loadingButton/LoadingButton';
 import { useQueryClient } from '@tanstack/react-query';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';

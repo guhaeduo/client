@@ -1,5 +1,5 @@
-import ChampionIcon from 'components/championIcon/ChampionIcon';
-import CustomTooltip from 'components/tooltip/CustomTooltip';
+import ChampionIcon from 'components/common/championIcon/ChampionIcon';
+import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 import { Participant } from 'types/summoner';
 import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
