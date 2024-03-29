@@ -17,7 +17,6 @@ export default function SEOMeta({ pageData }: Props) {
   return (
     <Helmet>
       <title>{title}</title>
-      <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta property="og:type" content="website" />
