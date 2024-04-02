@@ -1,7 +1,8 @@
 import { Lane } from 'types/summoner';
-import styles from './laneSelector.module.scss';
 import classNames from 'classnames/bind';
 import URL from 'constants/url';
+import styles from './laneSelector.module.scss';
+
 const cn = classNames.bind(styles);
 
 const LANE_OPTIONS: Lane[] = ['ALL', 'TOP', 'JUG', 'MID', 'ADC', 'SUP'];

@@ -1,8 +1,7 @@
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useEffect, useState } from 'react';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import getFindDuoPosts from 'service/getFindDuoPosts';
-import { useQueryClient } from '@tanstack/react-query';
 
 export default function useFindDuo() {
   const [tierOption, setTierOption] = useSignularOptionSelector({
@@ -63,20 +62,17 @@ export default function useFindDuo() {
         tierOption,
         isRiotVerified,
       ],
-      queryFn: ({ pageParam }) => {
-        return getFindDuoPosts(
+      queryFn: ({ pageParam }) =>
+        getFindDuoPosts(
           laneOption,
           queueOption,
           tierOption,
           isRiotVerified,
           pageParam,
-        );
-      },
+        ),
       initialPageParam: 1,
-      getNextPageParam: (data) => {
-        const { hasNextPage, nextPageNumber } = data;
-        return hasNextPage ? nextPageNumber : null;
-      },
+      getNextPageParam: (pageData) =>
+        pageData.hasNextPage ? pageData.nextPageNumber : null,
     });
 
   const postData = data?.pages.flatMap((page) => page.content);

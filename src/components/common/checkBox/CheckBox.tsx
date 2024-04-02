@@ -1,7 +1,8 @@
 import { FaCheck } from 'react-icons/fa';
-import styles from './checkBox.module.scss';
 import classNames from 'classnames/bind';
 import { MouseEventHandler } from 'react';
+import styles from './checkBox.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

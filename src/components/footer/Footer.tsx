@@ -1,7 +1,9 @@
-import styles from './footer.module.scss';
+import React from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import PATH from 'constants/path';
+import styles from './footer.module.scss';
+
 const cn = classNames.bind(styles);
 
 /**

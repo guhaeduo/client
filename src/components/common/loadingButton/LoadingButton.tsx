@@ -1,7 +1,7 @@
-import styles from './loadingButton.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
+import styles from './loadingButton.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -77,6 +77,7 @@ export default function LoadingButton({
         // 만료 시간을 꺼내와 저장합니다.
         const expirationTime = parseInt(
           localStorage.getItem(`${name}_expirationTime`) || '0',
+          10,
         );
         // 제한시간을 ms에서 second로 변경하여 저장합니다.
         const remainingTimeInSeconds = Math.ceil(

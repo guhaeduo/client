@@ -1,7 +1,8 @@
-import styles from './input.module.scss';
 import classNames from 'classnames/bind';
 import { forwardRef, useState } from 'react';
 import { FieldError } from 'react-hook-form';
+import styles from './input.module.scss';
+
 const cn = classNames.bind(styles);
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -12,7 +13,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
 }
 
-/**
+/** s
  * 미리 스타일을 지정해둔 인풋입니다.
  * @param {FieldError | string} error - 인풋의 에러 값을 받습니다.
  * @param {string} label - 인풋의 라벨 입니다.
@@ -22,7 +23,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
  */
 
 const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  { className, name, label, error, type, ...rest },
+  { className, name, label, error, type, ...rest }: InputProps,
   ref,
 ) => {
   // 패스워드 인풋의 패스워드를 보여주는것을 관리하는 상태입니다.
@@ -32,8 +33,9 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   const isPassword = type === 'password';
 
   // 패스워드를 보여주는것을 제어하는 함수입니다.
-  const onClickVisiblePasswordBtnhandler = () =>
+  const onClickVisiblePasswordBtnhandler = () => {
     setVisiblePassword((prev) => !prev);
+  };
 
   // error 객체에서 메세지를 빼옵니다.
   const errorMessage = typeof error === 'string' ? error : error?.message;

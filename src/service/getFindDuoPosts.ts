@@ -1,7 +1,8 @@
-import { PostsDataRes } from './../types/post';
+import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
+import { PostsDataRes } from '../types/post';
 import isCustomAxiosError from './customAxiosError';
 import instance from './instance';
-import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
+
 export default async function getFindDuoPosts(
   lane: string,
   queueType: string,

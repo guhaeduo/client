@@ -1,11 +1,11 @@
-import styles from './header.module.scss';
+import React from 'react';
 import classNames from 'classnames/bind';
-import { useLocation } from 'react-router-dom';
-import SearchBar from '../common/searchbar/SearchBar';
+import { useLocation, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
 import PATH from 'constants/path';
-import { Link } from 'react-router-dom';
+import SearchBar from '../common/searchbar/SearchBar';
+import styles from './header.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -37,16 +37,7 @@ const BUTTONS_HIDDEN_PATH = [LOGIN, SIGN_UP, PROFILE, ...AUTH];
 export default function Header() {
   // pathname
   const { pathname } = useLocation();
-  console.log(pathname, {
-    HOME,
-    LOGIN,
-    SIGN_UP,
-    PROFILE,
-    KAKAO_LOGIN_PAGE,
-    DISCORD_LOGIN_PAGE,
-    RESET_PASSWORD,
-    RESET_PASSWORD_EMAIL_SEND,
-  });
+
   // pathname에 따라 Logo를 가릴지 여부를 결정하는 값입니다.
   const isLogoHidden = LOGO_HIDDEN_PATH.includes(pathname);
   // pathname에 따라 SearchBar를 가릴지 여부를 결정하는 값입니다.
@@ -66,7 +57,7 @@ export default function Header() {
           <h1 className={cn('title')}>
             <Link to={PATH.HOME}>
               <img
-                src={process.env.PUBLIC_URL + '/images/logo.png'}
+                src={`${process.env.PUBLIC_URL}/images/logo.png`}
                 alt="구해듀오 로고"
               />
             </Link>

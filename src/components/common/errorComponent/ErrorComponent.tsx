@@ -1,8 +1,9 @@
 import { IoAlertCircleOutline } from 'react-icons/io5';
-import styles from './errorComponent.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import PATH from 'constants/path';
+import styles from './errorComponent.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -21,7 +22,7 @@ export default function ErrorComponent({ errorMessage, centered }: Props) {
     <div className={cn('errorContainer', { centered })}>
       <IoAlertCircleOutline className={cn('alertIcon')} />
       <p className={cn('errorMessage')}>{errorMessage}</p>
-      <Link to={PATH.HOME} className={cn('toHomeBtn') + ' toHomeBtn'}>
+      <Link to={PATH.HOME} className={`${cn('toHomeBtn')} toHomeBtn`}>
         홈으로 이동
       </Link>
     </div>
