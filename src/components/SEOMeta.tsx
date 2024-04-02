@@ -12,7 +12,7 @@ export default function SEOMeta({ pageData }: Props) {
   const { title, pageUrl, description } = pageData;
   const keywords = '롤, 구해듀오, 듀오, 리그오브레전드, lol, gg, 롤 전적';
   const siteUrl = 'https://www.guhaeduo.com';
-  const ogImage = process.env.PUBLIC_URL + '/images/metaImage.png';
+  const ogImage = `${process.env.PUBLIC_URL}/images/metaImage.png`;
 
   return (
     <Helmet>

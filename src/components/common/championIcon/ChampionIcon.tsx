@@ -1,7 +1,8 @@
-import styles from './championIcon.moule.scss';
 import classNames from 'classnames/bind';
 import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 import { getChampionData } from 'utils/getLocalData';
+import styles from './championIcon.moule.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

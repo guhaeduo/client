@@ -8,6 +8,7 @@ import updateDDragonData from 'service/updateDDragonData';
 import ProtectedRoute from 'components/ProtectedRoute';
 import PATH from 'constants/path';
 import ErrorComponent from 'components/common/errorComponent/ErrorComponent';
+
 const HomePage = lazy(() => import('pages/home/HomePage'));
 const ProfilePage = lazy(() => import('pages/profile/ProfilePage'));
 const ResetPasswordPage = lazy(

@@ -1,16 +1,15 @@
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './store'; // Redux 스토어 및 Persistor 가져오기
 import './css/font.scss';
 import './index.scss';
-import App from './App';
 import { Reset } from 'styled-reset';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { worker } from 'mocks/browsers';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { HelmetProvider } from 'react-helmet-async';
+import App from './App';
+import { store, persistor } from './store'; // Redux 스토어 및 Persistor 가져오기
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,17 +19,6 @@ export const queryClient = new QueryClient({
     },
   },
 });
-
-if (
-  process.env.REACT_APP_MSW_MOKING === 'true' &&
-  process.env.NODE_ENV === 'development'
-) {
-  worker.start({
-    serviceWorker: {
-      url: '/client/mockServiceWorker.js',
-    },
-  });
-}
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
