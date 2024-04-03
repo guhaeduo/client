@@ -3,10 +3,9 @@ import { MatchData, MatchDataQueueType, Lane } from 'types/summoner';
 import LaneSelector from 'components/common/laneSelector/LaneSelector';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import ChampionIcon from 'components/common/championIcon/ChampionIcon';
-import { calculateGrade } from 'utils/calculate';
-import MatchCard from './matchCard/MatchCard';
+import { useLocation } from 'react-router-dom';
+import MatchPreviewCard from '../components/MatchPreviewCard';
+import MatchCard from '../matchCard/MatchCard';
 import QueueTypeTab from '../components/QueueTypeTab';
 import styles from './summonerMatchListContainer.module.scss';
 
@@ -39,7 +38,6 @@ export default function SummonerMatchListContainer({
     useSignularOptionSelector({
       defaultOption: 'ALL',
     });
-  const navigate = useNavigate();
   const matchListLane = matchListLaneOption as Lane;
   const matchListData =
     matchListLane === 'ALL'
@@ -96,37 +94,14 @@ export default function SummonerMatchListContainer({
           )}
         </ul>
       </div>
-      <div className={cn('matchListSummary')}>
-        {matchListData.map((match) => {
-          const grade = calculateGrade(
-            match.currentSummonerMatchData.kill,
-            match.currentSummonerMatchData.death,
-            match.currentSummonerMatchData.assists,
-          );
-          let gradeColor = 'grey';
-          if (grade > 7) {
-            gradeColor = '#ff5353';
-          } else if (grade > 5) {
-            gradeColor = '#7e7efa';
-          }
-          return (
-            <div
-              className={cn('matchListSummaryItem', {
-                win: match.currentSummonerMatchData.win,
-                lose: !match.currentSummonerMatchData.win,
-                quickShutdown: match.info.quickShutdown,
-              })}
-              key={match.matchId}
-              onClick={() => navigate(`${pathname}#${match.matchId}`)}
-            >
-              <ChampionIcon
-                className={cn('championIcon')}
-                championName={match.currentSummonerMatchData.championName}
-              />
-              <span style={{ color: gradeColor }}>{grade}</span>
-            </div>
-          );
-        })}
+      <div className={cn('matchPreviewContainer')}>
+        {matchListData.map((matchData) => (
+          <MatchPreviewCard
+            key={matchData.matchId}
+            matchData={matchData}
+            pathname={pathname}
+          />
+        ))}
       </div>
     </div>
   );

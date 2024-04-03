@@ -33,7 +33,7 @@ export default function SummonerMatchListContainerSkeleton({
           ))}
         </ul>
       </div>
-      <Skeleton className={cn('matchListSummary')} />
+      <Skeleton className={cn('matchPreviewContainer', 'skeleton')} />
     </div>
   );
 }
