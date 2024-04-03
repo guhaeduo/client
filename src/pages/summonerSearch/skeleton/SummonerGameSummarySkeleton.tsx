@@ -1,10 +1,11 @@
 import React from 'react';
-import styles from '../summonerGameSummary/summonerGameSummaryContainer.module.scss';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
-import QueueTypeTab from '../components/QueueTypeTab';
 import Skeleton from 'components/common/skeleton/Skeleton';
+import QueueTypeTab from '../components/QueueTypeTab';
+import styles from '../summonerGameSummary/summonerGameSummaryContainer.module.scss';
 import { SUMMARY_TAB_MENUS } from '../summonerGameSummary/SummonerGameSummaryContainer';
+
 const cn = classNames.bind(styles);
 
 type Props = {

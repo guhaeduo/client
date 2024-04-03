@@ -1,9 +1,9 @@
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 import { Participant } from 'types/summoner';
-import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
+import styles from './matchCard.module.scss';
 
 const cn = classNames.bind(styles);
 

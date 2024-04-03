@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import useSearchParams from 'hooks/useSearchParams';
 import isCustomAxiosError from 'service/customAxiosError';
 import instance from 'service/instance';
+
 interface FormValue {
   email: string;
 }
@@ -11,7 +12,7 @@ export default function usePasswordResetCodeSendForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const getParams = useSearchParams();
   // 쿼리 문자열에서 특정 파라미터의 값을 가져옵니다.
-  const email = getParams('email');
+  const emailParam = getParams('email');
 
   const {
     register,
@@ -21,7 +22,7 @@ export default function usePasswordResetCodeSendForm() {
     setError,
   } = useForm<FormValue>({
     defaultValues: {
-      email: email || '',
+      email: emailParam || '',
     },
   });
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import { PostContent } from 'types/post';
-import styles from './postDeleteModal.module.scss';
 import classNames from 'classnames/bind';
 import { duoPostPasswordValidation } from 'utils/validator';
 import Input from 'components/common/input/Input';
 import usePostDeleteForm from 'hooks/form/usePostDeleteForm';
+import styles from './postDeleteModal.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

@@ -1,16 +1,20 @@
 import { MatchData } from 'types/summoner';
 import { useMemo } from 'react';
-import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import ItemIcon from 'components/common/itemIcon/ItemIcon';
 import usePathSummonerData from 'hooks/usePathSummonerData';
-import { calculateTimeStamp, calculateGameDuration } from 'utils/calculate';
-import ParticipantPreviewCard from './ParticipantPreviewCard';
+import {
+  calculateTimeStamp,
+  calculateGameDuration,
+  calculateGrade,
+} from 'utils/calculate';
 import { IoIosArrowDown } from 'react-icons/io';
 import SpellIcon from 'components/common/spellIcon/SpellIcon';
 import PerksIcon from 'components/common/perksIcon/PerksIcon';
-import { calculateGrade } from 'utils/calculate';
+import ParticipantPreviewCard from './ParticipantPreviewCard';
+import styles from './matchCard.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -25,11 +29,15 @@ export default function CurrentSummonerMatchCard({
 }: Props) {
   const { currentSummonerMatchData, info, red, blue } = matchData;
   const { country } = usePathSummonerData();
-  const gameResult = info.quickShutdown
-    ? '다시하기'
-    : currentSummonerMatchData.win
-      ? '승리'
-      : '패배';
+
+  let gameResult = '패배';
+
+  if (info.quickShutdown) {
+    gameResult = '다시하기';
+  } else if (currentSummonerMatchData.win) {
+    gameResult = '승리';
+  }
+
   const formattedGameDuration = useMemo(
     () => calculateGameDuration(info.gameDuration),
     [info.gameDuration],

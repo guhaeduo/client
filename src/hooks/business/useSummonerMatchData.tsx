@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import getSummonerMatchData from 'service/getSummonerMatchData';
-import { SummonerInfo, MatchData } from 'types/summoner';
-import { MatchDataQueueType } from 'types/summoner';
+import { SummonerInfo, MatchData, MatchDataQueueType } from 'types/summoner';
 import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
 
 type Props = {

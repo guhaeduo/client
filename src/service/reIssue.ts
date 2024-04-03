@@ -1,10 +1,11 @@
-import { REFRESH_TOKEN_EXPIRED_ERROR_MESSAGE } from './../constants/api';
 import { store } from 'store';
 import isTokenExpired from 'utils/isTokenExpired';
 import axios from 'axios';
 import { logout } from 'store/userSlice';
-import { handleTokenUpdate } from './instance';
 import Toast from 'utils/toast';
+import handleTokenUpdate from './handleTokenUpdate';
+import { REFRESH_TOKEN_EXPIRED_ERROR_MESSAGE } from '../constants/api';
+
 interface ReIssueErrorResponse {
   code: string;
   message: string;

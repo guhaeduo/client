@@ -1,12 +1,8 @@
-import {
-  MatchDataRes,
-  MatchData,
-  MatchDataQueueType,
-} from './../types/summoner';
+import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
+import { MatchDataRes, MatchData, MatchDataQueueType } from '../types/summoner';
 import isCustomAxiosError from './customAxiosError';
 
 import instance from './instance';
-import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 
 export default async function getSummonerMatchData(
   puuid: string,
@@ -24,8 +20,8 @@ export default async function getSummonerMatchData(
     return matchDataRes.data.matchDataList;
   } catch (err) {
     if (isCustomAxiosError(err) && err.response) {
-      throw err.response.data.error;
+      throw Object.assign(new Error(), err.response.data.error);
     }
-    throw UNKNOWN_NET_ERROR_MESSAGE;
+    throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
   }
 }

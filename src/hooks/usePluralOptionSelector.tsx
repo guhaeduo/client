@@ -14,11 +14,11 @@ export default function usePluralOptionSelector({
     const includesOption = options.includes(option);
     if (includesOption && options.length === 1) return;
 
-    setOptions((prevOptions) => {
-      return includesOption
+    setOptions((prevOptions) =>
+      includesOption
         ? prevOptions.filter((item) => item !== option)
-        : [...prevOptions, option];
-    });
+        : [...prevOptions, option],
+    );
   };
 
   return [options, optionChangeHandler];

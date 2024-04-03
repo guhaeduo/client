@@ -1,10 +1,10 @@
-import React, { ReactNode, useRef } from 'react';
-import styles from './modal.module.scss';
+import React, { ReactNode, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { createPortal } from 'react-dom';
-const cn = classNames.bind(styles);
-import { useEffect } from 'react';
 import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
+import styles from './modal.module.scss';
+
+const cn = classNames.bind(styles);
 
 type Props = {
   children: ReactNode;

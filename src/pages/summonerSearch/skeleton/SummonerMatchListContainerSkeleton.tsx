@@ -1,9 +1,10 @@
 import { MatchDataQueueType } from 'types/summoner';
-import styles from '../summonerMatchListContainer/summonerMatchListContainer.module.scss';
 import classNames from 'classnames/bind';
+import Skeleton from 'components/common/skeleton/Skeleton';
+import styles from '../summonerMatchListContainer/summonerMatchListContainer.module.scss';
 import { MATH_LIST_TAB_MENUS } from '../summonerMatchListContainer/SummonerMatchListContainer';
 import QueueTypeTab from '../components/QueueTypeTab';
-import Skeleton from 'components/common/skeleton/Skeleton';
+
 const cn = classNames.bind(styles);
 
 type Props = {

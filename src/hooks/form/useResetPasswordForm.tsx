@@ -7,6 +7,7 @@ import isCustomAxiosError from 'service/customAxiosError';
 import Toast from 'utils/toast';
 import { useEffect, useState } from 'react';
 import MESSAGE from 'constants/message';
+
 interface FormValue {
   newPassword: string;
   newPasswordCheck: string;
@@ -31,9 +32,9 @@ export default function useResetPasswordForm() {
     if (!code || !code?.trim()) setError('잘못된 접근입니다.');
   }, []);
 
-  const submitHandler = handleSubmit(async (data) => {
+  const submitHandler = handleSubmit(async () => {
     if (!(isLengthValid && isHasAlphaNumericValid && isMatch)) return;
-    const { newPassword } = data;
+
     try {
       await instance.patch(
         '/api/site/reset-password',

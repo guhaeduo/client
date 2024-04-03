@@ -1,4 +1,3 @@
-import styles from './signupPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import Input from 'components/common/input/Input';
@@ -10,6 +9,7 @@ import {
 } from 'utils/validator';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+import styles from './signupPage.module.scss';
 
 const cn = classNames.bind(styles);
 export default function SignupPage() {
@@ -37,7 +37,7 @@ export default function SignupPage() {
         <div className={cn('main', 'container')}>
           <img
             className={cn('signupImg')}
-            src={process.env.PUBLIC_URL + '/images/thresh.png'}
+            src={`${process.env.PUBLIC_URL}/images/thresh.png`}
             alt=""
           />
           <div className={cn('signupContainer')}>

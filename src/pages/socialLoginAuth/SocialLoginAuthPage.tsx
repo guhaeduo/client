@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import isCustomAxiosError from 'service/customAxiosError';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import instance from 'service/instance';
-import { fetchUser } from 'service/fetchUser';
+import fetchUser from 'service/fetchUser';
 import ErrorComponent from 'components/common/errorComponent/ErrorComponent';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';

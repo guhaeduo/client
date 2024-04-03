@@ -1,8 +1,8 @@
 import { SummaryChampionStats } from 'types/summoner';
 import { getChampionData } from 'utils/getLocalData';
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
-import styles from './summonerGameSummaryContainer.module.scss';
 import classNames from 'classnames/bind';
+import styles from './summonerGameSummaryContainer.module.scss';
 
 const cn = classNames.bind(styles);
 

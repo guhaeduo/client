@@ -1,12 +1,13 @@
 import React from 'react';
 import { PostContent } from 'types/post';
-import styles from './postModal.module.scss';
 import classNames from 'classnames/bind';
 import { IoMic } from 'react-icons/io5';
 import { SiRiotgames } from 'react-icons/si';
 import clipBoardCopy from 'utils/clipBoardCopy';
 import URL from 'constants/url';
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
+import styles from './postModal.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

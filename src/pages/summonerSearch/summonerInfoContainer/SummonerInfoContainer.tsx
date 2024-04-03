@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import styles from './summonerInfoContainer.module.scss';
 import classNames from 'classnames/bind';
-import { SummonerInfo, SummonerRankInfo } from 'types/summoner';
+import { SummonerInfo, SummonerRankInfo, RankData } from 'types/summoner';
 import URL from 'constants/url';
 import { calculateWinRate } from 'utils/calculate';
-import { RankData } from 'types/summoner';
+import styles from './summonerInfoContainer.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

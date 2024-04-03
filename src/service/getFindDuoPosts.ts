@@ -18,8 +18,8 @@ export default async function getFindDuoPosts(
     return duoPostsRes.data;
   } catch (err) {
     if (isCustomAxiosError(err) && err.response) {
-      throw err.response.data.error;
+      throw Object.assign(new Error(), err.response.data.error);
     }
-    throw UNKNOWN_NET_ERROR_MESSAGE;
+    throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
   }
 }

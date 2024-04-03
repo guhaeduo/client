@@ -47,14 +47,13 @@ export default function usePasswordChangeForm({ setIsModalOpen }: Props) {
     isLengthValid && isHasAlphaNumericValid && isMatch && isDiffrentValid;
 
   // 비밀번호 변경 요청을 보내는 함수
-  const submitHandler = handleSubmit(async (data) => {
+  const submitHandler = handleSubmit(async () => {
     // 만약 하나라도 유효성 검사 통과하지 못했을 시 함수 종료
     if (
       !(isLengthValid && isHasAlphaNumericValid && isMatch && isDiffrentValid)
     )
       return;
 
-    const { currentPassword, newPassword } = data;
     try {
       // 비밀번호 변경 요청
       await instance.patch('/api/site/update-password', {

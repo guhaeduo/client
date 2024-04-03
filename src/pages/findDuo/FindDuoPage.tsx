@@ -1,18 +1,18 @@
 import { SiRiotgames } from 'react-icons/si';
-import styles from './findDuoPage.module.scss';
 import classNames from 'classnames/bind';
-import PostsContainer from './components/postsContainer/PostsContainer';
 import DropDown from 'components/common/dropDown/DropDown';
 import useDuoPostWriteForm from 'hooks/business/useFindDuo';
 import { QUEUE, TIER, LANE } from 'constants/options';
 import LoadingButton from 'components/common/loadingButton/LoadingButton';
 import Modal from 'components/common/modal/Modal';
 import { useState } from 'react';
-import PostWriteModal from './components/postWriteModal/PostWriteModal';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
-import PostsContainerSkeleton from './components/skeleton/PostsContainerSkeleton';
 import { IoArrowDownOutline } from 'react-icons/io5';
+import PostsContainerSkeleton from './components/skeleton/PostsContainerSkeleton';
+import PostWriteModal from './components/postWriteModal/PostWriteModal';
+import PostsContainer from './components/postsContainer/PostsContainer';
+import styles from './findDuoPage.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -59,7 +59,7 @@ export default function FindDuoPage() {
         <div
           className={cn('duoHeader')}
           style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/duoHeader.png'}) `,
+            backgroundImage: `url(${`${process.env.PUBLIC_URL}/images/duoHeader.png`}) `,
           }}
         />
         <div className={cn('main', 'container')}>
@@ -121,7 +121,7 @@ export default function FindDuoPage() {
               </button>{' '}
             </div>
           </div>
-          {postData?.length ? (
+          {postData?.length && (
             <>
               <PostsContainer
                 postsData={postData}
@@ -140,9 +140,9 @@ export default function FindDuoPage() {
                 </div>
               )}
             </>
-          ) : isFetching ? (
-            <PostsContainerSkeleton />
-          ) : (
+          )}
+          {postData?.length && isFetching && <PostsContainerSkeleton />}
+          {!postData?.length && !isFetching && (
             <div className={cn('postsNotFound')}>
               게시글이 존재하지 않습니다.
             </div>

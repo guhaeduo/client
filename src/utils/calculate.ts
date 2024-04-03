@@ -43,15 +43,18 @@ export function calculateTimeStamp(date: number): string {
  * @param {number} deaths - 소환사 데스
  * @param {number} assists - 소환사 어시스트
  */
+
 export function calculateGrade(kills: number, deaths: number, assists: number) {
   const death = deaths === 0 ? 1 : deaths;
-  return ((kills + assists) / death).toFixed(2);
+  return +((kills + assists) / death).toFixed(2);
 }
+
 export function calculateWinRate(win: number, lose: number) {
   const totalGames = win + lose;
   if (totalGames <= 0) return '0%';
   return `${Math.floor((win / totalGames) * 100)}%`;
 }
+
 export function calculateDamagePercentage(
   matchMaxDamage: number,
   summonerDamage: number,

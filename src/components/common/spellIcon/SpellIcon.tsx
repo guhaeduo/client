@@ -1,7 +1,7 @@
 import CustomTooltip from 'components/common/tooltip/CustomTooltip';
 import { getSpellData } from 'utils/getLocalData';
-import styles from './spellIcon.module.scss';
 import classNames from 'classnames/bind';
+import styles from './spellIcon.module.scss';
 
 const cn = classNames.bind(styles);
 

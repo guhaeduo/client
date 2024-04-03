@@ -16,4 +16,11 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      },
+    },
+  },
 };

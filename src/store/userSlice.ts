@@ -37,15 +37,11 @@ export const userSlice = createSlice({
         isLogin: true,
       };
     },
-    updateToken: (state, action: PayloadAction<Partial<Token>>) => {
-      return {
-        ...state,
-        ...action.payload,
-      };
-    },
-    logout: () => {
-      return { isLogin: false };
-    },
+    updateToken: (state, action: PayloadAction<Partial<Token>>) => ({
+      ...state,
+      ...action.payload,
+    }),
+    logout: () => ({ isLogin: false }),
   },
 });
 

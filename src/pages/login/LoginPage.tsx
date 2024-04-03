@@ -1,4 +1,3 @@
-import styles from './loginPage.module.scss';
 import classNames from 'classnames/bind';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import { emailValidation, passwordValidation } from 'utils/validator';
@@ -8,6 +7,7 @@ import Input from 'components/common/input/Input';
 import useLoginForm from 'hooks/form/useLoginForm';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+import styles from './loginPage.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -16,10 +16,12 @@ export default function LoginPage() {
   const { register, submitHandler, errors, isValid, getValues } =
     useLoginForm();
 
-  const onClickKakaoBtnHandler = () =>
-    (window.location.href = PATH.KAKAO_AUTH_URL);
-  const onClickDiscordBtnHandler = () =>
-    (window.location.href = PATH.DISCORD_AUTH_URL);
+  const onClickKakaoBtnHandler = () => {
+    window.location.href = PATH.KAKAO_AUTH_URL;
+  };
+  const onClickDiscordBtnHandler = () => {
+    window.location.href = PATH.DISCORD_AUTH_URL;
+  };
 
   return (
     <>

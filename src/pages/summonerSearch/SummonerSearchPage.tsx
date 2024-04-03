@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
-import styles from './summonerSearchPage.module.scss';
 import classNames from 'classnames/bind';
-import SummonerInfoContainer from './summonerInfoContainer/SummonerInfoContainer';
 import ErrorComponent from 'components/common/errorComponent/ErrorComponent';
-import SummonerGameSummaryContainer from './summonerGameSummary/SummonerGameSummaryContainer';
 import useSummonerInfo from 'hooks/business/useSummonerInfo';
 import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
 import useSummonerGameSummary from 'hooks/business/useSummonerGameSummary';
 import usePathSummonerData from 'hooks/usePathSummonerData';
-import SummonerInfoContainerSkeleton from './skeleton/SummonerInfoContainerSkeleton';
-import SummonerGameSummarySkeleton from './skeleton/SummonerGameSummarySkeleton';
 import useSummonerMatchData from 'hooks/business/useSummonerMatchData';
-import SummonerMatchListContainerSkeleton from './skeleton/SummonerMatchListContainerSkeleton';
-import SummonerMatchListContainer from './summonerMatchListContainer/SummonerMatchListContainer';
 import LoadingButton from 'components/common/loadingButton/LoadingButton';
 import { useQueryClient } from '@tanstack/react-query';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+import SummonerMatchListContainer from './summonerMatchListContainer/SummonerMatchListContainer';
+import SummonerMatchListContainerSkeleton from './skeleton/SummonerMatchListContainerSkeleton';
+import SummonerGameSummarySkeleton from './skeleton/SummonerGameSummarySkeleton';
+import SummonerInfoContainerSkeleton from './skeleton/SummonerInfoContainerSkeleton';
+import SummonerGameSummaryContainer from './summonerGameSummary/SummonerGameSummaryContainer';
+import SummonerInfoContainer from './summonerInfoContainer/SummonerInfoContainer';
+import styles from './summonerSearchPage.module.scss';
+
 const cn = classNames.bind(styles);
 
 export default function SummonerSearchPage() {
@@ -76,7 +77,6 @@ export default function SummonerSearchPage() {
   useEffect(() => {
     if (summonerInfo && summonerGameSummary && summonerMatchData) {
       setFirstLoading(false);
-      console.log('firstLoading false 설정');
     }
   }, [summonerInfo, summonerGameSummary, summonerMatchData]);
 
@@ -90,7 +90,6 @@ export default function SummonerSearchPage() {
       setSummaryQueueType('ALL');
       setMatchQueueType('ALL');
       setFirstLoading(true);
-      console.log('firstLoading true 설정');
     };
   }, [country, name, tag]);
 
@@ -110,7 +109,6 @@ export default function SummonerSearchPage() {
     isSummonerGameSummaryFetching ||
     isSummonerRankInfoFetching;
 
-  console.log(firstLoading);
   return (
     <>
       <SEOMeta pageData={{ ...SEO_DATA.summonerSearch, title: seoTitle }} />

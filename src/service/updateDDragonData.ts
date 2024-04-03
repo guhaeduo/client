@@ -1,19 +1,5 @@
-import { VERSION } from 'constants/url';
+import URL, { VERSION } from 'constants/url';
 import axios from 'axios';
-import URL from 'constants/url';
-/**
- * DDragon에서 받아오는 정적 파일을 데이터 저장 유무, 버전비교를 통해 업데이트할지 결정하여 관리하는 함수입니다.
- */
-
-export default async function updateDDragonData() {
-  // 챔피언 데이터를 받아옵니다.
-  // 아이템 데이터를 받아옵니다.
-  // 스펠 데이터를 받아옵니다.
-  updateChampionData();
-  updateItemData();
-  updateSpellData();
-  updatePerksData();
-}
 
 type Champion = {
   name: string;
@@ -25,31 +11,6 @@ type NewChampion = {
   icon: string;
 };
 
-async function updateChampionData() {
-  const storedChampionDataString = localStorage.getItem('championData');
-  const localChampionData =
-    storedChampionDataString && JSON.parse(storedChampionDataString);
-
-  if (!localChampionData || localChampionData.version !== VERSION) {
-    const res = await axios.get(
-      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/champion.json`,
-    );
-    const championData: { [key: string]: Champion } = res.data.data;
-    const newChampionData: { [key: string]: NewChampion } = {};
-    for (const [key, value] of Object.entries(championData)) {
-      newChampionData[key.toLowerCase()] = {
-        icon: URL.championIcon(key),
-        name: value.name,
-      };
-    }
-
-    localStorage.setItem(
-      'championData',
-      JSON.stringify({ version: VERSION, championData: newChampionData }),
-    );
-  }
-}
-
 type Item = {
   name: string;
   description: string;
@@ -59,31 +20,6 @@ type NewItem = Item & {
   icon: string;
 };
 
-async function updateItemData() {
-  const storedItemDataString = localStorage.getItem('itemData');
-  const localItemData =
-    storedItemDataString && JSON.parse(storedItemDataString);
-
-  if (!localItemData || localItemData.version !== VERSION) {
-    const res = await axios.get(
-      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/item.json`,
-    );
-    const itemData: { [key: string]: Item } = res.data.data;
-    const newItemData: { [key: string]: NewItem } = {};
-    for (const [key, value] of Object.entries(itemData)) {
-      newItemData[key] = {
-        name: value.name,
-        description: value.description,
-        icon: URL.itemIcon(key),
-      };
-    }
-    localStorage.setItem(
-      'itemData',
-      JSON.stringify({ version: VERSION, itemData: newItemData }),
-    );
-  }
-}
-
 type Spell = {
   name: string;
   key: string;
@@ -91,38 +27,11 @@ type Spell = {
   id: string;
 };
 
-type newSpell = {
+type NewSpell = {
   icon: string;
   name: string;
   description: string;
 };
-
-async function updateSpellData() {
-  const storedSpellDataString = localStorage.getItem('spellData');
-  const localSpellData =
-    storedSpellDataString && JSON.parse(storedSpellDataString);
-
-  if (!localSpellData || localSpellData.version !== VERSION) {
-    const res = await axios.get(
-      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/summoner.json`,
-    );
-    const spellData: { [key: string]: Spell } = res.data.data;
-    const newSpellData: { [key: string]: newSpell } = {};
-    const spellKey = Object.keys(spellData);
-    spellKey.forEach((key) => {
-      const spell = spellData[key];
-      newSpellData[spell.key] = {
-        icon: URL.spellIcon(key),
-        name: spell.name,
-        description: spell.description,
-      };
-    });
-    localStorage.setItem(
-      'spellData',
-      JSON.stringify({ version: VERSION, spellData: newSpellData }),
-    );
-  }
-}
 
 type Rune = {
   id: number;
@@ -147,8 +56,89 @@ type NewPerks = {
   shortDesc?: string;
 };
 
+async function updateChampionData() {
+  const storedChampionDataString = localStorage.getItem('championData');
+  const localChampionData =
+    storedChampionDataString && JSON.parse(storedChampionDataString);
+
+  if (!localChampionData || localChampionData.version !== VERSION) {
+    const res = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/champion.json`,
+    );
+    const championData: { [key: string]: Champion } = res.data.data;
+    const newChampionData: { [key: string]: NewChampion } = {};
+    const championDataEntries = Object.entries(championData);
+    for (let i = 0; i < championDataEntries.length; i += 1) {
+      const [key, value] = championDataEntries[i];
+      newChampionData[key.toLowerCase()] = {
+        icon: URL.championIcon(key),
+        name: value.name,
+      };
+    }
+
+    localStorage.setItem(
+      'championData',
+      JSON.stringify({ version: VERSION, championData: newChampionData }),
+    );
+  }
+}
+
+async function updateItemData() {
+  const storedItemDataString = localStorage.getItem('itemData');
+  const localItemData =
+    storedItemDataString && JSON.parse(storedItemDataString);
+
+  if (!localItemData || localItemData.version !== VERSION) {
+    const res = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/item.json`,
+    );
+    const itemData: { [key: string]: Item } = res.data.data;
+    const newItemData: { [key: string]: NewItem } = {};
+    const itemDataEntries = Object.entries(itemData);
+    for (let i = 0; i < itemDataEntries.length; i += 1) {
+      const [key, value] = itemDataEntries[i];
+      newItemData[key] = {
+        name: value.name,
+        description: value.description,
+        icon: URL.itemIcon(key),
+      };
+    }
+
+    localStorage.setItem(
+      'itemData',
+      JSON.stringify({ version: VERSION, itemData: newItemData }),
+    );
+  }
+}
+
+async function updateSpellData() {
+  const storedSpellDataString = localStorage.getItem('spellData');
+  const localSpellData =
+    storedSpellDataString && JSON.parse(storedSpellDataString);
+
+  if (!localSpellData || localSpellData.version !== VERSION) {
+    const res = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/ko_KR/summoner.json`,
+    );
+    const spellData: { [key: string]: Spell } = res.data.data;
+    const newSpellData: { [key: string]: NewSpell } = {};
+    const spellKey = Object.keys(spellData);
+    spellKey.forEach((key) => {
+      const spell = spellData[key];
+      newSpellData[spell.key] = {
+        icon: URL.spellIcon(key),
+        name: spell.name,
+        description: spell.description,
+      };
+    });
+    localStorage.setItem(
+      'spellData',
+      JSON.stringify({ version: VERSION, spellData: newSpellData }),
+    );
+  }
+}
+
 async function updatePerksData() {
-  // 룬 데이터를 받아옵니다.
   const storedPerksString = localStorage.getItem('perksData');
   const localPerksData = storedPerksString && JSON.parse(storedPerksString);
   if (!localPerksData || localPerksData.version !== VERSION) {
@@ -180,4 +170,11 @@ async function updatePerksData() {
       JSON.stringify({ version: VERSION, perksData: newPerks }),
     );
   }
+}
+
+export default async function updateDDragonData() {
+  updateChampionData();
+  updateItemData();
+  updateSpellData();
+  updatePerksData();
 }

@@ -68,6 +68,7 @@ export default function LoadingButton({
         }, 1000);
         return () => clearInterval(interval);
       }
+      return null;
     };
 
     if (!isFetching) {

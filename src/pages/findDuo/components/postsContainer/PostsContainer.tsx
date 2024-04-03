@@ -1,6 +1,6 @@
 import { PostContent } from 'types/post';
-import styles from './postsContainer.module.scss';
 import classNames from 'classnames/bind';
+import styles from './postsContainer.module.scss';
 import PostItem from './PostItem';
 import PostsContainerSkeleton from '../skeleton/PostsContainerSkeleton';
 

@@ -1,18 +1,16 @@
-import React, { useState, MouseEventHandler } from 'react';
-import styles from './profilePage.module.scss';
+import { useState, MouseEventHandler } from 'react';
 import classNames from 'classnames/bind';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'store/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser, logout } from 'store/userSlice';
 import { SiRiotgames } from 'react-icons/si';
 import { FaPlus } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { logout } from 'store/userSlice';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import AccountDeleteModal from './components/accountDeleteModal/AccountDeleteModal';
-import PasswordChangeModal from './components/passwordChangeModal/PasswordChangeModal';
 import Modal from 'components/common/modal/Modal';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+import PasswordChangeModal from './components/passwordChangeModal/PasswordChangeModal';
+import AccountDeleteModal from './components/accountDeleteModal/AccountDeleteModal';
+import styles from './profilePage.module.scss';
 
 const cn = classNames.bind(styles);
 

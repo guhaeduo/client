@@ -1,6 +1,5 @@
-import React from 'react';
-import styles from './skeleton.module.scss';
 import classNames from 'classnames/bind';
+import styles from './skeleton.module.scss';
 
 const cn = classNames.bind(styles);
 

@@ -1,19 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
-import styles from './searchBar.module.scss';
 import classNames from 'classnames/bind';
-import DropDown from '../dropDown/DropDown';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { COUNTRY } from 'constants/options';
 import { IoIosSearch } from 'react-icons/io';
 import { useForm } from 'react-hook-form';
 import parseSummonerName from 'utils/parseSummonerName';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import SearchHistoryContainer from './SearchHistoryContainer';
 import getNewRecentSearchHistory from 'utils/getNewRecentSearchHistory';
 import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import { useLocation } from 'react-router-dom';
 import { SearchHistory } from 'types/summoner';
 import Toast from 'utils/toast';
+import SearchHistoryContainer from './SearchHistoryContainer';
+import DropDown from '../dropDown/DropDown';
+import styles from './searchBar.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

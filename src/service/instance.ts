@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { store } from 'store';
-import { updateToken } from 'store/userSlice';
 import tokenReIssue from './reIssue';
+import handleTokenUpdate from './handleTokenUpdate';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -9,7 +9,6 @@ const instance = axios.create({
     'Content-Type': 'application/json',
   },
 });
-
 instance.interceptors.request.use(
   async (config) => {
     // 토큰 검사를 수행합니다.
@@ -17,15 +16,17 @@ instance.interceptors.request.use(
     const {
       user: { accessToken, tokenType },
     } = store.getState();
+
     if (accessToken) {
-      // 만약 accessToken이 존재한다면 headers에 싣어서 전송합니다.
-      config.headers.Authorization = `${tokenType} ${accessToken}`;
+      const modifiedConfig = { ...config };
+      modifiedConfig.headers.Authorization = `${tokenType} ${accessToken}`;
+      return modifiedConfig;
     }
+
+    // 토큰이 없는 경우 원래의 config 객체를 그대로 반환합니다.
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  },
+  (error) => Promise.reject(error),
 );
 
 instance.interceptors.response.use(
@@ -33,19 +34,7 @@ instance.interceptors.response.use(
     handleTokenUpdate(response);
     return response;
   },
-  (error) => {
-    console.log(error);
-    return Promise.reject(error);
-  },
+  (error) => Promise.reject(error),
 );
-
-export const handleTokenUpdate = (response: AxiosResponse) => {
-  const accessToken = response.headers['access-token'];
-  const refreshToken = response.headers['refresh-token'];
-  const tokenType = response.headers['token-type'];
-  if (accessToken) store.dispatch(updateToken({ accessToken }));
-  if (refreshToken) store.dispatch(updateToken({ refreshToken }));
-  if (tokenType) store.dispatch(updateToken({ tokenType }));
-};
 
 export default instance;

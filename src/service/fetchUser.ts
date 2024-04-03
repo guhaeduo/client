@@ -1,9 +1,10 @@
 import { store } from 'store';
-import instance from './instance';
 import { login, logout } from 'store/userSlice';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
-export const fetchUser = async () => {
+import instance from './instance';
+
+export default async function fetchUser() {
   try {
     const {
       user: { accessToken, tokenType },
@@ -17,4 +18,4 @@ export const fetchUser = async () => {
   } catch (error) {
     store.dispatch(logout());
   }
-};
+}

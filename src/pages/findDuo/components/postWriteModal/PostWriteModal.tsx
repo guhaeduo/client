@@ -1,16 +1,19 @@
-import styles from './postWriteModal.module.scss';
 import classNames from 'classnames/bind';
 import Input from 'components/common/input/Input';
 import DropDown from 'components/common/dropDown/DropDown';
 import Toggle from 'components/common/toggle/Toggle';
 import LaneSelector from 'components/common/laneSelector/LaneSelector';
-import { summonerNameTagValidation } from 'utils/validator';
+import {
+  summonerNameTagValidation,
+  duoPostPasswordValidation,
+} from 'utils/validator';
 import { QUEUE } from 'constants/options';
 import { IoAlertCircleOutline } from 'react-icons/io5';
 import usePostWriteForm from 'hooks/form/usePostWriteForm';
 import { PostContent } from 'types/post';
-import { duoPostPasswordValidation } from 'utils/validator';
 import URL from 'constants/url';
+import styles from './postWriteModal.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -69,7 +72,7 @@ export default function PostWriteModal({
     <div className={cn('postModal')}>
       <div>
         <div>
-          {postData ? (
+          {postData && (
             <div className={cn('summonerProfile')}>
               <img
                 src={URL.profileIcon(postData.summonerIconNumber)}
@@ -80,7 +83,8 @@ export default function PostWriteModal({
                 <span className={cn('tag')}>#{postData.riotGameTag}</span>
               </div>
             </div>
-          ) : riotAccountOptions?.length ? (
+          )}
+          {!postData && riotAccountOptions?.length ? (
             <>
               <label>게임 계정</label>
               <DropDown

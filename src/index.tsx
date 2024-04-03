@@ -11,7 +11,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import { store, persistor } from './store'; // Redux 스토어 및 Persistor 가져오기
 
-export const queryClient = new QueryClient({
+const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,

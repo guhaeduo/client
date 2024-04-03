@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './toggle.module.scss';
 import classNames from 'classnames/bind';
+import styles from './toggle.module.scss';
 
 const cn = classNames.bind(styles);
 

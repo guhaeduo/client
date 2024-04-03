@@ -1,4 +1,3 @@
-import styles from './accountDeleteModal.module.scss';
 import classNames from 'classnames/bind';
 import CheckBox from 'components/common/checkBox/CheckBox';
 import { useState } from 'react';
@@ -9,6 +8,8 @@ import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import isCustomAxiosError from 'service/customAxiosError';
+import styles from './accountDeleteModal.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

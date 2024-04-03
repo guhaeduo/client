@@ -1,17 +1,21 @@
 import 'chart.js/auto';
-import styles from './summonerGameSummaryContainer.module.scss';
-import { Lane, SummonerGameSummary } from 'types/summoner';
+import {
+  Lane,
+  SummonerGameSummary,
+  SummaryQueueType,
+  SummaryChampionStats,
+} from 'types/summoner';
 import classNames from 'classnames/bind';
-import { SummaryQueueType } from 'types/summoner';
-import QueueTypeTab from '../components/QueueTypeTab';
 import { Doughnut } from 'react-chartjs-2';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import LaneSelector from 'components/common/laneSelector/LaneSelector';
 import { useEffect, useState } from 'react';
-import { SummaryChampionStats } from 'types/summoner';
-import ChampionTag from './ChampionTag';
 import URL from 'constants/url';
 import { useLocation } from 'react-router-dom';
+import ChampionTag from './ChampionTag';
+import QueueTypeTab from '../components/QueueTypeTab';
+import styles from './summonerGameSummaryContainer.module.scss';
+
 const cn = classNames.bind(styles);
 
 export const SUMMARY_TAB_MENUS: {
@@ -63,7 +67,10 @@ export default function SummonerGameSummaryContainer({
     labels: [],
     datasets: [
       {
-        data: [parseInt(info.winningRate), 100 - parseInt(info.winningRate)],
+        data: [
+          parseInt(info.winningRate, 10),
+          100 - parseInt(info.winningRate, 10),
+        ],
         backgroundColor: ['#4c97ff', '#2f2f2f'],
         borderColor: ['transparent'],
         cutout: '70%',
@@ -75,8 +82,9 @@ export default function SummonerGameSummaryContainer({
     const isAllZero = data.every((value) => value === 0);
     return isAllZero ? [1] : data;
   };
-  const gameCntChartColor = (lane: Lane) =>
-    detailsLane === lane || detailsLane === 'ALL' ? '#4c97ff' : '#2f2f2f';
+
+  const gameCntChartColor = (selectLane: Lane) =>
+    detailsLane === selectLane || detailsLane === 'ALL' ? '#4c97ff' : '#2f2f2f';
 
   const detailGameCntData = {
     labels: [],
@@ -112,13 +120,12 @@ export default function SummonerGameSummaryContainer({
     },
   };
 
-  const renderInfoLaneImage = (lane: string) => {
-    return lane ? (
-      <img src={URL.laneIcon(lane)} alt="선호 라인" />
+  const renderInfoLaneImage = (selectLane: string) =>
+    selectLane ? (
+      <img src={URL.laneIcon(selectLane)} alt="선호 라인" />
     ) : (
       <span>데이터 없음</span>
     );
-  };
 
   return (
     <div className={cn('summaryContainer')}>

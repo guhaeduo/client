@@ -1,4 +1,3 @@
-import styles from './passwordResetCodeSendPage.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import PATH from 'constants/path';
@@ -9,6 +8,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import emailServiceToDomain from 'utils/emailServiceToDomain';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+import styles from './passwordResetCodeSendPage.module.scss';
 
 const cn = classNames.bind(styles);
 

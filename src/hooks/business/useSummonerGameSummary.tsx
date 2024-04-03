@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import getSummonerGameSummary from 'service/getSummonerGameSummary';
-import { SummonerInfo, SummonerGameSummary } from 'types/summoner';
-import { SummaryQueueType } from 'types/summoner';
+import {
+  SummonerInfo,
+  SummonerGameSummary,
+  SummaryQueueType,
+} from 'types/summoner';
 import { SUMMONER_DATA_STALE_TIME } from 'constants/api';
 
 type Props = {

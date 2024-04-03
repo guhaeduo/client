@@ -1,12 +1,13 @@
 import { MatchData } from 'types/summoner';
-import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
-import MatchTeamContainer from './MatchTeamContainer';
-import MatchTotalDataContainer from './MatchTotalDataContainer';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import usePathSummonerData from 'hooks/usePathSummonerData';
+import MatchTeamContainer from './MatchTeamContainer';
+import MatchTotalDataContainer from './MatchTotalDataContainer';
+import styles from './matchCard.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

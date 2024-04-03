@@ -1,6 +1,7 @@
 import React, { Key } from 'react';
-import styles from './queueTypeTab.module.scss';
 import classNames from 'classnames/bind';
+import styles from './queueTypeTab.module.scss';
+
 const cn = classNames.bind(styles);
 
 type TabMenus<T> = {

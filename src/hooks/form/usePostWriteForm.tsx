@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
 import { PostContent, PostWriteForm } from 'types/post';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { CHAMPION } from 'constants/options';
-import { useState } from 'react';
 import instance from 'service/instance';
 import isCustomAxiosError from 'service/customAxiosError';
 import Toast from 'utils/toast';
@@ -46,12 +45,15 @@ export default function usePostWriteForm({
 
   const championOptions = CHAMPION();
 
+  let defaultOption = '';
+  if (postData) {
+    defaultOption = `${postData.riotGameName}#${postData.riotGameTag}`;
+  } else if (riotAccountOptions && riotAccountOptions.length) {
+    defaultOption = riotAccountOptions[0].key;
+  }
+
   const [riotAccount, setRiotAccount] = useSignularOptionSelector({
-    defaultOption: postData
-      ? `${postData.riotGameName}#${postData.riotGameTag}`
-      : riotAccountOptions?.length
-        ? riotAccountOptions[0].key
-        : '',
+    defaultOption,
   });
 
   const [mostLane, setMostLane] = useSignularOptionSelector({

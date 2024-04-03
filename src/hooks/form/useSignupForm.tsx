@@ -5,6 +5,7 @@ import useCustomNavigation from 'hooks/useCustomNavigation';
 import isCustomAxiosError from 'service/customAxiosError';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
+
 interface FormValue {
   email: string;
   verificationCode: string;
@@ -78,7 +79,7 @@ export default function useSignupForm() {
   };
 
   const submitHandler = handleSubmit(async (data) => {
-    const { email, password } = data;
+    const { password } = data;
     if (!isVerificationConfirm) {
       setError('verificationCode', {
         type: 'pattern',

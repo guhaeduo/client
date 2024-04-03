@@ -1,7 +1,7 @@
 import { MatchData } from 'types/summoner';
 import { useState } from 'react';
-import styles from './matchCard.module.scss';
 import classNames from 'classnames/bind';
+import styles from './matchCard.module.scss';
 import CurrentSummonerMatchCard from './CurrentSummonerMatchCard';
 import MatchDetailContainer from './MatchDetailContainer';
 

@@ -1,4 +1,3 @@
-import styles from './resetPasswordPage.module.scss';
 import classNames from 'classnames/bind';
 import useResetPasswordForm from 'hooks/form/useResetPasswordForm';
 import { FaCheck } from 'react-icons/fa6';
@@ -6,6 +5,8 @@ import Input from 'components/common/input/Input';
 import ErrorComponent from 'components/common/errorComponent/ErrorComponent';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
+import styles from './resetPasswordPage.module.scss';
+
 const cn = classNames.bind(styles);
 
 export default function ResetPasswordPage() {

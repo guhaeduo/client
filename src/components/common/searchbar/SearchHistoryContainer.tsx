@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import styles from './searchBar.module.scss';
 import classNames from 'classnames/bind';
-import { FaRegBookmark } from 'react-icons/fa6';
-import { FaBookmark } from 'react-icons/fa6';
+import { FaRegBookmark, FaBookmark } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 import getNewFavoriteSearchHistory from 'utils/getNewFavoriteSearchHistory';
 import { SearchHistory } from 'types/summoner';
 import useCustomNavigation from 'hooks/useCustomNavigation';
+import styles from './searchBar.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {
@@ -65,7 +65,6 @@ export default function SearchHistoryContainer({
     history: SearchHistory,
   ) => {
     e.stopPropagation();
-    console.log(history);
 
     const { name, tag, country, isFavorite } = history;
     // 기존의 즐겨찾기 항목과 전달받은 검색 기록을 통해 새로운 즐겨찾기를 관리하는 변수입니다.

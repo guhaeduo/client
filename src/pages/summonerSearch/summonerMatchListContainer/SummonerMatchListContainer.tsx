@@ -1,16 +1,15 @@
-import styles from './summonerMatchListContainer.module.scss';
 import classNames from 'classnames/bind';
-import { MatchData, MatchDataQueueType } from 'types/summoner';
-import QueueTypeTab from '../components/QueueTypeTab';
+import { MatchData, MatchDataQueueType, Lane } from 'types/summoner';
 import LaneSelector from 'components/common/laneSelector/LaneSelector';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
-import MatchCard from './matchCard/MatchCard';
-import { Lane } from 'types/summoner';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import { calculateGrade } from 'utils/calculate';
-import { useNavigate } from 'react-router-dom';
+import MatchCard from './matchCard/MatchCard';
+import QueueTypeTab from '../components/QueueTypeTab';
+import styles from './summonerMatchListContainer.module.scss';
+
 const cn = classNames.bind(styles);
 
 export const MATH_LIST_TAB_MENUS: {
@@ -104,9 +103,12 @@ export default function SummonerMatchListContainer({
             match.currentSummonerMatchData.death,
             match.currentSummonerMatchData.assists,
           );
-          const numGrade = Number(grade);
-          const gradeColor =
-            numGrade > 7 ? '#ff5353' : numGrade > 5 ? '#7e7efa' : 'grey';
+          let gradeColor = 'grey';
+          if (grade > 7) {
+            gradeColor = '#ff5353';
+          } else if (grade > 5) {
+            gradeColor = '#7e7efa';
+          }
           return (
             <div
               className={cn('matchListSummaryItem', {

@@ -1,12 +1,14 @@
 import { SummonerBasicData, SummonerInfo } from 'types/summoner';
-import instance from './instance';
 import { RiotAPIErrorCode } from 'types/Api';
-import isCustomAxiosError from './customAxiosError';
 
-import { RIOT_API_ERROR_MESSAGE } from 'constants/api';
+import {
+  RIOT_API_ERROR_MESSAGE,
+  UNKNOWN_NET_ERROR_MESSAGE,
+} from 'constants/api';
 import { AxiosResponse } from 'axios';
 import { COUNTRY } from 'constants/options';
-import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
+import isCustomAxiosError from './customAxiosError';
+import instance from './instance';
 
 /**
  * 소환사 기본 데이터를 받아오는 함수입니다.
@@ -39,8 +41,8 @@ export default async function getSummonerInfo(
       const errorCode = err.response.data.status;
       const errorMessage =
         RIOT_API_ERROR_MESSAGE[errorCode as RiotAPIErrorCode];
-      throw errorMessage;
+      throw Object.assign(new Error(), errorMessage);
     }
-    throw UNKNOWN_NET_ERROR_MESSAGE;
+    throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
   }
 }

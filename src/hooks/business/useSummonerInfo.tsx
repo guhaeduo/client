@@ -27,6 +27,8 @@ export default function useSummonerInfo({ country, name, tag }: Props) {
     queryFn: () => getSummonerInfo(name, tag, country),
     staleTime: SUMMONER_DATA_STALE_TIME,
   });
+
+  console.log(summonerInfoError);
   return {
     summonerInfo,
     isSummonerInfoFetching,

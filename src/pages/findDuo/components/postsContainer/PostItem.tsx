@@ -1,24 +1,24 @@
-import styles from './postsContainer.module.scss';
 import classNames from 'classnames/bind';
 import URL from 'constants/url';
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import { QUEUE } from 'constants/options';
 import { BsThreeDots } from 'react-icons/bs';
 import Modal from 'components/common/modal/Modal';
-import PostWriteModal from '../postWriteModal/PostWriteModal';
-import PostModal from '../postModal/PostModal';
-import PostDeleteModal from '../postDeleteModal/PostDeleteModal';
 import { PostContent } from 'types/post';
 import clipBoardCopy from 'utils/clipBoardCopy';
-import { MouseEventHandler, useRef, useState } from 'react';
+import { MouseEventHandler, useRef, useState, useEffect } from 'react';
 import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import { calculateTimeStamp } from 'utils/calculate';
 import { IoMic } from 'react-icons/io5';
 import { SiRiotgames } from 'react-icons/si';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PostDeleteModal from '../postDeleteModal/PostDeleteModal';
+import PostModal from '../postModal/PostModal';
+import PostWriteModal from '../postWriteModal/PostWriteModal';
+import styles from './postsContainer.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {

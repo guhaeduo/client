@@ -1,6 +1,6 @@
 import Skeleton from 'components/common/skeleton/Skeleton';
-import styles from '../postsContainer/postsContainer.module.scss';
 import classNames from 'classnames/bind';
+import styles from '../postsContainer/postsContainer.module.scss';
 
 const cn = classNames.bind(styles);
 

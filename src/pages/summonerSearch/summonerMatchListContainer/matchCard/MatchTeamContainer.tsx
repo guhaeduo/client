@@ -1,5 +1,4 @@
 import { Team } from 'types/summoner';
-import styles from './matchCard.module.scss';
 import ChampionIcon from 'components/common/championIcon/ChampionIcon';
 import classNames from 'classnames/bind';
 import SpellIcon from 'components/common/spellIcon/SpellIcon';
@@ -10,6 +9,8 @@ import { calculateGrade, calculateDamagePercentage } from 'utils/calculate';
 import getCommaSeparatedNumber from 'utils/getCommaSeparatedNumber';
 import ItemIcon from 'components/common/itemIcon/ItemIcon';
 import CustomTooltip from 'components/common/tooltip/CustomTooltip';
+import styles from './matchCard.module.scss';
+
 const cn = classNames.bind(styles);
 
 type Props = {
