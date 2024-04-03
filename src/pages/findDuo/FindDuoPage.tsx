@@ -33,7 +33,7 @@ export default function FindDuoPage() {
     setIsLaneDropDownOpen,
     isRiotVerified,
     isRiotVerifiedHandler,
-    postData,
+    postsData,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -121,10 +121,10 @@ export default function FindDuoPage() {
               </button>{' '}
             </div>
           </div>
-          {postData?.length && (
+          {!!postsData?.length && (
             <>
               <PostsContainer
-                postsData={postData}
+                postsData={postsData}
                 isFetchingNextPage={isFetchingNextPage}
                 setQueueOption={setQueueOption}
                 onQueryUpdateHandler={onQueryUpdateHandler}
@@ -141,8 +141,8 @@ export default function FindDuoPage() {
               )}
             </>
           )}
-          {postData?.length && isFetching && <PostsContainerSkeleton />}
-          {!postData?.length && !isFetching && (
+          {!!postsData?.length && isFetching && <PostsContainerSkeleton />}
+          {!postsData?.length && !isFetching && (
             <div className={cn('postsNotFound')}>
               게시글이 존재하지 않습니다.
             </div>

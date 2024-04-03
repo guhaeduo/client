@@ -75,7 +75,7 @@ export default function useFindDuo() {
         pageData.hasNextPage ? pageData.nextPageNumber : null,
     });
 
-  const postData = data?.pages.flatMap((page) => page.content);
+  const postsData = data?.pages.flatMap((page) => page.content);
 
   return {
     tierOption,
@@ -92,7 +92,7 @@ export default function useFindDuo() {
     setIsLaneDropDownOpen,
     isRiotVerified,
     isRiotVerifiedHandler,
-    postData,
+    postsData,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,

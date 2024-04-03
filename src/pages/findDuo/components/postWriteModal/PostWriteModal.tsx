@@ -84,29 +84,30 @@ export default function PostWriteModal({
               </div>
             </div>
           )}
-          {!postData && riotAccountOptions?.length ? (
-            <>
-              <label>게임 계정</label>
-              <DropDown
-                label="게임 계정 선택 메뉴"
-                options={riotAccountOptions}
-                currentOptionKey={riotAccount}
-                onChange={setRiotAccount}
-                type="dark"
-                isOpen={isRiotAccountOpen}
-                setIsOpen={setIsRiotAccountOpen}
-                className={cn('dropDown')}
+          {!postData &&
+            (riotAccountOptions?.length ? (
+              <>
+                <label>게임 계정</label>
+                <DropDown
+                  label="게임 계정 선택 메뉴"
+                  options={riotAccountOptions}
+                  currentOptionKey={riotAccount}
+                  onChange={setRiotAccount}
+                  type="dark"
+                  isOpen={isRiotAccountOpen}
+                  setIsOpen={setIsRiotAccountOpen}
+                  className={cn('dropDown')}
+                />
+              </>
+            ) : (
+              <Input
+                type="text"
+                label="소환사 이름#태그"
+                error={errors.summonerName}
+                className={cn('summonerNameInput')}
+                {...register('summonerName', summonerNameTagValidation)}
               />
-            </>
-          ) : (
-            <Input
-              type="text"
-              label="소환사 이름#태그"
-              error={errors.summonerName}
-              className={cn('summonerNameInput')}
-              {...register('summonerName', summonerNameTagValidation)}
-            />
-          )}
+            ))}
         </div>
         <div>
           <label>마이크 사용</label>
