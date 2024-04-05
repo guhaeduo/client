@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from 'components/header/Header';
@@ -9,6 +9,7 @@ import ProtectedRoute from 'components/ProtectedRoute';
 import PATH from 'constants/path';
 import ErrorComponent from 'components/common/errorComponent/ErrorComponent';
 
+// 모든 페이지 lazy import 적용
 const HomePage = lazy(() => import('pages/home/HomePage'));
 const ProfilePage = lazy(() => import('pages/profile/ProfilePage'));
 const ResetPasswordPage = lazy(
@@ -27,7 +28,10 @@ const SocialLoginAuthPage = lazy(
   () => import('pages/socialLoginAuth/SocialLoginAuthPage'),
 );
 
+// 로그인 한 유저만 접속할 수 있는 경로
 const requiredLoginPathname = [PATH.PROFILE];
+
+// 로그인 하지 않은 유저만 접속할 수 있는 경로
 const requiredUnLoginPathname = [
   PATH.RESET_PASSWORD_EMAIL_SEND,
   PATH.RESET_PASSWORD,
@@ -36,6 +40,8 @@ const requiredUnLoginPathname = [
   PATH.KAKAO_LOGIN_PAGE,
   PATH.DISCORD_LOGIN_PAGE,
 ];
+
+// 모든 페이지에 대한 정보를 저장한 배열
 const pages = [
   {
     pathname: PATH.HOME,
@@ -84,7 +90,11 @@ const pages = [
 ];
 
 function App() {
-  updateDDragonData();
+  useEffect(() => {
+    // 최초 1회 실행되는 함수이며, DDragon의 데이터를 최신 상태로 업데이트 시키는 함수입니다.
+    updateDDragonData();
+  }, []);
+
   return (
     <>
       <div className="App">

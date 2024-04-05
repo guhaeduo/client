@@ -9,6 +9,7 @@ const instance = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
 instance.interceptors.request.use(
   async (config) => {
     // 토큰 검사를 수행합니다.
@@ -22,7 +23,6 @@ instance.interceptors.request.use(
       modifiedConfig.headers.Authorization = `${tokenType} ${accessToken}`;
       return modifiedConfig;
     }
-
     // 토큰이 없는 경우 원래의 config 객체를 그대로 반환합니다.
     return config;
   },
