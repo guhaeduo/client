@@ -29,6 +29,7 @@
 }
 
 // matchPreviewContainer
+
 .matchPreviewContainer {
   position: sticky;
   top: 30px;
@@ -58,7 +59,7 @@
 }
 
 @include laptop {
-  .matchListSummary {
+  .matchPreviewContainer {
     display: none;
   }
 }
