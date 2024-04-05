@@ -21,9 +21,9 @@ export default async function getSummonerGameSummary(
     );
     return summaryRes.data;
   } catch (err) {
-    if (isCustomAxiosError(err) && err.response) {
-      throw Object.assign(new Error(), err.response.data.message);
+    if (isCustomAxiosError(err)) {
+      throw new Error(err.response?.data.message);
     }
-    throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
+    throw new Error(UNKNOWN_NET_ERROR_MESSAGE);
   }
 }

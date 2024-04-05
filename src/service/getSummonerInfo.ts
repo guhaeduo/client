@@ -36,12 +36,11 @@ export default async function getSummonerInfo(
     return summonerInfo;
   } catch (err) {
     if (isCustomAxiosError(err)) {
-      console.log('에러 감지');
       const errorCode = err.response?.data.status;
       const errorMessage =
         RIOT_API_ERROR_MESSAGE[errorCode as RiotAPIErrorCode];
       throw new Error(errorMessage);
     }
-    throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
+    throw new Error(UNKNOWN_NET_ERROR_MESSAGE);
   }
 }

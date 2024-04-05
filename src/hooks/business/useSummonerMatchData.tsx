@@ -36,7 +36,7 @@ export default function useSummonerMatchData({
   const {
     data: summonerMatchData,
     isLoading: isSummonerMatchDataLoading,
-    error: summonerMatchDataError,
+    error,
     isFetching: isSummonerMatchDataFetching,
   } = useQuery<MatchData[]>({
     queryKey: [
@@ -59,6 +59,6 @@ export default function useSummonerMatchData({
     matchQueueType,
     setMatchQueueType,
     isSummonerMatchDataFetching,
-    summonerMatchDataError,
+    summonerMatchDataError: error?.message,
   };
 }

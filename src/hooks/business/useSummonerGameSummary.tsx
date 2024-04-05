@@ -40,7 +40,7 @@ export default function useSummonerGameSummary({
   const {
     data: summonerGameSummary,
     isLoading: isSummonerGameSummaryLoading,
-    error: summonerGameSummaryError,
+    error,
     isFetching: isSummonerGameSummaryFetching,
   } = useQuery<SummonerGameSummary>({
     queryKey: [
@@ -63,6 +63,6 @@ export default function useSummonerGameSummary({
     summaryQueueType,
     setSummaryQueueType,
     isSummonerGameSummaryFetching,
-    summonerGameSummaryError,
+    summonerGameSummaryError: error?.message,
   };
 }

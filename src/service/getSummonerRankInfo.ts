@@ -20,8 +20,8 @@ export default async function getSummonerRankInfo(
     return rankRes.data;
   } catch (err) {
     if (isCustomAxiosError(err)) {
-      throw Object.assign(new Error(), err.response?.data.message);
+      throw new Error(err.response?.data.message);
     }
-    throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
+    throw new Error(UNKNOWN_NET_ERROR_MESSAGE);
   }
 }

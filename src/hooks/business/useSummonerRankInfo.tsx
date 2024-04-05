@@ -32,7 +32,7 @@ export default function useSummonerRankInfo({
   const {
     data: summonerRankInfo,
     isLoading: isSummonerRankInfoLoading,
-    error: summonerRankInfoError,
+    error,
     isFetching: isSummonerRankInfoFetching,
   } = useQuery<SummonerRankInfo>({
     queryKey: ['summoner', 'info', 'rankInfo', country, name, tag],
@@ -44,7 +44,7 @@ export default function useSummonerRankInfo({
   return {
     summonerRankInfo,
     isSummonerRankInfoLoading,
-    summonerRankInfoError,
     isSummonerRankInfoFetching,
+    summonerRankInfoError: error?.message,
   };
 }
