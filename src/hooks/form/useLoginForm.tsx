@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import instance from 'service/instance';
-import isCustomAxiosError from 'service/customAxiosError';
+import isCustomAxiosError from 'service/isCustomAxiosError';
 import fetchUser from 'service/fetchUser';
 
 interface FormValue {

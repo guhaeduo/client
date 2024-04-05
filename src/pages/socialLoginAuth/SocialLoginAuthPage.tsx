@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import isCustomAxiosError from 'service/customAxiosError';
+import isCustomAxiosError from 'service/isCustomAxiosError';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import instance from 'service/instance';
 import fetchUser from 'service/fetchUser';

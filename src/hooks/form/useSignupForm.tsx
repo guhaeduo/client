@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import instance from 'service/instance';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import isCustomAxiosError from 'service/customAxiosError';
+import isCustomAxiosError from 'service/isCustomAxiosError';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
 

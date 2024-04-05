@@ -1,6 +1,6 @@
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import { PostsDataRes } from '../types/post';
-import isCustomAxiosError from './customAxiosError';
+import isCustomAxiosError from './isCustomAxiosError';
 import instance from './instance';
 
 export default async function getFindDuoPosts(
@@ -18,7 +18,7 @@ export default async function getFindDuoPosts(
     return duoPostsRes.data;
   } catch (err) {
     if (isCustomAxiosError(err) && err.response) {
-      throw Object.assign(new Error(), err.response.data.error);
+      throw Object.assign(new Error(), err.response?.data.message);
     }
     throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
   }

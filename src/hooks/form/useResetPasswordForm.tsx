@@ -3,7 +3,7 @@ import useSearchParams from 'hooks/useSearchParams';
 import hasAlphaNumeric from 'utils/hasAlphaNumeric';
 import instance from 'service/instance';
 import useCustomNavigation from 'hooks/useCustomNavigation';
-import isCustomAxiosError from 'service/customAxiosError';
+import isCustomAxiosError from 'service/isCustomAxiosError';
 import Toast from 'utils/toast';
 import { useEffect, useState } from 'react';
 import MESSAGE from 'constants/message';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useSearchParams from 'hooks/useSearchParams';
-import isCustomAxiosError from 'service/customAxiosError';
+import isCustomAxiosError from 'service/isCustomAxiosError';
 import instance from 'service/instance';
 
 interface FormValue {

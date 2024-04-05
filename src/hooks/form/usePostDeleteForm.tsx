@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import instance from 'service/instance';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
-import isCustomAxiosError from 'service/customAxiosError';
+import isCustomAxiosError from 'service/isCustomAxiosError';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import { PostContent } from 'types/post';
 

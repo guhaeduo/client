@@ -1,6 +1,6 @@
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import { MatchDataRes, MatchData, MatchDataQueueType } from '../types/summoner';
-import isCustomAxiosError from './customAxiosError';
+import isCustomAxiosError from './isCustomAxiosError';
 
 import instance from './instance';
 
@@ -19,8 +19,8 @@ export default async function getSummonerMatchData(
     });
     return matchDataRes.data.matchDataList;
   } catch (err) {
-    if (isCustomAxiosError(err) && err.response) {
-      throw Object.assign(new Error(), err.response.data.error);
+    if (isCustomAxiosError(err)) {
+      throw Object.assign(new Error(), err.response?.data.message);
     }
     throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
   }

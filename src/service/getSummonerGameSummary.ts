@@ -1,6 +1,6 @@
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';
 import { SummonerGameSummary, SummaryQueueType } from '../types/summoner';
-import isCustomAxiosError from './customAxiosError';
+import isCustomAxiosError from './isCustomAxiosError';
 import instance from './instance';
 
 export default async function getSummonerGameSummary(

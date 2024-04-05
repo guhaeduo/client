@@ -6,7 +6,7 @@ import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { CHAMPION } from 'constants/options';
 import instance from 'service/instance';
-import isCustomAxiosError from 'service/customAxiosError';
+import isCustomAxiosError from 'service/isCustomAxiosError';
 import Toast from 'utils/toast';
 import MESSAGE from 'constants/message';
 import { UNKNOWN_NET_ERROR_MESSAGE } from 'constants/api';

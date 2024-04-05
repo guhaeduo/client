@@ -28,7 +28,8 @@ export default function useSummonerInfo({ country, name, tag }: Props) {
     staleTime: SUMMONER_DATA_STALE_TIME,
   });
 
-  console.log(summonerInfoError);
+  console.log(summonerInfoError?.message);
+
   return {
     summonerInfo,
     isSummonerInfoFetching,

@@ -1,15 +1,13 @@
 import { SummonerBasicData, SummonerInfo } from 'types/summoner';
 import { RiotAPIErrorCode } from 'types/Api';
-
 import {
   RIOT_API_ERROR_MESSAGE,
   UNKNOWN_NET_ERROR_MESSAGE,
 } from 'constants/api';
 import { AxiosResponse } from 'axios';
 import { COUNTRY } from 'constants/options';
-import isCustomAxiosError from './customAxiosError';
+import isCustomAxiosError from './isCustomAxiosError';
 import instance from './instance';
-
 /**
  * 소환사 기본 데이터를 받아오는 함수입니다.
  * @param {string} name - 소환사 이름입니다.
@@ -37,11 +35,12 @@ export default async function getSummonerInfo(
     };
     return summonerInfo;
   } catch (err) {
-    if (isCustomAxiosError(err) && err.response) {
-      const errorCode = err.response.data.status;
+    if (isCustomAxiosError(err)) {
+      console.log('에러 감지');
+      const errorCode = err.response?.data.status;
       const errorMessage =
         RIOT_API_ERROR_MESSAGE[errorCode as RiotAPIErrorCode];
-      throw Object.assign(new Error(), errorMessage);
+      throw new Error(errorMessage);
     }
     throw Object.assign(new Error(), UNKNOWN_NET_ERROR_MESSAGE);
   }
