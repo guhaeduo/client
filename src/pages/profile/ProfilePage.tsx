@@ -14,27 +14,43 @@ import styles from './profilePage.module.scss';
 
 const cn = classNames.bind(styles);
 
+/** 소환사 프로필 페이지 */
 export default function ProfilePage() {
+  // 유저의 정보를 가져옵니다.
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const { navHome } = useCustomNavigation();
+
+  // 비밀번호 변경 모달의 오픈 값을 관리하는 상태입니다.
   const [isPasswordChangeModalOpen, setIsPasswordChangeModalOpen] =
     useState(false);
+
+  // 계정 삭제 모달의 오픈 값을 관리하는 상태입니다.
   const [isAccountDeleteModalOpen, setIsAccountDeleteModalOpen] =
     useState(false);
-  const createdAt: string[] = user.createdAt?.split('-') as string[];
+
+  // 계정 생성 날짜를 년 월 일로 배열에 저장합니다.
+  const [year, month, day] = user.createdAt?.split('-') as string[];
+
+  // 로그아웃시 실행되는 함수입니다.
   const logoutHandler = () => {
+    // 스토어에 logout 함수를 실행하고 홈으로 이동시킵니다.
     dispatch(logout());
     navHome();
   };
-  const onPasswordChangeOnClick: MouseEventHandler = (e) => {
+
+  // 패스워드 변경 모달창을 열어주는 핸들러 입니다.
+  const onPasswordChangeModalOpenHandler: MouseEventHandler = (e) => {
     e.stopPropagation();
     setIsPasswordChangeModalOpen(true);
   };
-  const onAccountDeleteClick: MouseEventHandler = (e) => {
+
+  // 계정 모달창을 열어주는 핸들러 입니다.
+  const onAccountDeleteModalOpenHandler: MouseEventHandler = (e) => {
     e.stopPropagation();
     setIsAccountDeleteModalOpen(true);
   };
+
   return (
     <>
       <Modal
@@ -61,13 +77,13 @@ export default function ProfilePage() {
             <div className={cn('createdAt')}>
               <h6>가입 날짜</h6>
               <span>
-                {createdAt[0]}년 {createdAt[1]}월 {createdAt[2]}일
+                {year}년 {month}월 {day}일
               </span>
             </div>
             {user.loginType === 'SITE' && (
               <div className={cn('passwordChange')}>
                 <h6>비밀번호 변경</h6>
-                <button onClick={onPasswordChangeOnClick}>변경</button>
+                <button onClick={onPasswordChangeModalOpenHandler}>변경</button>
               </div>
             )}
           </div>
@@ -91,7 +107,7 @@ export default function ProfilePage() {
             </button>
             <button
               className={cn('accountDeleteBtn')}
-              onClick={onAccountDeleteClick}
+              onClick={onAccountDeleteModalOpenHandler}
             >
               회원 탈퇴
             </button>

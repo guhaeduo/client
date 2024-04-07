@@ -1,6 +1,5 @@
 import React, { ReactNode, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import { createPortal } from 'react-dom';
 import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
 import styles from './modal.module.scss';
 
@@ -40,14 +39,5 @@ export default function Modal({ children, isOpen, setIsOpen }: Props) {
         {children}
       </div>
     </div>
-  );
-  // portal을 활용하여 모달을 root단계에 위치시킨다.
-  return createPortal(
-    <div className={cn('modalBackground')}>
-      <div ref={modalRef} className={cn('modal')}>
-        {children}
-      </div>
-    </div>,
-    document.getElementById('modal-root') as HTMLDivElement,
   );
 }

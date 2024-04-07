@@ -6,6 +6,7 @@ import styles from './home.module.scss';
 
 const cn = classNames.bind(styles);
 
+/** 메인 페이지 */
 export default function HomePage() {
   return (
     <>
