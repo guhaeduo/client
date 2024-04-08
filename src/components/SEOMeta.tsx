@@ -8,6 +8,13 @@ type Props = {
   };
 };
 
+/**
+ * 페이지의 SEO 데이터를 담고 있는 객체 타입입니다.
+ * @property {string} title - 페이지의 제목입니다.
+ * @property {string} pageUrl - 페이지의 URL입니다.
+ * @property {string} description - 페이지의 설명입니다.
+ */
+
 export default function SEOMeta({ pageData }: Props) {
   const { title, pageUrl, description } = pageData;
   const keywords = '롤, 구해듀오, 듀오, 리그오브레전드, lol, gg, 롤 전적';
