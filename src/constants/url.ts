@@ -1,3 +1,5 @@
+export const VERSION = '14.6.1';
+
 // 애플리케이션에서 사용되는 URL 정보를 포함하는 객체입니다.
 const URL = {
   /**
