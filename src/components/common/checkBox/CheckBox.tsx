@@ -6,8 +6,8 @@ import styles from './checkBox.module.scss';
 const cn = classNames.bind(styles);
 
 type Props = {
-  value: boolean;
-  setValue: React.Dispatch<React.SetStateAction<boolean>>;
+  isCheck: boolean;
+  setIsCheck: React.Dispatch<React.SetStateAction<boolean>>;
   className?: string;
 };
 
@@ -18,17 +18,20 @@ type Props = {
  * @param {string} className - 체크박스의 클래스 입니다. (선택 사항)
  */
 
-export default function CheckBox({ value, setValue, className }: Props) {
+export default function CheckBox({ isCheck, setIsCheck, className }: Props) {
+  // 체크박스를 클릭했을때 실행되는 함수입니다.
   const onClickHandler: MouseEventHandler = (e) => {
+    // 이벤트 버블링을 제한합니다.
     e.stopPropagation();
-    setValue((prevValue) => !prevValue);
+    // 체크 여부를 변경합니다.
+    setIsCheck((prevValue) => !prevValue);
   };
   return (
     <div
       onClick={onClickHandler}
-      className={cn('checkBox', className, { active: value })}
+      className={cn('checkBox', className, { isCheck })}
     >
-      {value && <FaCheck />}
+      {isCheck && <FaCheck />}
     </div>
   );
 }

@@ -17,7 +17,7 @@ type Props = {
 };
 
 /**
- * 비밀번호 변경 모달입니다.
+ * 비밀번호 변경 모달 폼입니다.
  * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsModalOpen - 비밀번호 변경 모달을 열고 닫는 핸들러
  */
 

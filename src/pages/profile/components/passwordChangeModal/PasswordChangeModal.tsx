@@ -10,6 +10,11 @@ type Props = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+/**
+ * 비밀번호 변경 모달입니다.
+ * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsModalOpen - 모달의 오픈 상태를 변경하는 함수
+ */
+
 export default function PasswordChangeModal({ setIsModalOpen }: Props) {
   const {
     register,

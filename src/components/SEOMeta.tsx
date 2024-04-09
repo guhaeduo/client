@@ -17,7 +17,9 @@ type Props = {
 
 export default function SEOMeta({ pageData }: Props) {
   const { title, pageUrl, description } = pageData;
-  const keywords = '롤, 구해듀오, 듀오, 리그오브레전드, lol, gg, 롤 전적';
+  // 모든 페이지의 공통 데이터를 선언합니다.
+  const keywords =
+    '롤, 구해듀오, 듀오, 리그오브레전드, lol, gg, 롤 전적, 롤 듀오, 롤 듀오 찾기, 구해듀오';
   const siteUrl = 'https://www.guhaeduo.com';
   const ogImage = `${process.env.PUBLIC_URL}/images/metaImage.png`;
 

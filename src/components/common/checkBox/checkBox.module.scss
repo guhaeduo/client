@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  &.active {
+  &.isCheck {
     background-color: var(--blue-button);
   }
 }

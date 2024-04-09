@@ -16,15 +16,26 @@ type Props = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+/**
+ * 유저 계정 삭제 모달입니다.
+ * @param {React.dispatch<React.SetStateAction<boolean>>} setIsModalOpen - 모달의 오픈 상태를 변경하는 함수
+ */
 export default function AccountDeleteModal({ setIsModalOpen }: Props) {
+  // 계정 삭제 유의사항 체크박스 여부를 관리하는 상태.
   const [isAccountDeleteCheck, setIsAccountDeleteCheck] = useState(false);
   const dispatch = useDispatch();
+
+  // 계정 삭제 함수
   const accountDelete = async () => {
+    // 만약 유의사항을 체크하지 않았다면 얼리리턴합니다.
     if (!isAccountDeleteCheck) return;
-    setIsModalOpen(false);
+
     try {
+      // 계정 삭제 요청을 보냅니다.
       await instance.delete('/api/member/delete');
+      // 계정 삭제에 성공하면 스토어의 logout함수를 실행합니다.
       dispatch(logout());
+      // 계정 삭제 토스트를 띄워줍니다.
       Toast.success(MESSAGE.accountDeleteSuccess);
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
@@ -32,6 +43,9 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
         return;
       }
       Toast.error(UNKNOWN_NET_ERROR_MESSAGE);
+    } finally {
+      // 계정 삭제 성공, 실패 여부에 상관없이 모달을 닫습니다.
+      setIsModalOpen(false);
     }
   };
 
@@ -56,8 +70,8 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
       <div className={cn('accountDeleteCheckWrapper')}>
         <CheckBox
           className={cn('checkBox')}
-          value={isAccountDeleteCheck}
-          setValue={setIsAccountDeleteCheck}
+          isCheck={isAccountDeleteCheck}
+          setIsCheck={setIsAccountDeleteCheck}
         />
         <p>
           해당 내용을 확인하였으며, 구해듀오 계정 탈퇴에 동의합니다. 이 작업은

@@ -13,7 +13,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
 }
 
-/** s
+/** 
  * 미리 스타일을 지정해둔 인풋입니다.
  * @param {FieldError | string} error - 인풋의 에러 값을 받습니다. (선택 사항)
  * @param {string} label - 인풋의 라벨 입니다.

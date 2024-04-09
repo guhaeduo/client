@@ -8,7 +8,9 @@ import SEO_DATA from 'constants/seoData';
 import styles from './resetPasswordPage.module.scss';
 
 const cn = classNames.bind(styles);
-
+/**
+ * 비밀번호 초기화 페이지입니다.
+ */
 export default function ResetPasswordPage() {
   const {
     register,
