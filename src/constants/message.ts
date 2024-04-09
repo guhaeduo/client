@@ -1,3 +1,4 @@
+// 애플리케이션에서 사용되는 다양한 메시지를 포함하는 객체입니다.
 const MESSAGE = {
   invalidName: '소환사명 입력은 필수입니다.',
   loginSuccess: '환영합니다.',

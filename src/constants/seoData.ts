@@ -1,5 +1,6 @@
 import PATH from './path';
 
+// 각 페이지의 SEO 정보를 포함하는 객체입니다.
 const SEO_DATA = {
   home: {
     title: '구해듀오',

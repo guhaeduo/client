@@ -1,3 +1,4 @@
+// 지역과 관련된 정보를 포함하는 객체입니다.
 export const COUNTRY = [
   { key: 'kr', display: 'KR', region: 'kr' },
   { key: 'jp', display: 'JP', region: 'jp1' },
@@ -17,6 +18,7 @@ export const COUNTRY = [
   { key: 'tr', display: 'TR', region: 'tr1' },
 ];
 
+// 게임 타입과 관련된 정보를 포함하는 객체입니다.
 export const QUEUE = [
   { key: 'SOLO', display: '솔로랭크' },
   { key: 'FREE', display: '자유랭크' },
@@ -24,6 +26,7 @@ export const QUEUE = [
   { key: 'ARAM', display: '칼바람' },
 ];
 
+// 티어와 관련된 정보를 포함하는 객체입니다.
 export const TIER = [
   { key: 'ALL', display: '전체 티어' },
   { key: 'CHALLENGER', display: '챌린저' },
@@ -38,6 +41,7 @@ export const TIER = [
   { key: 'UNRANKED', display: '언랭크' },
 ];
 
+// 라인과 관련된 정보를 포함하는 객체입니다.
 export const LANE = [
   { key: 'ALL', display: '모든 라인' },
   { key: 'TOP', display: '탑' },
@@ -46,6 +50,10 @@ export const LANE = [
   { key: 'ADC', display: '원딜' },
   { key: 'SUP', display: '서포터' },
 ];
+
+/**
+ * 로컬 저장소에서 챔피언 데이터를 가져와 정렬하여 반환합니다.
+ */
 
 export const CHAMPION = () => {
   const localChampionData = JSON.parse(
