@@ -11,14 +11,16 @@ interface ReIssueErrorResponse {
   message: string;
 }
 
+/** 토큰의 유효성을 검사하고는 함수입니다. */
 export default async function tokenReIssue() {
   const {
     user: { accessToken, refreshToken, tokenType },
   } = store.getState(); // 스토어에서 유저의 정보를 갖고옵니다.
 
   if (!(accessToken && refreshToken)) return; // 만약 토큰 두개중 하나라도 없다면 즉시 함수를 종료합니다.
+
+  // accessToken이 만료되었다면 실행합니다.
   if (accessToken && isTokenExpired(accessToken)) {
-    // accessToken이 만료되었다면 실행합니다.
     try {
       const tokenRes = await axios.post(
         // refreshToken을 싣어 accessToken 재발급 요청을 보냅니다.

@@ -6,7 +6,7 @@ import instance from './instance';
 /**
  * 듀오 게시글을 가져오는 함수입니다.
  * @param {string} lane - 라인 옵션입니다.
- * @param {queueType} queueType - 게임 타입 옵션입니다.
+ * @param {string} queueType - 게임 타입 옵션입니다.
  * @param {string} tier - 티어 옵션입니다.
  * @param {isRiotVerified} isRiotVerified - 소환사 라이엇 인증 여부입니다.
  * @param {number} page - 페이지 옵션입니다.

@@ -26,7 +26,7 @@ export default function SummonerSearchPage() {
   const queryClient = useQueryClient();
   const seoTitle = `${name}#${tag} - 게임 전적`;
 
-  const onRecordUpdateClickHandler = () => {
+  const onUpdateClickHandler = () => {
     const queryKeys = [
       ['summoner', 'info', country, name, tag],
       ['summoner', 'info', 'rankInfo', country, name, tag],
@@ -124,7 +124,7 @@ export default function SummonerSearchPage() {
         {!firstLoading && (
           <LoadingButton
             name={`${country}_${name}_${tag}`}
-            onClickHandler={onRecordUpdateClickHandler}
+            onClickHandler={onUpdateClickHandler}
             className={cn('summonerDataRefetchButton')}
             isFetching={isDataRefetching}
             clickLimitTime={120}
