@@ -11,12 +11,12 @@ export type SummonerBasicData = {
   tagLine: string;
 };
 
-// 소환사 종합 타입
+// 소환사 종합 데이터 타입
 export type SummonerInfo = {
   region: string;
 } & SummonerBasicData;
 
-// 티어 타입
+// 티어 타입입니다.
 type Tier =
   | 'IRON'
   | 'BRONZE'
