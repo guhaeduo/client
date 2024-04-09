@@ -23,7 +23,7 @@ type Props = {
 
 /**
  * 소환사 검색바 입니다.
- * @param {string} className - 소환사 검색바 클래스입니다.
+ * @param {string} className - 클래스네임 입니다. (선택 사항)
  * @param {'header' | 'main'} type - 검색바 컴포넌트가 어디에 위치하는지를 나타내는 컴포넌트 입니다.
  */
 

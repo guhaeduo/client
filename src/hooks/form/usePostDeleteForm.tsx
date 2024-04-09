@@ -47,7 +47,7 @@ export default function usePostDeleteForm({
       });
       // 듀오 게시글 삭제 성공시 모달을 닫고 성공 응답과 함께 캐싱된 쿼리를 초기화 합니다.
       setIsOpen(false);
-      Toast.success(MESSAGE.DUO_POST_DELETE_SUCCESS);
+      Toast.success(MESSAGE.duoPostDeleteSuccess);
       onQueryUpdateHandler();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {

@@ -22,7 +22,7 @@ type Props = {
  * 미리 스타일을 지정해둔 드롭다운 메뉴입니다.
  * @param {{ key: string; display: string; icon?: string  }[]} options - 드롭다운 메뉴의 옵션 리스트 값입니다.
  * @param {(option: string) => void} onChange - 드롭다운 메뉴의 항목을 선택했을 때 실행되는 함수 입니다.
- * @param {string?} className - 드롭다운 메뉴의 클래스입니다.
+ * @param {string} className - 드롭다운 메뉴의 클래스입니다. (선택 사항)
  * @param {string[]} currentOptionKey - 드롭다운 메뉴의 현재 옵션 값입니다.
  * @param {string} type - 드롭다운 메뉴의 스타일 타입 값입니다.
  * @param {string} isOpen - 드롭다운 메뉴의 오픈 여부를 관리하는 상태입니다

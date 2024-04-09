@@ -47,7 +47,7 @@ export default function PasswordResetCodeSendPage() {
                   비밀번호 재설정하기
                 </button>
               </form>
-              <Link to={PATH.LOGIN}>로그인 페이지로 돌아가기</Link>
+              <Link to={PATH.login}>로그인 페이지로 돌아가기</Link>
             </>
           )}
         </div>

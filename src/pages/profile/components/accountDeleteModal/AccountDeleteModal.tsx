@@ -25,7 +25,7 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
     try {
       await instance.delete('/api/member/delete');
       dispatch(logout());
-      Toast.success(MESSAGE.ACCOUNT_DELETE_SUCCESS);
+      Toast.success(MESSAGE.accountDeleteSuccess);
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);

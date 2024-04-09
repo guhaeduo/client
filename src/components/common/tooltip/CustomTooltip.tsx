@@ -16,7 +16,7 @@ type Props = {
 
 /**
  * 미리 스타일을 지정해둔 툴팁입니다.
- * @param {string} title - 툴팁 컨텐츠의 타이틀 입니다.
+ * @param {string} title - 툴팁 컨텐츠의 타이틀 입니다. (선택 사항)
  * @param {string} body - 툴팁 컨텐츠의 바디 입니다.
  * @param {ReactNode} children - 툴팁을 표시할 컨텐츠입니다.
  * @param {string} name - 툴팁 이름입니다.

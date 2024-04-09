@@ -1,12 +1,12 @@
 import { SearchHistory } from 'types/summoner';
 
 /**
- * 새로운 즐겨찾기 검색 기록을 반환하는 함수입니다.
- * @param {string} name - 소환사 이름입니다.
- * @param {string} tag - 소환사 태그입니다.
- * @param {string} country - 소환사 국가입니다.
- * @param {boolean} isFavorite - 즐겨찾기 여부입니다.
- * @param {SearchHistory[]} favoriteSearchHistory - 기존의 즐겨찾기 검색기록입니다.
+ * 새로운 즐겨찾기 검색 기록을 반환합니다.
+ * @param {string} name - 소환사 이름
+ * @param {string} tag - 소환사 태그
+ * @param {string} country - 소환사 국가
+ * @param {boolean} isFavorite - 즐겨찾기 여부
+ * @param {SearchHistory[]} favoriteSearchHistory - 기존의 즐겨찾기 검색기록
  */
 
 export default function getNewFavoriteSearchHistory(

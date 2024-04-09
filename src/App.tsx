@@ -29,58 +29,58 @@ const SocialLoginAuthPage = lazy(
 );
 
 // 로그인 한 유저만 접속할 수 있는 경로
-const requiredLoginPathname = [PATH.PROFILE];
+const requiredLoginPathname = [PATH.profile];
 
 // 로그인 하지 않은 유저만 접속할 수 있는 경로
 const requiredUnLoginPathname = [
-  PATH.RESET_PASSWORD_EMAIL_SEND,
-  PATH.RESET_PASSWORD,
-  PATH.LOGIN,
-  PATH.SIGN_UP,
-  PATH.KAKAO_LOGIN_PAGE,
-  PATH.DISCORD_LOGIN_PAGE,
+  PATH.resetPasswordEmailSend,
+  PATH.resetPassword,
+  PATH.login,
+  PATH.signup,
+  PATH.kakaoLogin,
+  PATH.discordLogin,
 ];
 
 // 모든 페이지에 대한 정보를 저장한 배열
 const pages = [
   {
-    pathname: PATH.HOME,
+    pathname: PATH.home,
     element: <HomePage />,
   },
   {
-    pathname: PATH.PROFILE,
+    pathname: PATH.profile,
     element: <ProfilePage />,
   },
   {
-    pathname: PATH.RESET_PASSWORD_EMAIL_SEND,
+    pathname: PATH.resetPasswordEmailSend,
     element: <PasswordResetCodeSendPage />,
   },
   {
-    pathname: PATH.RESET_PASSWORD,
+    pathname: PATH.resetPassword,
     element: <ResetPasswordPage />,
   },
   {
-    pathname: PATH.FIND_DUO,
+    pathname: PATH.findDuo,
     element: <FindDuoPage />,
   },
   {
-    pathname: PATH.LOGIN,
+    pathname: PATH.login,
     element: <LoginPage />,
   },
   {
-    pathname: PATH.SIGN_UP,
+    pathname: PATH.signup,
     element: <SignupPage />,
   },
   {
-    pathname: PATH.SUMMONER_SEARCH,
+    pathname: PATH.summonerSearch,
     element: <SummonerSearchPage />,
   },
   {
-    pathname: PATH.KAKAO_LOGIN_PAGE,
+    pathname: PATH.kakaoLogin,
     element: <SocialLoginAuthPage socialType="KAKAO" />,
   },
   {
-    pathname: PATH.DISCORD_LOGIN_PAGE,
+    pathname: PATH.discordLogin,
     element: <SocialLoginAuthPage socialType="DISCORD" />,
   },
   {

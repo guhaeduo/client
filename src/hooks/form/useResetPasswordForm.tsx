@@ -43,7 +43,7 @@ export default function useResetPasswordForm() {
         },
         { headers: { Authorization: `Bearer ${code}` } },
       );
-      Toast.success(MESSAGE.PASSWORD_CHANGE_SUCCESS);
+      Toast.success(MESSAGE.passwordChangeSuccess);
       navLogin();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {

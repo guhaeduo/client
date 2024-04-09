@@ -17,10 +17,10 @@ export default function LoginPage() {
     useLoginForm();
 
   const onClickKakaoBtnHandler = () => {
-    window.location.href = PATH.KAKAO_AUTH_URL;
+    window.location.href = PATH.kakaoAuthUrl;
   };
   const onClickDiscordBtnHandler = () => {
-    window.location.href = PATH.DISCORD_AUTH_URL;
+    window.location.href = PATH.discordAuthUrl;
   };
 
   return (

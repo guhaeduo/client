@@ -63,7 +63,7 @@ export default function usePasswordChangeForm({ setIsModalOpen }: Props) {
 
       // 비밀번호 변경 성공시 모달을 닫고 변경 완료 메세지 띄워주기
       setIsModalOpen(false);
-      Toast.success(MESSAGE.PASSWORD_CHANGE_SUCCESS);
+      Toast.success(MESSAGE.passwordChangeSuccess);
     } catch (err) {
       // 비밀번호 변경 실패시 에러 토스트 처리
       if (isCustomAxiosError(err) && err.response) {

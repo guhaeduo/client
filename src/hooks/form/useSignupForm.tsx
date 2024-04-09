@@ -67,7 +67,7 @@ export default function useSignupForm() {
         code: verificationCode,
       });
       setIsVerificationCodeConfirm(true);
-      Toast.success(MESSAGE.VERIFICATION_CODE_CONFIRM_SUCCESS);
+      Toast.success(MESSAGE.verificationCodeConfirmSuccess);
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         setError('verificationCode', {

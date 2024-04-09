@@ -10,14 +10,14 @@ import styles from './header.module.scss';
 const cn = classNames.bind(styles);
 
 const {
-  HOME,
-  LOGIN,
-  SIGN_UP,
-  PROFILE,
-  KAKAO_LOGIN_PAGE,
-  DISCORD_LOGIN_PAGE,
-  RESET_PASSWORD,
-  RESET_PASSWORD_EMAIL_SEND,
+  home: HOME,
+  login: LOGIN,
+  signup: SIGN_UP,
+  profile: PROFILE,
+  kakaoLogin: KAKAO_LOGIN_PAGE,
+  discordLogin: DISCORD_LOGIN_PAGE,
+  resetPassword: RESET_PASSWORD,
+  resetPasswordEmailSend: RESET_PASSWORD_EMAIL_SEND,
 } = PATH;
 
 const AUTH = [
@@ -55,7 +55,7 @@ export default function Header() {
       <div className={`${cn('container')} container`}>
         {isLogoHidden || (
           <h1 className={cn('title')}>
-            <Link to={PATH.HOME}>
+            <Link to={PATH.home}>
               <img
                 src={`${process.env.PUBLIC_URL}/images/logo.png`}
                 alt="구해듀오 로고"
@@ -71,15 +71,15 @@ export default function Header() {
         )}
         {isButtonsHidden || (
           <div hidden={isButtonsHidden} className={cn('buttons')}>
-            <Link to={PATH.FIND_DUO} className={cn('findDuoBtn')}>
+            <Link to={PATH.findDuo} className={cn('findDuoBtn')}>
               듀오찾기
             </Link>
             {user.isLogin ? (
-              <Link to={PATH.PROFILE} className={cn('myPageBtn')}>
+              <Link to={PATH.profile} className={cn('myPageBtn')}>
                 프로필
               </Link>
             ) : (
-              <Link to={PATH.LOGIN} className={cn('loginBtn')}>
+              <Link to={PATH.login} className={cn('loginBtn')}>
                 로그인
               </Link>
             )}

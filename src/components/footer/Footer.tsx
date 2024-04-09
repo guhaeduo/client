@@ -14,10 +14,10 @@ export default function Footer() {
   return (
     <footer className={cn('footer')}>
       <div>
-        <Link to={PATH.PRIVACY_POLICY} target="_blank">
+        <Link to={PATH.privacyPolicy} target="_blank">
           개인정보처리방침
         </Link>
-        <Link to={PATH.TEAM_OF_USE}>이용약관</Link>
+        <Link to={PATH.teamOfUse}>이용약관</Link>
       </div>
       <p>
         GuhaeDuo isn’t endorsed by Riot Games and doesn’t reflect the views or

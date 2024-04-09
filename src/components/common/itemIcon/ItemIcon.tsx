@@ -13,7 +13,7 @@ type Props = {
 
 /**
  * 미리 스타일을 지정해둔 아이템 아이콘입니다.
- * @param {string?} className - 클래스네임 입니다.
+ * @param {string} className - 클래스네임 입니다. (선택 사항)
  * @param {number} itemNumber - 아이템 번호입니다.
  */
 

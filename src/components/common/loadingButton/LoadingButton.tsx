@@ -17,9 +17,9 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 /**
  * 미리 스타일을 지정해둔 로딩 버튼입니다.
  * @param {boolean} isFetching - 외부에서 데이터를 패칭중인지 여부입니다.
- * @param {string?} name - 챔피언 이름입니다.
+ * @param {string} name - 챔피언 이름입니다. (선택 사항)
  * @param {void} onClickHandler - 버튼을 클릭하였을 때 실행할 함수입니다.
- * @param {string?} className - 클래스네임 입니다.
+ * @param {string} className - 클래스네임 입니다. (선택 사항)
  * @param {React.ReactNode} children - children입니다.
  * @param {number} clickLimitTime - 다시 클릭할 수 있기까지의 시간입니다.
  */

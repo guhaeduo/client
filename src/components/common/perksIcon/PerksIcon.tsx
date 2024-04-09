@@ -12,7 +12,7 @@ type Props = {
 
 /**
  * 미리 스타일을 지정해둔 룬 아이콘입니다..
- * @param {string} className - 클래스입니다.
+ * @param {string} className - 클래스입니다. (선택 사항)
  * @param {number} perksStyle - 룬 번호입니다.
  */
 

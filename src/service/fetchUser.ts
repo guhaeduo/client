@@ -18,7 +18,7 @@ export default async function fetchUser() {
     // 스토어의 login함수를 실행하여 로그인 처리합니다.
     store.dispatch(login(userRes.data));
     // 로그인 성공 토스트를 띄웁니다.
-    Toast.success(MESSAGE.LOGIN_SUCCESS);
+    Toast.success(MESSAGE.loginSuccess);
   } catch (error) {
     // 로그인 실패시 로그아웃 처리합니다.
     store.dispatch(logout());

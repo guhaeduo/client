@@ -133,7 +133,7 @@ export default function usePostWriteForm({
           newPostData.password = data.password;
         }
         await instance.post('api/duo/post', newPostData);
-        Toast.success(MESSAGE.DUO_POST_UPLOAD_SUCCESS);
+        Toast.success(MESSAGE.duoPostUploadSuccess);
       } else {
         const modifyPostData: PostWriteForm = {
           region: 'kr',
@@ -173,7 +173,7 @@ export default function usePostWriteForm({
           `https://guhaeduo.site/api/duo/post/${postData.postId}`,
           modifyPostData,
         );
-        Toast.success(MESSAGE.DUO_POST_MODIFY_SUCCESS);
+        Toast.success(MESSAGE.duoPostModifySuccess);
       }
       setIsOpen(false);
       setQueueOption(queueType);
