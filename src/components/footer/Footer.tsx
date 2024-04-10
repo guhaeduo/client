@@ -7,7 +7,8 @@ import styles from './footer.module.scss';
 const cn = classNames.bind(styles);
 
 /**
- * 미리 스타일을 지정해둔 푸터입니다.
+ * 페이지 하단에 요소를 렌더링 합니다.
+ * @return 페이지 정보 요소
  */
 
 export default function Footer() {
@@ -17,7 +18,9 @@ export default function Footer() {
         <Link to={PATH.privacyPolicy} target="_blank">
           개인정보처리방침
         </Link>
-        <Link to={PATH.teamOfUse}>이용약관</Link>
+        <Link to={PATH.teamOfUse} target="_blank">
+          이용약관
+        </Link>
       </div>
       <p>
         GuhaeDuo isn’t endorsed by Riot Games and doesn’t reflect the views or

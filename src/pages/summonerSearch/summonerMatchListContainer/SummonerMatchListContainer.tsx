@@ -4,9 +4,9 @@ import LaneSelector from 'components/common/laneSelector/LaneSelector';
 import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import MatchPreviewCard from '../components/MatchPreviewCard';
+import MatchPreviewCard from '../components/matchPreviewCard/MatchPreviewCard';
 import MatchCard from '../matchCard/MatchCard';
-import QueueTypeTab from '../components/QueueTypeTab';
+import QueueTypeTab from '../components/queueTypeTab/QueueTypeTab';
 import styles from './summonerMatchListContainer.module.scss';
 
 const cn = classNames.bind(styles);

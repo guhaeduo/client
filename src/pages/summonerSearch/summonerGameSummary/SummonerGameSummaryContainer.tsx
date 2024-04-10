@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import URL from 'constants/url';
 import { useLocation } from 'react-router-dom';
 import ChampionTag from './ChampionTag';
-import QueueTypeTab from '../components/QueueTypeTab';
+import QueueTypeTab from '../components/queueTypeTab/QueueTypeTab';
 import styles from './summonerGameSummaryContainer.module.scss';
 
 const cn = classNames.bind(styles);

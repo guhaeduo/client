@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import DropDown from 'components/common/dropDown/DropDown';
 import useDuoPostWriteForm from 'hooks/business/useFindDuo';
 import { QUEUE, TIER, LANE } from 'constants/options';
-import LoadingButton from 'components/common/loadingButton/LoadingButton';
+import LoadingButton from 'pages/summonerSearch/components/loadingButton/LoadingButton';
 import Modal from 'components/common/modal/Modal';
 import { useState } from 'react';
 import SEOMeta from 'components/SEOMeta';

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { SummaryQueueType } from 'types/summoner';
 import Skeleton from 'components/common/skeleton/Skeleton';
-import QueueTypeTab from '../components/QueueTypeTab';
+import QueueTypeTab from '../components/queueTypeTab/QueueTypeTab';
 import styles from '../summonerGameSummary/summonerGameSummaryContainer.module.scss';
 import { SUMMARY_TAB_MENUS } from '../summonerGameSummary/SummonerGameSummaryContainer';
 

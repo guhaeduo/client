@@ -6,7 +6,7 @@ import useSummonerRankInfo from 'hooks/business/useSummonerRankInfo';
 import useSummonerGameSummary from 'hooks/business/useSummonerGameSummary';
 import usePathSummonerData from 'hooks/usePathSummonerData';
 import useSummonerMatchData from 'hooks/business/useSummonerMatchData';
-import LoadingButton from 'components/common/loadingButton/LoadingButton';
+import LoadingButton from 'pages/summonerSearch/components/loadingButton/LoadingButton';
 import { useQueryClient } from '@tanstack/react-query';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';

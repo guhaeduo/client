@@ -91,7 +91,7 @@ const pages = [
 
 function App() {
   useEffect(() => {
-    // 최초 1회 실행되는 함수이며, DDragon의 데이터를 최신 상태로 업데이트 시키는 함수입니다.
+    // 최초 1회 DDragon의 데이터를 최신 상태로 업데이트 시키는 함수입니다.
     updateDDragonData();
   }, []);
 

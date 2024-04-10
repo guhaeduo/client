@@ -8,10 +8,11 @@ type Props = {
 };
 
 /**
- * 스켈레톤 입니다.
+ * 스켈레톤 요소를 렌더링 합니다.
  * @param {string} className - 스켈레톤 클래스입니다.
+ * @return 스켈레톤
  */
 
 export default function Skeleton({ className }: Props) {
-  return <div className={cn(className, 'skeleton')}></div>;
+  return <div className={cn(className, 'skeleton')} />;
 }

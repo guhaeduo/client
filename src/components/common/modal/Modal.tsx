@@ -12,10 +12,11 @@ type Props = {
 };
 
 /**
- * 미리 스타일을 지정해둔 모달입니다.
+ * 요소를 받아 모달을 렌더링 합니다.
  * @param {ReactNode} children - 모달의 내부 컨텐츠로 표시할 값입니다.
  * @param {boolean} isOpen - 모달의 오픈 여부를 나타내는 값입니다.
  * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsOpen - 모달의 오픈 여부를 제어하는 함수입니다.
+ * @return 모달 요소 | null
  */
 
 export default function Modal({ children, isOpen, setIsOpen }: Props) {

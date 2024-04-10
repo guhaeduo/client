@@ -19,7 +19,7 @@ type Props = {
 };
 
 /**
- * 미리 스타일을 지정해둔 드롭다운 메뉴입니다.
+ * 옵션과 옵션 변경 함수를 받아 드롭다운 컴포넌트를 렌더링 합니다.
  * @param {{ key: string; display: string; icon?: string  }[]} options - 드롭다운 메뉴의 옵션 리스트 값입니다.
  * @param {(option: string) => void} onChange - 드롭다운 메뉴의 항목을 선택했을 때 실행되는 함수 입니다.
  * @param {string} className - 드롭다운 메뉴의 클래스입니다. (선택 사항)
@@ -29,6 +29,7 @@ type Props = {
  * @param {string} setIsOpen - 드롭다운 메뉴의 오픈 여부를 제어하는 함수입니다.
  * @param {React.RefObject<HTMLDivElement>} dropMenuRef - 드롭다운 메뉴의 ref입니다.
  * @param {boolean} isSearch - 검색이 가능한 드롭박스인지 나타내는 값입니다.
+ * @return 드롭다운 요소
  */
 
 export default function DropDown({

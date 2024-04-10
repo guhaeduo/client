@@ -22,13 +22,14 @@ type Props = {
 };
 
 /**
- * 소환사 검색바 입니다.
+ * 소환사 검색바를 렌더링 합니다.
  * @param {string} className - 클래스네임 입니다. (선택 사항)
  * @param {'header' | 'main'} type - 검색바 컴포넌트가 어디에 위치하는지를 나타내는 컴포넌트 입니다.
+ * @return 소환사 검색바
  */
 
 export default function SearchBar({ className, type }: Props) {
-  // country를 관리하는 옵션상태 및 상태 변경함수 입니다.
+  // 소환사의 검색 국가를 관리하는 옵션 및 옵션 변경함수 입니다.
   const [countryOption, setCountryOption] = useSignularOptionSelector({
     defaultOption: 'kr',
   });
@@ -43,30 +44,42 @@ export default function SearchBar({ className, type }: Props) {
     SearchHistory[]
   >([]);
 
-  // 검색 인풋이 포커스 되어있는지를 관리하는 상태이며, 검색 기록창을 보여주는 용도로 관리됩니다.
-  const [isSearchInputFocus, setIsSearchInputFocus] = useState(false);
+  // 검색 기록창을 표시할지 관리하는 상태입니다.
+  const [isSearchHistoryShow, setIsSearchHistoryShow] = useState(false);
 
-  // country 드롭다운이 오픈되었는지를 관리하는 상태입니다.
+  // 국가 선택 드롭다운이 오픈되었는지를 관리하는 상태입니다.
   const [isCountryDropDownOpen, setIsCountryDropDownOpen] = useState(false);
   const { navSummonerSearch } = useCustomNavigation();
-  const { register, handleSubmit, setValue } = useForm();
 
-  // searchHistoryRef 입니다.
+  // 소환사 검색을 위한 form을 생성합니다.
+  const { register, handleSubmit, setValue } = useForm({ mode: 'onBlur' });
+  const { ref, ...rest } = register('summonerName');
+
+  // 검색 기록창의 참조값 입니다.
   const searchHistoryRef = useRef<HTMLFormElement | null>(null);
 
-  // 검색창을 클릭하였을 때, inputSearchFocus 상태를 업데이트하는 함수입니다.
+  // 검색 인풋의 참조값 입니다.
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+
+  // 검색창을 클릭하면 검색 기록을 표시합니다.
   const searchInputFocusHandler = () => {
-    setIsSearchInputFocus(true);
+    setIsSearchHistoryShow(true);
   };
 
-  // ref에 등록된 요소 외의 영역 클릭시 searchHistory를 닫습니다.
+  // ref에 등록된 요소 외의 영역 클릭시 검색기록창을 닫습니다.
   useHandleOutsideClick({
-    isOpen: isSearchInputFocus,
-    setIsOpen: setIsSearchInputFocus,
+    isOpen: isSearchHistoryShow,
+    setIsOpen: setIsSearchHistoryShow,
     ref: searchHistoryRef,
   });
 
-  // 소환사 이름, 태그, 국가를 입력받아 소환사 검색 페이지 이동 및 최근 검색 기록을 업데이트 하는 함수입니다.
+  /**
+   * 소환사 검색 함수입니다.
+   * @param {string} name - 소환사 이름
+   * @param {string} tag - 소환사 태그
+   * @param {string} country - 소환사 검색 국가
+   */
+
   const summonerSearch = (name: string, tag: string, country: string) => {
     const newSearch = { country, name, tag };
     const newRecentSearchHistory = getNewRecentSearchHistory(
@@ -85,8 +98,11 @@ export default function SearchBar({ className, type }: Props) {
       'recentSearchHistory',
       JSON.stringify(newRecentSearchHistory),
     );
+    // 검색 인풋을 초기화 합니다.
     setValue('summonerName', '');
-    setIsSearchInputFocus(false);
+    // 검색 기록창을 닫고 블러처리 합니다.
+    setIsSearchHistoryShow(false);
+    searchInputRef.current?.blur();
   };
 
   // 소환사 검색 Form이 Submit 되었을 때 실행되는 함수입니다.
@@ -95,8 +111,8 @@ export default function SearchBar({ className, type }: Props) {
       const { name, tag } = parseSummonerName(
         data.summonerName.replace(/\//g, ''),
       );
-      const country = countryOption;
-      summonerSearch(name, tag, country);
+      // 소환사 검색 함수를 호출합니다.
+      summonerSearch(name, tag, countryOption);
     } catch (err) {
       if (err instanceof Error)
         Toast.info(err.message, { toastId: 'summonerSearchInfo' });
@@ -130,7 +146,11 @@ export default function SearchBar({ className, type }: Props) {
             type="text"
             id="summonerSearchInput"
             className={cn('searchInput')}
-            {...register('summonerName')}
+            {...rest}
+            ref={(e) => {
+              ref(e);
+              searchInputRef.current = e;
+            }}
             autoComplete="off"
             onClick={searchInputFocusHandler}
           />
@@ -145,7 +165,7 @@ export default function SearchBar({ className, type }: Props) {
         </form>
       </div>
       <SearchHistoryContainer
-        isSearchInputFocus={isSearchInputFocus}
+        isSearchInputFocus={isSearchHistoryShow}
         recentSearchHistory={recentSearchHistory}
         favoriteSearchHistory={favoriteSearchHistory}
         setFavoriteSearchHistory={setFavoriteSearchHistory}

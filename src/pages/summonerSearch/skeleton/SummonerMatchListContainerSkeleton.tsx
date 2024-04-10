@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import Skeleton from 'components/common/skeleton/Skeleton';
 import styles from '../summonerMatchListContainer/summonerMatchListContainer.module.scss';
 import { MATH_LIST_TAB_MENUS } from '../summonerMatchListContainer/SummonerMatchListContainer';
-import QueueTypeTab from '../components/QueueTypeTab';
+import QueueTypeTab from '../components/queueTypeTab/QueueTypeTab';
 
 const cn = classNames.bind(styles);
 

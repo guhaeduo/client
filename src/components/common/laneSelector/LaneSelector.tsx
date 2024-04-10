@@ -16,12 +16,13 @@ interface Props {
 }
 
 /**
- * 미리 스타일을 지정해둔 라인선택 컴포넌트 입니다.
+ * 옵션과 옵션 변경 함수를 받아 라인선택 컴포넌트를 렌더링 합니다.
  * @param {string[] | string} option - 현재 선택된 옵션 값입니다.
  * @param {number} size - 요소 한 개의 가로 세로 크기를 결정하는 값입니다. (선택 사항)
  * @param {(option: string) => void} onChange - 값이 변경되었을 때 실행할 함수 입니다.
  * @param {string} className - 클래스 입니다.
  * @param {Lane[]} disableLane - 비활성화 라인입니다.
+ * @return 라인선택 요소
  */
 
 export default function LaneSelector({

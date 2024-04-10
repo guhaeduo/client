@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import getFindDuoPosts from 'service/getFindDuoPosts';
 
+/**
+ * 듀오 게시판 페이지에서 필요한 값들을 관리하는 훅입니다.
+ */
 export default function useFindDuo() {
   const [tierOption, setTierOption] = useSignularOptionSelector({
     defaultOption: 'ALL',

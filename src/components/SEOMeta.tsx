@@ -9,7 +9,7 @@ type Props = {
 };
 
 /**
- * 페이지의 SEO 데이터를 담고 있는 객체 타입입니다.
+ * 페이지마다의 Meta태그를 작성해주는 컴포넌트입니다.
  * @property {string} title - 페이지의 제목입니다.
  * @property {string} pageUrl - 페이지의 URL입니다.
  * @property {string} description - 페이지의 설명입니다.

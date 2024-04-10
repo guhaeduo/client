@@ -11,9 +11,10 @@ type Props = {
 };
 
 /**
- * 미리 스타일을 지정해둔 스펠 아이콘입니다.
+ * 스펠 번호를 스펠 이미지를 렌더링 합니다.
  * @param {number} spellNumber - 스펠 번호입니다.
  * @param {string} className - 스펠 아이콘 클래스 입니다. (선택 사항)
+ * @return 스펠 아이콘
  */
 
 export default function SpellIcon({ spellNumber, className }: Props) {

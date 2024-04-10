@@ -13,13 +13,14 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
 }
 
-/** 
- * 미리 스타일을 지정해둔 인풋입니다.
+/**
+ * 인풋의 속성을 받아 인풋과 경우에 따라 에러를 렌더링 합니다.
  * @param {FieldError | string} error - 인풋의 에러 값을 받습니다. (선택 사항)
  * @param {string} label - 인풋의 라벨 입니다.
  * @param {string} name - 인풋의 이름 입니다.
  * @param {string} className - 클래스네임 입니다. (선택 사항)
  * @param {string} type - 인풋 타입입니다.
+ * @return 인풋 요소
  */
 
 const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (

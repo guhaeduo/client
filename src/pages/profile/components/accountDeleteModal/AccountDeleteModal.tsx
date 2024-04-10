@@ -70,8 +70,8 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
       <div className={cn('accountDeleteCheckWrapper')}>
         <CheckBox
           className={cn('checkBox')}
-          isCheck={isAccountDeleteCheck}
-          setIsCheck={setIsAccountDeleteCheck}
+          isChecked={isAccountDeleteCheck}
+          setIsChecked={setIsAccountDeleteCheck}
         />
         <p>
           해당 내용을 확인하였으며, 구해듀오 계정 탈퇴에 동의합니다. 이 작업은

@@ -12,7 +12,7 @@ type Props = {
 };
 
 /**
- * 원치않는 라우팅을 제어하는 컴포넌트입니다.
+ * 권한에 따라 라우팅을 제어하는 컴포넌트입니다.
  * @param {boolean} requiredLogin - 로그인해야 접속이 가능한 페이지인지 여부입니다.
  * @param {boolean} requiredUnLogin - 로그인이면 접속이 불가능한 페이지인지 여부입니다.
  * @param {ReactNode} children - children 요소입니다.

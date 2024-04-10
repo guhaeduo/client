@@ -21,13 +21,14 @@ type Props = {
 };
 
 /**
- * 소환사의 검색기록을 보여주는 컴포넌트입니다.
+ * 소환사의 검색기록을 보여주는 요소를 렌더링 합니다.
  * @param {boolean} isSearchInputFocus - SearchInput이 Focus되어있는지 여부를 관리하는 값입니다.
  * @param {SearchHistory[]} recentSearchHistory - 최근 검색기록입니다.
  * @param {SearchHistory[]} favoriteSearchHistory - 즐겨찾기 입니다.
  * @param {React.Dispatch<React.SetStateAction<SearchHistory[]>>} setFavoriteSearchHistory - 즐겨찾기 상태변경 함수입니다.
  * @param {React.Dispatch<React.SetStateAction<SearchHistory[]>>} setRecentSearchHistory - 최근 검색기록 상태변경 함수입니다.
  * @param {(name: string, tag: string, country: string) => void} summonerSearch - 소환사 검색 함수입니다.
+ * @return 검색 기록창
  */
 
 export default function SearchHistoryContainer({

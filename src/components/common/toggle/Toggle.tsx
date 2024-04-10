@@ -11,10 +11,11 @@ type Props = {
 };
 
 /**
- * 미리 스타일을 지정해둔 토글버튼 입니다.
+ * 체크 여부와 체크 변경 함수를 받아 토글 버튼을 렌더링 합니다.
  * @param {boolean} isChecked - 토글의 체크 여부입니다.
  * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsChecked - 토글의 테크 여부를 제어하는 함수입니다.
  * @param {string} className - 토글의 클래스입니다. (선택 사항)
+ * @return 토글 버튼
  */
 
 export default function Toggle({ isChecked, setIsChecked, className }: Props) {

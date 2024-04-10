@@ -15,11 +15,12 @@ type Props = {
 };
 
 /**
- * 미리 스타일을 지정해둔 툴팁입니다.
+ * 요소와 컨텐츠를 입력 받아 툴팁을 렌더링 합니다.
  * @param {string} title - 툴팁 컨텐츠의 타이틀 입니다. (선택 사항)
  * @param {string} body - 툴팁 컨텐츠의 바디 입니다.
  * @param {ReactNode} children - 툴팁을 표시할 컨텐츠입니다.
  * @param {string} name - 툴팁 이름입니다.
+ * @return 요소와 툴팁
  */
 
 export default function CustomTooltip({ title, body, children, name }: Props) {
