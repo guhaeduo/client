@@ -26,14 +26,14 @@ export default function PostDeleteModal({
   setIsOpen,
   onQueryClearHandler,
 }: Props) {
-  const { register, errors, onSubmitHandler } = usePostDeleteForm({
+  const { register, errors, submitHandler } = usePostDeleteForm({
     postData,
     setIsOpen,
     onQueryClearHandler,
   });
 
   return (
-    <form onSubmit={onSubmitHandler} className={cn('postDeleteModal')}>
+    <form onSubmit={submitHandler} className={cn('postDeleteModal')}>
       {postData.isGuestPost && (
         <div>
           <Input

@@ -20,9 +20,6 @@ type Props = {
  */
 
 export default function Modal({ children, isOpen, setIsOpen }: Props) {
-  // 모달이 닫힘 상태면 null을 리턴합니다.
-  if (!isOpen) return null;
-
   // Modal의 Ref를 선언하고 저장합니다.
   const modalRef = useRef(null);
 
@@ -33,6 +30,9 @@ export default function Modal({ children, isOpen, setIsOpen }: Props) {
     // 모달이 열림 상태면 스크롤을 제한합니다.
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
   }, [isOpen]);
+
+  // 모달이 닫힘 상태면 null을 리턴합니다.
+  if (!isOpen) return null;
 
   return (
     <div className={cn('modalBackground')}>

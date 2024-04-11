@@ -5,7 +5,6 @@ import Input from 'components/common/input/Input';
 import { emailValidation } from 'utils/validator';
 import usePasswordResetCodeSendForm from 'hooks/form/usePasswordResetCodeSendForm';
 import { FaCheckCircle } from 'react-icons/fa';
-import emailServiceToDomain from 'utils/emailServiceToDomain';
 import SEOMeta from 'components/SEOMeta';
 import SEO_DATA from 'constants/seoData';
 import styles from './passwordResetCodeSendPage.module.scss';
@@ -13,10 +12,9 @@ import styles from './passwordResetCodeSendPage.module.scss';
 const cn = classNames.bind(styles);
 
 export default function PasswordResetCodeSendPage() {
-  const { register, submitHandler, errors, isValid, isSuccess, getValues } =
+  const { register, submitHandler, errors, isValid, isSuccess, companyDomain } =
     usePasswordResetCodeSendForm();
 
-  const companyDomain = emailServiceToDomain(getValues('email'));
   return (
     <>
       <SEOMeta pageData={SEO_DATA.passwordResetCodeSend} />

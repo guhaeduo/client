@@ -23,6 +23,10 @@ type FormValue = {
   password: string;
 };
 
+/**
+ * 듀오 게시글 작성 폼입니다.
+ *
+ */
 export default function usePostWriteForm({
   setIsOpen,
   postData,
