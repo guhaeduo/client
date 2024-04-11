@@ -10,14 +10,14 @@ type Props = {
   postsData: PostContent[];
   isFetchingNextPage: boolean;
   setQueueOption: (queueOption: string) => void;
-  onQueryUpdateHandler: () => void;
+  onQueryClearHandler: () => void;
 };
 
 export default function PostsContainer({
   postsData,
   isFetchingNextPage,
   setQueueOption,
-  onQueryUpdateHandler,
+  onQueryClearHandler,
 }: Props) {
   return (
     <div className={cn('postsContainer')}>
@@ -38,7 +38,7 @@ export default function PostsContainer({
         {postsData.map((post) => (
           <PostItem
             setQueueOption={setQueueOption}
-            onQueryUpdateHandler={onQueryUpdateHandler}
+            onQueryClearHandler={onQueryClearHandler}
             key={post.postId}
             post={post}
           />

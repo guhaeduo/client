@@ -7,7 +7,7 @@ import styles from './footer.module.scss';
 const cn = classNames.bind(styles);
 
 /**
- * 페이지 하단에 요소를 렌더링 합니다.
+ * 페이지 하단에 푸터 요소를 렌더링 합니다.
  * @return 페이지 정보 요소
  */
 

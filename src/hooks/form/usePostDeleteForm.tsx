@@ -9,7 +9,7 @@ import { PostContent } from 'types/post';
 type Props = {
   postData: PostContent;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onQueryUpdateHandler: () => void;
+  onQueryClearHandler: () => void;
 };
 
 type FormValue = {
@@ -20,13 +20,13 @@ type FormValue = {
  * 듀오 게시글을 삭제할 수 있는 모달
  * @param { PostData } postData - 삭제하고자 하는 듀오 게시글의 데이터 입니다.
  * @param { React.Dispatch<React.SetStateAction<boolean>> } setIsOpen - 모달을 닫을 수 있는 핸들러 입니다.
- * @param { () => void } onQueryUpdateHandler - 게시글 삭제를 완료하고 나서 쿼리를 업데이트 하는 함수입니다.
+ * @param { () => void } onQueryClearHandler - 게시글 삭제를 완료하고 나서 쿼리를 업데이트 하는 함수입니다.
  */
 
 export default function usePostDeleteForm({
   postData,
   setIsOpen,
-  onQueryUpdateHandler,
+  onQueryClearHandler,
 }: Props) {
   // 듀오 게시글 삭제 폼을 생성합니다.
   const {
@@ -48,7 +48,7 @@ export default function usePostDeleteForm({
       // 듀오 게시글 삭제 성공시 모달을 닫고 성공 응답과 함께 캐싱된 쿼리를 초기화 합니다.
       setIsOpen(false);
       Toast.success(MESSAGE.duoPostDeleteSuccess);
-      onQueryUpdateHandler();
+      onQueryClearHandler();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);

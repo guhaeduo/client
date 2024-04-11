@@ -12,11 +12,17 @@ type Props = {
 };
 
 /**
- * 소환사의 매치 정보를 가져오는 훅입니다.
- * @param {SummonerInfo | undefined} summonerInfo - 소환사 정보입니다.
- * @param {string} country - 소환사 검색 국가입니다.
- * @param {string} name - 소환사 이름입니다.
- * @param {string} tag - 소환사 태그입니다.
+ * 소환사의 매치 전적 정보와 관련된 데이터를 반환하는 훅입니다.
+ * @param {SummonerInfo | undefined} summonerInfo - 소환사 정보
+ * @param {string} country - 소환사 검색 국가
+ * @param {string} name - 소환사 이름
+ * @param {string} tag - 소환사 태그
+ *
+ * @return {MatchData[] | undefined} summonerMatchData - 소환사 매치 전적 데이터
+ * @return {MatchDataQueueType} matchQueueType - 소환사 매치 전적 게임 타입 필터 옵션
+ * @return {Dispatch<SetStateAction<MatchDataQueueType>>} setMatchQueueType - 소환사 매치 전적 게임 타입 필터 옵션 변경 함수
+ * @return {boolean} isSummonerMatchDataFetching - 소환사 매치 전적 패칭 여부
+ * @return { string | undefinedstring | undefined} summonerMatchDataError - 소환사 매치 전적 에러
  */
 
 export default function useSummonerMatchData({
@@ -33,9 +39,9 @@ export default function useSummonerMatchData({
   // 소환사의 대륙을 변수로 저장합니다.
   const region = summonerInfo?.region || '';
 
+  // 소환사 정보와 필터 옵션을 기반으로 매치 정보 데이터를 받아옵니다.
   const {
     data: summonerMatchData,
-    isLoading: isSummonerMatchDataLoading,
     error,
     isFetching: isSummonerMatchDataFetching,
   } = useQuery<MatchData[]>({
@@ -55,7 +61,6 @@ export default function useSummonerMatchData({
 
   return {
     summonerMatchData,
-    isSummonerMatchDataLoading,
     matchQueueType,
     setMatchQueueType,
     isSummonerMatchDataFetching,

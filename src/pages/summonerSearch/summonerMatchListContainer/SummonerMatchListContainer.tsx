@@ -1,8 +1,7 @@
 import classNames from 'classnames/bind';
 import { MatchData, MatchDataQueueType, Lane } from 'types/summoner';
 import LaneSelector from 'components/common/laneSelector/LaneSelector';
-import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MatchPreviewCard from '../components/matchPreviewCard/MatchPreviewCard';
 import MatchCard from '../matchCard/MatchCard';
@@ -34,10 +33,7 @@ export default function SummonerMatchListContainer({
   setMatchQueueType,
   summonerMatchData,
 }: Props) {
-  const [matchListLaneOption, setMatchListLaneOption] =
-    useSignularOptionSelector({
-      defaultOption: 'ALL',
-    });
+  const [matchListLaneOption, setMatchListLaneOption] = useState('ALL');
   const matchListLane = matchListLaneOption as Lane;
   const matchListData =
     matchListLane === 'ALL'

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/userSlice';
 import { PostContent, PostWriteForm } from 'types/post';
-import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { useForm } from 'react-hook-form';
 import { CHAMPION } from 'constants/options';
 import instance from 'service/instance';
@@ -15,7 +14,7 @@ type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   postData?: PostContent;
   setQueueOption: (queueOption: string) => void;
-  onQueryUpdateHandler: () => void;
+  onQueryClearHandler: () => void;
 };
 
 type FormValue = {
@@ -28,7 +27,7 @@ export default function usePostWriteForm({
   setIsOpen,
   postData,
   setQueueOption,
-  onQueryUpdateHandler,
+  onQueryClearHandler,
 }: Props) {
   const user = useSelector(selectUser);
   const { isLogin, riotAccountList } = user;
@@ -45,38 +44,29 @@ export default function usePostWriteForm({
 
   const championOptions = CHAMPION();
 
-  let defaultOption = '';
+  let riotAccountDefaultOption = '';
+
   if (postData) {
-    defaultOption = `${postData.riotGameName}#${postData.riotGameTag}`;
+    riotAccountDefaultOption = `${postData.riotGameName}#${postData.riotGameTag}`;
   } else if (riotAccountOptions && riotAccountOptions.length) {
-    defaultOption = riotAccountOptions[0].key;
+    riotAccountDefaultOption = riotAccountOptions[0].key;
   }
 
-  const [riotAccount, setRiotAccount] = useSignularOptionSelector({
-    defaultOption,
-  });
+  const [riotAccount, setRiotAccount] = useState(riotAccountDefaultOption);
 
-  const [mostLane, setMostLane] = useSignularOptionSelector({
-    defaultOption: postData?.myMainLane || 'ALL',
-  });
-  const [subLane, setSubLane] = useSignularOptionSelector({
-    defaultOption: postData?.mySubLane || 'ALL',
-  });
+  const [mostLane, setMostLane] = useState(postData?.myMainLane || 'ALL');
+  const [subLane, setSubLane] = useState(postData?.mySubLane || 'ALL');
 
-  const [selectLane, setSelectLane] = useSignularOptionSelector({
-    defaultOption: postData?.needPosition || 'ALL',
-  });
+  const [selectLane, setSelectLane] = useState(postData?.needPosition || 'ALL');
 
-  const [queueType, setQueueType] = useSignularOptionSelector({
-    defaultOption: postData?.queueType || 'SOLO',
-  });
+  const [queueType, setQueueType] = useState(postData?.queueType || 'SOLO');
 
-  const [mainChampion, setMainChampion] = useSignularOptionSelector({
-    defaultOption: postData?.myMainChampionName || championOptions[0].key,
-  });
-  const [subChampion, setSubChampion] = useSignularOptionSelector({
-    defaultOption: postData?.mySubChampionName || championOptions[0].key,
-  });
+  const [mainChampion, setMainChampion] = useState(
+    postData?.myMainChampionName || championOptions[0].key,
+  );
+  const [subChampion, setSubChampion] = useState(
+    postData?.mySubChampionName || championOptions[0].key,
+  );
   const [isMicOn, setIsMicOn] = useState(postData?.isMicOn || false);
 
   const {
@@ -177,7 +167,7 @@ export default function usePostWriteForm({
       }
       setIsOpen(false);
       setQueueOption(queueType);
-      onQueryUpdateHandler();
+      onQueryClearHandler();
     } catch (err) {
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);

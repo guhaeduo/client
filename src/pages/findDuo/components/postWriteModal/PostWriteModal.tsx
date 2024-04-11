@@ -20,14 +20,14 @@ type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   postData?: PostContent;
   setQueueOption: (queueOption: string) => void;
-  onQueryUpdateHandler: () => void;
+  onQueryClearHandler: () => void;
 };
 
 export default function PostWriteModal({
   postData,
   setIsOpen,
   setQueueOption,
-  onQueryUpdateHandler,
+  onQueryClearHandler,
 }: Props) {
   const {
     isLogin,
@@ -65,7 +65,7 @@ export default function PostWriteModal({
     postData,
     setIsOpen,
     setQueueOption,
-    onQueryUpdateHandler,
+    onQueryClearHandler,
   });
 
   return (

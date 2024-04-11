@@ -24,13 +24,13 @@ const cn = classNames.bind(styles);
 type Props = {
   post: PostContent;
   setQueueOption: (queueOption: string) => void;
-  onQueryUpdateHandler: () => void;
+  onQueryClearHandler: () => void;
 };
 
 export default function PostItem({
   post,
   setQueueOption,
-  onQueryUpdateHandler,
+  onQueryClearHandler,
 }: Props) {
   const [isOptionOpen, setIsOptionOpen] = useState(false);
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
@@ -92,7 +92,7 @@ export default function PostItem({
           setQueueOption={setQueueOption}
           setIsOpen={setIsPostModifyModalOpen}
           postData={post}
-          onQueryUpdateHandler={onQueryUpdateHandler}
+          onQueryClearHandler={onQueryClearHandler}
         />
       </Modal>
       <Modal isOpen={isPostModalOpen} setIsOpen={setIsPostModalOpen}>
@@ -107,7 +107,7 @@ export default function PostItem({
         setIsOpen={setIsPostDeleteModalOpen}
       >
         <PostDeleteModal
-          onQueryUpdateHandler={onQueryUpdateHandler}
+          onQueryClearHandler={onQueryClearHandler}
           setIsOpen={setIsPostDeleteModalOpen}
           postData={post}
         />

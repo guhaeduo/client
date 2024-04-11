@@ -11,25 +11,25 @@ const cn = classNames.bind(styles);
 type Props = {
   postData: PostContent;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onQueryUpdateHandler: () => void;
+  onQueryClearHandler: () => void;
 };
 
 /**
  * 듀오 게시글을 삭제할 수 있는 모달
  * @param { PostData } postData - 삭제하고자 하는 듀오 게시글의 데이터 입니다.
  * @param { React.Dispatch<React.SetStateAction<boolean>> } setIsOpen - 모달을 닫을 수 있는 핸들러 입니다.
- * @param { () => void } onQueryUpdateHandler - 게시글 삭제를 완료하고 나서 쿼리를 업데이트 하는 함수입니다.
+ * @param { () => void } onQueryClearHandler - 게시글 삭제를 완료하고 나서 쿼리를 업데이트 하는 함수입니다.
  */
 
 export default function PostDeleteModal({
   postData,
   setIsOpen,
-  onQueryUpdateHandler,
+  onQueryClearHandler,
 }: Props) {
   const { register, errors, onSubmitHandler } = usePostDeleteForm({
     postData,
     setIsOpen,
-    onQueryUpdateHandler,
+    onQueryClearHandler,
   });
 
   return (

@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import classNames from 'classnames/bind';
-import useSignularOptionSelector from 'hooks/useSignularOptionSelector';
 import { COUNTRY } from 'constants/options';
 import { IoIosSearch } from 'react-icons/io';
 import { useForm } from 'react-hook-form';
@@ -30,9 +29,7 @@ type Props = {
 
 export default function SearchBar({ className, type }: Props) {
   // 소환사의 검색 국가를 관리하는 옵션 및 옵션 변경함수 입니다.
-  const [countryOption, setCountryOption] = useSignularOptionSelector({
-    defaultOption: 'kr',
-  });
+  const [countryOption, setCountryOption] = useState('kr');
 
   // 최근 검색 기록을 관리하는 상태입니다.
   const [recentSearchHistory, setRecentSearchHistory] = useState<

@@ -10,16 +10,20 @@ type Props = {
 };
 
 /**
- * 소환사의 정보를 받아오는 훅입니다.
- * @param {string} country - 소환사 검색 국가입니다.
- * @param {string} name - 소환사 이름입니다.
- * @param {string} tag - 소환사 태그입니다.
+ * 소환사 정보와 관련된 데이터를 반환하는 훅입니다.
+ * @param {string} country - 소환사 검색 국가
+ * @param {string} name - 소환사 이름
+ * @param {string} tag - 소환사 태그
+ *
+ * @return {SummonerInfo | undefined} summonerInfo - 소환사 정보
+ * @return {boolean} isSummonerInfoFetching - 소환사 정보 패칭 여부
+ * @return {string | undefined} summonerInfoError - 소환사 정보 에러
  */
 
 export default function useSummonerInfo({ country, name, tag }: Props) {
+  // 검색 소환사 데이터를 기반으로 소환사 정보를 받아옵니다.
   const {
     data: summonerInfo,
-    isLoading: isSummonerInfoLoading,
     error,
     isFetching: isSummonerInfoFetching,
   } = useQuery<SummonerInfo>({
@@ -31,7 +35,6 @@ export default function useSummonerInfo({ country, name, tag }: Props) {
   return {
     summonerInfo,
     isSummonerInfoFetching,
-    isSummonerInfoLoading,
     summonerInfoError: error?.message,
   };
 }

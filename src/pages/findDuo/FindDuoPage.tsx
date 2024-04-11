@@ -1,7 +1,7 @@
 import { SiRiotgames } from 'react-icons/si';
 import classNames from 'classnames/bind';
 import DropDown from 'components/common/dropDown/DropDown';
-import useDuoPostWriteForm from 'hooks/business/useFindDuo';
+import useFindDuo from 'hooks/business/useFindDuo';
 import { QUEUE, TIER, LANE } from 'constants/options';
 import LoadingButton from 'pages/summonerSearch/components/loadingButton/LoadingButton';
 import Modal from 'components/common/modal/Modal';
@@ -38,8 +38,8 @@ export default function FindDuoPage() {
     hasNextPage,
     isFetchingNextPage,
     isFetching,
-    onQueryUpdateHandler,
-  } = useDuoPostWriteForm();
+    onQueryClearHandler,
+  } = useFindDuo();
 
   const onPostWriteBtnClick: React.MouseEventHandler = (e) => {
     e.stopPropagation();
@@ -52,7 +52,7 @@ export default function FindDuoPage() {
         <PostWriteModal
           setQueueOption={setQueueOption}
           setIsOpen={setIsOpen}
-          onQueryUpdateHandler={onQueryUpdateHandler}
+          onQueryClearHandler={onQueryClearHandler}
         />
       </Modal>
       <div>
@@ -108,7 +108,7 @@ export default function FindDuoPage() {
               </button>
               <LoadingButton
                 isFetching={isFetching}
-                onClickHandler={onQueryUpdateHandler}
+                onClickHandler={onQueryClearHandler}
                 className={cn('duoUpdateBtn')}
               >
                 업데이트
@@ -127,7 +127,7 @@ export default function FindDuoPage() {
                 postsData={postsData}
                 isFetchingNextPage={isFetchingNextPage}
                 setQueueOption={setQueueOption}
-                onQueryUpdateHandler={onQueryUpdateHandler}
+                onQueryClearHandler={onQueryClearHandler}
               />
               {hasNextPage && !isFetchingNextPage && (
                 <div className={cn('findDuoFooter')}>

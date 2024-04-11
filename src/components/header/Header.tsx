@@ -31,7 +31,7 @@ const SEARCH_BAR_HIDDEN_PATH = [HOME, LOGIN, SIGN_UP, PROFILE, ...AUTH];
 const BUTTONS_HIDDEN_PATH = [LOGIN, SIGN_UP, PROFILE, ...AUTH];
 
 /**
- * 페이지 상단에 요소를 렌더링 합니다.
+ * 페이지 상단에 헤더 요소를 렌더링 합니다.
  * @return 헤더
  */
 
