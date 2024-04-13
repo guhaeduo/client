@@ -42,8 +42,8 @@ export default function PostWriteModal({
     register,
     riotAccount,
     setRiotAccount,
-    mostLane,
-    setMostLane,
+    mainLane,
+    setMainLane,
     subLane,
     setSubLane,
     selectLane,
@@ -141,7 +141,7 @@ export default function PostWriteModal({
         {' '}
         <div>
           <label>메인 라인</label>
-          <LaneSelector size={27} option={mostLane} onChange={setMostLane} />
+          <LaneSelector size={27} option={mainLane} onChange={setMainLane} />
         </div>
         <div>
           <label>메인 챔피언</label>
