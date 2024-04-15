@@ -22,10 +22,11 @@ export default function ItemIcon({ className, itemNumber, puuid }: Props) {
   // 아이템의 상세 정보를 받아와 저장합니다.
   const itemDetail = getItemData(itemNumber);
 
-  const { name, description, icon } = itemDetail;
   // 만약 아이템이 없을 경우 nullItem을 리턴합니다.
   if (itemNumber === 0 || !itemDetail)
     return <div className={cn(className, 'nullItem')} />;
+
+  const { name, description, icon } = itemDetail;
 
   return (
     <CustomTooltip name={name + puuid} title={name} body={description}>
