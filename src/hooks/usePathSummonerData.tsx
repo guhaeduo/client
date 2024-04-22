@@ -2,6 +2,9 @@ import { useParams } from 'react-router-dom';
 
 /**
  * params에서 소환사의 정보를 가져오는 훅입니다.
+ * @return {string} country - 소환사 국가 정보
+ * @return {string} name - 소환사 이름 정보
+ * @return {string} tag - 소환사 태그 정보
  */
 
 export default function usePathSummonerData() {
