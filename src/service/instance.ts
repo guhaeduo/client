@@ -23,6 +23,7 @@ instance.interceptors.request.use(async (config) => {
     modifiedConfig.headers.Authorization = `${tokenType} ${accessToken}`;
     return modifiedConfig;
   }
+
   // accessToken이 없는 경우 원래의 config 객체를 그대로 반환합니다.
   return config;
 });

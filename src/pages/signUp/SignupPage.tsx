@@ -27,7 +27,6 @@ export default function SignupPage() {
     isEmailiValid,
     isVerficationCodeValid,
     isVerificationConfirm,
-    errorMsg,
   } = useSignupForm();
 
   return (
@@ -112,7 +111,6 @@ export default function SignupPage() {
                   label="비밀번호 재확인"
                   error={errors.passwordCheck}
                 />
-                {errorMsg && <p className={cn('signupError')}>{errorMsg}</p>}
                 <button className={cn('signupBtn', { isValid })} type="submit">
                   회원가입
                 </button>

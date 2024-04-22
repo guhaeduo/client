@@ -29,15 +29,16 @@ export default function AccountDeleteModal({ setIsModalOpen }: Props) {
   const accountDelete = async () => {
     // 만약 유의사항을 체크하지 않았다면 얼리리턴합니다.
     if (!isAccountDeleteCheck) return;
-
     try {
       // 계정 삭제 요청을 보냅니다.
       await instance.delete('/api/member/delete');
       // 계정 삭제에 성공하면 스토어의 logout함수를 실행합니다.
       dispatch(logout());
+
       // 계정 삭제 토스트를 띄워줍니다.
       Toast.success(MESSAGE.accountDeleteSuccess);
     } catch (err) {
+      // 계정 삭제 에러시 에러 토스트를 띄워줍니다.
       if (isCustomAxiosError(err) && err.response) {
         Toast.error(err.response.data.message);
         return;
