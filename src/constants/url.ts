@@ -46,7 +46,7 @@ const URL = {
 
   /**
    * 룬 아이콘 이미지 URL을 생성합니다.
-   * @param url - 퍼크 이미지 경로
+   * @param url - 룬 이미지 경로
    */
   perksIcon: (url: string) =>
     `https://ddragon.leagueoflegends.com/cdn/img/${url}`,
