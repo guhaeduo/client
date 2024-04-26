@@ -31,7 +31,7 @@ type Props = {
  * 듀오 게시글 아이템 입니다.
  * @param {PostContent} postData - 게시글 데이터
  * @param {(queueOption : string) => void} setQueueOption - 듀오 게시판 게임 타입 필터 옵션 변경 함수
- * @param {() => void} onQueryClearHandler - 쿼리 업데이트 핸들러 함수
+ * @param {() => void} onQueryClearHandler - 쿼리 초기화 핸들러 함수
  */
 
 export default function PostItem({

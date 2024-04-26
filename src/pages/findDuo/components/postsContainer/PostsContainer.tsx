@@ -13,6 +13,14 @@ type Props = {
   onQueryClearHandler: () => void;
 };
 
+/**
+ * 게시글 아이템을 담고있는 컨테이너입니다.
+ * @param {PostContent[]} postsData - 게시글 데이터 목록 입니다.
+ * @param {boolean} isFetchingNextPage - 다음 페이지 로딩 여부입니다.
+ * @param {(queueOption : string) => void} isFetchingNextPage - 다음 페이지 로딩 여부입니다.
+ * @param {() => void} onQueryClearHandler - 쿼리 초기화 함수입니다.
+ */
+
 export default function PostsContainer({
   postsData,
   isFetchingNextPage,
