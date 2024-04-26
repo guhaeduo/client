@@ -7,7 +7,7 @@ type Props<T extends HTMLElement> = {
 };
 
 /**
- * 문서가 클릭 되었을 때 창을 닫는 함수를 등록합니다.
+ * 지정된 요소 외의 요소가 클릭 되었을 때 창을 닫는 함수를 등록합니다.
  */
 export default function useHandleOutsideClick<T extends HTMLElement>({
   isOpen,
