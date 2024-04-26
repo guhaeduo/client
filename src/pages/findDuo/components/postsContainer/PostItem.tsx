@@ -22,60 +22,111 @@ import styles from './postsContainer.module.scss';
 const cn = classNames.bind(styles);
 
 type Props = {
-  post: PostContent;
+  postData: PostContent;
   setQueueOption: (queueOption: string) => void;
   onQueryClearHandler: () => void;
 };
 
+/**
+ * 듀오 게시글 아이템 입니다.
+ * @param {PostContent} postData - 게시글 데이터
+ * @param {(queueOption : string) => void} setQueueOption - 듀오 게시판 게임 타입 필터 옵션 변경 함수
+ * @param {() => void} onQueryClearHandler - 쿼리 업데이트 핸들러 함수
+ */
+
 export default function PostItem({
-  post,
+  postData,
   setQueueOption,
   onQueryClearHandler,
 }: Props) {
+  // 게시글 옵션 열림 여부
   const [isOptionOpen, setIsOptionOpen] = useState(false);
+  // 게시글 조회 모달 열림 여부
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+  // 게시글 수정 모달 열림 여부
   const [isPostModifyModalOpen, setIsPostModifyModalOpen] = useState(false);
+  // 게시글 삭제 모달 열림 여부
   const [isPostDeleteModalOpen, setIsPostDeleteModalOpen] = useState(false);
+  // 게시글 작성 시간
   const [timeStamp, setTimeStamp] = useState('');
 
+  const {
+    riotGameName,
+    riotGameTag,
+    createdAt,
+    summonerIconNumber,
+    isMicOn,
+    isRiotVerified,
+    queueType,
+    soloRankTier,
+    freeRankTier,
+    myMainLane,
+    myMainChampionName,
+    needPosition,
+    memo,
+    isGuestPost,
+    memberId,
+  } = postData;
+
+  // 게시글 옵션 박스의 주소를 저장합니다.
   const optionBoxRef = useRef(null);
 
+  // 전역 상태에서 유저 정보를 가져옵니다.
   const user = useSelector(selectUser);
-  const gameType = QUEUE.find((queue) => queue.key === post.queueType)
+
+  // 영문 게임 타입을 한글로 변경합니다.
+  const gameType = QUEUE.find((queue) => queue.key === queueType)
     ?.display as string;
+
+  /** 옵션 버튼 클릭시 실행되는 함수입니다. */
   const onOptionBtnClickHandler = () => {
+    // 옵션 박스를 엽니다.
     setIsOptionOpen((prevOpen) => !prevOpen);
   };
 
-  const onCopyHandler: MouseEventHandler = (e) => {
+  /** 소환사 이름 복사 클릭시 실행되는 함수입니다. */
+  const onSummonerNameCopyHandler: MouseEventHandler = (e) => {
+    // 이벤트 버블링을 막습니다.
     e.stopPropagation();
-    clipBoardCopy(`${post.riotGameName}#${post.riotGameTag}`);
+    // 클립보드 복사 함수에 소환사 이름과 태그를 전달합니다.
+    clipBoardCopy(`${riotGameName}#${riotGameTag}`);
   };
 
+  /** 게시글 아이템 클릭시 실행되는 함수입니다. */
   const onPostItemClickHandler: MouseEventHandler = (e) => {
+    // 이벤트 버블링을 막습니다.
     e.stopPropagation();
+    // 게시글 조회 모달을 엽니다.
     setIsPostModalOpen(true);
   };
 
   useEffect(() => {
+    // 매 초마다 게시글의 작성 시간을 업데이트 합니다.
     const timeStampInterval = setInterval(() => {
-      setTimeStamp(calculateTimeStamp(post.createdAt));
-    }, 100);
+      setTimeStamp(calculateTimeStamp(createdAt));
+    }, 1000);
     return () => clearInterval(timeStampInterval);
   }, []);
 
+  /** 게시글 수정 버튼 클릭시 실행되는 함수입니다.   */
   const onPostModifyBtnClickHandler: MouseEventHandler = (e) => {
     e.stopPropagation();
+    // 게시글 수정 모달을 엽니다.
     setIsPostModifyModalOpen(true);
+    // 옵션 박스를 닫습니다.
     setIsOptionOpen(false);
   };
 
+  /** 게시글 삭제 버튼 클릭시 실행되는 함수입니다.   */
   const onPostDeleteBtnClickHandler: MouseEventHandler = (e) => {
     e.stopPropagation();
+    // 게시글 삭제 모달을 엽니다.
     setIsPostDeleteModalOpen(true);
+    // 옵션 박스를 닫습니다.
     setIsOptionOpen(false);
   };
 
+  // 옵션 박스가 열려있을 때, 옵션 박스가 아닌 다른곳을 누르면 옵션 박스를 닫습니다.
   useHandleOutsideClick({
     isOpen: isOptionOpen,
     setIsOpen: setIsOptionOpen,
@@ -91,7 +142,7 @@ export default function PostItem({
         <PostWriteModal
           setQueueOption={setQueueOption}
           setIsOpen={setIsPostModifyModalOpen}
-          postData={post}
+          postData={postData}
           onQueryClearHandler={onQueryClearHandler}
         />
       </Modal>
@@ -99,7 +150,7 @@ export default function PostItem({
         <PostModal
           gameType={gameType}
           setIsOpen={setIsPostModalOpen}
-          postData={post}
+          postData={postData}
         />
       </Modal>
       <Modal
@@ -109,35 +160,35 @@ export default function PostItem({
         <PostDeleteModal
           onQueryClearHandler={onQueryClearHandler}
           setIsOpen={setIsPostDeleteModalOpen}
-          postData={post}
+          postData={postData}
         />
       </Modal>
-      <div key={post.postId} className={cn('postItem')}>
+      <div className={cn('postItem')}>
         <div onClick={onPostItemClickHandler} className={cn('postDataWrapper')}>
           <div className={cn('summonerInfo')}>
             <div className={cn('summonerIcon')}>
               <img
-                src={URL.profileIcon(post.summonerIconNumber)}
+                src={URL.profileIcon(summonerIconNumber)}
                 alt="소환사 프로필 아이콘"
               />
             </div>
             <div className={cn('basicData')}>
               <Link
-                to={`/summoners/kr/${post.riotGameName}-${post.riotGameTag}`}
+                to={`/summoners/kr/${riotGameName}-${riotGameTag}`}
                 className={cn('name')}
               >
-                {post.riotGameName}
+                {riotGameName}
               </Link>
               <div className={cn('tag')}>
-                <span>#{post.riotGameTag}</span>
+                <span>#{riotGameTag}</span>
                 <button
                   className={cn('copy', 'copyBtn')}
-                  onClick={onCopyHandler}
+                  onClick={onSummonerNameCopyHandler}
                 >
                   복사
                 </button>
-                {post.isMicOn && <IoMic className={cn('mic')} />}
-                {post.isRiotVerified && (
+                {isMicOn && <IoMic className={cn('mic')} />}
+                {isRiotVerified && (
                   <div className={cn('riotBadge')}>
                     <SiRiotgames />
                   </div>
@@ -146,35 +197,35 @@ export default function PostItem({
             </div>
           </div>
           <div className={cn('gameType')}>{gameType}</div>
-          {post.queueType !== 'FREE' && (
+          {queueType !== 'FREE' && (
             <div className={cn('tier')}>
-              <img src={URL.tierIcon(post.soloRankTier)} alt="솔랭 티어" />
+              <img src={URL.tierIcon(soloRankTier)} alt="솔랭 티어" />
             </div>
           )}
-          {post.queueType === 'FREE' && (
+          {queueType === 'FREE' && (
             <div className={cn('tier')}>
-              <img src={URL.tierIcon(post.freeRankTier)} alt="자랭 티어" />
+              <img src={URL.tierIcon(freeRankTier)} alt="자랭 티어" />
             </div>
           )}{' '}
           <div>
             <img
-              src={URL.laneIcon(post.myMainLane)}
+              src={URL.laneIcon(myMainLane)}
               className={cn('lane')}
               alt="메인 포지션"
             />
           </div>
           <ChampionIcon
             className={cn('champion')}
-            championName={post.myMainChampionName}
+            championName={myMainChampionName}
           />
           <div>
             <img
-              src={URL.laneIcon(post.needPosition)}
+              src={URL.laneIcon(needPosition)}
               className={cn('lane')}
               alt="찾는 포지션"
             />
           </div>
-          <div className={cn('memo')}>{post.memo}</div>
+          <div className={cn('memo')}>{memo}</div>
           <div className={cn('timeStamp')}>{timeStamp}</div>
         </div>
         <button
@@ -182,7 +233,7 @@ export default function PostItem({
           className={cn('optionBtn')}
           ref={optionBoxRef}
         >
-          {(post.isGuestPost || post.memberId === user.memberId) && (
+          {(isGuestPost || memberId === user.memberId) && (
             <>
               <BsThreeDots />
               <span className="visuallyHidden">옵션 박스 열거 버튼</span>

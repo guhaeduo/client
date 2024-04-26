@@ -35,12 +35,12 @@ export default function PostsContainer({
         <div className={cn('optionBtn')}></div>
       </div>
       <div className={cn('postsWrapper')}>
-        {postsData.map((post) => (
+        {postsData.map((postData) => (
           <PostItem
             setQueueOption={setQueueOption}
             onQueryClearHandler={onQueryClearHandler}
-            key={post.postId}
-            post={post}
+            key={postData.postId}
+            postData={postData}
           />
         ))}
         {isFetchingNextPage && <PostsContainerSkeleton />}
