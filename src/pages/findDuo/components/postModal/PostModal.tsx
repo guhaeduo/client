@@ -12,9 +12,16 @@ const cn = classNames.bind(styles);
 
 type Props = {
   postData: PostContent;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   gameType: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+/**
+ * 듀오 게시글 조회 모달 입니다.
+ * @param {PostContent} postData - 조회하고자 하는 게시글 데이터
+ * @param {string} - gameType - 게시글의 한글 게임 타입
+ * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsOpen - 게시글 조회 모달 오픈 여부 핸들러
+ */
 
 export default function PostModal({ postData, gameType, setIsOpen }: Props) {
   const {
