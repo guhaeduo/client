@@ -1,0 +1,27 @@
+@import '/src/css/mixin';
+
+.queueTypeTab {
+  display: flex;
+  gap: 10px;
+}
+.queueTypeTabButton {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 5px 7px 5px;
+  border-bottom: 3px solid transparent;
+  color: grey;
+  transition: 0s;
+  cursor: pointer;
+  &.active {
+    color: white;
+    border-color: white;
+  }
+}
+
+// 반응형
+
+@include mobile {
+  .queueTypeTabButton {
+    font-size: 15px;
+  }
+}

@@ -1,7 +1,7 @@
-import ERROR_MESSAGE from 'constants/errorMessage';
+import MESSAGE from 'constants/message';
 
 /**
- * 소환사 이름을 전달받아, 올바른지 판단후 에러 혹은 이름,태그를 반환하는 함수
+ * 주어진 소환사 이름을 파싱하여 올바른 형식인지 확인하고, 올바르다면 이름과 태그를 반환합니다.
  * @param {string} input - 소환사 이름
  */
 
@@ -9,20 +9,15 @@ export default function parseSummonerName(input: string) {
   // 소환사 이름과 태그 구분자의 인덱스
   const index = input.indexOf('#');
 
-  // 아무것도 입력하지 않았을 때 에러처리
-  if (input.trim() === '') throw new Error(ERROR_MESSAGE.INVALID_NAME);
+  // 입력이 공백인 경우 에러 발생
+  if (input.trim() === '') throw new Error(MESSAGE.invalidName);
+  // 태그가 없다면 임의의 태그를 리턴
+  if (index === -1) return { name: input, tag: 'KR1' };
 
-  // 구분자가 없다면 잘못된 태그 에러 발생
-  if (index === -1) throw new Error(ERROR_MESSAGE.INVALID_TAG);
-
-  // 이름이 없다면 잘못된 이름 에러 발생
+  // 소환사 이름과 태그 분리
   const name = input.substring(0, index);
-  if (!name) throw new Error(ERROR_MESSAGE.INVALID_NAME);
-
-  // 태그가 없다면 잘못된 태그 에러 발생
   const tag = input.substring(index + 1);
-  if (!tag) throw new Error(ERROR_MESSAGE.INVALID_TAG);
 
-  // 모두 통과했다면, 이름과 태그 반환
+  // 이름과 태그 반환
   return { name, tag };
 }

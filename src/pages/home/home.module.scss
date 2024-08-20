@@ -1,0 +1,65 @@
+@import '/src/css/_mixin.scss';
+
+.homeMain {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.homeSideImage {
+  z-index: -1;
+  position: absolute;
+  top: -300px;
+  left: -400px;
+  img {
+    width: 700px;
+  }
+}
+
+.searchArea {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 5px;
+  margin-top: -100px;
+  h1 {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 200px;
+    }
+  }
+}
+
+// 반응형
+@include laptop {
+  .homeSideImage {
+    z-index: -1;
+    position: absolute;
+    top: -250px;
+    left: -250px;
+    img {
+      width: 600px;
+    }
+  }
+}
+
+@include tablet {
+  .searchArea {
+    width: 80%;
+  }
+  .homeSideImage {
+    display: none;
+  }
+}
+
+@include mobile {
+  .homeMain {
+    padding-top: 120px;
+  }
+  .searchArea {
+    width: 90%;
+  }
+}

@@ -1,0 +1,378 @@
+@import '/src/css/mixin';
+
+.summaryContainer {
+  margin-top: 20px;
+}
+
+.chartDetail {
+  width: 70px;
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+}
+
+.summary {
+  margin-top: 20px;
+  display: flex;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  .summaryTitle {
+    background-color: rgb(57, 58, 60);
+    font-size: 13px;
+    padding: 18px 20px 17px;
+    font-weight: bold;
+  }
+}
+
+.informationContainer {
+  width: 280px;
+  border-right: 1px solid var(--border);
+}
+
+.infomations {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+}
+
+.winningRateChartContainer {
+  position: relative;
+  margin-top: -15px;
+  display: flex;
+  justify-content: center;
+  & > div:last-child {
+    gap: 5px;
+    .infoWinningRate {
+      font-size: 18px;
+    }
+    & > div:last-child {
+      display: flex;
+      gap: 5px;
+      font-size: 13px;
+    }
+  }
+}
+
+.infoDivider {
+  border: 1px dashed rgb(62, 62, 62);
+  width: 85%;
+  left: 0;
+  right: 0;
+  margin: 23px auto;
+}
+
+.infoDataContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.infoKDA {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'Roboto';
+}
+
+.infoKDS {
+  font-family: 'Roboto';
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 16px;
+  .infoDeathAvg {
+    color: var(--light-red);
+  }
+}
+
+.infoLane {
+  display: flex;
+  font-weight: bold;
+  margin-top: 25px;
+  gap: 10px;
+  align-items: end;
+  font-size: 11px;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  img {
+    width: 50px;
+  }
+  span {
+    color: var(--white-300);
+  }
+}
+
+.detailsContainer {
+  flex: 1;
+}
+
+.details {
+  padding: 20px;
+}
+
+.detailsTop {
+  display: flex;
+  .mostChampions {
+    padding-right: 20px;
+  }
+  .detailGameCntChartContainer {
+    flex: 1;
+  }
+}
+
+.mostChampions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+  min-height: calc(8px * 2 + 50px * 3);
+}
+
+.championTag {
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  width: 250px;
+  background-color: #303030;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 3px 30px 30px 3px;
+  .championIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .championTagData {
+    padding-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 13px;
+    flex: 1;
+    span:last-child {
+      font-size: 12px;
+      color: var(--white-200);
+    }
+  }
+  .championName {
+    margin-left: -50px;
+    font-size: 13px;
+    flex: 1;
+  }
+  .championToggle {
+    border: 1px solid rgb(126, 126, 126);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative;
+  }
+  &.active {
+    background-color: #464646;
+  }
+  &.active,
+  &:hover {
+    .championToggle {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgb(179, 179, 179);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+.detailGameCntChartContainer {
+  display: flex;
+  margin-top: -35px;
+  justify-content: center;
+  position: relative;
+  font-family: 'Roboto';
+  & > div:last-child {
+    gap: 10px;
+    margin-top: -15px;
+    span:first-child {
+      font-size: 25px;
+    }
+    span:last-child {
+      font-size: 15px;
+    }
+  }
+}
+
+.detailData {
+  margin-top: 20px;
+  display: flex;
+  gap: 6px;
+  font-weight: bold;
+  & > div {
+    background: linear-gradient(
+      137deg,
+      rgba(0, 0, 0, 0.267) 0%,
+      rgba(144, 144, 144, 0.2) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: rgb(52, 52, 52);
+    flex: 1;
+    span:first-child {
+      font-size: 22px;
+    }
+    span:last-child {
+      font-size: 15px;
+    }
+  }
+}
+.detailDataNotFound {
+  padding: 80px;
+  color: var(--border);
+  font-weight: bold;
+  text-align: center;
+}
+
+//  Skeleton
+
+.summaryContainer.skeleton {
+  .infomationWinningRate {
+    width: 135px;
+    height: 143px;
+    margin-top: 7px;
+  }
+  .infoKDA {
+    height: 20px;
+    width: 100px;
+  }
+  .infoKDS {
+    height: 15px;
+    width: 80px;
+  }
+  .infoLaneOption {
+    width: 50px;
+    height: 50px;
+  }
+  .infoLaneDescription {
+    width: 50px;
+    height: 10px;
+  }
+  .laneSelector {
+    width: 247px;
+    height: 43px;
+  }
+  .mostChampions {
+    margin-top: 18px;
+  }
+  .championTag {
+    opacity: 1;
+    background-color: none;
+    height: 50px;
+    border-radius: 0 30px 30px 0;
+  }
+  .detailGameCnt {
+    margin-top: 20px;
+    width: 180px;
+    height: 180px;
+  }
+  .detailDataItem {
+    height: 112px;
+  }
+}
+
+// 반응형
+
+@include laptop {
+  .infoDivider,
+  .chart {
+    display: none;
+  }
+  .summary {
+    flex-direction: column;
+    border: none;
+    .summaryTitle {
+      padding: 16 14px;
+    }
+    & > div {
+      width: 100%;
+    }
+    .informationContainer {
+      border: none;
+      .infomations {
+        align-items: start;
+        gap: 20px;
+        padding: 30px 20px;
+      }
+      .infoDataContainer {
+        flex-direction: row;
+        align-items: center;
+        .infoLane {
+          margin: 0 0 0 30px;
+        }
+      }
+    }
+  }
+  .detailWrapper {
+    display: flex;
+  }
+  .detailData {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    & > div {
+      padding: 0;
+      span:first-child {
+        font-size: 18px;
+      }
+      span:last-child {
+        font-size: 14px;
+      }
+    }
+  }
+  .summaryContainer.skeleton .detailDataItem {
+    height: auto;
+  }
+}
+
+@include tablet {
+  .detailWrapper {
+    flex-direction: column;
+  }
+  .detailData > div {
+    padding: 20px;
+  }
+  .summaryContainer.skeleton .detailDataItem {
+    height: 87px;
+  }
+  .detailsTop {
+    .mostChampions {
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  .championTag {
+    width: 100%;
+  }
+}

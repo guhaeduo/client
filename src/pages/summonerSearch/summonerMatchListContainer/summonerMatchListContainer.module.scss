@@ -1,0 +1,74 @@
+@import '/src/css/mixin';
+
+.matchListContainer {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.matchList {
+  flex: 1;
+}
+
+.optionContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.matchCardContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.matchDataNotFound {
+  text-align: center;
+  color: var(--grey-200);
+  padding: 100px 0;
+}
+
+// matchPreviewContainer
+
+.matchPreviewContainer {
+  position: sticky;
+  top: 30px;
+  width: 320px;
+  display: flex;
+  height: calc(30px * 2 + 30px);
+  flex-wrap: wrap;
+  &.skeleton {
+    top: 0;
+  }
+}
+
+// skeleton
+
+.matchListContainer.skeleton {
+  .laneSelector {
+    height: 38px;
+    width: 248px;
+  }
+  .matchCard {
+    width: 100%;
+    height: 100px;
+  }
+  .matchListSummary {
+    height: 200px;
+  }
+}
+
+@include laptop {
+  .matchPreviewContainer {
+    display: none;
+  }
+}
+
+@include tablet {
+  .optionContainer {
+    display: block;
+    & > div:last-child {
+      margin-top: 15px;
+    }
+  }
+}

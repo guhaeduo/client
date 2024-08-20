@@ -1,0 +1,27 @@
+.laneSelectorWrapper {
+  border: 1px solid var(--light-border);
+  overflow: hidden;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.laneSelector {
+  transition: 0.1s;
+  padding: 3px 5px;
+  &:not(:last-child) {
+    border-right: 1px solid var(--light-border);
+  }
+}
+
+.imageWrapper {
+  display: flex;
+}
+
+.active {
+  background-color: #a4a4a4;
+}
+
+.disabled {
+  opacity: 0.3;
+  cursor: auto;
+}

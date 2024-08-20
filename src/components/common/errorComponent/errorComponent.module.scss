@@ -1,0 +1,21 @@
+.errorContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 250px;
+  &.centered {
+    padding-top: 0;
+  }
+  .alertIcon {
+    font-size: 50px;
+    color: var(--white-100);
+  }
+  .errorMessage {
+    margin-top: 15px;
+    color: var(--white-100);
+    font-size: 16px;
+  }
+  .toHomeBtn {
+    margin-top: 40px;
+  }
+}

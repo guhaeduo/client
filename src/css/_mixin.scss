@@ -1,0 +1,22 @@
+@import './variable';
+
+// 모바일 반응형 사이즈
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+// 태블릿 반응형 사이즈
+@mixin tablet {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+// 노트북 반응형 사이즈
+@mixin laptop {
+  @media (max-width: #{$breakpoint-laptop}) {
+    @content;
+  }
+}

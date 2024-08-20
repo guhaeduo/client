@@ -1,29 +1,36 @@
 import { useNavigate } from 'react-router-dom';
-import LOCATION from 'constants/location';
+import PATH from 'constants/path';
 /**
- * 어플리케이션에서 사용될 라우팅 함수를 모아둔 훅입니다.
+ * 어플리케이션에서 사용될 네비게이션 함수를 모아둔 훅입니다.
+ * @return {() => void} navHome - 홈 페이지로 이동하는 네비게이션 함수입니다.
+ * @return {() => void} navLogin - 로그인 페이지로 이동하는 네비게이션 함수입니다.
+ * @return {() => void} navSignup - 회원가입 페이지로 이동하는 네비게이션 함수입니다.
+ * @return {(email?: string) => void} navResetPassword - 비밀번호 초기화 이메일 전송 페이지로 이동하는 네비게이션 함수입니다.
+ * @return {() => void} navProfile - 프로필 페이지로 이동하는 네비게이션 함수입니다.
+ * @return {({ country, name, tag, }: { country: string; name: string; tag: string; }) => void} navSummonerSearch - 소환사 검색 페이지로 이동하는 네비게이션 함수입니다.
+ * @return {() => void} navFindDuo - 듀오 찾기 페이지로 이동하는 네비게이션 함수입니다.
  */
 
 export default function useCustomNavigation() {
   const navigate = useNavigate();
 
-  // 메인 페이지로 이동하는 함수입니다.
-  const navHome = () => navigate(LOCATION.HOME);
+  /** 메인 페이지로 이동하는 함수입니다. */
+  const navHome = () => navigate(PATH.home);
 
-  // 로그인 페이지로 이동하는 함수입니다.
-  const navLogin = () => navigate(LOCATION.LOGIN);
+  /** 로그인 페이지로 이동하는 함수입니다. */
+  const navLogin = () => navigate(PATH.login);
 
-  // 회원가입 페이지로 이동하는 함수입니다.
-  const navSignup = () => navigate(LOCATION.SIGN_UP);
+  /** 회원가입 페이지로 이동하는 함수입니다. */
+  const navSignup = () => navigate(PATH.signup);
 
-  // 비밀번호 변경 요청 페이지로 이동하는 함수입니다.
-  const navResetPassword = (email: { email: string }) =>
-    navigate(`${LOCATION.RESET_PASSWORD}${email ? `?email=${email}` : ''}`);
+  /** 비밀번호 변경 요청 페이지로 이동하는 함수입니다. */
+  const navResetPassword = (email?: string) =>
+    navigate(`${PATH.resetPasswordEmailSend}${email ? `?email=${email}` : ''}`);
 
-  // 프로필 페이지로 이동하는 함수입니다.
-  const navProfile = () => navigate(LOCATION.PROFILE);
+  /** 프로필 페이지로 이동하는 함수입니다. */
+  const navProfile = () => navigate(PATH.profile);
 
-  // 소환사 검색 페이지로 이동하는 함수입니다.
+  /** 소환사 검색 페이지로 이동하는 함수입니다. */
   const navSummonerSearch = ({
     country,
     name,
@@ -32,10 +39,10 @@ export default function useCustomNavigation() {
     country: string;
     name: string;
     tag: string;
-  }) => navigate(`${LOCATION.SUMMONER_SEARCH}/${country}/${name}-${tag}`);
+  }) => navigate(`/summoners/${country}/${name}-${tag}`);
 
-  // 듀오 검색 페이지로 이동하는 함수입니다.
-  const navFindDuo = () => navigate(LOCATION.FIND_DUO);
+  /** 듀오 검색 페이지로 이동하는 함수입니다. */
+  const navFindDuo = () => navigate(PATH.findDuo);
 
   return {
     navHome,

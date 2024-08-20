@@ -1,0 +1,11 @@
+.checkBox {
+  border: 1px solid;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &.isCheck {
+    background-color: var(--blue-button);
+  }
+}

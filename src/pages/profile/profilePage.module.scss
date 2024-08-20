@@ -1,0 +1,123 @@
+@import '/src/css/mixin';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 380px;
+  h3 {
+    font-weight: bold;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  h6 {
+    font-weight: 600;
+    color: var(--grey-100);
+  }
+
+  .myAccount,
+  .riotAccount {
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-bottom: 1px solid var(--black-100);
+  }
+
+  .myAccount {
+    & > div {
+      h6 {
+        flex: 1;
+      }
+      display: flex;
+      gap: 10px;
+      span {
+        color: var(--white-100);
+      }
+    }
+    .email span {
+      letter-spacing: 1px;
+    }
+    .passwordChange button {
+      color: var(--light-blue);
+      &:hover {
+        color: var(--light-blue-hover);
+      }
+    }
+  }
+
+  .riotAccountBox {
+    background-color: var(--grey-700);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 3px;
+    .riotIcon {
+      background-color: var(--riot-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      svg {
+        margin-left: -3px;
+        font-size: 18px;
+      }
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      h6 {
+        font-size: 15px;
+        color: white;
+        font-weight: 600;
+        flex: 1;
+      }
+    }
+    button {
+      svg {
+        font-size: 16px;
+        color: var(--grey-100);
+      }
+      &:hover {
+        svg {
+          color: var(--white-100);
+        }
+      }
+    }
+  }
+  .accountManagement {
+    display: flex;
+    gap: 15px;
+    button {
+      flex: 1;
+      height: 45px;
+      border-radius: 3px;
+      font-weight: bold;
+      padding-top: 2px;
+    }
+    .logoutBtn {
+      border: 1px solid var(--white-100);
+      color: var(--white-100);
+      &:hover {
+        background-color: var(--grey-300);
+      }
+    }
+    .accountDeleteBtn {
+      background-color: var(--red-button);
+      &:hover {
+        background-color: var(--red-button-hover);
+      }
+    }
+  }
+}
+
+// 반응형
+
+@include mobile {
+  .main {
+    width: var(--inner);
+  }
+}

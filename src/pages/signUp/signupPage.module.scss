@@ -1,0 +1,110 @@
+@import '/src/css/mixin';
+
+.main {
+  display: flex;
+  justify-content: center;
+  & > div {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+.signupImg {
+  margin-top: -70px;
+  width: 500px;
+  height: 570px;
+}
+
+.signupWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 340px;
+
+  h3 {
+    font-size: 28px;
+    color: var(--white-100);
+    font-weight: bold;
+  }
+  button,
+  input {
+    color: white;
+    height: 45px;
+  }
+  button {
+    background-color: var(--black-200);
+    color: var(--white-300);
+    cursor: not-allowed;
+    &.isValid {
+      cursor: pointer;
+      background-color: var(--blue-button);
+      color: white;
+      &:hover {
+        background-color: var(--blue-button-hover);
+      }
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+    gap: 25px;
+  }
+  .emailInputWrapper {
+    display: flex;
+    gap: 15px;
+    & > div {
+      flex: 1;
+    }
+    button {
+      font-size: 11px;
+      font-weight: bold;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+  }
+  .verificationCodeSentMessage {
+    font-size: 12px;
+    line-height: 1.3;
+    color: var(--grey-100);
+    margin-bottom: 14px;
+  }
+  button {
+    background-color: var(--black-200);
+    color: var(--white-300);
+    &.isValid {
+      background-color: var(--blue-button);
+      color: white;
+      &:hover {
+        background-color: var(--blue-button-hover);
+      }
+    }
+  }
+  .signupBtn {
+    font-size: 15px;
+  }
+  .toLogin {
+    font-size: 13px;
+    margin-top: 70px;
+    span {
+      padding-left: 10px;
+      color: var(--light-blue);
+      cursor: pointer;
+    }
+  }
+}
+
+// 반응형
+@include laptop {
+  .signupImg {
+    display: none;
+  }
+}
+
+@include mobile {
+  .signupWrapper {
+    width: 100%;
+  }
+}

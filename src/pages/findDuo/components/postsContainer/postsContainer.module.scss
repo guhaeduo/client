@@ -1,0 +1,298 @@
+@import '/src/css/mixin';
+
+.postsHeader > div,
+.postItem > div {
+  &:first-child > div {
+    display: flex;
+    justify-content: center;
+    &:nth-child(1),
+    &:nth-child(7) {
+      width: 150px;
+    }
+    &:nth-child(2),
+    &:nth-child(8) {
+      width: 70px;
+    }
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6) {
+      width: 60px;
+    }
+  }
+}
+
+.postsHeader > div:first-child,
+.postItem > div:first-child {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.postsHeader {
+  border-radius: 5px 5px 0 0;
+  padding: 10px 7px;
+  font-size: 12px;
+  background-color: var(--black-100);
+  display: flex;
+  justify-content: space-between;
+  color: var(--white-300);
+  font-weight: 500;
+}
+
+.postsWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  gap: 2px;
+}
+
+.postItem {
+  position: relative;
+  background-color: var(--grey-300);
+  padding: 10px 7px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.postDataWrapper {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.gameType {
+  font-weight: 600;
+}
+
+.tier img {
+  width: 35px;
+}
+
+.champion {
+  width: 30px;
+  border-radius: 50% !important;
+}
+
+.lane {
+  width: 30px;
+  margin-top: 2px;
+}
+
+.memo {
+  font-size: 11px;
+  overflow: hidden;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-wrap: break-word;
+  line-height: 1.2;
+  font-weight: 500;
+}
+.timeStamp {
+  color: var(--grey-200);
+  font-size: 12px;
+}
+
+.summonerInfo {
+  display: flex;
+  gap: 5px;
+}
+
+.summonerIcon {
+  width: 30px;
+  height: 30px;
+  img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.basicData {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 13px;
+  width: calc(100% - 30px - 5px);
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.tag {
+  color: var(--grey-200);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.mic {
+  color: var(--light-green);
+  font-size: 20px;
+}
+
+.riotBadge {
+  font-size: 12px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  padding-right: 0.5px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.optionBtn {
+  width: 30px;
+  svg {
+    font-size: 18px;
+    color: var(--grey-200);
+  }
+}
+
+.optionBox {
+  display: none;
+  position: absolute;
+  border: 1px solid var(--border);
+  z-index: 1;
+  width: 100px;
+  background-color: var(--black-100);
+  right: 0;
+  top: 40px;
+  border-radius: 3px;
+  flex-direction: column;
+  overflow: hidden;
+  &.open {
+    display: flex;
+  }
+  & > button {
+    width: 100%;
+    font: 600;
+    padding: 10px 0;
+    &:first-child {
+      border-bottom: 1px solid var(--black-200);
+    }
+    &:hover {
+      background-color: #494949;
+    }
+  }
+}
+
+// 반응형
+
+@media (max-width: 950px) {
+  .postsHeader {
+    font-size: 11px;
+  }
+  .postsHeader > div,
+  .postItem > div {
+    &:first-child > div {
+      &:nth-child(5) {
+        display: none;
+      }
+    }
+  }
+  .basicData {
+    .name {
+      font-size: 12px;
+    }
+    .tag {
+      font-size: 11px;
+    }
+    .mic {
+      font-size: 17px;
+    }
+    .riotBadge {
+      font-size: 11px;
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  .postsHeader {
+    font-size: 10px;
+  }
+  .postsHeader > div,
+  .postItem > div {
+    &:first-child > div {
+      &:nth-child(1) {
+        width: 130px;
+      }
+      &:nth-child(3),
+      &:nth-child(4) {
+        width: 40px;
+      }
+      &:nth-child(9),
+      &:nth-child(2),
+      &:nth-child(6),
+      &:nth-child(7) {
+        width: 50px;
+      }
+      &:nth-child(7) {
+        display: none;
+      }
+    }
+  }
+  .basicData {
+    .name {
+      font-size: 11px;
+    }
+    .tag {
+      font-size: 10px;
+    }
+    .mic {
+      font-size: 15px;
+    }
+    .riotBadge {
+      font-size: 10px;
+    }
+  }
+  .gameType {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 630px) {
+  .postsHeader > div,
+  .postItem > div {
+    &:first-child > div {
+      &:nth-child(5),
+      &:nth-child(8) {
+        display: none;
+      }
+    }
+  }
+  .copyBtn {
+    display: none;
+  }
+}
+
+@include mobile {
+  .summonerIcon {
+    display: none;
+  }
+  .postsHeader > div,
+  .postItem > div {
+    &:first-child > div {
+      &:nth-child(1) {
+        width: 100px;
+      }
+    }
+  }
+}
