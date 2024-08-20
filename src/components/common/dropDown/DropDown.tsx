@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { IoCaretDownSharp } from 'react-icons/io5';
-import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
+import useHandleOutsideClick from 'hooks/useHandleOutsideClick';
 import styles from './dropDown.module.scss';
 
 const cn = classNames.bind(styles);

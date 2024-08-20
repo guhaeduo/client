@@ -8,6 +8,9 @@ export function getChampionData(championName: string) {
   const localChampionData = JSON.parse(
     localStorage.getItem('championData') as string,
   ).championData;
+  // 예외 케이스 - 아트록스
+  if (championName === 'Atrox') return localChampionData.aatrox;
+
   // 전달받은 챔피언 이름과 일치하는 데이터를 반환합니다.
   return localChampionData[championName.toLowerCase()];
 }

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import parseSummonerName from 'utils/parseSummonerName';
 import useCustomNavigation from 'hooks/useCustomNavigation';
 import getNewRecentSearchHistory from 'utils/getNewRecentSearchHistory';
-import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
+import useHandleOutsideClick from 'hooks/useHandleOutsideClick';
 import { SearchHistory } from 'types/summoner';
 import Toast from 'utils/toast';
 import SearchHistoryContainer from './SearchHistoryContainer';

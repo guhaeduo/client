@@ -7,7 +7,7 @@ import Modal from 'components/common/modal/Modal';
 import { PostContent } from 'types/post';
 import clipBoardCopy from 'utils/clipBoardCopy';
 import { MouseEventHandler, useRef, useState, useEffect } from 'react';
-import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
+import useHandleOutsideClick from 'hooks/useHandleOutsideClick';
 import { calculateTimeStamp } from 'utils/calculate';
 import { IoMic } from 'react-icons/io5';
 import { SiRiotgames } from 'react-icons/si';

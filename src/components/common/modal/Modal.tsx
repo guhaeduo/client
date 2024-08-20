@@ -1,6 +1,6 @@
 import React, { ReactNode, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import useHandleOutsideClick from 'hooks/useHandleOustsideClick';
+import useHandleOutsideClick from 'hooks/useHandleOutsideClick';
 import styles from './modal.module.scss';
 
 const cn = classNames.bind(styles);
